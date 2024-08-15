@@ -90,10 +90,10 @@ have a fixed width and height (but it's not required).
 
 
 
-<link rel="stylesheet" type="text/css" href="{{url('jcarousel')}}/_shared/css/style.css">
+<link rel="stylesheet" type="text/css" href="{{url('/')}}/jcarousel/_shared/css/style.css">
 
 <!-- Example assets -->
-<link rel="stylesheet" type="text/css" href="{{url('jcarousel')}}/jcarousel.vertical.css">
+<link rel="stylesheet" type="text/css" href="{{url('/')}}/jcarousel/jcarousel.vertical.css">
 
 
 <link href="{{url('magnify')}}/dist/jquery.magnify.css" rel="stylesheet">
@@ -276,11 +276,11 @@ function topFunction() {
 </script>
 
 </body>
-  <script type="text/javascript" src="{{url('sardar')}}/js/jquery.min.js"></script>
-  <script type="text/javascript" src="{{url('sardar')}}/js/fancybox.js"></script>
-  <script type="text/javascript" src="{{url('sardar')}}/js/slick.min.js"></script>
-  <script type="text/javascript" src="{{url('sardar')}}/js/custom-fancybox.js"></script>
-  <script type="text/javascript" src="{{url('sardar')}}/js/script.js"></script>
+  <script type="text/javascript" src="{{url('/')}}/js/jquery.min.js"></script>
+  <script type="text/javascript" src="{{url('/')}}/front/js/fancybox.js"></script>
+  <script type="text/javascript" src="{{url('/')}}/js/slick.min.js"></script>
+  <script type="text/javascript" src="{{url('/')}}/js/custom-fancybox.js"></script>
+  <script type="text/javascript" src="{{url('/')}}/js/script.js"></script>
 
   <script type="text/javascript">
   

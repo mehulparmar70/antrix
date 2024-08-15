@@ -9,15 +9,14 @@
 <meta itemprop="name" content="@if(isset($pageData['meta_title'])){{$pageData['meta_title']}}@endif">
 <meta itemprop="description" content="@if(isset($pageData['meta_description'])){{$pageData['meta_description']}}@endif">
 
-<link href="{{url('tfi')}}/assets/css/main.css" rel="stylesheet">
 
 @if(isset($pageData->image))
 
-  <meta itemprop="image" content="{{url('/')}}/media/sm/{{$pageData->image}}">
+  <meta itemprop="image" content="{{asset('web')}}/media/sm/{{$pageData->image}}">
 @elseif(isset($pageData['featured_image']))
-  <meta itemprop="image" content="{{url('/')}}/media/sm/{{$pageData['featured_image']}}">
+  <meta itemprop="image" content="{{asset('web')}}/media/sm/{{$pageData['featured_image']}}">
 @else
-  <meta itemprop="image" content="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}">
+  <meta itemprop="image" content="{{asset('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}">
 @endif
 
 <meta property="og:type" content="article" />
@@ -26,24 +25,17 @@
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:url" content="{{ Request::url() }}" />
 @if(isset($pageData['featured_image']))
-  <meta property="og:image" content="{{url('/')}}/media/sm/{{$pageData['featured_image']}}" />
+  <meta property="og:image" content="{{asset('web')}}/media/sm/{{$pageData['featured_image']}}" />
 @else
-  <meta property="og:image" content="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" />
+  <meta property="og:image" content="{{asset('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" />
 @endif
 
 <meta property="og:image:width" content="730" />
 <meta property="og:image:height" content="548" />
 <meta property="og:description" content="@if(isset($pageData['meta_description'])){{$pageData['meta_description']}}@endif" />
 <meta property="og:site_name" content="https://www.giantinflatables.in" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-thumbnail.css">
-	  
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery-bundle.css">
 	  
 @if($pageData['search_index'] == 1 && $pageData['search_follow'] == 1)
   <meta name="robots" content="index,follow">
@@ -63,26 +55,25 @@
 @endif
 
 
-<link rel="shortcut icon" href="{{url('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
-
-   <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{url('/')}}/css/bootstrap.css">
-    <link rel="stylesheet" href="{{url('/')}}/css/style.css">
-    <link rel="stylesheet" href="{{url('sardar')}}/css/all.min.css">
-  	<link rel="stylesheet" type="text/css" href="{{url('/')}}/css/slick.css"/>
-  	<link rel="stylesheet" type="text/css" href="{{url('/')}}/css/slick-theme.css"/>
-
-  	<link rel="stylesheet" type="text/css" href="{{url('/')}}/css/custom.css"/>
-  	<link rel="stylesheet" type="text/css" href="{{url('/')}}/css/button-media.css"/>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-				
+  <link rel="shortcut icon" href="{{asset('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="{{asset('/')}}/css/bootstrap.css"> -->
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
+    <!-- <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/style.css">
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/responsive.css">
+    <!-- <link rel="stylesheet" href="{{asset('/')}}/front/css/slick.css"> -->
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/slick.css">
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/slick-theme.css">
+    <link rel="stylesheet" href="{{asset('/')}}/front/fonts/fonts.css">
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/fancybox.css">
+    <link rel="stylesheet" href="{{asset('/')}}/plugins/toastr/toastr.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<script async src="https://cse.google.com/cse.js?cx=005070036219886076141:a7fxxahyg3u"></script>
+<script async src="https://cse.google.com/cse.js?cx=005070036219886076141:hrykucbjc20" defer></script>
 
 <script>
 (function(opts_){/*
@@ -147,9 +138,7 @@ Q&&(R.onload=Q);document.getElementsByTagName("head")[0].appendChild(R);if(M()){
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141287418-1"></script>
 
 
-<link rel="stylesheet" href="{{url('lightjs')}}/css/lightgallery.css">
-
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6142d467a2a5620019d2708a&product=sop' async='async'></script>
+<!-- <link rel="stylesheet" href="{{asset('lightjs')}}/css/lightgallery.css"> -->
 <?php
 
   $headerCode = DB::table('custom_codes')->where('type', 'header-code')->first();
