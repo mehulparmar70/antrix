@@ -392,7 +392,9 @@
 										@if(isset($blogLink->display_name))
 												{{$blogLink->display_name}}
 											@else
-											{{$blogLink->name}}
+											@isset($blogLink->name)
+												{{$blogLink->name}}
+											@endisset
 											@endif</a>
 										</li>
 									@endif
