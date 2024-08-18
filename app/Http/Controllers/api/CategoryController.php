@@ -117,8 +117,8 @@ class CategoryController extends Controller
                         }
                     }
                 } else {
-                    $response['SubCategories'][$key]['Image'] = '<img class="rounded img-block m-1"  width="200" src="'.asset('adm').'/img/no-item.jpeg'.'"/>';
-                    // $response['SubCategories'][$key]['Image'] = asset('adm').'/img/no-item.jpeg';
+                    $response['SubCategories'][$key]['Image'] = '<img class="rounded img-block m-1"  width="200" src="'.asset(/).'/img/no-item.jpeg'.'"/>';
+                    // $response['SubCategories'][$key]['Image'] = asset(/).'/img/no-item.jpeg';
                 }
 
                 if($sub_category->status == 1){

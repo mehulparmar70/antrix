@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index()
     { 
         // dd('111');
-        return view('adm.index');
+        return view('admin.index');
     }
 
     public function dashboard2()

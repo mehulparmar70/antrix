@@ -82,7 +82,7 @@ class AdminAuthController extends Controller
 
     function dashboard(){
         $data = ['LoggedUserInfo' =>  Admin::where('id', '=', session('LoggedUser'))->first()];
-        return view('adm.index', $data);
+        return view('admin.index', $data);
     }
 
     public static function AdminAuth(){

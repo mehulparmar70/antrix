@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index')
+@extends('layout.admin-index')
 @section('title','Dashboard - Charotar Corporation')
 
 @section('toast')

@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index')
+@extends('layout.admin-index')
 @section('title','Add: Client')
 
 @section('toast')
@@ -138,7 +138,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP</p><br>
-                        <img class="perview-img image"  height="120" src="{{asset('adm')}}/img/no-item.jpeg"> 
+                        <img class="perview-img image"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
 
@@ -167,7 +167,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP<br> </p>
-                        <img class="perview-img client_images"  height="120" src="{{asset('adm')}}/img/no-item.jpeg"> 
+                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
                         <span class="text-danger">@error('client_images') {{$message}} @enderror</span>
                       </div>
                     </div>
@@ -213,7 +213,7 @@ function updateOrder(data) {
                               @else
                               
                           <td><img class="rounded" style="width:150px"
-                              src="{{asset('adm')}}/img/no-user.jpeg" width="120"></td>
+                              src="{{asset('/')}}/img/no-user.jpeg" width="120"></td>
                           @endif
 
                           <td>{{$client->note}}</td>

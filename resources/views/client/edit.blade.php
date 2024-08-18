@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index')
+@extends('layout.admin-index')
 @section('title','Dashboard - Charotar Corporation')
 
 @section('toast')
@@ -145,7 +145,7 @@ $('.add-more').click(function () {
                         src="{{asset('web')}}/media/xs/{{$client->image}}">
                         @else
                         <img class=""  height="120"
-                      src="{{asset('adm')}}/img/no-item.jpeg">
+                      src="{{asset('/')}}/img/no-item.jpeg">
                     @endif
                   </div>
                   <div class="col-sm-3 col-md-2">

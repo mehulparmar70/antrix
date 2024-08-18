@@ -17,6 +17,8 @@ use App\Http\Controllers\admin\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\admin\HomeEditorController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CustomCodeController;
 
 
 $adminRewrite = 'powerup';
@@ -35,7 +37,7 @@ Route::post('/auth/check', [AdminAuthController::class, 'check'])->name('admin.a
 Route::get('/auth/logout', [AdminAuthController::class, 'logout'])->name('admin.auth.logout');
 Route::get('/auth/logoutOnscreen', [AdminAuthController::class, 'logoutOnscreen'])->name('admin.auth.logoutOnscreen');
 
-Route::get('/login', [AdminAuthController::class, 'login'])->name('login');
+Route::get('/', [AdminAuthController::class, 'login'])->name('login');
 Route::get('/register', [AdminAuthController::class, 'register']);
 
 
@@ -47,7 +49,7 @@ Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit'])->name('admin.category.edit');
 Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
 
-Route::get('/',[DashboardController::class, 'index'])->name('admin.index');
+Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
 
 Route::get('clients', [ClientController::class, 'index'])->name('client.index');
 Route::get('awards', [AwardController::class, 'index'])->name('award.index');
@@ -88,4 +90,16 @@ Route::get('/page-editor/updates', [PageController::class, 'updatesPageEditor'])
 Route::get('/page-editor/industries', [PageController::class, 'industriePageEditor'])->name('admin.industries-page.editor');
 
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
+Route::get('products', [ProductController::class, 'index'])->name('product.index');
+Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
+
+
+
+Route::get('/settings/seo-manage', [SettingController::class, 'seoManageIndex'])->name('admin.setting.seo-manage');
+Route::post('/settings/seo-manage', [SettingController::class, 'seoManageStore'])->name('admin.setting.seo-manage.store');
+Route::post('/settings/seo-manage-image', [SettingController::class, 'seoManageImageStore'])->name('admin.setting.seo-manage-images.store');
+
+
+Route::get('/custom-code/js',[CustomCodeController::class, 'customJs'])->name('admin.customJs.create');
+Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 });
