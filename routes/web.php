@@ -37,7 +37,7 @@ Route::post('/auth/check', [AdminAuthController::class, 'check'])->name('admin.a
 Route::get('/auth/logout', [AdminAuthController::class, 'logout'])->name('admin.auth.logout');
 Route::get('/auth/logoutOnscreen', [AdminAuthController::class, 'logoutOnscreen'])->name('admin.auth.logoutOnscreen');
 
-Route::get('/login', [AdminAuthController::class, 'login'])->name('login');
+Route::get('/', [AdminAuthController::class, 'login'])->name('login');
 Route::get('/register', [AdminAuthController::class, 'register']);
 
 
@@ -49,7 +49,7 @@ Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit'])->name('admin.category.edit');
 Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
 
-Route::get('/',[DashboardController::class, 'index'])->name('admin.index');
+Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
 
 Route::get('clients', [ClientController::class, 'index'])->name('client.index');
 Route::get('awards', [AwardController::class, 'index'])->name('award.index');
