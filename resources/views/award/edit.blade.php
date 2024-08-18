@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index')
+@extends('layout.admin-index')
 @section('title','Add: Client')
 
 @section('toast')
@@ -142,7 +142,7 @@ function updateOrder(data) {
                               src="{{asset('web')}}/media/xs/{{$award->image}}">
                               @else
                               <img class="perview-img"  height="120"
-                            src="{{asset('adm')}}/img/no-item.jpeg">
+                            src="{{asset('/')}}/img/no-item.jpeg">
                           @endif
 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
@@ -211,7 +211,7 @@ function updateOrder(data) {
                               @else
                               
                           <td><img class="rounded" style="width:150px"
-                              src="{{asset('adm')}}/img/no-user.jpeg" width="120"></td>
+                              src="{{asset('/')}}/img/no-user.jpeg" width="120"></td>
                           @endif
 
 

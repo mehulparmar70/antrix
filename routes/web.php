@@ -17,6 +17,8 @@ use App\Http\Controllers\admin\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\admin\HomeEditorController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\CustomCodeController;
 
 
 $adminRewrite = 'powerup';
@@ -88,4 +90,16 @@ Route::get('/page-editor/updates', [PageController::class, 'updatesPageEditor'])
 Route::get('/page-editor/industries', [PageController::class, 'industriePageEditor'])->name('admin.industries-page.editor');
 
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
+Route::get('products', [ProductController::class, 'index'])->name('product.index');
+Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
+
+
+
+Route::get('/settings/seo-manage', [SettingController::class, 'seoManageIndex'])->name('admin.setting.seo-manage');
+Route::post('/settings/seo-manage', [SettingController::class, 'seoManageStore'])->name('admin.setting.seo-manage.store');
+Route::post('/settings/seo-manage-image', [SettingController::class, 'seoManageImageStore'])->name('admin.setting.seo-manage-images.store');
+
+
+Route::get('/custom-code/js',[CustomCodeController::class, 'customJs'])->name('admin.customJs.create');
+Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 });

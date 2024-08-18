@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index')
+@extends('layout.admin-index')
 @section('title','Video Page Editor')
 
 @section('toast')
