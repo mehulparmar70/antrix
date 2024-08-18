@@ -3,7 +3,31 @@
  
 @endsection
 
-	<section class="experts">
+@if(session('LoggedUser'))
+<style type="text/css">
+  .product-video-div .onscreen-popup-title-link{
+    background: white;
+  }
+  .product-video-div .active a{
+    color: black !important;
+  }
+  .product_internal_title,.footer-partners-div .crud {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    padding: 4px 10px
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    z-index: 99999999;
+    background: white;
+  }
+</style>
+@endif
+
+	<!-- <section class="experts">
 		<div class="container-fluid">
 			<div class="col-12">
 				<div class="header-t py-4">
@@ -74,10 +98,9 @@
 										</div>
 									@endforeach
 
-<!-- 
 									<img class="border-block img-fluid slideshow_img blur_original" 
                                     style="width:inherit; height:inherit;"
-                                    src="http://localhost:8000///img/border/611X529-1.png"> -->
+                                    src="http://localhost:8000///img/border/611X529-1.png"> 
 
 
 
@@ -230,230 +253,294 @@
 			</div>	
 		</div>	
 	</section>
+ -->
 
-	<section class="about_giant pb-5 bg-white wiThmap">
-		<div class="container-fluid">
-			<div class="col-12">
-
-				<div class="header-t mb-3">
-					<h1><a href="{{url('contact')}}">Connect With Us</a></h1>
-				</div>	
-
-				<div class="many_partition">
-					<div class="facebooks_posts">
-						{{-- html_entity_decode(getSocialMedia()->facebook_embed) --}}
-						
-						@if(isset(getSocialMedia()->facebook))
-						<a href="{{getSocialMedia()->facebook}}">
-						<img src="{{url('/')}}/images/facebook-page.png" 
-							style="width:100%;margin-bottom: 10px;max-width: ;max-height: 449px;padding-right: 11px;"></a>
-						@endif
-						
-					</div>
-					
-					<div class="map_part google_map_block" style="max-width:100%">
-						<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.198518805097!2d73.17775031490606!3d22.308330685319373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8ad0f8aef55%3A0x4788d9c0fa43addc!2sLalita%20Tower!5e0!3m2!1sen!2sin!4v1625899768295!5m2!1sen!2sin" width="300" height="425" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
-					
-							{!! html_entity_decode(getSocialMedia()->map_embed) !!}
-					</div>
-
-					@include('widget.contact-form1')
-
-
-					<div class=" bg-white connect_with">
-						<div class="ab_logo text-center">	
-							<a href="">
-								<img src="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" class="img-fluid">
-							</a>	
-						</div>
-						<div class="social_footer text-center d-block">	
-							<ul>
-								@if(isset(getSocialMedia()->youtube))
-									<li><a href="{{getSocialMedia()->youtube}}"><img src="{{url('/')}}/images/youtube.png"></a></li>
-								@endif
-
-								@if(isset(getSocialMedia()->twitter))
-									<li><a href="{{getSocialMedia()->twitter}}"><img src="{{url('/')}}/images/twitter.png"></a></li>
-								@endif
-
-								@if(isset(getSocialMedia()->facebook))
-									<li><a href="{{getSocialMedia()->facebook}}"><img src="{{url('/')}}/images/facebook.png"></a></li>
-								@endif
-
-								@if(isset(getSocialMedia()->instagram))
-									<li><a href="{{getSocialMedia()->instagram}}"><img src="{{url('/')}}/images/instagram.png"></a></li>
-								@endif
-
-								@if(isset(getSocialMedia()->linkedin))
-									<li><a href="{{getSocialMedia()->linkedin}}"><img src="{{url('/')}}/images/linkedin.png"></a></li>
-								@endif
-
-								@if(isset(getSocialMedia()->skype))
-									<li><a href="{{getSocialMedia()->skype}}"><img src="{{url('/')}}/images/skype.png"></a></li>
-								@endif
-								
-								
-							</ul>
-
-							<address>{{getSocialMedia()->address}}</address>
-						</div>	
-					</div>	
-					
-				</div>	
-
-			</div>	
-		</div>	
-	</section>
-
-	<section class="about_giant py-4">
-		<div class="container-fluid">
-			<div class="col-12 p-0 px-lg-3">
-
-				<div class="bootomExploreNowslider">
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Information</div>
-							<ul class="d-block pl-3">
-
-								@foreach(getFooterLinks()['pageLinks'] as $pageLink)
-									<li><a href="{{$pageLink->url}}">
-										@if($pageLink->name)
-											{{$pageLink->name}}
-										@endif</a></li>
-								@endforeach
-
-							
-								<li><a href="{{route('sitemap')}}">Sitemap</a></li>
-							</ul>
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Categories</div>
-							<ul class="d-block pl-3 p-xl-0">
-							
-							@if(count(getFooterLinks()['categoryLinks']) == 0)
-								
-							@foreach(getMainCategories(0, 8) as $footerCategory)
-									<li>
-										<a href="{{url('')}}/{{$footerCategory->slug}}">{{$footerCategory->name}}</a>
-									</li>
-								@endforeach
-
-							@else
-								@foreach(getFooterLinks()['categoryLinks'] as $categoryLink)
-									@if(isset($categoryLink->slug))
-										<li>
-										<a href="{{url('')}}/{{$categoryLink->slug}}">
-											@if(isset($categoryLink->display_name))
-													{{$categoryLink->display_name}}
-											@else
-												{{$categoryLink->name}}
-											@endif</a>
-										</li>
-									@endif
-								@endforeach
-							@endif
-
-							</ul>
-						</div>						
-					</div>
-					
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Products</div>
-							<ul class="d-block pl-3 p-xl-0">
-
-							@foreach(getMainCategories(0, 8) as $footerCategory)
-								@foreach(getSubCategories($footerCategory->id ,1) as $footerSubCategory)
-									<li>
-										<a href="{{url('')}}/{{$footerSubCategory->slug}}">
-										
-										
-										{{$footerSubCategory->name}}</a>
-									</li>
-								@endforeach
-							@endforeach
-							</ul>
-						</div>						
-					</div>
-
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Blog</div>
-							<div class="blog-text">
-							<ul class="d-block pl-3 p-xl-0">	
-							@foreach(getFooterLinks()['blogLinks'] as $blogLink)
-									
-									@if(isset($blogLink->slug))
-									<li>
-									<a href="{{url('blog')}}/{{$blogLink->slug}}">
-									
-										@if(isset($blogLink->display_name))
-												{{$blogLink->display_name}}
-											@else
-											{{$blogLink->name}}
-											@endif</a>
-										</li>
-									@endif
-								
-									@endforeach
-
-								</ul>
-							</div>	
-						</div>						
-					</div>
-					<div class="bootomexplore-slide">
-						<div class="bootomex_inner">
-							<div class="bootomhead-slide">Testimonials</div>
-							<ul class="d-block pl-3 p-xl-0">
-							
-							@foreach(getFooterLinks()['testimonialLinks'] as $testimonialLink)
-							
-								
-							<!-- @if(isset($testimonialLink))
-								<li>
-									<a href="{{ url('testimonials') }}?testimonial={{ $testimonialLink->item_id ?? '' }}">
-										@if(isset($testimonialLink->client_name))
-											{{ $testimonialLink->client_name }}
-										@else
-											{{ $testimonialLink->name ?? '' }}
-										@endif
-									</a>
-								</li>
-							@endif -->
-
-								@endforeach
-
-							</ul>
-						</div>						
-					</div>
-					
+	<section class="kiis">
+		<div class="container">
+			<div class="wrap_kiis">
+			<div class="kiss_wrap">
+				<div class="big_text mid_text">
+				<a href="{{url('/videos')}}" >PRODUCT VIDEOS </a>
 				</div>
-
-
-			</div>	
-		</div>	
+				<div class="kiis_blk">
+				@foreach($videos as $video)
+				<?php 
+				preg_match('/src="([^"]+)"/', $video->youtube_embed, $match);
+				$url = array_slice(explode('/', $match[1]), -1)[0];
+				$tumbnail = 'https://img.youtube.com/vi/'.$url.'/hqdefault.jpg';
+				?>
+				<div href="#" class="kiis_item product-video-div">
+					<section
+					class="video"
+					style="background-image: url('{{$tumbnail}}')"
+					>
+					<a data-fancybox href="{{ $match[1] }}">
+						<img src="{{url('sardar')}}/images/video2.png" />
+						<div class="onscreen_video_popup_block"></div>
+					</a>
+					</section>
+				</div>
+				@endforeach
+				</div>
+				<a href="{{url('/videos')}}" class="read_all explore_all"><p>VIEW ALL</p></a>
+			</div>
+			<div class="kiss_wrap">
+				<div class="big_text mid_text">
+				<a href="{{ url('partenrs') }}">OUR PARTNERS</a>
+				</div>
+				<div class="kiis_blk footer-partners-div">
+				@foreach($footerOurPartners as $partenr)
+				<a href="{{url('partners')}}/{{$partenr->slug}}" class="kiis_item">
+					<img src="{{url('web')}}/media/md/{{$partenr->image}}" />
+					<div class="crud"></div>
+				</a>
+				@endforeach
+				</div>
+				<a href="{{ url('partenrs') }}" class="read_all explore_all"><p>VIEW ALL</p></a>
+			</div>
+			<div class="kiss_wrap">
+				<div class="big_text mid_text">
+				<a href="{{ url('products') }}">LATEST PROJECT</a>
+				</div>
+				<div class="kiis_blk">
+				@foreach(getMainCategories() as $key => $mainCategoryAll)
+				@foreach(getSubCategories($mainCategoryAll->id) as $key => $topInflatableLp)
+				<?php $imageName = getSubCategoryImages($topInflatableLp->id, 2, 'DESC')[0]['image']; ?>
+				<a href="{{$topInflatableLp->slug}}" class="kiis_item">
+					<img src="{{url('web')}}/media/md/{{$imageName}}" />
+					<div class="product_internal_title"></div>
+				</a>
+				@endforeach
+				@endforeach
+				</div>
+				<a href="{{ url('products') }}" class="read_all explore_all"><p>VIEW ALL</p></a>
+			</div>
+			</div>
+		</div>
 	</section>
 
-	<footer class="bg-white" 
-	style="background: url({{url('/')}}/images/footer-bg.gif);">
-		<div class="container-fluid" 
-		style="background: url({{url('/')}}/images/footer-bg.gif);">	
-			<div class="site-footer">	
+<!-- map section -->
+<section class="map_sec">
+  <div class="container">
+    <div class="map_blk">
+      <div class="map_item">
+        <div class="full_map">
+		{!! html_entity_decode(getSocialMedia()->map_embed) !!}
+        </div>
+      </div>
+      <div class="map_item">
+        <img src="{{url('/')}}/images/logo.png" alt="call" class="img1300" />
+        <p>
+          <i class="fa fa-phone"></i
+          ><a href="tel:{{getSocialMedia()->phone}}" class="call">{{getSocialMedia()->phone}}</a>
+        </p>
+        <p>
+          <i class="fa fa-envelope-o"></i
+          ><a href="mailto: {{getSocialMedia()->email}}" class="mail"
+            >{{getSocialMedia()->email}}</a
+          >
+        </p>
+        <p>
+          <i class="fa fa-map-marker"></i><a href="#">{{getSocialMedia()->address}}</a>
+        </p>
+        <div class="social_icon">
+        	@if(isset(getSocialMedia()->facebook))
+          <a href="{{getSocialMedia()->facebook}}"> <img src="{{url('/')}}/images/bluefb.png" alt="facebook" /></a>
+          @endif
+          @if(isset(getSocialMedia()->twitter))
+          <a href="{{getSocialMedia()->twitter}}"><img src="{{url('/')}}/images/bluetwiter.png" alt="twitter" /></a>
+          @endif
+          @if(isset(getSocialMedia()->youtube))
+          <a href="{{getSocialMedia()->youtube}}"><img src="{{url('/')}}/images/blueyoutube.png" alt="youtube" /></a>
+          @endif
+          @if(isset(getSocialMedia()->linkedin))
+          <a href="{{getSocialMedia()->linkedin}}"> <img src="{{url('/')}}/images/bluein.png" alt="linkedin" /></a>
+          @endif
+        </div>
+        <span class="map_span">
+          <a href="{{route('sitemap')}}">Sitemap</a> &nbsp;|&nbsp;
+          <a href="#">Privacy Policy</a>
+        </span>
+      </div>
+      <div class="map_item">
+	  @include('widget.contact-form1')
+      </div>
+    </div>
+  </div>
+</section>
+
+	<section class="nav_1300">
+		<div class="header_nav">
+			<div class="container">
+			<div class="navbar main_div">
 				<ul>
-							
-					<li class="text-center"  style="color: #bbb6b6 !important;">
-						<p class="text-dark" style="color: #bbb6b6 !important;">This website is powered by:</p> <a href="https://www.thestudio5.com.au/" title="The Studio5 Australia"><img src="{{url('/')}}/images/studio5-logo2.png" style="height: 85px;margin-top: 25px;" alt="The Studio5 Australia" class="img-fluid"></a></li>	
-					<li class="text-center"><p style="color: #bbb6b6 !important;">This Website is protected <a href="https://www.dmca.com/Protection/Status.aspx?ID=a4028ee2-959b-4c8a-a700-d63422de49a8&amp;refurl=https://www.giantinflatables.in//" title="DMCA.com Protection Status" class="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca_protected_16_120.png?ID=a4028ee2-959b-4c8a-a700-d63422de49a8" alt="DMCA.com Protection Status" class="img-fluid ml-3" width="100"></a></p>
-					<br><a href="{{url('')}}"
-						 style="color: #bbb6b6 !important;"><span>@ Giant Inflatables.</span>. All Rights Reserved.</a></li>
-					<li class="text-center"><p  style="color: #bbb6b6 !important;">SEO-SEM-SMM-PPC By:</p> <a href="https://searchmediabroker.com/" title="Search Media Broker"><img src="{{url('/')}}/images/SMB_LOGO_FINAL_WHITE.png" alt="Search Media Broker" class="img-fluid" style="height:120px;"></a></li>
+				<li class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.home.editor')}}"
+					@endif><a href="{{url('')}}" class="home nav-item">HOME</a>
+				</li>
+				<li class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.product-page.editor')}}"
+					@endif>
+					<a href="{{url('products')}}" class="our_product_menu nav-item">OUR PRODUCTS </a>
+				</li>
+				<li class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.about-page.editor')}}"
+					@endif>
+					<a class="item nav-item" href="{{url('about')}}">ABOUT</a>
+				</li>
+				<li class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.casestudies-page.editor')}}"
+					@endif><a href="{{url('case-studies')}}" class="nav-item case_studies_menu">CASE STUDIES</a></li>
+				<li class="menu_crud nav-item" @if(session('LoggedUser'))
+						data-link="{{route('admin.testimonial-page.editor')}}"
+					@endif>
+					<a href="{{url('testimonials')}}" class="item nav-item testimonials_menu"
+					>TESTIMONIALS</a>
+				</li>
+				<li class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.home.editor')}}"
+					@endif><a class="nav-item" href="{{url('updates')}}">Updates</a></li>
+				<li class="menu_crud " @if(session('LoggedUser'))
+						data-link="{{route('admin.contact-page.editor')}}"
+					@endif>
+					<a href="{{url('contact-us')}}" class="item nav-item">CONTACT US</a></li>
 				</ul>
-				  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-			</div>	
-		</div>	
+			</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer" style="background-color: #eeeeee;">
+		<div class="container">
+			<div class="footer_blk">
+			<div class="footer_item footer_width">
+				<h2 class="social_footer" @if(session('LoggedUser'))
+						data-link="{{route('admin.setting.social-media')}}"
+						@endif>Contact Us</h2>
+				<img src="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" alt="Logo" class="img1300" />
+
+				<p class="width_p">
+				At Giant Inflatables Industrial we aim to replace the conventional
+				with the extraordinary. Taking what industries have used for years
+				and revolutionizing it into a product of efficiency, portability
+				and productivity.
+				</p>
+				<p>
+				<i class="fa fa-phone"></i
+				><a href="tel:{{getSocialMedia()->phone}}" class="call">{{getSocialMedia()->phone}}</a>
+				</p>
+				<p>
+				<i class="fa fa-envelope-o"></i
+				><a
+					href="mailto:{{getSocialMedia()->email}}"
+					class="mail"
+					>{{getSocialMedia()->email}}</a
+				>
+				</p>
+				<p>
+				<i class="fa fa-map-marker"></i
+				><a href="#">{{getSocialMedia()->address}}</a>
+				</p>
+			</div>
+			<div class="footer_item">
+				<h2 class="footer_page_link_information">Company Links </h2>
+				<ul class="footerLinks" >
+				@foreach(getFooterLinks()['pageLinks'] as $pageLink)
+						<li>
+							<div class="triangle triangle-1"></div>
+							<a href="{{$pageLink->url}}"
+							
+						>
+							@if($pageLink->name)
+							{{$pageLink->name}}
+							@endif</a></li>
+						@endforeach
+				</ul>
+			</div>
+			<div class="footer_item">
+				<h2>Products</h2>
+				<ul class="footerLinks">
+				@if(count(getFooterLinks()['categoryLinks']) == 0)
+					@foreach(getMainCategories(0, 8) as $footerCategory)
+						<li>
+						<div class="triangle triangle-1"></div>
+						<a href="{{url('')}}/{{$footerCategory->slug}}">{{$footerCategory->name}}</a>
+						</li>
+					@endforeach
+
+					@else
+					@foreach(getFooterLinks()['categoryLinks'] as $categoryLink)
+						@if(isset($categoryLink->slug))
+						<li>
+						<div class="triangle triangle-1"></div>
+						<a href="{{url('')}}/{{$categoryLink->slug}}">
+							@if(isset($categoryLink->display_name))
+								{{$categoryLink->display_name}}
+							@else
+							{{$categoryLink->name}}
+							@endif</a>
+						</li>
+						@endif
+					@endforeach
+					@endif
+				</ul>
+			</div>
+			<div class="footer_item">
+				<h2>Updates</h2>
+				<ul class="footerLinks">
+				@foreach(getFooterLinks()['blogLinks'] as $blogLink)
+						
+						@if(isset($blogLink->slug))
+						<li>
+							<div class="triangle triangle-1"></div>
+						<a href="{{url('updates')}}/{{$blogLink->slug}}">
+						
+							@if(isset($blogLink->display_name))
+								{{$blogLink->display_name}}
+							@else
+							{{$blogLink->title}}
+							@endif</a>
+							</li>
+							@endif
+						@endforeach
+				</ul>
+			</div>
+			<div class="footer_item">
+				<h2>Case Study</h2>
+				<ul class="footerLinks">
+				@foreach($footerCaseStudies as $caseStudiesLink)
+						
+				@if(isset($caseStudiesLink))
+					<li>
+					<div class="triangle triangle-1"></div>
+					<a href="{{url('case-studies')}}/{{$caseStudiesLink->slug}}">
+					{{$caseStudiesLink->title}}</a>
+					</li>
+					@endif
+				
+				@endforeach
+				</ul>
+			</div>
+			</div>
+		</div>
 	</footer>
+
+
+	<footer class="footer_bottom">
+		<div class="container">
+			<div class="footer_bottom_item">
+			<p>web & technology partner</p>
+			<p>brand & marketing partner</p>
+			</div>
+			<div class="footer_bottom_item">
+			<p><img src="{{url('/')}}/images/studio5-logo2.png" style="height: 115px;margin-top: 25px;" alt="The Studio5 Australia" class="img-fluid"></p>
+			<p>copyright © Giant Industrial Inflatables. All rights reserved.</p>
+			<p><img src="{{url('/')}}/images/SMB_LOGO_FINAL_WHITE.png" alt="Search Media Broker" class="img-fluid" style="height:180px;"></p>
+			</div>
+			<div class="footer_bottom_item"></div>
+		</div>
+	</footer>
+
 
 	<img src="{{url('/')}}/img/border/100X40.png" style="display:none;" />
 	<img src="{{url('/')}}/img/border/160X40.png" style="display:none;" />
