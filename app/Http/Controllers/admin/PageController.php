@@ -13,7 +13,7 @@ class PageController extends Controller
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
         ];
-        return view('adm.pages.home-editor.product-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     public function aboutPageEditor(){
@@ -21,77 +21,77 @@ class PageController extends Controller
             'pageData' =>  Pages::where('type', 'about_page')->first(),
         ];
         
-        return view('adm.pages.home-editor.about-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     public function testimonialPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
         ];
-        return view('adm.pages.home-editor.testimonial-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     
     public function videoPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'video_page')->first(),
         ];
-        return view('adm.pages.home-editor.video-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     public function blogPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
         ];
-        return view('adm.pages.home-editor.blog-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     public function partenrsPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'partenr_page')->first(),
         ];
-        return view('adm.pages.home-editor.partners-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function contactPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
         ];
-        return view('adm.pages.home-editor.contact-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function casestudiesPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
         ];
-        return view('adm.pages.home-editor.casestudies-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function newsletterPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
         ];
-        return view('adm.pages.home-editor.newsletter-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function industriePageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'industrie_page')->first(),
         ];
-        return view('adm.pages.home-editor.industrie-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function updatesPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'updates_page')->first(),
         ];
-        return view('adm.pages.home-editor.updates-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function clientPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'client_page')->first(),
         ];
-        return view('adm.pages.home-editor.client-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
     public function awardsPageEditor(){
         $data = [
             'pageData' =>  Pages::where('type', 'award_page')->first(),
         ];
-        return view('adm.pages.home-editor.awards-page', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     // public function pageEditorStore(Request $request){
