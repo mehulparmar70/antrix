@@ -67,11 +67,11 @@ $(".page a").addClass( "active-menu");
                           {{$pageData->description}}</textarea>
                           <span class="text-danger">@error('description') {{$message}} @enderror</span>
                           
-                          @include('adm.widget.seo-content')
+                          @include('widget.seo-content')
                       
                         </div>
 
-                        @include('adm.widget.seo-content-2')
+                        @include('widget.seo-content-2')
                       
                     <input type="hidden" name="type" value="video_page">               
                     </div>

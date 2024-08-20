@@ -2,7 +2,7 @@
 @section('title','ALL INFLATABLES Editor')
 
 @section('toast')
-  @include('adm.widget.toast')
+  @include('widget.toast')
 @endsection
 
 @section('custom-js')
@@ -27,7 +27,7 @@ $(".page a").addClass( "active-menu");
 @endsection
 
 @section('content')
-@include('adm.widget.table-search-draggable')
+@include('widget.table-search-draggable')
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -91,14 +91,14 @@ $(".page a").addClass( "active-menu");
                     </div>
                     <div class="form-group row col-sm-12">
                       <div  class="col-sm-6">
-                        @include('adm.widget.seo-content')
+                        @include('widget.seo-content')
 
                         <label for="url">Page Url</label>
                         <input type="url" class="form-control" name="url" placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
                         <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
                       </div>
                       <div  class="col-sm-6">
-                        @include('adm.widget.seo-content-2')
+                        @include('widget.seo-content-2')
                       </div>
                     </div>
                     
@@ -121,54 +121,7 @@ $(".page a").addClass( "active-menu");
                         <h3 class="card-title">Click & Explore</h3>
                     </div>
                 
-                  <form method="post" class="form-horizontal" action="{{route('admin.url-list1.store')}}">
-                      @csrf
-                      <div class="card-body p-2 pt-4">
-                      <div class="form-group row">
-                          <div class="col-sm-12">
-                          <input type="hidden" name="type" value="home_url1">
-                          
-                          <input type="text" class="form-control" name="title"
-                              placeholder="Url Title">
-                              
-                          <span class="text-danger">@error('title') {{$message}} @enderror</span>
-                          </div>
-                      </div> 
-                      
-                      <div class="form-group row">
-                          <div class="col-sm-12">
-                          <select name="target" class="form-control" id="">
-                              <option value="_self">Open in Same Page (Default)</option>
-                              <option value="_blank">Open in New Tab</option>
-                          </select>
-                          <span class="text-danger">@error('target') {{$message}} @enderror</span>
-                          </div>
-                      </div>
-                      
-                          <div class="form-group row">
-                              <div class="col-sm-12">
-                              <input type="url" class="form-control" name="url"
-                                  placeholder="Url link">
-                              <span class="text-danger">@error('url') {{$message}} @enderror</span>
-                              </div>
-                          </div>
-
-
-                      <div class="form-group">
-                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input status-switch" 
-                            name="status" value="0" id="customSwitch1">
-                          <label class="custom-control-label float-right" for="customSwitch1">Status</label>
-                        </div>
-                      </div>
-
-                      </div>
-                      </div>
-
-                      <div class="card-footer">
-                      <button type="submit" class="btn btn-dark">Save Slider</button>
-                      </div>
-                  </form>
+              
                 </div>
 
                 

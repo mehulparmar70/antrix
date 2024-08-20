@@ -79,11 +79,11 @@ $(".page a").addClass( "active-menu");
                     <div class="form-group">
                       <div class="col-sm-12 row">
                         <div  class="col-sm-6">
-                          @include('adm.widget.seo-content')
+                          @include('widget.seo-content')
                           <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
                         </div>
                         <div  class="col-sm-6">
-                          @include('adm.widget.seo-content-2')
+                          @include('widget.seo-content-2')
                         </div>
                       </div>
                     </div>

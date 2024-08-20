@@ -16,7 +16,7 @@ use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VideoController;
-use App\Http\Controllers\admin\HomeEditorController;
+use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
 
@@ -102,4 +102,11 @@ Route::post('/settings/seo-manage-image', [SettingController::class, 'seoManageI
 
 Route::get('/custom-code/js',[CustomCodeController::class, 'customJs'])->name('admin.customJs.create');
 Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
+Route::post('/admin/page-editor/store', [PageEditorController::class, 'store'])->name('admin.page-editor.store');
+Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
+Route::get('/setting/social-media', [SettingController::class, 'socialMedia'])->name('setting.social-media');
+Route::get('/admin/custom-code/js',[CustomCodeController::class, 'customJs'])->name('customJs.create');
+
+Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
+
 });

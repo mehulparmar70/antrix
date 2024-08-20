@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -75,7 +75,7 @@ public function topInflatableStore(Request $request)
 
             'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
-        return view('adm.pages.home-editor.index', $data);
+        return view('admin.home-editor.index', $data);
     }
 
     public function homeEditorAboutStore(Request $request)

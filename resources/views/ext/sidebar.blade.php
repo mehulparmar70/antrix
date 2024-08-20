@@ -115,13 +115,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('home.editor')}}" class="nav-link">
+                <a href="{{route('admin.home.editor')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Home Page</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('product-page.editor')}}" class="nav-link">
+                <a href="{{route('admin.')}}" class="nav-link">
                   <i class="fa fa-th-list nav-icon"></i>
                   <p>Product Page</p>
                 </a>
