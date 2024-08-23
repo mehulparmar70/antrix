@@ -17,16 +17,19 @@ class PageController extends Controller
     }
 
     public function aboutPageEditor(){
+        $type = 'about';
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'type' => $type,
         ];
-        
         return view('admin.home-editor.popup-page', $data);
     }
 
     public function testimonialPageEditor(){
+        $type = 'testimonial';
         $data = [
             'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
