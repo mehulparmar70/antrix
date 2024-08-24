@@ -59,10 +59,23 @@
       </div>
       <div class="modal-body" id="modalBodyContentpopup">
         @if(isset($pageData) && !empty($pageData))
-        @if ($type == 'About')
-          @include('admin.home-editor.about-page')
+          @if ($type == 'About')
+            @include('admin.home-editor.about-page')
+          @endif
+          @if ($type == 'Product')
+            @include('admin.home-editor.product-page')
+          @endif
+          @if ($type == 'CaseStudies')
+            @include('admin.home-editor.casestudies-page')
+          @endif
+          @if ($type == 'Testimonial')
+            @include('admin.home-editor.testimonial-page')
+          @endif
+          @if ($type == 'Contact')
+            @include('admin.home-editor.contact-page')
+          @endif
         @endif
-        @endif
+
       </div>
     </div>
   </div>

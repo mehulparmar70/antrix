@@ -102,7 +102,7 @@ Route::post('/settings/seo-manage-image', [SettingController::class, 'seoManageI
 
 Route::get('/custom-code/js',[CustomCodeController::class, 'customJs'])->name('admin.customJs.create');
 Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
-Route::post('/admin/page-editor/store', [PageEditorController::class, 'store'])->name('admin.page-editor.store');
+Route::post('/admin/page-editor/store', [PageController::class, 'pageEditorStore'])->name('admin.page-editor.store');
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
 Route::get('/setting/social-media', [SettingController::class, 'socialMedia'])->name('setting.social-media');
 Route::get('/admin/custom-code/js',[CustomCodeController::class, 'customJs'])->name('customJs.create');
