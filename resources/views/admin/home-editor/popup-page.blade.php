@@ -21,14 +21,17 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 1% auto; 
-    padding: 20px;
+    margin: 1% auto;
+    padding: 40px; /* Increased padding for a bigger box feel */
     border: 1px solid #888;
-    overflow-y: auto !important ; /* Add vertical scroll */
-    max-width: 80% !important;
-    max-height: 80% !important; 
-    position: relative !important;
+    overflow-y: auto; /* Add vertical scroll */
+    max-width: 90% !important; /* Increased width */
+    max-height: 90% !important; /* Increased height */
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5); /* Add shadow for a more pronounced effect */
+    border-radius: 8px; /* Rounded corners */
 }
+
 #ajaxModal form
 {
   width: 100%;
@@ -48,15 +51,15 @@
     cursor: pointer;
 }
 </style>
-<div id="ajaxModal" style="display:block;">
-  <div class="modal-dialog" role="document">
+<div id="ajaxModal" >
+  <div class="" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">App Url</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><?= $type?></h5>
       </div>
-      <div class="modal-body" id="modalBodyContent">
+      <div class="modal-body" id="modalBodyContentpopup">
         @if(isset($pageData) && !empty($pageData))
-        @if ($type == 'about')
+        @if ($type == 'About')
           @include('admin.home-editor.about-page')
         @endif
         @endif

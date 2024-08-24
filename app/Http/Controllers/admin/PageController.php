@@ -17,7 +17,7 @@ class PageController extends Controller
     }
 
     public function aboutPageEditor(){
-        $type = 'about';
+        $type = 'About';
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
             'type' => $type,
