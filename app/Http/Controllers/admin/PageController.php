@@ -12,8 +12,11 @@ use GeneaLabs\NovaGutenberg\Gutenberg;
 class PageController extends Controller
 {
     public function productPageEditor(){
+        $type = 'Product';
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Our Products')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -29,9 +32,10 @@ class PageController extends Controller
     }
 
     public function testimonialPageEditor(){
-        $type = 'testimonial';
+        $type = 'Testimonial';
         $data = [
             'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Testimonials')->where('status',1)->get(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -58,14 +62,20 @@ class PageController extends Controller
         return view('admin.home-editor.popup-page', $data);
     }
     public function contactPageEditor(){
+        $type = 'Contact';
         $data = [
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Contact Us')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
     public function casestudiesPageEditor(){
+        $type = 'CaseStudies';
         $data = [
             'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Case Studies')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -197,8 +207,13 @@ class PageController extends Controller
     // }
 
     public function pageEditorStore(Request $request) {
-    
-        
+        $newUrl = $request->page_url;
+        $newName = $request->page_name;
+        UrlList::where('type', 'page_link')
+                ->where('name', $newName)
+                ->where('status', 1)
+                ->update(['url' => $newUrl]);
+        return redirect('/')->with('success', $request->type . ' Details Added...');
         // Get the page title from the request
         // $page_title = $request->page_title;
         

@@ -7,8 +7,10 @@
                     <div class="form-group row">
                       <div class="col-sm-8 mt-4 mb-4">
                         <label  class="" for="meta_description">Add Custom Url</label>
-                        <input type="text" class="form-control" name="page_title" 
+                        <input type="text" class="form-control" name="page_url" 
                           placeholder="Custom Url" value="<?= $url_list[0]['url']?>">
+                          <input type="hidden" class="form-control" name="page_name" 
+                          placeholder="Custom Url" value="<?= $url_list[0]['name']?>">
                         <span class="text-danger"></span>
                       </div>
                       
