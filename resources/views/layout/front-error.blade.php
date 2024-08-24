@@ -101,7 +101,7 @@ have a fixed width and height (but it's not required).
 
 <script type="text/javascript" src="{{url('jcarousel')}}/jcarousel.vertical.js"></script>
 
-<link href="{{url('magnify')}}/dist/jquery.magnify.css" rel="stylesheet">
+<!-- <link href="{{url('magnify')}}/dist/jquery.magnify.css" rel="stylesheet"> -->
 
 </head>
 

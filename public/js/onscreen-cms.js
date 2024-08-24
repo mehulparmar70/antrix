@@ -453,6 +453,7 @@ function popupmenu(link,toolbar, location,left,width, height)
         $('#ajaxModal').css('position', 'absolute');
         $('#ajaxModal').css('z-index', '10000');
         $('.preloader').css('display', 'none');
+        
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log('Error loading content: ' + textStatus);

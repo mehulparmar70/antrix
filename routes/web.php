@@ -110,3 +110,4 @@ Route::get('/admin/custom-code/js',[CustomCodeController::class, 'customJs'])->n
 Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
 
 });
+

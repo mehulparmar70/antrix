@@ -96,7 +96,7 @@ have a fixed width and height (but it's not required).
 <link rel="stylesheet" type="text/css" href="{{url('/')}}/jcarousel/jcarousel.vertical.css">
 
 
-<link href="{{url('magnify')}}/dist/jquery.magnify.css" rel="stylesheet">
+<!-- <link href="{{url('magnify')}}/dist/jquery.magnify.css" rel="stylesheet"> -->
 
 </head>
 

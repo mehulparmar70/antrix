@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Pages;
 use Intervention\Image\Facades\Image;
+use GeneaLabs\NovaGutenberg\Gutenberg;
 
 class PageController extends Controller
 {

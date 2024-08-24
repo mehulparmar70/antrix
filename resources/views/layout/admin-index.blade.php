@@ -27,7 +27,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{url('/')}}/plugins/summernote/summernote-bs4.min.css">
 
-	<link rel="stylesheet" href="{{url('/')}}/plugins/toastr/toastr.min.css">
+	<!-- <link rel="stylesheet" href="{{url('/')}}/plugins/toastr/toastr.min.css"> -->
 	<link rel="stylesheet" href="{{url('/')}}/dist/css/custom.css">
   <link rel="stylesheet" href="{{url('/')}}/drag-drop/dist/imageuploadify.min.css">
   
