@@ -7,8 +7,8 @@
                     <div class="form-group row">
                       <div class="col-sm-8 mt-4 mb-4">
                         <label  class="" for="meta_description">Add Custom Url</label>
-                        <textarea type="text" class="form-control" name="page_title" 
-                          placeholder="Page Short Description">@if(old('page_title')){{old('page_title')}}@else{{$pageData->page_title}}@endif</textarea>
+                        <input type="text" class="form-control" name="page_title" 
+                          placeholder="Custom Url" value="<?= $url_list[0]['url']?>">
                         <span class="text-danger"></span>
                       </div>
                       
