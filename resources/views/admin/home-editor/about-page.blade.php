@@ -6,15 +6,12 @@
 
                     <div class="form-group row">
                       <div class="col-sm-8 mt-4 mb-4">
-                        <label  class="" for="meta_description">Page Short Description</label>
+                        <label  class="" for="meta_description">Add Custom Url</label>
                         <textarea type="text" class="form-control" name="page_title" 
                           placeholder="Page Short Description">@if(old('page_title')){{old('page_title')}}@else{{$pageData->page_title}}@endif</textarea>
                         <span class="text-danger"></span>
                       </div>
-                      <div class="col-sm-12">
-                        <textarea id="editor" name="description" placeholder="About Descriptions">{{$pageData->description}}</textarea>
-                        <span class="text-danger">@error('description') {{$message}} @enderror</span>
-                      </div>
+                      
                     </div>
                     
                     <input type="hidden" name="type" value="about_page">      

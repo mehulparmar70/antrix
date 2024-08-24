@@ -428,10 +428,8 @@ function getOnscreenUrl(url){
 </style>
 
 <div id="ajaxModal" class="modal" style="display:none;">
-    <div class="modal-content">
         <span class="close">&times;</span>
         <div id="modalBodyContent"></div>
-    </div>
 </div>
     </div>
     <!-- <script src="{{url('vertical-menu')}}/js/vm.js" type="text/javascript"></script>

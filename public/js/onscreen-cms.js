@@ -441,27 +441,36 @@ $('.testOnload').append("<a href="+$('.testOnload').attr('data-link')+'?onscreen
 });
 
 
-function popupmenu(link,toolbar, location,left,width, height)
-{
-  console.log('new',link);
-  
-  $.ajax({
-    url: link,
-    method: 'GET',
-    success: function(data) {
-        // Load the content into the modal
-        $('#modalBodyContent').html(data);
-        $('#ajaxModal').modal('show');
-        // $('#ajaxModal').css('display', 'block');
-        // $('#ajaxModal').css('position', 'absolute');
-        // $('#ajaxModal').css('z-index', '10000');
-        // $('.preloader').css('display', 'none');
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        console.log('Error loading content: ' + textStatus);
-    }
-});
+function popupmenu(link, toolbar, location, left, width, height) {
+  // First fetch request to get the content for #modalBodyContent
+  fetch(link)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('modalBodyContent').innerHTML = data;
+
+          // Second fetch request to get additional content
+          return fetch(link);
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('modalBodyContent').innerHTML = data;
+          document.getElementById('ajaxModal').style.display = 'block';
+      })
+      .catch(error => {
+          console.error('Error loading content:', error);
+      });
 }
+
 
 function saveData(event) {
   event.preventDefault(); // Prevent the default form submission
