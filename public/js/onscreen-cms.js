@@ -443,17 +443,19 @@ $('.testOnload').append("<a href="+$('.testOnload').attr('data-link')+'?onscreen
 
 function popupmenu(link,toolbar, location,left,width, height)
 {
+  console.log('new',link);
+  
   $.ajax({
     url: link,
     method: 'GET',
     success: function(data) {
         // Load the content into the modal
         $('#modalBodyContent').html(data);
-        $('#ajaxModal').css('display', 'block');
-        $('#ajaxModal').css('position', 'absolute');
-        $('#ajaxModal').css('z-index', '10000');
-        $('.preloader').css('display', 'none');
-        
+        $('#ajaxModal').modal('show');
+        // $('#ajaxModal').css('display', 'block');
+        // $('#ajaxModal').css('position', 'absolute');
+        // $('#ajaxModal').css('z-index', '10000');
+        // $('.preloader').css('display', 'none');
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log('Error loading content: ' + textStatus);

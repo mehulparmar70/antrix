@@ -75,7 +75,7 @@ Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
 
 
-Route::get('/page-editor/about', [PageController::class, 'aboutPageEditor'])->name('admin.about-page.editor');
+Route::get('page-editor/about', [PageController::class, 'aboutPageEditor'])->name('admin.about-page.editor');
 Route::get('/page-editor/product', [PageController::class, 'productPageEditor'])->name('admin.product-page.editor');
 Route::get('/page-editor/testimonial', [PageController::class, 'testimonialPageEditor'])->name('admin.testimonial-page.editor');
 Route::get('/page-editor/video', [PageController::class, 'videoPageEditor'])->name('admin.video-page.editor');
