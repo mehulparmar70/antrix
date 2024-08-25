@@ -201,7 +201,7 @@ $('.footer_page_blog_information').each(function(){
 });
 
 $('.TopContent, .FieldsTexts').each(function(){
-  $(this).before(`<a  href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='top-content-pages adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).before(`<a  href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='top-content-pages adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 $('.onscreen_product_internal_title2').each(function(){
