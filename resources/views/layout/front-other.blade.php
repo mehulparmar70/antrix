@@ -3,12 +3,12 @@
 <head>
     @yield('custom-head')
     
-    @include('home.ext.head')
+    @include('ext.head')
 </head>
 
 <div class="loader" style="height:100vh;">
     <img 
-     src="{{url('sardar')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" 
+     src="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" 
      class="rounded mx-auto d-block" >
 </div>
 
@@ -55,7 +55,7 @@
 
 	<div id="wrapper" class="clearfix">
 
-    @include('home.ext.header')
+    @include('ext.header')
 
     <section id="page-title" class="page-title-mini"  
         style="
@@ -80,19 +80,19 @@
 
 	@yield('content')
 
-    @include('home.ext.footer')
+    @include('ext.footer')
 	</div>
 
 	<div id="gotoTop" class="icon-angle-up"></div>
 
-	<script src="{{url('home')}}/js/jquery.js"></script>
-	<script src="{{url('home')}}/js/plugins.min.js"></script>
+	<script src="{{url('/')}}/js/jquery.js"></script>
+	<script src="{{url('/')}}/js/plugins.min.js"></script>
     <!-- @yield('custom-footer') -->
 	
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyAeMV-FMGnR139m8rBqa5LNKyP5rBqMhIE"></script>
 
-    <script src="{{url('home')}}/js/functions.js"></script>
-	<script src="{{url('home')}}/js/custom.js"></script>
+    <script src="{{url('/')}}/js/functions.js"></script>
+	<script src="{{url('/')}}/js/custom.js"></script>
 
 
 

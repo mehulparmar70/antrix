@@ -501,3 +501,19 @@ function saveData(event) {
 $(document).ready(function() {
   $(document).on('submit', '#ajaxForm', saveData); // Bind the submit event to the form using event delegation
 });
+
+
+$(document).ready(function () {
+  function getOnscreenUrl(url) {
+      var screen = $(window).width();
+      var popupWinWidth = 990;
+      var left = (screen - popupWinWidth) / 2;
+      window.open(url, 'toolbar=no, location=no', 'left=' + left + ',width=' + popupWinWidth + ',height=860');
+  }
+
+  // Bind dynamically if content is loaded via AJAX
+  $(document).on('click', '.menu_item_img a', function (e) {
+      e.preventDefault();
+      getOnscreenUrl($(this).data('link'));
+  });
+});

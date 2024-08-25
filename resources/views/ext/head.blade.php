@@ -56,7 +56,7 @@
 
 
   <link rel="shortcut icon" href="{{asset('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="{{asset('/')}}/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="{{asset('/')}}css/bootstrap.css">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
     <!-- <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
     <link rel="stylesheet" href="{{asset('/')}}/front/css/style.css">

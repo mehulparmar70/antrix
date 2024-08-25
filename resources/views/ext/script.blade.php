@@ -2,33 +2,15 @@
 <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
    
-<!-- Laraberg CSS -->
-<link rel="stylesheet" href="{{ asset('vendor/laraberg/css/laraberg.css') }}">
 
-<!-- Laraberg JS -->
-<script src="{{ asset('vendor/laraberg/js/laraberg.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<script src="https://unpkg.com/react@16.6.3/umd/react.production.min.js"></script>
-
-<script src="https://unpkg.com/react-dom@16.6.3/umd/react-dom.production.min.js"></script>
-
-<script src="https://unpkg.com/moment@2.22.1/min/moment.min.js"></script>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-
-
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script src="{{asset('/')}}/js/popper.min.js"></script>
 <script src="{{asset('/')}}/js/bootstrap.min.js"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 <script src="{{asset('/')}}/js/custom.js"></script>
-<script type="text/javascript" src="{{asset('sardar')}}/js/slick.min.js"></script>
-<script src="{{asset('lightjs')}}/js/lightgallery.min.js"></script>
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6142d467a2a5620019d2708a&product=sop' async='async'></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <script src="{{asset('/')}}/plugins/toastr/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if(session('LoggedUser'))
@@ -134,15 +116,7 @@
     // $('body').hide();
   </script>
    
-   <script src="https://www.google.com/recaptcha/api.js?render=6Ld3ciIdAAAAAD_i8lRU0HuO7OHycIBbZb3Q7OMm"></script>
-   <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6Ld3ciIdAAAAAD_i8lRU0HuO7OHycIBbZb3Q7OMm', { action: 'submit' }).then(function (token) {
-              $('.token_response').val(token);
-            });
-        });
 
-    </script>
     
 <script>
   

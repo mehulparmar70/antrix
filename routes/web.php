@@ -27,6 +27,9 @@ Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('sitemap.html', [HomeController::class, 'sitemap'])->name('sitemap');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::get('/about', [HomeController::class, 'about'])->name('admin');
+
 Route::prefix('powerup')->group(function () {
 
 

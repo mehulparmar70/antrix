@@ -40,7 +40,7 @@
         placeholder="Share Your Inflatables Requirement"
       ></textarea>
     </div>
-    <div class="g-recaptcha" data-sitekey="6Leh9bkUAAAAAKVlEaSgl7pW4Sn0fom2KGGIB5m_"></div>
+    
     <p class="blue_text">
       We do not Sell or Rent your information.
       {{ Session::get('success')}}

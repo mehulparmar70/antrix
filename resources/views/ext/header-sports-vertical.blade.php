@@ -4,6 +4,159 @@
 <head>
 </head>
 <body>
+  
+<style>
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #2e2e2e; /* Dark background color */
+    color: #fff; /* White text */
+    margin: auto;
+    padding: 0;
+    border-radius: 8px; /* Rounded corners */
+    max-width: 850px; /* Adjust to your preference */
+    width: 90%; /* Responsive width */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    position: relative; /* For absolute positioned close button */
+    border: 1px solid #444;
+}
+
+/* Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+    background-color: #2e2e2e;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.close {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* Body */
+.modal-body {
+    padding: 20px;
+    background-color: #2e2e2e;
+}
+
+/* Input Fields */
+.modal-body input[type="text"],
+.modal-body textarea,
+.modal-body select {
+    background-color: #3c3c3c; /* Slightly lighter background for input fields */
+    color: #ddd; /* Slightly lighter text color */
+    border: 1px solid #444; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better UX */
+    margin-bottom: 15px; /* Space between fields */
+    font-size: 0.9rem;
+}
+
+/* File Upload Area */
+.input-group {
+    margin-top: 10px;
+}
+
+.custom-file-input {
+    display: none; /* Hide default file input */
+}
+
+.custom-file-label {
+    background-color: #444; /* Dark background */
+    color: #ccc; /* Light text */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#imagePreview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Footer */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #444;
+    background-color: #2e2e2e;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-dark:hover, .btn-info:hover {
+    opacity: 0.9; /* Hover effect */
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.form-check-label {
+    color: #fff;
+}
+#ajaxForm
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+</style>
+
+
+     
+        <div id="modalBodyContent"></div>
+
 <!-- header -->
 
 <?php if(request()->route()->getName() == 'index'){ ?>
@@ -377,60 +530,6 @@ function getOnscreenUrl(url){
 </header>
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
-<style>
-/* Modal styles */
-.modal {
-    display: none; 
-    position: relative; 
-    z-index: 10000 !important; 
-    left: 20;
-    top: 20;
-    right:20;
-    bottom:20;
-    width: 100% !important; 
-    height: 100% !important; 
-    overflow: auto !important; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 1% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    overflow-y: auto !important ; /* Add vertical scroll */
-    max-width: 80% !important;
-    max-height: 80% !important; 
-    position: relative !important;
-}
-#ajaxModal form
-{
-  width: 100%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-</style>
-
-<div id="ajaxModal" class="modal" style="display:none;">
-        <span class="close">&times;</span>
-        <div id="modalBodyContent"></div>
-</div>
     </div>
     <!-- <script src="{{url('vertical-menu')}}/js/vm.js" type="text/javascript"></script>
     <script src="{{url('vertical-menu')}}/js/vertical-menu.js"></script> -->
