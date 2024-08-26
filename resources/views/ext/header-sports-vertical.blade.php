@@ -29,7 +29,7 @@
     margin: auto;
     padding: 0;
     border-radius: 8px; /* Rounded corners */
-    max-width: 850px; /* Adjust to your preference */
+    
     width: 90%; /* Responsive width */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     position: relative; /* For absolute positioned close button */
@@ -151,6 +151,10 @@
   box-shadow: none;
   width: 100%;
 }
+#clienttable
+{
+  color:white;
+}
 </style>
 
 
@@ -201,6 +205,9 @@
 <p class="route-slider-index d-none">{{route('slider.index')}}?onscreenCms=true</p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Include CKEditor CDN -->
+<!-- <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
 	
 $(document).ready(function () {

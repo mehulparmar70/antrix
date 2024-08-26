@@ -207,12 +207,119 @@ class PageController extends Controller
     // }
 
     public function pageEditorStore(Request $request) {
+        // dd($request);
         $newUrl = $request->page_url;
         $newName = $request->page_name;
         UrlList::where('type', 'page_link')
                 ->where('name', $newName)
                 ->where('status', 1)
                 ->update(['url' => $newUrl]);
+
+
+                $ifExist = Pages::where('type', $request->type)->first();
+
+                if ($ifExist) {
+                    // Check if a new image is uploaded
+                    if ($request->file('image')) {
+                        $image = $request->file('image');
+                        $image_name = time() . '_' . $image->getClientOriginalName();
+            
+                        // Compress and save the image
+                        $image_path = public_path('images/' . $image_name);
+                        Image::make($image)
+                            ->resize(1200, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                                $constraint->upsize();
+                            })
+                            ->save($image_path, 75); // 75% quality
+            
+                        // Delete the old image if it exists
+                        if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                            unlink(public_path('images/' . $request->old_image));
+                        }
+                    } else {
+                        // If no new image is uploaded, use the old image
+                        $image_name = $request->old_image;
+                    }
+            
+                    // Update the existing page with new data
+                    $pageEditor = Pages::find($ifExist->id);
+                    $pageEditor->type = $request->type;
+                    $pageEditor->description = $request->description;
+                    $pageEditor->url = $request->url;
+                    $pageEditor->featured_image = $image_name;
+                    $pageEditor->image_alt = $request->image_alt;
+                    $pageEditor->image_title = $request->image_title;
+                    $pageEditor->search_index = $request->search_index;
+                    $pageEditor->search_follow = $request->search_follow;
+                    $pageEditor->canonical_url = $request->canonical_url;
+                    $pageEditor->page_title = isset($page_title) ? $page_title : NULL;
+                    $pageEditor->meta_title = $request->meta_title;
+                    $pageEditor->meta_keyword = $request->meta_keyword;
+                    $pageEditor->meta_description = $request->meta_description;
+                    $pageEditor->status = 1;
+                    
+                    $save = $pageEditor->save();
+            
+                    if ($save) {
+                        if ($request->close == "1") {
+                            $pageType = $request->type;
+                            $pos = strpos($pageType, '_');
+                            $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
+                            session()->put('success', $pageType . ' Details Updated...');
+                            return back()->with('success', $request->type . ' Details Updated...');
+                        } else {
+                            return back()->with('success', $request->type . ' Details Updated...');
+                        }
+                    } else {
+                        return back()->with('fail', 'Something went wrong, try again later...');
+                    }
+                } else {
+                    // If no page exists, create a new one
+                    if ($request->file('image')) {
+                        $image = $request->file('image');
+                        $image_name = time() . '_' . $image->getClientOriginalName();
+            
+                        // Compress and save the image
+                        $image_path = public_path('images/' . $image_name);
+                        Image::make($image)
+                            ->resize(1200, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                                $constraint->upsize();
+                            })
+                            ->save($image_path, 75); // 75% quality
+                    } else {
+                        $image_name = $request->old_image;
+                    }
+            
+                    $pageEditor = new Pages;
+                    $pageEditor->type = $request->type;
+                    $pageEditor->description = $request->description;
+                    $pageEditor->url = $request->url;
+                    $pageEditor->featured_image = $image_name;
+                    $pageEditor->image_alt = $request->image_alt;
+                    $pageEditor->image_title = $request->image_title;
+                    $pageEditor->meta_title = $request->meta_title;
+                    $pageEditor->meta_keyword = $request->meta_keyword;
+                    $pageEditor->meta_description = $request->meta_description;
+                    $pageEditor->status = 1;
+            
+                    $save = $pageEditor->save();
+            
+                    if ($save) {
+                        if ($request->close == "1") {
+                            $pageType = $request->type;
+                            $pos = strpos($pageType, '_');
+                            $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
+                            session()->put('success', $pageType . ' Details Added...');
+                            return response()->json(['success' => true, 'message' => $pageType . ' Details Added...']);
+                        } else {
+                            return back()->with('success', $request->type . ' Details Added...');
+                        }
+                    } else {
+                        return back()->with('fail', 'Something went wrong, try again later...');
+                    }
+                }
         return redirect('/')->with('success', $request->type . ' Details Added...');
         // Get the page title from the request
         // $page_title = $request->page_title;

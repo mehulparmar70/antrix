@@ -16,6 +16,7 @@
 @if(session('LoggedUser'))
 
   <script src="{{asset('/')}}js/onscreen-cms.js" rel="stylesheet"></script>
+  
 @endif
 
   <script type="text/javascript">

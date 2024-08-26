@@ -19,6 +19,7 @@
             </div>
             <div class="col-md-6">
                 <label for="short_description">Short Description</label>
+                <input type="hidden" class="form-control" name="type" value="about_page">
                 <input type="text" class="form-control" name="short_description" placeholder="Short Description">
             </div>
         </div>
@@ -26,7 +27,7 @@
         <!-- Description Section -->
         <div class="form-group">
             <label for="description">Add Description</label>
-            <textarea id="editor" name="description" placeholder="About Descriptions" class="form-control">{{ $pageData->description }}</textarea>
+            <textarea id="editor" name="description" placeholder="About Descriptions" class="ckeditor form-control">{{ $pageData->description }}</textarea>
             <span class="text-danger">@error('description') {{ $message }} @enderror</span>
         </div>
 
@@ -80,8 +81,12 @@
 
         <!-- Form Footer Buttons -->
         <div class="card-footer text-center">
-            <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save & Close</button>
-            <button type="submit" class="btn btn-info" name="save_and_create_sub_category"><i class="fa fa-plus" aria-hidden="true"></i> Save & Create Sub Category</button>
+            <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save & Close</button>
+            <button  class="btn btn-dark" name="closemodal"><i class="fa fa-close" aria-hidden="true"></i> Close</button>
         </div>
     </div>
 </form>
+<script>
+    // Initialize CKEditor
+    CKEDITOR.replace('editor');
+</script>

@@ -111,6 +111,10 @@ Route::get('/setting/social-media', [SettingController::class, 'socialMedia'])->
 Route::get('/admin/custom-code/js',[CustomCodeController::class, 'customJs'])->name('customJs.create');
 
 Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');
+Route::post('/admin/update-status',[StatusController::class, 'updateStatus'])->name('status.update');
+Route::post('/client/store', [ClientController::class, 'store'])->name('client.store');
+Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
+
 
 });
 

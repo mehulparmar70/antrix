@@ -8,6 +8,7 @@ use App\Models\admin\Admin;
 use App\Models\admin\Client;
 use Illuminate\Support\Facades\Hash;
 use App\Models\admin\Media;
+use App\Models\admin\Pages;
 use File;
 use Image;
 use DB;
@@ -27,8 +28,13 @@ class ClientController extends Controller
 
     public function index()
     {
-        $data = ['clients' =>  $this->clients];
-        return view('adm.pages.client.index', $data);
+        $type = 'Client';
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'clients' =>  $this->clients,
+            'type' => $type];
+        // dd($data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -61,7 +67,7 @@ class ClientController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadTinyImageThumb($request);
+        $image_name ='client';
         $client = new Client;
         $client->name = $request->name;
         $client->image = $image_name;
@@ -129,7 +135,7 @@ class ClientController extends Controller
         
         $data = ['client' =>  Client::find($id), 'clients' => $this->clients,'media' =>  $media];
         
-        return view('adm.pages.client.edit', $data);
+        return view('client.edit', $data);
     }
 
     /**
