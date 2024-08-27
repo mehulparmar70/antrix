@@ -37,7 +37,7 @@ $(document).ready(function(){
   
   // var top = (screen.height - popupWinHeight) / 4;
     
-  // var myWindow = window.open(pageURL, pageTitle, 
+  // var myWindow = popupmenu(pageURL, pageTitle, 
   //         'resizable=yes, width=' + popupWinWidth
   //         + ', height=' + popupWinHeight + ', top='
   //         + top + ', left=' + left);
@@ -45,7 +45,7 @@ var currentWindow;
 
   $('.navbar-brand, .logo-g').each(function(){
     $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+
-    `"class='onscreen-logo' onclick="currentWindow = window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+
+    `"class='onscreen-logo' onclick="currentWindow = popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+
     `', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> 
     <i class='fa fa-edit'></i></a>`);
   });
@@ -65,7 +65,7 @@ $('.logo-g, .product, .about, .testimonial, .blog, .contact,.menu_crud').each(fu
 });
 
 $('.content_banners').each(function(){
-  $(this).append(`<a class="onscreen-banner-slider" href="`+$(this).attr('data-link')+`"class='onscreen-menu adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a class="onscreen-banner-slider" href="`+$(this).attr('data-link')+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 
@@ -84,7 +84,7 @@ $(window).on('click', function(event) {
 
 // $('.onscreen-product-image').each(function(){
 //   $(this).append(`<div class="onscreen-product-title image">
-//   <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">
+//   <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">
 //   <i class='fa fa-edit'></i></a><a href="#" class="deleteImage"><i class='fa fa-trash'></i></a>`);
 // });
 
@@ -94,12 +94,12 @@ $('.onscreen-product-image').each(function(){
 });
 
 $('.product_title_main').each(function(){
-  $(this).prepend(`<div class="onscreen-product-title"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="window.open('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-title"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.product_title').each(function(){
-  var html = `<div class="onscreen-our-product"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+  var html = `<div class="onscreen-our-product"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
   if ($(this).attr('data-delete-link') != undefined) {
     html += `<a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg='This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`;
   }
@@ -107,16 +107,16 @@ $('.product_title').each(function(){
 });
 
 $('.onscreen_media_testimonial_title').each(function(){
-  $(this).prepend(`<div class="onscreen-media-title-link"><a style="font-size:18px !important" class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="window.open('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a style="font-size:18px !important" class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a style="font-size:18px !important" class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-media-title-link"><a style="font-size:18px !important" class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a style="font-size:18px !important" class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a style="font-size:18px !important" class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_media_video_title').each(function(){
-  $(this).prepend(`<div class="onscreen-media-video-link"><a href="`+$('.route-video-create').text()+`"onclick="window.open('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-media-video-link"><a href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 
 $('.onscreen_media_blog_title').each(function(){
-  $(this).prepend(`<div class="onscreen-media-blog-link"><a href="`+$('.route-blog-create').text()+`"onclick="window.open('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-media-blog-link"><a href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 
@@ -124,11 +124,11 @@ $('.onscreen_media_testimonial_item').each(function(){
   var html = `<div class="onscreen-media-testimonial-item-link" style="position: absolute;margin-left: 87%;display: flex;">`;
   
   if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   } else {
-    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="window.open('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete testimonial Permanently. Do you want to continue?'> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 });
@@ -136,68 +136,68 @@ $('.onscreen_media_casestudies_item').each(function(){
   var html = `<div class="onscreen-media-testimonial-item-link" style="position: absolute;margin-left: 87%;display: flex;">`;
   
   if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   } else {
-    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="window.open('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete testimonial Permanently. Do you want to continue?'> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 });
 
 $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
-  <a class="adminAddItem" title="Edit" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
 });
 
 
 $('.onscreen_media_video_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-video-item-link">
-  <a href="`+$('.route-video-create').text()+`"onclick="window.open('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"><i class='fa fa-plus'></i></a>
-  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"><i class='fa fa-plus'></i></a>
+  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete Video Permanently. Do you want to continue?''> <i class='fa fa-trash'></i></a>`);
 
 });
 
 $('.onscreen_media_blog_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-blog-item-link">
-  <a href="`+$('.route-blog-create').text()+`"onclick="window.open('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete Blog Permanently. Do you want to continue?'> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_explore_now_main_category').each(function(){
-  $(this).prepend(`<div class="onscreen-explorenow-maincategory-link"><a href="`+$('.route-category-create').text()+`"onclick="window.open('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-category-list').text()+`"onclick="window.open('`+$('.route-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-explorenow-maincategory-link"><a href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-category-list').text()+`"onclick="popupmenu('`+$('.route-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 
 $('.onscreen_explore_now_sub_category').each(function(){
-  $(this).prepend(`<div class="onscreen-explorenow-subcategory-link"><a href="`+$(this).attr('data-create-subcategory')+`"onclick="window.open('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-explorenow-subcategory-link"><a href="`+$(this).attr('data-create-subcategory')+`"onclick="popupmenu('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
 });
 
 
 $('.facebooks_post_block, .google_map_block').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-connect-block' onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-connect-block' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 
 $('.footer_logo_block').each(function(){
-  $(this).after(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-connect-logo-block' onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).after(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-connect-logo-block' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 
 $('.social_footer').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-social-logo-block adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-social-logo-block adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 $('.footer_page_link_information').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-information' onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-information' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 $('.footer_page_blog_information').each(function(){
-  $(this).after(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-blog' onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).after(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-blog' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 $('.TopContent, .FieldsTexts').each(function(){
@@ -205,20 +205,20 @@ $('.TopContent, .FieldsTexts').each(function(){
 });
 
 $('.onscreen_product_internal_title2').each(function(){
-  $(this).prepend(`<div class="onscreen-product-internal-title-link2"><a href="`+$('.route-category-create').text()+`"onclick="window.open('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-internal-title-link2"><a href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_product_internal_title3').each(function(){
-  $(this).prepend(`<div class="onscreen-product-internal-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-subcategory')+`"onclick="window.open('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-internal-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-subcategory')+`"onclick="popupmenu('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.header_crud').each(function(){
-  $(this).prepend(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminAddItem' title="Add" onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminAddItem' title="Add" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="window.open('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete data Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
@@ -229,81 +229,81 @@ $('.title-crud').each(function(){
 });
 
 $('.clients_crud').each(function(){
-  $(this).prepend(`<a style="font-size: 18px !important;" class="adminAddItem" title="Add" href="`+$('.data-create').text()+`"onclick="window.open('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a style="font-size: 18px !important;" class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).prepend(`<a style="font-size: 18px !important;" class="adminAddItem" title="Add" href="`+$('.data-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a style="font-size: 18px !important;" class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a style="font-size: 18px !important;" class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+` data-msg="This will delete Video Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_popup_block').each(function(){
   $(this).before(`<div class="onscreen-popup-title-link">
-  <a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="window.open('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete testimonial Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_popup_crud').each(function(){
   $(this).before(`<div class="onscreen-popup-title-link">
-  <a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="window.open('`+$(this).attr('data-create-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_video_popup_block').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-video-create').text()+`"onclick="window.open('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete Video Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 
 });
 
 
 $('.onscreen_page_blog_block').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" href="`+$('.route-blog-create').text()+`"onclick="window.open('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete Blog Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 
 
 });
 
 $('.onscreen_blog_detail_page').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="window.open('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$('route-blog-index').text()+`"onclick="window.open('`+$('.route-blog-index').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$('route-blog-index').text()+`"onclick="popupmenu('`+$('.route-blog-index').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.product_internal_title').each(function(){
-  // $(this).prepend(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="window.open('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  // $(this).prepend(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
   var html = '';
   if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   } else {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 
 });
 
 $('.product_internal_title_slick').each(function(){
-  $(this).append(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="window.open('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  $(this).append(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_left_sidebar_list').each(function(){
-  $(this).prepend(`<div class="onscreen-left-sidebar-list-link"><a href="`+$('.route-sub-category-create').text()+`"onclick="window.open('`+$('.route-sub-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-sub-category-list').text()+`"onclick="window.open('`+$('.route-sub-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-left-sidebar-list-link"><a href="`+$('.route-sub-category-create').text()+`"onclick="popupmenu('`+$('.route-sub-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-sub-category-list').text()+`"onclick="popupmenu('`+$('.route-sub-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.onscreen_product_main_category_title').each(function(){
-  $(this).prepend(`<div class="onscreen-product-maincategory-title-link"><a href="`+$('.route-category-create').text()+`"onclick="window.open('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-category-list').text()+`"onclick="window.open('`+$('.route-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-maincategory-title-link"><a href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('route-category-list').text()+`"onclick="popupmenu('`+$('.route-category-list').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 
 $('.onscreen_product_main_category_title2').each(function(){
-  $(this).prepend(`<div class="onscreen-product-maincategory-title-link2"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="window.open('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-maincategory-title-link2"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 });
 // Menu Item
 $('.onscreen_product_main_category_menu').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'  style="color: black !important;"></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'  style="color: black !important;"></i></a>`);
 });
 
-//   $(this).append(`<div class="onscreen-product-detail-slider-thumb"><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+//   $(this).append(`<div class="onscreen-product-detail-slider-thumb"><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 
 $('.my_slider_thumb').each(function(){
   $(this).append(`<span class="deleteImageSlider" data-id="`+$(this).attr('data-delete-link')+`"><i class='fa fa-trash'></i></span>`);
@@ -388,7 +388,7 @@ $('.deleteImageSlider').click(function (e) {
 });
 // Product Photo Image
 $('.BigInnerinflatableSub_slider').each(function(){
-  $(this).prepend(`<div class="onscreenCmsIconWraper"><div class="onscreen-product-maincategory-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="window.open('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a></div>`);
+  $(this).prepend(`<div class="onscreenCmsIconWraper"><div class="onscreen-product-maincategory-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a></div>`);
 });
 
 
@@ -418,7 +418,7 @@ function pageLoadFun() {
 }
 
 // $('.onscreen-product-image').each(function(){
-//   $(this).append(`<div class="onscreen-product-image-slider"><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('.route-category-list').text()+`"onclick="window.open('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+//   $(this).append(`<div class="onscreen-product-image-slider"><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a href="`+$('.route-category-list').text()+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 // });
 
 $('.onscreen_top_inflatable').each(function(){
@@ -426,7 +426,7 @@ $('.onscreen_top_inflatable').each(function(){
 });
 
 $('.about_part, .our_clients').each(function(){
-  $(this).append(`<a style="font-size: 18px !important;" class='onscreen-block adminEditItem' title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a style="font-size: 18px !important;" class='onscreen-block adminEditItem' title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
 
@@ -511,7 +511,7 @@ $(document).ready(function () {
       var screen = $(window).width();
       var popupWinWidth = 990;
       var left = (screen - popupWinWidth) / 2;
-      window.open(url, 'toolbar=no, location=no', 'left=' + left + ',width=' + popupWinWidth + ',height=860');
+      popupmenu(url, 'toolbar=no, location=no', 'left=' + left + ',width=' + popupWinWidth + ',height=860');
   }
 
   // Bind dynamically if content is loaded via AJAX

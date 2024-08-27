@@ -86,8 +86,10 @@ class PageController extends Controller
         return view('admin.home-editor.popup-page', $data);
     }
     public function industriePageEditor(){
+        $type = 'IndustriesPage';
         $data = [
             'pageData' =>  Pages::where('type', 'industrie_page')->first(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
