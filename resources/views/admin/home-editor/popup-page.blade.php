@@ -15,6 +15,7 @@
           @includeWhen($type == 'Testimonial', 'admin.home-editor.testimonial-page')
           @includeWhen($type == 'Contact', 'admin.home-editor.contact-page')
           @includeWhen($type == 'Client', 'client.index')
+          @includeWhen($type == 'client_edit', 'client.edit')
         @endif
       </div>
     </div>

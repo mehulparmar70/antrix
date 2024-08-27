@@ -217,8 +217,8 @@ $('.header_crud').each(function(){
 });
 
 $('.crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="window.open('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete data Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
@@ -441,37 +441,72 @@ $('.testOnload').append("<a href="+$('.testOnload').attr('data-link')+'?onscreen
 });
 
 
-function popupmenu(link, toolbar, location, left, width, height) {
+function popupmenu(link, type, location, left, width, height) {
   // First fetch request to get the content for #modalBodyContent
-  fetch(link)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(data => {
-          document.getElementById('modalBodyContent').innerHTML = data;
+  if (type === 'editmodal') {
+    // Create a new modal container for the 'edit' modal
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
+    modalContainer.style.zIndex = getMaxZIndex() + 1; // Increment zIndex for each new popup
+    document.body.appendChild(modalContainer);
 
-          // Second fetch request to get additional content
-          return fetch(link);
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(data => {
-          document.getElementById('modalBodyContent').innerHTML = data;
-          document.getElementById('ajaxModal').style.display = 'block';
-      })
-      .catch(error => {
-          console.error('Error loading content:', error);
-      });
+    fetch(link)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            modalContainer.innerHTML = `<div >${data}</div>`;
+            modalContainer.querySelector('.modal').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error loading content:', error);
+        });
+}else
+{
+  fetch(link)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('modalBodyContent').innerHTML = data;
+
+      // Second fetch request to get additional content
+      return fetch(link);
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('modalBodyContent').innerHTML = data;
+      document.getElementById('ajaxModal').style.display = 'block';
+  })
+  .catch(error => {
+      console.error('Error loading content:', error);
+  });
+}
+ 
 }
 
-
+function getMaxZIndex() {
+  let maxZIndex = 0;
+  const elements = document.querySelectorAll('.modal-container');
+  elements.forEach(el => {
+      const zIndex = parseInt(window.getComputedStyle(el).zIndex, 10);
+      if (!isNaN(zIndex) && zIndex > maxZIndex) {
+          maxZIndex = zIndex;
+      }
+  });
+  return maxZIndex;
+}
 function saveData(event) {
   event.preventDefault(); // Prevent the default form submission
   var form = $('#ajaxForm'); // Select the form
@@ -507,6 +542,37 @@ $(document).ready(function() {
 $(document).ready(function () {
   
  
+
+
+$(".row_position").sortable({
+    stop: function () {
+        var selectedData = [];
+        $('.row_position>tr').each(function () {
+            selectedData.push($(this).attr("id"));
+        });
+        updateOrder(selectedData);
+
+        toastr.success('Client Order Updated...');
+    }
+});
+
+function updateOrder(data) {
+    $.ajax({
+        url: "{{ url('api') }}/admin/item/update-item-priority",
+        type: 'post',
+        data: {
+            position: data,
+            table: 'client'
+        },
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.error('Error updating order:', error);
+        }
+    });
+}
+
   function getOnscreenUrl(url) {
       var screen = $(window).width();
       var popupWinWidth = 990;

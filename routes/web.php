@@ -114,7 +114,7 @@ Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'
 Route::post('/admin/update-status',[StatusController::class, 'updateStatus'])->name('status.update');
 Route::post('/client/store', [ClientController::class, 'store'])->name('client.store');
 Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
-
+Route::put('client/{id}', [ClientController::class, 'update'])->name('client.update');
 
 });
 

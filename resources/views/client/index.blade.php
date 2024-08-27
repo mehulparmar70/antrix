@@ -195,7 +195,16 @@ function updateOrder(data) {
                             
                           </td>
                           <td>
-                          <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a>
+                            <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-client" 
+                            data-id="{{ $client->id }}" 
+                            data-url="{{ route('client.edit', $client->id) }}" 
+                            title="Edit client" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('client.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="far fa-edit"></i>
+                         </a>
+                         
                             <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
                              data-id="{{route('admin.index')}}/client/{{ $client->id}}" data-title="{{ $client->name}}" 
                               data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>

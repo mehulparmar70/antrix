@@ -127,15 +127,18 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+        $type = 'client_edit';
         $client = Client::find($id);
         if(!isset($client)){
             return redirect(route('client.index'));
         }
         $media = DB::table('media')->where('media_id', $id)->where('image_type', 'clients')->get();
         
-        $data = ['client' =>  Client::find($id), 'clients' => $this->clients,'media' =>  $media];
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'client' =>  Client::find($id), 'clients' => $this->clients,'media' =>  $media,'type' => $type];
         
-        return view('client.edit', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
