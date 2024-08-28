@@ -507,6 +507,35 @@ function getMaxZIndex() {
   });
   return maxZIndex;
 }
+
+
+function closeModal(modalType) {
+  // Select the modal by its class name, which is based on the type
+  $('.'+modalType).css("display","none");
+  // const modal = document.querySelector(`${modalType}`);
+  
+  // if (modal) {
+  //   modal.style.display = 'none'; // Hide the modal
+  // }
+}
+
+$(document).ready(function() {
+  // Initialize the modal with JavaScript to prevent closing on outside click
+  $('#ajaxModal').modal({
+      backdrop: 'static',  // Prevent modal from closing when clicking outside of it
+      keyboard: false      // Prevent modal from closing when pressing the Esc key
+  });
+
+  // Additional logic to prevent modal from closing when clicking outside
+  $('#ajaxModal').on('click', function(e) {
+      // Check if the target clicked is the modal itself and not the modal content
+      if ($(e.target).is('#ajaxModal')) {
+          e.stopPropagation();
+      }
+  });
+});
+
+
 function saveData(event) {
   event.preventDefault(); // Prevent the default form submission
   var form = $('#ajaxForm'); // Select the form

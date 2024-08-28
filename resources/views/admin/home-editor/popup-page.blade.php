@@ -1,9 +1,14 @@
-<div id="ajaxModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="popupFormLabel" aria-hidden="true">
+<div id="ajaxModal" 
+     class="modal {{ $type }}" 
+     tabindex="-1" 
+     role="dialog" 
+     aria-labelledby="popupFormLabel" 
+     aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ $type }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" aria-label="Close" onclick="closeModal('{{ $type }}')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

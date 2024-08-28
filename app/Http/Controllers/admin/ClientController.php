@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\admin\Media;
 use App\Models\admin\Pages;
 use File;
-use Image;
+use Intervention\Image\Facades\Image;
+
 use DB;
 
 class ClientController extends Controller
@@ -25,6 +26,15 @@ class ClientController extends Controller
         $this->clients = Client::orderBy('item_no')->get();
     }
     
+
+    public function client()
+    {
+        
+        $data = ['clients' =>  $this->clients];
+        
+        return view('client.client', $data);
+    }
+
 
     public function index()
     {
@@ -67,7 +77,28 @@ class ClientController extends Controller
             $status = 0;
         }
 
-        $image_name ='client';
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
+        // $image_name ='client';
         $client = new Client;
         $client->name = $request->name;
         $client->image = $image_name;

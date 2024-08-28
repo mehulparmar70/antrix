@@ -202,12 +202,12 @@ function updateOrder(data) {
                             title="Edit client" 
                             data-type="editmodal" 
                             onclick="popupmenu('{{ route('client.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
-                            <i class="far fa-edit"></i>
+                            <i class="fa fa-edit"></i>
                          </a>
                          
                             <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
                              data-id="{{route('admin.index')}}/client/{{ $client->id}}" data-title="{{ $client->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                             </button>                      
                         </td>
                         </tr>
