@@ -8,8 +8,8 @@
   </div>
   <div class="client_blk">
     @foreach($clientArrs as $client)
-    <a data-fancybox="gallery" href="{{url('web')}}/media/lg/{{$client->image}}" class="client_item slick-slide">
-      <img src="{{url('web')}}/media/lg/{{$client->image}}" />
+    <a data-fancybox="gallery" href="{{url('/')}}/images/{{$client->image}}" class="client_item slick-slide">
+      <img src="{{url('/')}}/images/{{$client->image}}" />
     </a>
     @endforeach
   </div>

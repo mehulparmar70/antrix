@@ -135,6 +135,7 @@ Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.ed
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
 Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
+Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
 
 });
 

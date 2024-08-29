@@ -21,6 +21,7 @@
           @includeWhen($type == 'Contact', 'admin.home-editor.contact-page')
           @includeWhen($type == 'Client', 'client.index')
           @includeWhen($type == 'client_edit', 'client.edit')
+          @includeWhen($type == 'Award', 'award.index')
         @endif
       </div>
     </div>
