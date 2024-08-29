@@ -97,7 +97,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP</p><br>
-                        <img class="perview-img image"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
+                        <img class="perview-img image"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
 
@@ -126,7 +126,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP<br> </p>
-                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
+                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('client_images') {{$message}} @enderror</span>
                       </div>
                     </div>
@@ -168,7 +168,7 @@ function updateOrder(data) {
                           <td>{{$client->name}}</td>
                           @if($client->image)
                           <td><img class="rounded" style="width:150px"
-                              src="{{asset('web')}}/media/lg/{{$client->image}}" width="120"></td>
+                              src="{{asset('/')}}images/{{$client->image}}" width="120"></td>
                               @else
                               
                           <td><img class="rounded" style="width:150px"

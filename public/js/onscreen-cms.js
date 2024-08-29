@@ -1,5 +1,5 @@
 var base_url =window.location.origin;
-var url = base_url+"/flat";
+var url = base_url;
 console.log('base_url',url);
 // window.addEventListener('beforeunload', function(event) {
 //   parent.console.info('I am the 2nd one.');
@@ -615,3 +615,34 @@ function updateOrder(data) {
       getOnscreenUrl($(this).data('link'));
   });
 });
+
+
+function editclientsubmit(id) {
+  var form = document.getElementById('clienteditajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/client/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  
 </head>
 <body>
   
@@ -146,6 +147,12 @@
     color: #fff;
 }
 #ajaxForm
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#clienteditajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */
   box-shadow: none;
@@ -538,6 +545,9 @@ function getOnscreenUrl(url){
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
     </div>
+    <!-- iziToast JS -->
+<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
     <!-- <script src="{{url('vertical-menu')}}/js/vm.js" type="text/javascript"></script>
     <script src="{{url('vertical-menu')}}/js/vertical-menu.js"></script> -->
 </body>

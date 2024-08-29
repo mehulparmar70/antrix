@@ -25,21 +25,11 @@ function deleteSubCategoryImages($id){
 
 function deleteBulkImage($image){
     if(isset($image)){
-        if(File::exists(public_path('web').'/media/lg/'.$image)){
-            unlink(public_path('web').'/media/lg/'.$image);
+        if(File::exists(public_path('/').'images/'.$image)){
+            unlink(public_path('/').'images/'.$image);
           }
-          if(File::exists(public_path('web').'/media/md/'.$image)){
-            unlink(public_path('web').'/media/md/'.$image);
-        }
-        if(File::exists(public_path('web').'/media/sm/'.$image)){
-            unlink(public_path('web').'/media/sm/'.$image);
-        }
-        if(File::exists(public_path('web').'/media/xs/'.$image)){
-            unlink(public_path('web').'/media/xs/'.$image);
-        }
-        if(File::exists(public_path('web').'/media/icon/'.$image)){
-            unlink(public_path('web').'/media/icon/'.$image);
-        }
+
+        
     }
 }
 
