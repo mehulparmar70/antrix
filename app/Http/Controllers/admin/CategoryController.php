@@ -68,12 +68,18 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        if((isset($request->type) && $request->type == 'main_category') || (isset($request->type) && $request->type == 'sub_category')){
-
-            $data = ['parent_categories' =>  $this->parent_categories];
-            return view('adm.pages.category.create',$data);
-        }else{
-            return redirect(route('admin.category.create').'?type=main_category');
+        if((isset($request->type) && $request->type == 'main_category') ){
+            $data = [
+                'parent_categories' =>  $this->parent_categories,
+                'type' => 'Create Main Category'];
+            return view('admin.home-editor.popup-page',$data);
+        } elseif (isset($request->type) && $request->type == 'sub_category') {
+            $data = [
+                'parent_categories' =>  $this->parent_categories,
+                'type' => $request->type];
+            return view('admin.home-editor.popup-page',$data);
+        } else{
+            return redirect(route('index'));
         }
     }
 

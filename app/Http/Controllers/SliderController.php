@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -112,16 +112,19 @@ class SliderController extends Controller
         // dd($id);
 
         $slider =  Slider::find($id);
-
+        $type = 'Slider';
         $data = [
-            'sliders' =>  Slider::orderBy('slider_no')->get(),
-            'slider' =>  $slider
+            'slider' =>  Slider::orderBy('slider_no')->get(),
+            'sliders' =>  $slider,
+            'type' => $type
         ];
-        if($slider){
-            return view('adm.pages.slider.edit', $data);
-        }else{
-            return redirect(route('slider.index'))->with('fail', 'Slider Not Available...');
-        }
+        
+        // if($slider){
+            // return view('adm.pages.slider.edit', $data);
+            return view('admin.home-editor.popup-page', $data);
+        // }else{
+        //     return redirect(route('slider.index'))->with('fail', 'Slider Not Available...');
+        // }
 
     }
 

@@ -23,7 +23,13 @@
           @includeWhen($type == 'client_edit', 'client.edit')
           @includeWhen($type == 'Award', 'award.index')
           @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
+       
+
+        @elseif(isset($sliders) && !empty($sliders))
+          @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')
         @endif
+        @includeWhen($type == 'Add New QuickView', 'admin.home-editor.industries-home')
+        @includeWhen($type == 'Create Main Category', 'admin.home-editor.main-category')
       </div>
     </div>
   </div>

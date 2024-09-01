@@ -96,8 +96,8 @@
       <a href="{{url('/products')}}">{{getSocialMedia()->product_title}}</a>
       <span>  {{ $productTitle->page_title }}
         
-      <div class="product_title"  @if(session('LoggedUser'))
-                                    data-link="{{route('admin.product-page.editor')}}"
+      <div class="product_title_1"  @if(session('LoggedUser'))
+                                    data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
                                 @endif></div>
       </span>
       

@@ -64,6 +64,8 @@ Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name
 
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit'])->name('admin.category.edit');
 Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
+Route::get('/category/store',[CategoryController::class, 'create'])->name('admin.category.store');
+
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
 
@@ -91,6 +93,8 @@ Route::get('videos/create', [VideoController::class, 'create'])->name('video.cre
 Route::get('videos', [VideoController::class, 'index'])->name('video.index');
 Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
+Route::post('update-sliders', [SliderController::class, 'update_list_no'])->name('slider.update');
+
 
 
 Route::get('page-editor/about', [PageController::class, 'aboutPageEditor'])->name('admin.about-page.editor');
@@ -108,6 +112,8 @@ Route::get('/page-editor/updates', [PageController::class, 'updatesPageEditor'])
 Route::get('/page-editor/industries', [PageController::class, 'industriePageEditor'])->name('admin.industries-page.editor');
 
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
+Route::get('industries-create', [IndustriesController::class,'create'])->name('industries-create');
+Route::post('industries-store', [IndustriesController::class,'store'])->name('industries-store');
 Route::get('products', [ProductController::class, 'index'])->name('product.index');
 Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
 

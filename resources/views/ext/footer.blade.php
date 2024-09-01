@@ -379,7 +379,7 @@
 					@endif><a href="{{url('')}}" class="home nav-item">HOME</a>
 				</li>
 				<li class="menu_crud" @if(session('LoggedUser'))
-					data-link="{{route('admin.product-page.editor')}}"
+					data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
 					@endif>
 					<a href="{{url('products')}}" class="our_product_menu nav-item">OUR PRODUCTS </a>
 				</li>

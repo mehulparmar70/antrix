@@ -97,6 +97,10 @@ $('.product_title_main').each(function(){
   $(this).prepend(`<div class="onscreen-product-title"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
 });
 
+$('.product_title_1').each(function() {
+  var html = `<div class="onscreen-our-product"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+  $(this).prepend(html);
+});
 $('.product_title').each(function(){
   var html = `<div class="onscreen-our-product"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
@@ -147,7 +151,7 @@ $('.onscreen_media_casestudies_item').each(function(){
 
 $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
-  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,8 +31,13 @@ class IndustriesController extends Controller
      */
     public function create()
     {
-        $data = ['testimonials' =>  Industries::all()];
-        return view('adm.pages.industries.create',$data);
+        $type = 'Add New QuickView';
+        $data = [
+                    'testimonials' =>  Industries::all(),
+                    'type' => $type
+                ];
+        // dd($data);
+        return view('admin.home-editor.popup-page',$data);
     }
 
     /**
