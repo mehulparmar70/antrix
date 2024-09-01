@@ -29,6 +29,19 @@ Route::get('sitemap.html', [HomeController::class, 'sitemap'])->name('sitemap');
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/about', [HomeController::class, 'about'])->name('admin');
+Route::get('client', [HomeController::class, 'client']);
+Route::get('videos', [HomeController::class, 'videos']);
+Route::get('awards', [HomeController::class, 'awards']);
+Route::get('news-letters', [HomeController::class, 'newsletters']);
+Route::get('news-letters/{slug}', [HomeController::class, 'newsletters_details']);
+Route::get('partenrs', [HomeController::class, 'partenrs']);
+Route::get('case-studies', [HomeController::class, 'casestudies']);
+Route::get('testimonials', [HomeController::class, 'testimonials']);
+
+Route::get('updates', [HomeController::class, 'updates']);
+Route::get('updates/{slug}', [HomeController::class, 'updates_details']);
+Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
+
 
 Route::prefix('powerup')->group(function () {
 
@@ -61,6 +74,8 @@ Route::get('casestudies', [CaseStudiesController::class, 'index'])->name('casest
 Route::get('casestudies/create', [CaseStudiesController::class, 'create'])->name('casestudies.create');
 Route::get('casestudies/{id}/edit', [CaseStudiesController::class, 'edit'])->name('casestudies.edit');
 
+Route::get('case-studies', [HomeController::class, 'casestudies']);
+Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
 Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 Route::get('testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
 
@@ -114,7 +129,13 @@ Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'
 Route::post('/admin/update-status',[StatusController::class, 'updateStatus'])->name('status.update');
 Route::post('/client/store', [ClientController::class, 'store'])->name('client.store');
 Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
-
+Route::put('client/{id}', [ClientController::class, 'update'])->name('client.update');
+Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
+Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
+Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
+Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
+Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
 
 });
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\Admin;
 use App\Models\admin\Award;
 use Illuminate\Support\Facades\Hash;
+use App\Models\admin\Pages;
 use File;
 use Image;
 class AwardController extends Controller
@@ -22,8 +23,12 @@ class AwardController extends Controller
 
     public function index()
     {
-        $data = ['awards' =>  $this->awards];
-        return view('adm.pages.award.index', $data);
+        $type = 'Award';
+        $data = [
+            'pageData' =>  Pages::where('type', 'award_page')->first(),
+            'type' => $type,
+            'awards' =>  $this->awards];
+        return view('admin.home-editor.popup-page', $data);
         
     }
 

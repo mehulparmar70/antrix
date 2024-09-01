@@ -1,5 +1,5 @@
 var base_url =window.location.origin;
-var url = base_url+"/flat";
+var url = base_url;
 console.log('base_url',url);
 // window.addEventListener('beforeunload', function(event) {
 //   parent.console.info('I am the 2nd one.');
@@ -441,35 +441,99 @@ $('.testOnload').append("<a href="+$('.testOnload').attr('data-link')+'?onscreen
 });
 
 
-function popupmenu(link, toolbar, location, left, width, height) {
+function popupmenu(link, type, location, left, width, height) {
   // First fetch request to get the content for #modalBodyContent
-  fetch(link)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(data => {
-          document.getElementById('modalBodyContent').innerHTML = data;
+  if (type === 'editmodal') {
+    // Create a new modal container for the 'edit' modal
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
+    modalContainer.style.zIndex = getMaxZIndex() + 1; // Increment zIndex for each new popup
+    document.body.appendChild(modalContainer);
 
-          // Second fetch request to get additional content
-          return fetch(link);
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response.text();
-      })
-      .then(data => {
-          document.getElementById('modalBodyContent').innerHTML = data;
-          document.getElementById('ajaxModal').style.display = 'block';
-      })
-      .catch(error => {
-          console.error('Error loading content:', error);
-      });
+    fetch(link)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            modalContainer.innerHTML = `<div >${data}</div>`;
+            modalContainer.querySelector('.modal').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error loading content:', error);
+        });
+}else
+{
+  fetch(link)
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('modalBodyContent').innerHTML = data;
+
+      // Second fetch request to get additional content
+      return fetch(link);
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.text();
+  })
+  .then(data => {
+      document.getElementById('modalBodyContent').innerHTML = data;
+      document.getElementById('ajaxModal').style.display = 'block';
+  })
+  .catch(error => {
+      console.error('Error loading content:', error);
+  });
 }
+ 
+}
+
+function getMaxZIndex() {
+  let maxZIndex = 0;
+  const elements = document.querySelectorAll('.modal-container');
+  elements.forEach(el => {
+      const zIndex = parseInt(window.getComputedStyle(el).zIndex, 10);
+      if (!isNaN(zIndex) && zIndex > maxZIndex) {
+          maxZIndex = zIndex;
+      }
+  });
+  return maxZIndex;
+}
+
+
+function closeModal(modalType) {
+  // Select the modal by its class name, which is based on the type
+  $('.'+modalType).css("display","none");
+  // const modal = document.querySelector(`${modalType}`);
+  
+  // if (modal) {
+  //   modal.style.display = 'none'; // Hide the modal
+  // }
+}
+
+$(document).ready(function() {
+  // Initialize the modal with JavaScript to prevent closing on outside click
+  $('#ajaxModal').modal({
+      backdrop: 'static',  // Prevent modal from closing when clicking outside of it
+      keyboard: false      // Prevent modal from closing when pressing the Esc key
+  });
+
+  // Additional logic to prevent modal from closing when clicking outside
+  $('#ajaxModal').on('click', function(e) {
+      // Check if the target clicked is the modal itself and not the modal content
+      if ($(e.target).is('#ajaxModal')) {
+          e.stopPropagation();
+      }
+  });
+});
 
 
 function saveData(event) {
@@ -507,6 +571,37 @@ $(document).ready(function() {
 $(document).ready(function () {
   
  
+
+
+$(".row_position").sortable({
+    stop: function () {
+        var selectedData = [];
+        $('.row_position>tr').each(function () {
+            selectedData.push($(this).attr("id"));
+        });
+        updateOrder(selectedData);
+
+        toastr.success('Client Order Updated...');
+    }
+});
+
+function updateOrder(data) {
+    $.ajax({
+        url: "{{ url('api') }}/admin/item/update-item-priority",
+        type: 'post',
+        data: {
+            position: data,
+            table: 'client'
+        },
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.error('Error updating order:', error);
+        }
+    });
+}
+
   function getOnscreenUrl(url) {
       var screen = $(window).width();
       var popupWinWidth = 990;
@@ -520,3 +615,34 @@ $(document).ready(function () {
       getOnscreenUrl($(this).data('link'));
   });
 });
+
+
+function editclientsubmit(id) {
+  var form = document.getElementById('clienteditajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/client/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}

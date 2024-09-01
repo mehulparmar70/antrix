@@ -1,12 +1,3 @@
-@extends('layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
-
 
 <script>
 
@@ -74,52 +65,21 @@ $('.add-more').click(function () {
 });
 </script>
 
-@endsection
-@section('content')
+
 
 <div class="content-wrapper">
-    <section class="content-header">
+    
+
+  
       <div class="container-fluid">
         
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit QuickView</li>
-            </ol>
-          </div>
-
         
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{url('powerup/industries-create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New QuickView </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit QuickView</h1>
-          </div>
-        </div>
-    </div>
-
-
-      </div>
-    </section>
-
-    <section class="content">
-      <div class="container-fluid">
-        <div class="card card-default">
         
-          <div class="card-body">
             <div class="form-horizontal row">
             
             <div class="col-md-12">           
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-               action="{{route('client.update', $client->id)}}">
+              <form id="clienteditajax" enctype="multipart/form-data"  class="form-horizontal editclientform"  
+              onsubmit="return false;">
                 @csrf
                 @method('PUT')
 
@@ -142,7 +102,7 @@ $('.add-more').click(function () {
                   <div class="col-sm-1 col-md-2">
                     @if($client->image)
                       <img class="mt-2"  height="120"
-                        src="{{asset('web')}}/media/xs/{{$client->image}}">
+                        src="{{asset('/')}}images/{{$client->image}}">
                         @else
                         <img class=""  height="120"
                       src="{{asset('/')}}/img/no-item.jpeg">
@@ -209,7 +169,7 @@ $('.add-more').click(function () {
                   </div>
                   @else
                   <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <button type="button" onclick="editclientsubmit({{$client->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Update </button>
                   </div>
                   @endif
@@ -222,7 +182,7 @@ $('.add-more').click(function () {
 
         @foreach($media as $key => $image)
            <input type="hidden" id="{{$image->id}}">
-          <form class="col-sm-12 update-form" action="{{route('update.multiple-image-field', $image->id)}}"
+          <form class="col-sm-12 update-form" id="ajaxForm" action="{{route('update.multiple-image-field', $image->id)}}"
            method="post" id="{{$image->id}}" style="position: relative; left: 0px; top: 0px; cursor: move;">
 
           @csrf
@@ -268,10 +228,10 @@ $('.add-more').click(function () {
     @endif
               </div>
 
-          </div>
-        </div>
+          
+       
       </div>
-    </section>
+    
   </div>
 
-  @endsection
+

@@ -54,6 +54,8 @@
   <link rel="canonical" href="{{ Request::url() }}" />
 @endif
 
+<!-- iziToast CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
 
   <link rel="shortcut icon" href="{{asset('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/')}}css/bootstrap.css">

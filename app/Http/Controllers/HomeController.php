@@ -969,7 +969,7 @@ class HomeController extends Controller
 
         ];
 
-        return response()->view('client', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('client.client', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
     public function awards()
@@ -1007,7 +1007,7 @@ class HomeController extends Controller
 
         ];
 
-        return response()->view('awards', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('award.awards', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 

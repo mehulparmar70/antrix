@@ -97,7 +97,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP</p><br>
-                        <img class="perview-img image"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
+                        <img class="perview-img image"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
 
@@ -126,7 +126,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP<br> </p>
-                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
+                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('client_images') {{$message}} @enderror</span>
                       </div>
                     </div>
@@ -168,7 +168,7 @@ function updateOrder(data) {
                           <td>{{$client->name}}</td>
                           @if($client->image)
                           <td><img class="rounded" style="width:150px"
-                              src="{{asset('web')}}/media/lg/{{$client->image}}" width="120"></td>
+                              src="{{asset('/')}}images/{{$client->image}}" width="120"></td>
                               @else
                               
                           <td><img class="rounded" style="width:150px"
@@ -195,10 +195,19 @@ function updateOrder(data) {
                             
                           </td>
                           <td>
-                          <a href="{{route('client.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a>
+                            <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-client" 
+                            data-id="{{ $client->id }}" 
+                            data-url="{{ route('client.edit', $client->id) }}" 
+                            title="Edit client" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('client.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
+                         
                             <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
                              data-id="{{route('admin.index')}}/client/{{ $client->id}}" data-title="{{ $client->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                             </button>                      
                         </td>
                         </tr>

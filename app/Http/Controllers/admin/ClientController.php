@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\admin\Media;
 use App\Models\admin\Pages;
 use File;
-use Image;
+use Intervention\Image\Facades\Image;
+
 use DB;
 
 class ClientController extends Controller
@@ -25,6 +26,15 @@ class ClientController extends Controller
         $this->clients = Client::orderBy('item_no')->get();
     }
     
+
+    public function client()
+    {
+        
+        $data = ['clients' =>  $this->clients];
+        
+        return view('client.client', $data);
+    }
+
 
     public function index()
     {
@@ -56,18 +66,37 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+       
         // dd($request->file('image'));
-        $request->validate([
-            'name' => 'required|max:255'
-        ]);
-
+       
         if($request->status){
             $status = 1;
         }else{
             $status = 0;
         }
 
-        $image_name ='client';
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
+        // $image_name ='client';
         $client = new Client;
         $client->name = $request->name;
         $client->image = $image_name;
@@ -127,15 +156,20 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+
+       
+        $type = 'client_edit';
         $client = Client::find($id);
         if(!isset($client)){
             return redirect(route('client.index'));
         }
         $media = DB::table('media')->where('media_id', $id)->where('image_type', 'clients')->get();
         
-        $data = ['client' =>  Client::find($id), 'clients' => $this->clients,'media' =>  $media];
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'client' =>  Client::find($id), 'clients' => $this->clients,'media' =>  $media,'type' => $type];
         
-        return view('client.edit', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -146,59 +180,72 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // dd($request->input());
-        
-        if($request->status == 'on'){
-            $status = 1;
-        }else{
-            $status = 0;
-        }
-
-        if($request->file('image')){
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
-            $image_name = $request->old_image;
-        }
-
-        $client = Client::find($id);
-        $client->name = $request->name;
-        $client->note  = $request->note ;  
-        $client->image = $image_name;
-        $client->url = $request->url;
-        $client->short_description = $request->short_description;
-        // $client->client_images = $client_images;
-        $client->status = $status;     
-          
-        $save = $client->save();
-
-        if($save){
-            $multipleImage = $request->file('images');
-            
-            if (isset($multipleImage)) {
-                foreach($request->file('images') as $index => $imageData){
-                    $media = new Media;
-                    $media->media_id = $lastId;
-                    $media->image_type = 'clients';
-                    $media->image_alt = $request->alt[$index];
-                    $media->image_title = $request->title[$index];
-                    $image_name2 = uploadMultipleImageThumb($imageData);
-                    $media->image = $image_name2;
-                    $save = $media->save();
-                }
-            }
-
-            if ($request->close == "1") {
-                session()->put('success','Client Updated...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Client Updated...');
-            }
-        }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
-        }
+{
+    if($request->status == 'on'){
+        $status = 1;
+    } else {
+        $status = 0;
     }
+
+    if($request->file('image')){
+        $image = $request->file('image');
+        $image_name = time() . '_' . $image->getClientOriginalName();
+
+        // Compress and save the image
+        $image_path = public_path('images/' . $image_name);
+        Image::make($image)
+            ->resize(1200, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->save($image_path, 75); // 75% quality
+
+        // Delete the old image if it exists
+        if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+            unlink(public_path('images/' . $request->old_image));
+        }
+    } else {
+        $image_name = $request->old_image;
+    }
+
+    $client = Client::find($id);
+    $client->name = $request->name;
+    $client->note  = $request->note;  
+    $client->image = $image_name;
+    $client->url = $request->url;
+    $client->short_description = $request->short_description;
+    $client->status = $status;     
+
+    $save = $client->save();
+
+    if ($save) {
+        $multipleImage = $request->file('images');
+
+        if (isset($multipleImage)) {
+            foreach ($request->file('images') as $index => $imageData) {
+                $media = new Media;
+                $media->media_id = $id;  // Assuming $id is the client ID
+                $media->image_type = 'clients';
+                $media->image_alt = $request->alt[$index];
+                $media->image_title = $request->title[$index];
+                $image_name2 = uploadMultipleImageThumb($imageData);
+                $media->image = $image_name2;
+                $media->save();
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Client Updated...'
+        ]);
+    } else {
+        return response()->json([
+            'success' => false,
+            'message' => 'Something went wrong, try again later...'
+        ]);
+    }
+}
+
 
     /**
      * Remove the specified resource from storage.

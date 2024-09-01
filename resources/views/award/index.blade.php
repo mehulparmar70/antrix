@@ -1,11 +1,4 @@
-@extends('layout.admin-index')
-@section('title','Add: Client')
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 
@@ -62,55 +55,24 @@ function updateOrder(data) {
 }
 
 </script>
-@endsection
 
 
-@section('content')
+<div class="card-body p-2">
+    
 
-<div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
 
+    <div class="form-group row">
+     
       
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Award List</li>
-            </ol>
-          </div>
-
         
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Award List</h1>
-          </div>
-        </div>
-    </div>
 
-      </div>
-    </section>
-
-
-    <section class="content">
-      <div class="container-fluid">
-      
-        <div class="row">
-
-          <div class="col-md-5 card card-theme">
-              <div class="card-header">
+          <div class="col-md-5 ">
+              <div>
                       <h3 class="card-title">Add Award</h3>
                 </div>
                 
 
-                <form method="post" enctype="multipart/form-data"  class="form-horizontal" action="{{route('award.store')}}">
+                <form method="post"  id="ajaxForm"  enctype="multipart/form-data"  class="form-horizontal" action="{{route('award.store')}}">
                   @csrf
                   <input type="hidden" id="page_type" value="singleUpload">
                   <div class="card-body p-2 pt-4">
@@ -137,7 +99,7 @@ function updateOrder(data) {
                           accept="image/png,image/jpeg,image/webp">
                           <br>
                         <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP</p><br>
-                        <img class="perview-img favicon"  height="120" src="{{asset('/')}}/img/no-item.jpeg"> 
+                        <img class="perview-img favicon"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
 
@@ -167,12 +129,12 @@ function updateOrder(data) {
 
               </div>
            
-           <div class="col-md-7 card card-theme">
-              <div class="card-header">
+           <div class="col-md-7">
+              <div >
                       <h3 class="card-title">Award Lists</h3>
                 </div>
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap" id="example2">
+                  <table class="table table-hover text-nowrap" id="clienttable">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -192,7 +154,7 @@ function updateOrder(data) {
                           <td>{{$client->name}}</td>
                           @if($client->image)
                           <td><img class="rounded" style="width:150px"
-                              src="{{asset('web')}}/media/lg/{{$client->image}}" width="120"></td>
+                              src="{{asset('/')}}images/{{$client->image}}" width="120"></td>
                               @else
                               
                           <td><img class="rounded" style="width:150px"
@@ -220,13 +182,13 @@ function updateOrder(data) {
                           </td>
                           <td>
                             @if(request()->get('onscreenCms') == 'true')
-                              <a href="{{route('award.edit',$client->id)}}?onscreenCms=true" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="far fa-edit"></i></a>
+                              <a href="{{route('award.edit',$client->id)}}?onscreenCms=true" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="fa fa-edit"></i></a>
                             @else
-                              <a href="{{route('award.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="far fa-edit"></i></a>
+                              <a href="{{route('award.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="fa fa-edit"></i></a>
                             @endif
                             <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Award" 
                              data-id="{{route('admin.index')}}/award/{{ $client->id}}" data-title="{{ $client->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                             </button>                      
                         </td>
                         </tr>
@@ -239,41 +201,14 @@ function updateOrder(data) {
               </div>
            </div>
            
-        </div>
+        
 
 
-      </div>
-    </section>
+   
+</div>
   </div>
   
-  <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete Award</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <label>Award Name</label>
-            <h5 class="modal-title delete-title">Delete Category</h5>
-            </div>
-            <div class="modal-footer justify-content-between d-block ">
-              
-            <form class="delete-form float-right" action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-              <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
-              
 
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
 
-  @endsection
 
   

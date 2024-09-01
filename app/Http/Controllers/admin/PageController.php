@@ -106,8 +106,10 @@ class PageController extends Controller
         return view('admin.home-editor.popup-page', $data);
     }
     public function awardsPageEditor(){
+        $type = 'Award';
         $data = [
             'pageData' =>  Pages::where('type', 'award_page')->first(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
