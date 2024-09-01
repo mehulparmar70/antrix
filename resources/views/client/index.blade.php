@@ -111,7 +111,7 @@ function updateOrder(data) {
                         
                       <h5> <span class="badge badge-success">Active</span></h5>
                       </div>
-
+  
 
                     </div>
                     <div class="form-group row">
