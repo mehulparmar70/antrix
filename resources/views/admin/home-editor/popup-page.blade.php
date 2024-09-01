@@ -15,7 +15,7 @@
           @includeWhen($type == 'Testimonial', 'admin.home-editor.testimonial-page')
           @includeWhen($type == 'Contact', 'admin.home-editor.contact-page')
           @includeWhen($type == 'Client', 'client.index')
-          @includeWhen($type == 'IndustriesPage', 'client.index')
+          @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
 
         @endif
       </div>

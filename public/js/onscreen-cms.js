@@ -147,7 +147,7 @@ $('.onscreen_media_casestudies_item').each(function(){
 
 $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
-  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
 });
