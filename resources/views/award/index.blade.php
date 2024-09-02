@@ -182,7 +182,17 @@ function updateOrder(data) {
                           </td>
                           <td>
                             @if(request()->get('onscreenCms') == 'true')
-                              <a href="{{route('award.edit',$client->id)}}?onscreenCms=true" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="fa fa-edit"></i></a>
+                            
+                            <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-award" 
+                            data-id="{{ $client->id }}" 
+                            data-url="{{ route('award.edit', $client->id) }}" 
+                            title="Edit Award" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('award.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
+                            
                             @else
                               <a href="{{route('award.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="fa fa-edit"></i></a>
                             @endif

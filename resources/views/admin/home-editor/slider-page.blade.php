@@ -1,4 +1,4 @@
-<div class="col-md-4 card card-theme">
+<div class="col-md-4 ">
   <div class="card card-theme">
     <div class="card-header">
       <h3 class="card-title">Edit Slider</h3>
