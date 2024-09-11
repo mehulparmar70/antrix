@@ -263,6 +263,7 @@ have a fixed width and height (but it's not required).
 
 
   </script>
+  
 </body>
 
 </html>

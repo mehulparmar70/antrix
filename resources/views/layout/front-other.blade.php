@@ -86,7 +86,7 @@
 	<div id="gotoTop" class="icon-angle-up"></div>
 
 	<script src="{{url('/')}}/js/jquery.js"></script>
-	<script src="{{url('/')}}/js/plugins.min.js"></script>
+
     <!-- @yield('custom-footer') -->
 	
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyAeMV-FMGnR139m8rBqa5LNKyP5rBqMhIE"></script>

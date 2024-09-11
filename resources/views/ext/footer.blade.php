@@ -373,7 +373,7 @@
 		<div class="header_nav">
 			<div class="container">
 			<div class="navbar main_div">
-				<ul>
+				<ul class="ulclass">
 				<li class="menu_crud" @if(session('LoggedUser'))
 					data-link="{{route('admin.home.editor')}}"
 					@endif><a href="{{url('')}}" class="home nav-item">HOME</a>
@@ -561,9 +561,8 @@
 	<img src="{{url('/')}}/img/border/product_title_border/611X55_bk.jpg" style="display:none;" />
 	<img src="{{url('/')}}/img/border/112X35_bk.png" style="display:none;" />
 
-	
-	
-	
+
+       
 
 	<!-- <footer class="bg-white">
 		<div class="container-fluid">	

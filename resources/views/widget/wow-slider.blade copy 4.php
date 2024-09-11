@@ -129,7 +129,7 @@ html,body{
 	<div id="wowslider-container1" style="font-size: 7.26562px; z-index: 0;">
 	<div class="ws_images image-set">
 		<div>
-			<ul>
+			<ul class="ulclass">
 	@foreach($productImages as $productImage)
 
 	<li>

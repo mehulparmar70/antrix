@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\admin\Category;
 use App\Models\admin\Media;
+use App\Models\admin\Pages;
 use Session;
 use DB;
 class CategoryController extends Controller
@@ -31,6 +32,7 @@ class CategoryController extends Controller
     public function index()
     {
 
+        $type = 'category';
         $subCategories = array();
         $productRangeCategories = array();
         $productRangeSubcategories = array();
@@ -54,11 +56,13 @@ class CategoryController extends Controller
             }
         }
         
-        $data = ['parent_categories' =>  $this->parent_categories, 
+        $data = [
+            'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'parent_categories' =>  $this->parent_categories, 
         'sub_categories' => $subCategories, 'productRangeCategories' => $productRangeCategories,
-         'productRangeSubcategories' => $productRangeSubcategories, 'seach_id' => null];
-        return view('adm.pages.category.index', $data);
+         'productRangeSubcategories' => $productRangeSubcategories, 'seach_id' => null,'type' => $type];
         
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**

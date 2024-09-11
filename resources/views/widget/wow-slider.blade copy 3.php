@@ -15,7 +15,7 @@
 	
 	<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
 	<div id="wowslider-container1">
-	<div class="ws_images"><ul>
+	<div class="ws_images"><ul class="ulclass">
 	@foreach($productImages as $productImage)
 		<li><img src="{{url('web')}}/media/lg/{{$productImage->image}}" alt="horse1" title="horse1" id="wows1_0"/></li>
 	@endforeach

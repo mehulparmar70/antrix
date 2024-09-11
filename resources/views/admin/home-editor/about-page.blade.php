@@ -27,7 +27,7 @@
         <!-- Description Section -->
         <div class="form-group">
             <label for="description">Add Description</label>
-            <textarea id="editor" name="description" placeholder="About Descriptions" class="ckeditor form-control">{{ $pageData->description }}</textarea>
+            <textarea id="editor" name="description" placeholder="About Descriptions" >{{ $pageData->description }}</textarea>
             <span class="text-danger">@error('description') {{ $message }} @enderror</span>
         </div>
 
@@ -86,7 +86,5 @@
         </div>
     </div>
 </form>
-<script>
-    // Initialize CKEditor
-    CKEDITOR.replace('editor');
-</script>
+
+

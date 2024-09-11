@@ -8,6 +8,10 @@ use App\Models\admin\Pages;
 use App\Models\admin\UrlList;
 use Intervention\Image\Facades\Image;
 use GeneaLabs\NovaGutenberg\Gutenberg;
+use App\Models\admin\Partners;
+
+use App\Models\admin\Video;
+
 
 class PageController extends Controller
 {
@@ -42,8 +46,11 @@ class PageController extends Controller
     }
     
     public function videoPageEditor(){
+        $type = 'video';
         $data = [
             'pageData' =>  Pages::where('type', 'video_page')->first(),
+            'type' => $type,
+            'videos' =>  Video::orderBy('item_no')->get()
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -56,8 +63,11 @@ class PageController extends Controller
     }
 
     public function partenrsPageEditor(){
+        $type = 'partners';
         $data = [
             'pageData' =>  Pages::where('type', 'partenr_page')->first(),
+            'type' => $type,
+            'blogs' =>  Partners::orderBy('item_no', 'ASC')->get()
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -80,8 +90,12 @@ class PageController extends Controller
         return view('admin.home-editor.popup-page', $data);
     }
     public function newsletterPageEditor(){
+        $type = 'Editnewsletter';
+   
         $data = [
             'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Our Products')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -100,13 +114,15 @@ class PageController extends Controller
         return view('admin.home-editor.popup-page', $data);
     }
     public function clientPageEditor(){
+        $type = 'EditClient';
         $data = [
+            'type' => $type,
             'pageData' =>  Pages::where('type', 'client_page')->first(),
         ];
         return view('admin.home-editor.popup-page', $data);
     }
     public function awardsPageEditor(){
-        $type = 'Award';
+        $type = 'EditAward';
         $data = [
             'pageData' =>  Pages::where('type', 'award_page')->first(),
             'type' => $type,

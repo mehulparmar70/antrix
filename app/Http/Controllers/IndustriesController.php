@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\Industries;
 use App\Models\admin\Media;
 use DB;
+use App\Models\admin\Pages;
 
 class IndustriesController extends Controller
 {
@@ -17,11 +18,14 @@ class IndustriesController extends Controller
      */
     public function index()
     {
-        
+        $type = 'Industries';
         $data = [
+            'type' => $type,
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
             'testimonials' =>  Industries::orderBy('item_no')->get()
         ];
-        return view('adm.pages.industries.index', $data);
+        return view('admin.home-editor.popup-page', $data);
+       
     }
 
     /**
@@ -31,8 +35,9 @@ class IndustriesController extends Controller
      */
     public function create()
     {
-        $type = 'Add New QuickView';
+        $type = 'AddIndustries';
         $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
                     'testimonials' =>  Industries::all(),
                     'type' => $type
                 ];
@@ -136,20 +141,18 @@ class IndustriesController extends Controller
      */
     public function edit($id)
     {
+        $type = 'industries_edit';
         $testimonial = Industries::find($id);
         
         $media = DB::table('media')->where('media_id', $id)->where('image_type', 'industries')->get();
         
         $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
             'testimonial' =>  $testimonial,
             'media' =>  $media,
+            'type' => $type
         ];
-
-        if($testimonial){
-            return view('adm.pages.industries.edit', $data);
-        }else{
-            return redirect(route('industries.index'))->with('fail', 'Data Not Available...');
-        }
+        return view('admin.home-editor.popup-page', $data);
         
     }
 

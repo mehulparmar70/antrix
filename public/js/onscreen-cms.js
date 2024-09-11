@@ -1,6 +1,7 @@
 var base_url =window.location.origin;
 var url = base_url;
 console.log('base_url',url);
+
 // window.addEventListener('beforeunload', function(event) {
 //   parent.console.info('I am the 2nd one.');
 //   alert('aaaa');
@@ -221,8 +222,8 @@ $('.header_crud').each(function(){
 });
 
 $('.crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/partenrs?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/partenrs?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete data Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
@@ -253,8 +254,8 @@ $('.onscreen_popup_crud').each(function(){
 });
 
 $('.onscreen_video_popup_block').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).before(`<div class="onscreen-popup-title-link"><a data-link="{{route('admin.awards-page.editor')}}" class="adminAddItem" title="Add" href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/video'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/video'+''+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete Video Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 
 });
@@ -276,11 +277,11 @@ $('.product_internal_title').each(function(){
   // $(this).prepend(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
   var html = '';
   if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   } else {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  html += `<a class="adminEditItem" title="Edit" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 
@@ -479,7 +480,8 @@ function popupmenu(link, type, location, left, width, height) {
   })
   .then(data => {
       document.getElementById('modalBodyContent').innerHTML = data;
-
+      initializeEditor();
+      
       // Second fetch request to get additional content
       return fetch(link);
   })
@@ -510,6 +512,11 @@ function getMaxZIndex() {
       }
   });
   return maxZIndex;
+}
+
+async function initializeEditor() {
+  const { initializeCKEditor } = await import('./ckeditor.js');
+  initializeCKEditor();
 }
 
 
@@ -607,15 +614,13 @@ function updateOrder(data) {
 }
 
   function getOnscreenUrl(url) {
-      var screen = $(window).width();
-      var popupWinWidth = 990;
-      var left = (screen - popupWinWidth) / 2;
+  
       popupmenu(url, 'toolbar=no, location=no', 'left=' + left + ',width=' + popupWinWidth + ',height=860');
   }
 
   // Bind dynamically if content is loaded via AJAX
   $(document).on('click', '.menu_item_img a', function (e) {
-      e.preventDefault();
+      
       getOnscreenUrl($(this).data('link'));
   });
 });
@@ -650,10 +655,76 @@ function editclientsubmit(id) {
 
   });
 }
+function editslidersubmit(id) {
+  var form = document.getElementById('slideridajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/slider/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            // Close the edit modal
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); // This will refresh the entire page
+            // OR, you can selectively refresh the content
+            // Example: $('#contentSection').load(location.href + ' #contentSection')
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+function addslidersubmit() {
+  var form = document.getElementById('addsliderajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/slider/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
 
 
 function editawardsubmit(id) {
-  var form = document.getElementById('clienteditajax'); // Get the form element
+  var form = document.getElementById('awardeditajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
 
   $.ajax({
@@ -680,4 +751,32 @@ function editawardsubmit(id) {
 
 
   });
+}
+function addnewsletter()
+{
+
+  $.ajax({
+    url: base_url+"/powerup/newsletter/create",
+    method: 'get',
+  
+    processData: false,
+    contentType: false,
+    success: function(response) {
+        // Handle success
+
+        const modalContainer = document.createElement('div');
+        modalContainer.classList.add('modal-container');
+        modalContainer.style.zIndex = getMaxZIndex() + 1; // Increment zIndex for each new popup
+        document.body.appendChild(modalContainer);
+        console.log(response);
+        modalContainer.innerHTML = `<div >${response}</div>`;
+        modalContainer.querySelector('.modal').style.display = 'block';
+
+        // Optionally, update the content on the main page if needed
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log('Error submitting form: ' + textStatus);
+    }
+});
+
 }

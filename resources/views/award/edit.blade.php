@@ -1,11 +1,4 @@
-@extends('layout.admin-index')
-@section('title','Add: Client')
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -56,56 +49,24 @@ function updateOrder(data) {
 }
 
 </script>
-@endsection
 
-
-@section('content')
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        
-      
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add New Award</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Add New Award</h1>
-          </div>
-        </div>
-    </div>
+    
 
 
-      </div>
-    </section>
-
-
-    <section class="content">
+  
       <div class="container-fluid">
       
         <div class="row">
 
-          <div class="col-md-5 card card-theme">
+          <div class="col-md-5 ">
               <div class="card-header">
                       <h3 class="card-title">Edit Award</h3>
                 </div>
                 
 
-                <form method="post" enctype="multipart/form-data"  class="form-horizontal" 
+                <form id="awardeditajax" method="post" enctype="multipart/form-data"  class="form-horizontal editawardform" 
                 action="{{route('award.update', $award->id)}}">
                 @csrf
                 @method('PUT')
@@ -257,10 +218,10 @@ function updateOrder(data) {
 
 
       </div>
-    </section>
+   
   </div>
   
-  <div class="modal fade" id="modal-default">
+  
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -288,6 +249,6 @@ function updateOrder(data) {
         </div>
       </div>
 
-  @endsection
+
 
   

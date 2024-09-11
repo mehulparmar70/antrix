@@ -158,6 +158,18 @@
   box-shadow: none;
   width: 100%;
 }
+#slideridajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addsliderajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #clienttable
 {
   color:white;
@@ -167,6 +179,7 @@
 
      
         <div id="modalBodyContent"></div>
+        <div id="addnewsletter"></div>
 
 <!-- header -->
 
@@ -212,9 +225,7 @@
 <p class="route-slider-index d-none">{{route('slider.index')}}?onscreenCms=true</p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Include CKEditor CDN -->
-<!-- <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script> -->
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
 <script>
 	
 $(document).ready(function () {
@@ -228,16 +239,7 @@ $(document).ready(function () {
 	
 });
 
-function getOnscreenUrl(url){
 
-	var screen = $(window).width();
-	var popupWinWidth = 990;
-	var left = (screen - popupWinWidth) / 2;
-	const currentWindow = window.open(url, 'toolbar=no, location=no','left='+left+',width='+popupWinWidth+',height=860');
-	// return url;
-	
-
-}
 </script>
 <style type="text/css">
     .header .admin_header .header_top_blk p a {
@@ -249,61 +251,61 @@ function getOnscreenUrl(url){
     <div class="header_nav">
         <div class="container">
           <div class="navbar">
-            <ul>
+            <ul class="ulclass">
               
                 <!-- <li><a href="{{route('admin.index')}}" target="_blank" ><i class="fa fa-home "></i>  Go To Admin</a></li> -->
-                 <li> <a href="#">Add New</a></li>
+                 <!-- <li> <a href="#">Add New</a></li> -->
                 <li>
-                    <!-- <a href="#">Add New</a> -->
-                    <ul>
-                        <!-- <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Page</a></li>  -->
-                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Main Category</a></li> 
-                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true'); return false;">Sub Category</a></li> 
-                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/photo?page=list&onscreenCms=true'); return false;">Manage Photos</a></li> 
-                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/video/create?onscreenCms=true'); return false;">Video</a></li> 
-                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/testimonials/create?onscreenCms=true'); return false;">Testimonial</a></li> 
-                        <li><a href="{{route('admin.index')}}/blog/create?onscreenCms=true"onclick="getOnscreenUrl('{{route('admin.index')}}/blog/create?onscreenCms=true'); return false;">Blog</a></li>
+                    <a href="#">Add New</a>
+                    <ul class="ulclass">
+                        <!-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Page</a></li>  -->
+                        <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true','','','','',''); return false;">Main Category</a></li> 
+                        <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true','','','','',''); return false;">Sub Category</a></li> 
+                        <li><a href=""onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;">Manage Photos</a></li> 
+                        <li><a href=""onclick="popupmenu('{{route('admin.index')}}/video/create?onscreenCms=true','','','','',''); return false;">Video</a></li> 
+                        <li><a href=""onclick="popupmenu('{{route('admin.index')}}/testimonials/create?onscreenCms=true','','','','',''); return false;">Testimonial</a></li> 
+                        <li><a href="{{route('admin.index')}}/blog/create?onscreenCms=true"onclick="popupmenu('{{route('admin.index')}}/blog/create?onscreenCms=true','','','','',''); return false;">Blog</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Manage Contents</a>
-                    <ul>
+                    <ul class="ulclass">
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/category?type=main_category&onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/category?type=main_category&onscreenCms=true','','','','',''); return false;"
                         >Main Category</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/category?type=sub_category&onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/category?type=sub_category&onscreenCms=true','','','','',''); return false;"
                         >Sub Category</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/photo?page=list&onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
                         >Manage Photos</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/video?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/video?onscreenCms=true','','','','',''); return false;"
                         >Video</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/testimonials?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/testimonials?onscreenCms=true','','','','',''); return false;"
                         >Testimonial</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/blog?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/blog?onscreenCms=true','','','','',''); return false;"
                         >Blog</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">Global Setting</a>
-                    <ul>
+                    <ul class="ulclass">
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/slider?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/slider?onscreenCms=true','','','','',''); return false;"
                         >Slider / Banner</a></li>
 
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/settings/seo-manage?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/settings/seo-manage?onscreenCms=true','','','','',''); return false;"
                         >Logo Manage</a></li>
 
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/settings/social-media?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/settings/social-media?onscreenCms=true','','','','',''); return false;"
                         >Social Media</a></li>
                         <li><a href=""
-                            onclick="getOnscreenUrl('{{route('admin.index')}}/custom-code/js?onscreenCms=true'); return false;"
+                            onclick="popupmenu('{{route('admin.index')}}/custom-code/js?onscreenCms=true','','','','',''); return false;"
                         >Header Footer</a></li>
                     </ul>
                 </li>
@@ -323,23 +325,23 @@ function getOnscreenUrl(url){
   <div class="header_top">
     <div class="container">
       <div class="header_top_blk">
-        <p>
+        <p class="ulclass">
           <img src="{{url('/')}}/images/call.png" alt="call" /><a href="tel:1300 463 528"
             >1300 463 528</a
           >
         </p>
-        <p class="mobile_none">
+        <p class="mobile_none ulclass">
           <img src="{{url('/')}}/images/location.png" alt="location" /><a href="#"
             >27 Woodlands Dr, Braeside VIC 3195, Australia</a
           >
         </p>
-        <p class="mobile_none">
+        <p class="mobile_none ulclass">
           <img src="{{url('/')}}/images/mail.png" alt="mail" /><a
             href="mailto: industrial@giantinflatablesindustrial.com.au"
             >industrial@giantinflatablesindustrial.com.au</a
           >
         </p>
-        <p>
+        <p class="ulclass">
           <a href="#" class="mobile_none">Let's Connect</a>
           <span class="social-icon"
             ><img src="{{url('/')}}/images/youtube.png" alt="youtube" /><img
@@ -371,7 +373,7 @@ function getOnscreenUrl(url){
           <div class="solution">
             <h2>Innovative Industrial Inflatable Solutions</h2>
             <div class="solution-blk main_div">
-              <ul>
+              <ul class="ulclass">
                 <li class="our_clients" @if(session('LoggedUser'))
             data-link="{{route('admin.client-page.editor')}}"
           @endif><a href="{{ url('client') }}" class="nav-item">clients</a></li>
@@ -442,7 +444,7 @@ function getOnscreenUrl(url){
             </div>
           </div>
           <div class="navbar main_div">
-            <ul>
+            <ul class="ulclass">
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.home.editor')}}"
                 @endif><a href="{{url('')}}" class="home nav-item">HOME</a>
@@ -547,9 +549,6 @@ function getOnscreenUrl(url){
     </div>
     <!-- iziToast JS -->
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-
-    <!-- <script src="{{url('vertical-menu')}}/js/vm.js" type="text/javascript"></script>
-    <script src="{{url('vertical-menu')}}/js/vertical-menu.js"></script> -->
 </body>
 
 </html>

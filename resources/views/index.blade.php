@@ -65,7 +65,7 @@
     <div class="banner_123">
       @foreach ($sliders as $key => $slider)
       <div class="banner_slick_item slick-slide">
-        <img src="{{ url('web') }}/media/lg/{{ $slider->image }}" alt="{{$slider->description}}" />
+        <img src="{{ url('/') }}/images/{{ $slider->image }}" alt="{{$slider->description}}" />
         <div class="container">
           <h1>
             {{ $slider->title }}
@@ -73,7 +73,7 @@
           <a href="{{ $slider->url }}" class="discuss"> view more </a>
           @if(session('LoggedUser'))
             <!-- <a class="onscreen-banner-slider" href="{{ url('/powerup/slider?onscreenCms=true') }}" onclick="window.open('{{ url("/powerup/slider?onscreenCms=true") }}', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;" ><i class='fa fa-edit'></i></a> -->
-            <div class="content_banners" data-link="{{route('slider.edit',$slider->id)}}?onscreenCms=true"></div>
+            <div class="content_banners" data-link="{{route('slider.index')}}?onscreenCms=true"></div>
           @endif
         </div>
       </div>

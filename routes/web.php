@@ -11,9 +11,9 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\AwardController;
 use App\Http\Controllers\admin\BlogController;
-use App\Http\Controllers\admin\CaseStudiesController;
+use App\Http\Controllers\CaseStudiesController;
 use App\Http\Controllers\admin\TestimonialController;
-use App\Http\Controllers\admin\NewsletterController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\HomeEditorController;
@@ -28,6 +28,7 @@ Route::get('sitemap.html', [HomeController::class, 'sitemap'])->name('sitemap');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+Route::get('custom-industrial-inflatable-products', [HomeController::class, 'product'])->name('products');
 Route::get('/about', [HomeController::class, 'about'])->name('admin');
 Route::get('client', [HomeController::class, 'client']);
 Route::get('videos', [HomeController::class, 'videos']);
@@ -58,6 +59,7 @@ Route::get('/register', [AdminAuthController::class, 'register']);
 
 
 Route::get('slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
+Route::put('slider/{id}', [SliderController::class, 'update'])->name('slider.update');
 
 Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name('industries.delete');
 
@@ -67,6 +69,7 @@ Route::get('/category/create',[CategoryController::class, 'create'])->name('admi
 Route::get('/category/store',[CategoryController::class, 'create'])->name('admin.category.store');
 
 
+// Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
 
 Route::get('clients', [ClientController::class, 'index'])->name('client.index');
@@ -75,6 +78,8 @@ Route::get('blogs', [BlogController::class, 'index'])->name('blog.index');
 Route::get('casestudies', [CaseStudiesController::class, 'index'])->name('casestudies.index');
 Route::get('casestudies/create', [CaseStudiesController::class, 'create'])->name('casestudies.create');
 Route::get('casestudies/{id}/edit', [CaseStudiesController::class, 'edit'])->name('casestudies.edit');
+Route::put('/casestudies/{id}', [CaseStudyController::class, 'update'])->name('casestudies.update');
+
 
 Route::get('case-studies', [HomeController::class, 'casestudies']);
 Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
@@ -83,6 +88,7 @@ Route::get('testimonials/{id}/edit', [TestimonialController::class, 'edit'])->na
 
 Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::get('newsletter/create', [NewsletterController::class, 'create'])->name('newsletter.create');
+Route::get('newsletter/store', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::get('newsletter/{id}/edit', [NewsletterController::class, 'edit'])->name('newsletter.edit');
 Route::get('/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('admin.setting.social-media');
 Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('admin.setting.social-media.store');
@@ -93,7 +99,9 @@ Route::get('videos/create', [VideoController::class, 'create'])->name('video.cre
 Route::get('videos', [VideoController::class, 'index'])->name('video.index');
 Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
+Route::get('listview', [SliderController::class, 'listview'])->name('slider.listview');
 Route::post('update-sliders', [SliderController::class, 'update_list_no'])->name('slider.update');
+Route::post('slider/store', [SliderController::class, 'store'])->name('slider.store');
 
 
 
@@ -140,8 +148,19 @@ Route::get('/client/create', [ClientController::class, 'create'])->name('client.
 Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
+Route::get('/partners/create', [PartnerController::class, 'create'])->name('partners.create');
+
 Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
+Route::post('/award/{id}', [AwardController::class, 'update'])->name('award.update');
 
+
+Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkDelete'])->name('item.bulk-delete');
+Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.store');
+
+
+Route::get('/industries-index', [IndustriesController::class,'index'])->name('industries.index');
+Route::get('/industries-create', [IndustriesController::class,'create'])->name('industries.create');
+Route::get('/industries-edit/{id}', [IndustriesController::class,'edit'])->name('industries.create');
 });
 

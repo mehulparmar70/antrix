@@ -3,7 +3,6 @@
 @section('content')
 
 @section('custom-js')
-<script src="{{asset('/')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
 
 <script>
 

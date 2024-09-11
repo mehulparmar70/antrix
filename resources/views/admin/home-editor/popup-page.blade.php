@@ -22,13 +22,29 @@
           @includeWhen($type == 'Client', 'client.index')
           @includeWhen($type == 'client_edit', 'client.edit')
           @includeWhen($type == 'Award', 'award.index')
+          @includeWhen($type == 'award_edit', 'award.edit')
+          @includeWhen($type == 'newsletter', 'newsletter.index')
+          @includeWhen($type == 'newsletter_add', 'newsletter.create')
           @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
+          @includeWhen($type == 'video', 'video.index')
+          @includeWhen($type == 'partners', 'partners.index')
+          @includeWhen($type == 'category', 'category.index')
+          @includeWhen($type == 'homeedit', 'admin.home-editor.index')
+          @includeWhen($type == 'EditClient', 'admin.home-editor.client-page')
+          @includeWhen($type == 'EditAward', 'admin.home-editor.awards-page')
+          @includeWhen($type == 'Editnewsletter', 'admin.home-editor.newsletter-page')
        
+          @includeWhen($type == 'Casestudies', 'casestudies.index')
+          @includeWhen($type == 'casestudies_edit', 'casestudies.edit')
+          @includeWhen($type == 'Slider', 'slider.index')
+          @includeWhen($type == 'EditSlider', 'slider.edit')
+          @includeWhen($type == 'Industries', 'industries.index')
+          @includeWhen($type == 'industries_edit', 'industries.edit')
 
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')
         @endif
-        @includeWhen($type == 'Add New QuickView', 'admin.home-editor.industries-home')
+        @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'Create Main Category', 'admin.home-editor.main-category')
       </div>
     </div>

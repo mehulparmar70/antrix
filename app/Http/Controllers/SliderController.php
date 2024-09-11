@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Slider;
+use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 class SliderController extends Controller
 {
@@ -15,11 +17,16 @@ class SliderController extends Controller
      */
     public function index()
     {
+        $type = 'Slider';
         $data = [
+            'type' => $type,
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
             'sliders' =>  Slider::orderBy('slider_no')->get()
         ];
-        return view('adm.pages.slider.index', $data);
+        return view('admin.home-editor.popup-page', $data);
+   
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,10 +46,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,webp'
-        ]);
-
+     
         $slider_no = Slider::orderBy('slider_no', 'desc')->first();
 
         if($slider_no){
@@ -58,7 +62,27 @@ class SliderController extends Controller
         }
         
 
-        $image_name = uploadTinyImageThumb($request);
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
         $slider = new Slider;
         $slider->slider_no = $slider_no;
         $slider->title = $request->title;
@@ -112,10 +136,11 @@ class SliderController extends Controller
         // dd($id);
 
         $slider =  Slider::find($id);
-        $type = 'Slider';
+        $type = 'EditSlider';
         $data = [
-            'slider' =>  Slider::orderBy('slider_no')->get(),
-            'sliders' =>  $slider,
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'sliders' =>  Slider::orderBy('slider_no')->get(),
+            'slider' =>  $slider,
             'type' => $type
         ];
         
@@ -139,12 +164,21 @@ class SliderController extends Controller
     {
         
         // dd($request->input());
-        $request->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,webp',
-        ]);
+   
 
         if($request->file('image')){
-            $image_name = uploadTinyImageThumb($request);
+            $image = $request->file('image');
+        $image_name = time() . '_' . $image->getClientOriginalName();
+        $image_path = public_path('images/' . $image_name);
+        Image::make($image)
+            ->resize(1200, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->save($image_path, 75); // 75% quality
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
         }else{
             $image_name = $request->old_image;
         }
@@ -175,14 +209,15 @@ class SliderController extends Controller
 
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Slider Updated...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Slider Updated...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Slider Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

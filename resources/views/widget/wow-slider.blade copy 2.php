@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="{{url('wow-slider')}}/engine1/jquery.js"></script>
 	
 	<div id="wowslider-container1" class="mb-3" style="400px !important">
-	<div class="ws_images"><ul>
+	<div class="ws_images"><ul class="ulclass">
 
     @foreach($productImages as $productImage)
 		<li><img src="{{url('web')}}/media/lg/{{$productImage->image}}" /></li>

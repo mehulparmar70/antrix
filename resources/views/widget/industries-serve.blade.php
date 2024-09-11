@@ -12,15 +12,15 @@
 
     <div class="onscreen_media_industries_item" @if(session('LoggedUser'))
 
-      data-create-link="{{url('powerup/industries-create')}}"
+      data-create-link="{{url('powerup/industries-index')}}"
 
-      data-link="{{url('powerup/industries-edit',$industriesList->id)}}"
+      data-link="{{url('powerup/industries-index')}}"
 
-      data-delete-link="{{route('industries.delete',$industriesList->id)}}"
+      data-delete-link="{{route('industries.index')}}"
 
     @endif></div>
 
-    <img src="{{url('web')}}/media/lg/{{$industriesList->image}}" />
+    <img src="{{url('/')}}/images/{{$industriesList->image}}" />
 
     <h3>{{$industriesList->title}}</h3>
 

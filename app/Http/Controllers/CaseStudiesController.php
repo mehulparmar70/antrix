@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\CaseStudies;
+use App\Models\admin\Pages;
 use Session;
 
 class CaseStudiesController extends Controller
 {
     public function index()
     {
+        $type = 'Casestudies';
         
         $data = [
-            'testimonials' =>  CaseStudies::orderBy('item_no')->get()
+            'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
+            'testimonials' =>  CaseStudies::orderBy('item_no')->get(),
+            'type' => $type
         ];
-        return view('adm.pages.casestudies.index', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -119,17 +123,17 @@ class CaseStudiesController extends Controller
      */
     public function edit($id)
     {
+        $type = 'casestudies_edit';
         $testimonial = CaseStudies::find($id);
         $data = [
-            'testimonial' =>  $testimonial
+            'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
+            'testimonial' =>  $testimonial,
+            'type' => $type
         ];
 
         if($testimonial){
-            return view('adm.pages.casestudies.edit', $data);
-        }else{
-            return redirect(route('casestudies.index'))->with('fail', 'Testimonials Not Available...');
+            return view('admin.home-editor.popup-page', $data);
         }
-        
     }
 
     /**

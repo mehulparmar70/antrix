@@ -100,7 +100,7 @@
 </head>
 <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
 <div id="wowslider-container1" style="z-index: 0;height: 432px;">
-<div class="ws_images"><ul>
+<div class="ws_images"><ul class="ulclass">
          @foreach($productImages as $productImage)
             <li><img src="{{url('web')}}/media/lg/{{$productImage->image}}" 
             id="wows1_0"/></li>

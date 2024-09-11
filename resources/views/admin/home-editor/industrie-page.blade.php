@@ -65,6 +65,3 @@
         </div>
     </div>
 </form>
-<script>
-    CKEDITOR.replace('editor');
-</script>

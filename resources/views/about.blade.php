@@ -54,6 +54,8 @@ $industriesPageData = getPageData('industrie_page');
 		                                @endif></div>
 		     </span>
 	    </div>
+		
+
 	    <div class="inner_tab_blk">
 	      <div class="inner_tab_blk_right">
 	        <div class="description">

@@ -1,20 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Newsletter;
+use App\Models\admin\Pages;
 
 class NewsletterController extends Controller
 {
     public function index()
     {
-        
+      
+        $type = 'newsletter';
         $data = [
-            'testimonials' =>  Newsletter::orderBy('item_no')->get()
+            'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
+            'testimonials' =>  Newsletter::orderBy('item_no')->get(),
+            'type' => $type
         ];
-        return view('adm.pages.newsletter.index', $data);
+    
+            
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -24,8 +30,12 @@ class NewsletterController extends Controller
      */
     public function create()
     {
-        $data = ['testimonials' =>  Newsletter::all()];
-        return view('adm.pages.newsletter.create',$data);
+        $type = 'newsletter_add';
+        $data = [
+            'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
+            'testimonials' =>  Newsletter::all(),
+            'type' => $type];
+            return view('admin.home-editor.popup-page', $data);
     }
 
     /**

@@ -51,7 +51,7 @@
 	
 	<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
 	<div id="wowslider-container1" style="font-size: 7.26562px; z-index: 0;">
-	<div class="ws_images"><ul>
+	<div class="ws_images"><ul class="ulclass">
 	@foreach($productImages as $productImage)
 		<li><img src="{{url('web')}}/media/lg/{{$productImage->image}}"
 			title="{{$productImage->image_alt}}" title="{{$productImage->image_title}}" id="wows1_0"/></li>

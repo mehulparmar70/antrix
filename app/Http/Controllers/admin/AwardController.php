@@ -71,7 +71,26 @@ class AwardController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadImageThumb($request);
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
 
         $award = new Award;
         $award->name = $request->name;
@@ -84,14 +103,15 @@ class AwardController extends Controller
         $save = $award->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Award Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Award Added...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -114,13 +134,16 @@ class AwardController extends Controller
      */
     public function edit($id)
     {
+        $type = 'award_edit';
         $award = Award::find($id);
         if(!isset($award)){
             return redirect(route('award.index'));
         }
         
-        $data = ['award' =>  Award::find($id), 'awards' => $this->awards];
-        return view('adm.pages.award.edit', $data);
+        $data = [
+            'pageData' =>  Pages::where('type', 'award_page')->first(),
+            'award' =>  Award::find($id), 'awards' => $this->awards,'type' => $type];
+            return view('admin.home-editor.popup-page', $data);
     }
 
     /**

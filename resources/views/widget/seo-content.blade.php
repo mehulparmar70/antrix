@@ -52,7 +52,7 @@
                           ?>
                           @if(!file_exists($imageFile))
                           <img class="elevation-2 perview-img"   width="120"
-                          src="{{asset('adm')}}/img/no-item.jpeg">
+                          src="{{asset('/')}}/img/no-item.jpeg">
                           @elseif($pageData->featured_image)
                           <div class="image-area">
                             <img class="object-fit perview-img" width="300" src="{{asset('web')}}/media/lg/{{$pageData->featured_image}}">
@@ -60,7 +60,7 @@
                           </div>
                           @else
                           <img class="elevation-2 perview-img"   width="120"
-                          src="{{asset('adm')}}/img/no-item.jpeg">
+                          src="{{asset('/')}}/img/no-item.jpeg">
                           @endif
                           </div>
 

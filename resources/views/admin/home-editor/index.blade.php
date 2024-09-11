@@ -1,11 +1,4 @@
-@extends('layout.admin-index')
-@section('title','ALL INFLATABLES Editor')
 
-@section('toast')
-  @include('widget.toast')
-@endsection
-
-@section('custom-js')
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -24,50 +17,22 @@ $(".page").addClass( "menu-is-opening menu-open");
 $(".page a").addClass( "active-menu");
 
 </script>
-@endsection
 
-@section('content')
-@include('widget.table-search-draggable')
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-      <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Home Page Manage</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="mb-2">
-          <div class="col-sm-12">
-            <h3 class="m-0">Home Page Manage</h3>
-          </div>
-        </div>
-    </div>
     
-      </div>
-    </section>
 
-    <section class="content">
+   
       <div class="container-fluid">
 
-        <div class="card card-default">
+        <div >
           <div class="">
             <div class="form-horizontal row">
             
-            <div class="col-md-12 card card-theme">
-              <div class="card card-theme">
+            <div class="col-md-12 ">
+              <div class="  ">
              
-                <form method="post" enctype="multipart/form-data" 
+                <form  id="ajaxForm"  method="post" enctype="multipart/form-data" 
                 class="form-horizontal" 
                 action="{{route('admin.page-editor.store')}}">
                   @csrf
@@ -183,36 +148,6 @@ $(".page a").addClass( "active-menu");
 
 
       </div>
-    </section>
+   
   </div>
 
-
-  <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete URL</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <label>URL Title</label>
-            <h5 class="modal-title delete-title">Url Title</h5>
-            
-            </div>
-            <div class="modal-footer justify-content-between d-block ">
-              
-            <form class="delete-form float-right" action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-              <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
-              
-
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-  @endsection

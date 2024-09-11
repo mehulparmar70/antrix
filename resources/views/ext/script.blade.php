@@ -2,23 +2,34 @@
 <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
    
-
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <script type="importmap">
+            {
+                "imports": {
+                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.js",
+                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.1.0/"
+                }
+            }
+        </script>
 
-
+     
 <script src="{{asset('/')}}/js/popper.min.js"></script>
 <script src="{{asset('/')}}/js/bootstrap.min.js"></script>
 
 <script src="{{asset('/')}}/js/custom.js"></script>
+<script src="{{asset('/')}}/dist/js/custom.js"></script>
 
 <script src="{{asset('/')}}/plugins/toastr/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if(session('LoggedUser'))
 
+<script src="{{asset('/')}}js/ckeditor.js" rel="stylesheet"></script>
   <script src="{{asset('/')}}js/onscreen-cms.js" rel="stylesheet"></script>
   
 @endif
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
   <script type="text/javascript">
   	$('.inflatables_slider').slick({
       arrows: true,

@@ -78,6 +78,8 @@ window.onbeforeunload = function(){
 </script>
 @endif
 @yield('custom-js')
+
+
 </body>
 
 </html>
