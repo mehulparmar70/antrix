@@ -1,4 +1,4 @@
-<form  id="ajaxForm" method="post"  enctype="multipart/form-data" class="form-horizontal" 
+<form id="ajaxform" method="post"  enctype="multipart/form-data" class="form-horizontal" 
               action="{{route('admin.category.store')}}">
                 @csrf
                   <input type="hidden" id="page_type" value="singleUpload">
@@ -43,7 +43,7 @@
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                     </div>
                     <div class="col-sm-12 mt-5">
-                    <img class="elevation-2 perview-img"   width="120" src="{{asset('/')}}/img/no-item.jpeg">
+                    <img class="elevation-2 perview-img"   width="120" src="{{asset('adm')}}/img/no-item.jpeg">
                     </div>
                 </div>
                     @if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')

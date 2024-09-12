@@ -44,6 +44,7 @@
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')
         @endif
+        @includeWhen($type == 'main_category', 'admin.home-editor.edit-maincategory')
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'Create Main Category', 'admin.home-editor.main-category')
       </div>

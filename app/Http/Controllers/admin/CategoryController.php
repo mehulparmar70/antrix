@@ -196,24 +196,23 @@ class CategoryController extends Controller
      */
     public function edit(Request $request, $id)
     {
-
-        if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true'){
-            session(['backUrl' => url()->previous()]);
-        }
         $category = Category::where('id', $id)->first();
         // $this->parent_categories
 
-        $data = ['type'=> $request->type, 'parent_categories' => $this->parent_categories,
+        $data = ['type'=> $request->type, 
+                'parent_categories' => $this->parent_categories,
                 'categories' =>  category::where(['parent_id'=>0])->whereNotIn('id',[$id])
-                                ->orderBy('id','DESC')->get(),
+                            ->orderBy('id','DESC')->get(),
                  'category'=> $category ];
-
+       
                 
-        if($category){
-            return view('adm.pages.category.edit',$data);
-        }else{
-            return redirect(route('admin.category.list'))->with('fail', 'Category Not Available...');
-        }
+        // if($category){
+            // return view('adm.pages.category.edit',$data);
+            return view('admin.home-editor.popup-page',$data);
+
+        // }else{
+        //     return redirect(route('admin.category.list'))->with('fail', 'Category Not Available...');
+        // }
         
     }
 

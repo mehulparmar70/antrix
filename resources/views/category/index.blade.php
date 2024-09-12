@@ -170,22 +170,22 @@ function updateOrder(data) {
       
         <div class="row">
           <div class="col-12">
-            <div class="card">
-              
-            <div class="card-header  bg-dark">
+            <div class="">
+<!--               
+            <div class="  bg-dark">
                   <h3 class="card-title"><i class="fa fa-th-list nav-icon"></i>&nbsp;&nbsp;
                   {{$pageType}}
                   
                 </h3>
                  
-                </div>
+                </div> -->
 
-                <div class="card-body table-responsive p-0">
-                  <form action="{{route('item.bulk-delete')}}" method="post">
-                    @csrf
+                <div class=" p-0">
+                  <!-- <form action="{{route('item.bulk-delete')}}" method="post">
+                    @csrf -->
                 <input type="hidden" name="type" value="main_category">
                 
-                <table id="example2" class="table table-bordered">
+                <table  id="clienttable" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       
@@ -199,7 +199,7 @@ function updateOrder(data) {
                       <th>Image</th>
                       <th>Name</th>
                       <th>Status</th>
-                      <th width="150" >Action</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody  class="row_position">
@@ -244,7 +244,7 @@ function updateOrder(data) {
                             <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
                           </div>	
                       </td>
-                      <td class="">
+                      <td width="150">
                         
                       <div class="row">
 
@@ -270,14 +270,17 @@ function updateOrder(data) {
                         @endif
 
 
-                          <a class="btn btn-xs btn-dark" 
-                          href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="far fa-edit"></i></a>
-                              
+                          <!-- <a class="btn btn-xs btn-dark" 
+                          href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
+                          <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
+                            onclick="popupmenu('{{url('category/edit',$parent_category->id)}}', 'editmodal');">
+                            <i class="fa fa-edit"></i>
+                          </a>
                               &nbsp;&nbsp;&nbsp;
                       
 
                           <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
-                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                                   </button>
                           </div>
                       </td>
@@ -305,7 +308,7 @@ function updateOrder(data) {
                         class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
 
                         <button type="submit" name="action" value="delete"
-                        class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                        class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
 
                       </td></tr>
@@ -313,7 +316,7 @@ function updateOrder(data) {
                   @endif
 
                 </table>
-            </form>
+            <!-- </form> -->
                 
               </div>
             </div>
@@ -392,7 +395,7 @@ function updateOrder(data) {
                           class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
 
                           <button type="submit" name="action" value="delete"
-                          class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                          class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
                           <!-- 
                       <button type="submit" 
@@ -529,14 +532,17 @@ function updateOrder(data) {
                            class="btn btn-xs btn-warning float-left mr-2">
                            <i class="fa fa-eye"></i></a> 
 
-                          <a class="btn btn-xs btn-dark"
-                           href="{{route('admin.category.edit',$parent_category->id)}}"><i class="far fa-edit"></i></a>
-                              
+                          <!-- <a class="btn btn-xs btn-dark"
+                           href="{{route('admin.category.edit',$parent_category->id)}}"><i class="fa fa-edit"></i></a> -->
+                           <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
+                            onclick="popupmenu('{{url('category/edit',$parent_category->id)}}', 'editmodal');">
+                            <i class="fa fa-edit"></i>
+                          </a>
                               &nbsp;&nbsp;&nbsp;
                       
 
                           <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
-                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                                   </button>
                           </div>
                       </th>
@@ -563,7 +569,7 @@ function updateOrder(data) {
                         class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
 
                         <button type="submit" name="action" value="delete"
-                        class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                        class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
 
                       </td></tr>
