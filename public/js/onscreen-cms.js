@@ -692,6 +692,8 @@ function editslidersubmit(id) {
 
   });
 }
+
+
 function addslidersubmit() {
   var form = document.getElementById('addsliderajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

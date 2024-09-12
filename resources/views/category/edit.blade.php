@@ -1,11 +1,4 @@
-@extends('adm.layout.admin-index')
-@section('title','Create Category')
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 <script>
 $('.category_parent_id').on('change', function() {
@@ -80,9 +73,7 @@ $('.category_option').on('change', function() {
 
 
 </script>
-@endsection
 
-@section('content')
 <?php
   $pageType = $_GET['type'];
   if($_GET['type'] == 'main_category'){
@@ -170,7 +161,7 @@ else{
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div class="">
         
           <div class="card-body">
             <div class="form-horizontal row">
@@ -450,4 +441,4 @@ else{
     
   </div>
 
-  @endsection
+
