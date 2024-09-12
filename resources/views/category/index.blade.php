@@ -149,9 +149,6 @@ function updateOrder(data) {
                 <a href="{{route('admin.category.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
                     &nbsp;&nbsp;Add Main Category </a>
                 @endif
-
-                <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-
             </ol>
           </div>
 
@@ -190,12 +187,6 @@ function updateOrder(data) {
                     <tr>
                       
                     <th width="50">Order</th>
-                      <th>
-                        <input type="checkbox" class="checkAll" name="status" 
-                            id="checkAll"
-                        />
-
-                      </th>
                       <th>Image</th>
                       <th>Name</th>
                       <th>Status</th>
@@ -210,13 +201,6 @@ function updateOrder(data) {
                       <tr id="{{$parent_category->id}}"> 
                         <td>{{$parent_category->item_no}}</td>
                         
-                        <td>
-                        <input type="hidden" value="{{$parent_category->item_no}}">
-                          <input type="checkbox" class="checkList" name="checkList[]" 
-                              id="checkList" value="{{$parent_category->id}}"
-                          />    
-
-                        </td>
                         @if(isset(getImageFromCategory($parent_category->id)[0]->image))
                         <td><img class="rounded img-block"  width="200" 
                           src="{{asset('web')}}/media/sm/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
@@ -273,7 +257,7 @@ function updateOrder(data) {
                           <!-- <a class="btn btn-xs btn-dark" 
                           href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
                           <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
-                            onclick="popupmenu('{{url('category/edit',$parent_category->id)}}', 'editmodal');">
+                            onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
                             <i class="fa fa-edit"></i>
                           </a>
                               &nbsp;&nbsp;&nbsp;
@@ -287,34 +271,6 @@ function updateOrder(data) {
                       </tr>
                     @endforeach
                 </tbody>
-
-                @if($parent_categories->count() > 0)
-                  <tfooter>
-                    <tr>
-                      <th>Order</th>
-                    <td>
-                    
-                    <input type="checkbox" class="checkAll" name="status" 
-                            id="checkAll"
-                        />
-                    </td>
-                      <td colspan="5">
-
-                      <button type="submit" name="action" value="active"
-                        class="btn btn-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;
-                        Active</button>
-
-                      <button type="submit" name="action" value="deactive"
-                        class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
-
-                        <button type="submit" name="action" value="delete"
-                        class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
-
-
-                      </td></tr>
-                  </tfooter>
-                  @endif
-
                 </table>
             <!-- </form> -->
                 
