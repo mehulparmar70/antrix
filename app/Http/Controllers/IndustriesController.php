@@ -75,7 +75,7 @@ class IndustriesController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadTinyImageThumb($request);
+        $image_name = $request->file('image');
         $testimonial = new Industries;
         $testimonial->item_no = $item_no;
         $testimonial->title = $request->name;
@@ -104,18 +104,12 @@ class IndustriesController extends Controller
                     $media = new Media;
                     $media->media_id = $lastId;
                     $media->image_type = 'industries';
-                    $media->image_alt = $request->alt[$index];
-                    $media->image_title = $request->title[$index];
-                    $image_name2 = uploadMultipleImageThumb($imageData);
+                    $media->image_alt = '';
+                    $media->image_title = '';
+                    $image_name2 = '';
                     $media->image = $image_name2;
                     $save = $media->save();
                 }
-            }
-            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true'){
-                session()->put('success','Data Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Data Added...');
             }
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
@@ -165,11 +159,6 @@ class IndustriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        /*$request->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,webp',
-        ]);*/
-
         $gallery = $gallery_alt = $gallery_title = '';
         $item_no = Industries::orderBy('item_no', 'desc')->first();
         if($item_no){
@@ -241,13 +230,6 @@ class IndustriesController extends Controller
                     $save = $media->save();
                     
                 }
-            }
-            // return back()->with('success', 'Data Updated...');
-            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true'){
-                session()->put('success','Data Updated...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Data Updated...');
             }
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');

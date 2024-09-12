@@ -632,7 +632,7 @@ function editclientsubmit(id) {
 
   $.ajax({
       type: "POST",
-      url: base_url+"/powerup/client/"+id, // Form action URL
+      url: base_url+"/powerup/industries-update/"+id, // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -692,7 +692,36 @@ function editslidersubmit(id) {
 
   });
 }
+function editindustriessubmit(id) {
+  var form = document.getElementById('ajaxForm'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/industries-update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
 
+
+  });
+}
 
 function addslidersubmit() {
   var form = document.getElementById('addsliderajax'); // Get the form element
@@ -721,6 +750,32 @@ function addslidersubmit() {
     },
 
 
+  });
+}
+function addindustriessubmit() {
+  var form = document.getElementById('ajaxForm'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/industries-store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
   });
 }
 

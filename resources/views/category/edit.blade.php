@@ -169,36 +169,16 @@ else{
             <div class="col-md-12">
                  
              <input type="hidden" id="page_type" value="singleUpload">
-              <form method="post"  enctype="multipart/form-data" class="form-horizontal" 
-              action="{{route('admin.category.list.update', $category->id)}}">
+              <form id="slideridajax" method="post" enctype="multipart/form-data"
+              class="form-horizontal"  onsubmit="return false;">
               
                 @csrf
 
                 @if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
                         <input type="hidden" name="onscreenCms" value="true">
                     @endif
-                <div class="card-body p-0">
+                <div class="p-0">
 
-                
-                <!-- <div class="form-group row">
-
-                      <div class="col-sm-6">
-                            <select name="category_option" class="form-control category_option border-2" 
-                            >
-
-                                <option value="main_category"
-                                    @if($cat_level['type'] == 'main_category') selected @endif
-                                >Create Main Category</option>
-                              
-                                <option value="sub_category"
-                                  @if($cat_level['type'] == 'sub_category') selected @endif
-                                >Create Sub Category</option>
-                                
-
-                            </select>
-                      </div>
-                  </div>
-                   -->
               <div class="hidden-block form-group row">
                   @if($pageType == 'sub_category')
 
@@ -365,31 +345,7 @@ else{
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="form-group row col-sm-12">
-                    <div class="col-sm-5">
-                      <input type="text" class="form-control" name="canonical_url" 
-                        placeholder="Canonical URL" 
-                      value="@if(old('canonical_url')){{old('canonical_url')}}@else{{$category->canonical_url}}@endif">
-                      <span class="text-dark"></span>
-                    </div>
-                  </div>
-                  <div class="form-group row col-sm-12">
-                    <div class="col-sm-6">
-                       <div class="form-check">
-                          <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                          id="exampleCheck1"
-                          
-                            onClick="updateStatus({{$category->id}})"
-                            @if($category->status == 1)checked
-                            @endif 
-                            @if(old('status'))checked
-                            @endif
-                            />
-                          @if($category->status == 0)
-                          <h5> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif
-                      </div>  
-                    </div>
-                  </div> -->
+                  
                   
                   
                 @if($pageType == 'main_category')

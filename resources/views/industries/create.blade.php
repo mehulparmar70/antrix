@@ -72,8 +72,8 @@ $('.add-more').click(function () {
             
             <div class="col-md-12">
                  
-              <form id="ajaxForm" enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{url('powerup/industries-store')}}">
+              <form id="ajaxForm" method="post" enctype="multipart/form-data"
+              class="form-horizontal"  onsubmit="return false;">
                 @csrf
                 <div class="row">
                   <div class="col-sm-4 col-md-3">
@@ -134,23 +134,11 @@ $('.add-more').click(function () {
                 </div>
                 <div class="col-sm-12 res">
                 </div>
-                <!-- <div class="card-footer text-center">
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save</button>
-                </div> -->
                 <div class="col-sm-12 text-center row">
-                  @if(request()->get('onscreenCms') == 'true')
-                  <input type="hidden" name="onscreenCms" value="true">
                   <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save & Exit</button>
+                      <button type="button" onclick="addindustriessubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Save</button>
                   </div>
-                  @else
-                  <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save </button>
-                  </div>
-                  @endif
                 </div>
               </form>
               </div>

@@ -122,6 +122,7 @@ Route::get('/page-editor/industries', [PageController::class, 'industriePageEdit
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
 Route::get('industries-create', [IndustriesController::class,'create'])->name('industries-create');
 Route::post('industries-store', [IndustriesController::class,'store'])->name('industries-store');
+Route::post('industries-update/{id}', [IndustriesController::class,'update'])->name('industries.update');;
 Route::get('products', [ProductController::class, 'index'])->name('product.index');
 Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
 

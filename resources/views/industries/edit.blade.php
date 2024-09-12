@@ -80,8 +80,10 @@ $('.add-more').click(function () {
             
             <div class="col-md-12">
                  
-              <form id="ajaxForm" enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{url('powerup/industries-update', $testimonial->id)}}">
+              {{-- <form id="ajaxForm" enctype="multipart/form-data" method="post" class="form-horizontal"  
+                action="{{url('powerup/industries-update', $testimonial->id)}}"> --}}
+                <form  id="ajaxForm" method="post" enctype="multipart/form-data"
+                class="form-horizontal"  onsubmit="return false;">
                 @csrf
 
                 <div class="row">
@@ -159,21 +161,14 @@ $('.add-more').click(function () {
                 <div class="col-sm-12 res">
                 </div>   
                   
-              <div class="card-footer text-center">
+              <div class="text-center">
                   <!-- <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Save</button> -->
-                    @if(request()->get('onscreenCms') == 'true')
-                  <input type="hidden" name="onscreenCms" value="true">
+                   
                   <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Update & Exit</button>
+                  <button type="button" onclick="editindustriessubmit({{$testimonial->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                  Update </button>
                   </div>
-                  @else
-                  <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Update </button>
-                  </div>
-                  @endif
                 </div>
 
               </form>
