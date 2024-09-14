@@ -152,6 +152,18 @@
   box-shadow: none;
   width: 100%;
 }
+#addindustires
+{
+  background-color: #181313FF; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#editindustries
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #clienteditajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */

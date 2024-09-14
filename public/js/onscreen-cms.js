@@ -693,7 +693,7 @@ function editslidersubmit(id) {
   });
 }
 function editindustriessubmit(id) {
-  var form = document.getElementById('ajaxForm'); // Get the form element
+  var form = document.getElementById('editindustries'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
   $.ajax({
       type: "POST",
@@ -753,7 +753,7 @@ function addslidersubmit() {
   });
 }
 function addindustriessubmit() {
-  var form = document.getElementById('ajaxForm'); // Get the form element
+  var form = document.getElementById('addindustires'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
   $.ajax({
       type: "POST",

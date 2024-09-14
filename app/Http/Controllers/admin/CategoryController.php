@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\Category;
 use App\Models\admin\Media;
 use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 use Session;
 use DB;
 class CategoryController extends Controller
@@ -72,14 +73,17 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
+       
         if((isset($request->type) && $request->type == 'main_category') ){
             $data = [
                 'parent_categories' =>  $this->parent_categories,
-                'type' => 'Create Main Category'];
+                'pageData' =>  Pages::where('type', 'client_page')->first(),
+                'type' => 'CreateMainCategory'];
             return view('admin.home-editor.popup-page',$data);
         } elseif (isset($request->type) && $request->type == 'sub_category') {
             $data = [
                 'parent_categories' =>  $this->parent_categories,
+                'pageData' =>  Pages::where('type', 'client_page')->first(),
                 'type' => $request->type];
             return view('admin.home-editor.popup-page',$data);
         } else{
@@ -198,8 +202,10 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->first();
         // $this->parent_categories
-
-        $data = ['type'=> $request->type, 
+        $type="Main_Category";
+        $data = [
+            'type'=> $type, 
+        'pageData' =>  Pages::where('type', 'client_page')->first(),
                 'parent_categories' => $this->parent_categories,
                 'categories' =>  category::where(['parent_id'=>0])->whereNotIn('id',[$id])
                             ->orderBy('id','DESC')->get(),

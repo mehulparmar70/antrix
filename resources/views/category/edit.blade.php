@@ -75,13 +75,8 @@ $('.category_option').on('change', function() {
 </script>
 
 <?php
-  $pageType = $_GET['type'];
-  if($_GET['type'] == 'main_category'){
-    
-    $pageTitle = "Main Category";
-  }elseif($_GET['type'] == 'sub_category'){
-    $pageTitle = "Sub Category";
-  }
+
+ 
 
 $cat_type = '';
 $cat_level = [];
@@ -114,56 +109,13 @@ else{
 ?>
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        
-      <div class="row">
-      
-      <div class="col-sm-6"> 
-        <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit {{$pageTitle}}</li>
-
-              </ol>
-
-          </div>
-
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              
-              @if($pageType == 'main_category')
-                <a href="{{route('admin.category.create')}}?type=sub_category&id={{$category->id}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Create Sub Category </a>
-
-                @elseif($pageType == 'sub_category')
-                  <a href="{{route('admin.photo.manage')}}?page=list&main_category={{$_REQUEST['id']}}&sub_category={{$category->id}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Manage Photos </a>
-                @else
-
-                <a href="{{route('admin.category.create')}}?type=sub_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Add Main Category </a>
-                @endif
-                <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-                
-
-              </ol>
-          </div>
-          </div>
-
-        <div class="row mb-2">
-          <div class="col-sm-8">
-            <h1>Edit {{$pageTitle}} </h1>
-          </div>
-          
-        </div>
-      </div>
-    </section>
+  
 
     <section class="content">
       <div class="container-fluid">
         <div class="">
         
-          <div class="card-body">
+          <div class="">
             <div class="form-horizontal row">
             
             <div class="col-md-12">
@@ -180,7 +132,7 @@ else{
                 <div class="p-0">
 
               <div class="hidden-block form-group row">
-                  @if($pageType == 'sub_category')
+                  @if($type == 'sub_category')
 
                   <input type="hidden" name="pageType" class="parent_id" 
                       value="sub_category"> 
@@ -217,16 +169,16 @@ else{
                       value="0"> 
                     @endif
                     <input type="hidden" name="type" value="name">
-                    <div class="@if($pageType == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit {{$pageTitle}} Name</label>
+                    <div class="@if($type == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
+                      <label  class="text-dark" class="text-dark" for="search_index">Edit Name</label>
                       <input type="text" class="form-control name-input" name="name" 
-                         placeholder="{{$pageTitle}} Name" 
+                         placeholder=" Name" 
                           value="@if(old('name')){{old('name')}}@else{{$category->name}}@endif" required>
                          
                       <span class="text-danger">@error('name') {{$message}} @enderror</span>
                     </div>
-                    <div class="@if($pageType == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif ">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit {{$pageTitle}} Page Url</label>
+                    <div class="@if($type == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif ">
+                      <label  class="text-dark" class="text-dark" for="search_index">Edit Page Url</label>
                       <input class="form-control" name="slug" placeholder="URL label" 
                         
                         value="@if(old('slug')){{old('slug')}}@else{{$category->slug}}@endif"
@@ -234,15 +186,15 @@ else{
                         <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                     </div>
 
-                    <div class="@if($pageType == 'main_category') col-sm-4 col-md-6 @else col-sm-6 mt-2 @endif ">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit {{$pageTitle}} Page Short Description</label>
+                    <div class="@if($type == 'main_category') col-sm-4 col-md-6 @else col-sm-6 mt-2 @endif ">
+                      <label  class="text-dark" class="text-dark" for="search_index">Edit Page Short Description</label>
                         <textarea class="form-control" name="short_description">@if(old('short_description')){{old('short_description')}}@else{{$category->short_description}}@endif</textarea>
                         <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
                     </div>
                   </div>
                   <div class="form-group row col-sm-12">
                     <div class="col-sm-12">
-                        <label  class="text-dark" class="text-dark" for="search_index">Edit {{$pageTitle}} Description</label>
+                        <label  class="text-dark" class="text-dark" for="search_index">Edit Description</label>
                         <textarea id="editor" name="description" placeholder="Category Descriptions" 
                         >@if(old('description')){{old('description')}}@else{{$category->description}}@endif</textarea>
                                   
@@ -252,7 +204,7 @@ else{
                   <div class="form-group row col-sm-12">
                     <div class="col-sm-6">
                       <div class="col-sm-12">
-                        <label  class="text-dark" class="text-dark" for="search_index">Edit {{$pageTitle}} Image</label>
+                        <label  class="text-dark" class="text-dark" for="search_index">Edit Image</label>
                         <input type="file" name="image" class="file_input " id="image" accept="image/png,image/jpeg,image/webp" />
                         <input type="hidden" name="old_image" value="{{$category->image}}">
                       </div>  
@@ -348,21 +300,18 @@ else{
                   
                   
                   
-                @if($pageType == 'main_category')
+                @if($type == 'Main_Category')
                   <div class="col-sm-12 text-center row">
-                    @if(request()->get('onscreenCms') == 'true')
+                
                     <div class="col-sm-6 text-right">
                       <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Edits & Exit</button>
                     </div>
-                    @endif
-                    <div class="<?php if(request()->get('onscreenCms') == 'true'){ echo 'col-sm-6  text-left'; } else { echo 'col-sm-12 text-center'; } ?>">
-                      <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        Save & Create Sub Category</button>
-                    </div>
+                    
+                    
                   </div>
 
-                  @elseif($pageType == 'sub_category')
+                  @elseif($type == 'sub_category')
                   <div class="col-sm-12 text-center mt-4 row">
                     @if(request()->get('onscreenCms') == 'true')
                       <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>

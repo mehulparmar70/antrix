@@ -72,7 +72,7 @@ $('.add-more').click(function () {
             
             <div class="col-md-12">
                  
-              <form id="ajaxForm" method="post" enctype="multipart/form-data"
+              <form id="addindustires" method="post" enctype="multipart/form-data"
               class="form-horizontal"  onsubmit="return false;">
                 @csrf
                 <div class="row">

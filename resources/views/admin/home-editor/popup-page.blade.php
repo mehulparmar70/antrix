@@ -29,6 +29,7 @@
           @includeWhen($type == 'video', 'video.index')
           @includeWhen($type == 'partners', 'partners.index')
           @includeWhen($type == 'category', 'category.index')
+          @includeWhen($type == 'Main_Category', 'category.edit')
           @includeWhen($type == 'homeedit', 'admin.home-editor.index')
           @includeWhen($type == 'EditClient', 'admin.home-editor.client-page')
           @includeWhen($type == 'EditAward', 'admin.home-editor.awards-page')
@@ -44,9 +45,9 @@
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')
         @endif
-        @includeWhen($type == 'main_category', 'admin.home-editor.edit-maincategory')
+        
         @includeWhen($type == 'AddIndustries', 'industries.create')
-        @includeWhen($type == 'Create Main Category', 'admin.home-editor.main-category')
+        @includeWhen($type == 'CreateMainCategory', 'category.create')  
       </div>
     </div>
   </div>

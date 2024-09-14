@@ -82,7 +82,7 @@ $('.add-more').click(function () {
                  
               {{-- <form id="ajaxForm" enctype="multipart/form-data" method="post" class="form-horizontal"  
                 action="{{url('powerup/industries-update', $testimonial->id)}}"> --}}
-                <form  id="ajaxForm" method="post" enctype="multipart/form-data"
+                <form  id="editindustries" method="post" enctype="multipart/form-data"
                 class="form-horizontal"  onsubmit="return false;">
                 @csrf
 

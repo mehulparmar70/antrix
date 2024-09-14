@@ -128,7 +128,7 @@ $(function () {
 
                         @if(isset($testimonial->image))
                           <td><img class="rounded"  width="150"
-                            src="{{asset('/')}}/images/{{$testimonial->image}}"></td>
+                            src="{{asset('/')}}images/{{$testimonial->image}}"></td>
                         @else
 
                           <td><img class="rounded"  width="150"

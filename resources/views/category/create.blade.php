@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Create Category')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 <script>
 $('.category_parent_id').on('change', function() {
@@ -83,8 +75,7 @@ $('.category_option').on('change', function() {
 
 </script>
 
-@endsection
-@section('content')
+
 <?php
   $pageType = $_GET['type'];
   if($_GET['type'] == 'main_category'){
@@ -126,12 +117,7 @@ else{
       <div class="container-fluid">
         
       <div class="row">
-      <div class="col-sm-6"> 
-        <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Create New {{$pageTitle}}</li>
-              </ol>
-          </div>
+    
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -164,16 +150,16 @@ else{
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div class="">
         
-          <div class="card-body">
+          <div class="">
             <div class="form-horizontal row">
             
             <div class="col-md-12">
                  
              
               <form method="post"  enctype="multipart/form-data" class="form-horizontal" 
-              action="{{route('admin.category.list.store')}}">
+              action="{{route('admin.category.store')}}">
               
                 @csrf
                 <div class="card-body p-0">
@@ -405,4 +391,4 @@ else{
     
   </div>
 
-  @endsection
+

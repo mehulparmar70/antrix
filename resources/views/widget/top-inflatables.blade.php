@@ -9,7 +9,7 @@
         
       </dt> -->
       <dt data-id="{{ $topInflatable->id }}" data-isproducttab="1" class="product_title_main @if(session('homePageCatId') == $topInflatable->id) active @endif" @if(session('LoggedUser'))
-                                    data-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category"
+                                    data-link="{{route('admin.category.list')}}?type=main_category"
                                     data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatable->id}}"
                                 @endif>
         <!-- <a href="{{ $topInflatable->slug }}">{{$topInflatable->name}}</a> -->
@@ -30,7 +30,7 @@
               <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
                 <div class="tab_top subCategoryImage subCategoryImage-{{ $topInflatableLp->id }}">
                   @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                  <img src="{{url('web')}}/media/md/{{$productImage->image}}" style="height: 540px !important;" />
+                  <img src="{{url('/')}}/images/{{$productImage->image}}" style="height: 540px !important;" />
                   @endforeach
                 </div>
                 <div class="product_internal_title" @if(session('LoggedUser'))

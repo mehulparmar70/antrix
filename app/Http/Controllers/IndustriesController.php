@@ -8,6 +8,7 @@ use App\Models\admin\Industries;
 use App\Models\admin\Media;
 use DB;
 use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 class IndustriesController extends Controller
 {
@@ -54,11 +55,7 @@ class IndustriesController extends Controller
     public function store(Request $request)
     {
         
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg',
-        ]);
-
-        
+      
 
         $item_no = Industries::orderBy('item_no', 'desc')->first();
 
@@ -75,7 +72,26 @@ class IndustriesController extends Controller
             $status = 0;
         }
 
-        $image_name = $request->file('image');
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
         $testimonial = new Industries;
         $testimonial->item_no = $item_no;
         $testimonial->title = $request->name;
@@ -96,23 +112,29 @@ class IndustriesController extends Controller
         $save = $testimonial->save();
         $lastId = $testimonial->id;
         if($save){
+            return response()->json([
+                'success' => true,
+                'message' => 'Industries Updated...'
+            ]);
+            // $multipleImage = $request->file('images');
             
-            $multipleImage = $request->file('images');
-            
-            if (isset($multipleImage)) {
-                foreach($request->file('images') as $index => $imageData){
-                    $media = new Media;
-                    $media->media_id = $lastId;
-                    $media->image_type = 'industries';
-                    $media->image_alt = '';
-                    $media->image_title = '';
-                    $image_name2 = '';
-                    $media->image = $image_name2;
-                    $save = $media->save();
-                }
-            }
+            // if (isset($multipleImage)) {
+            //     foreach($request->file('images') as $index => $imageData){
+            //         $media = new Media;
+            //         $media->media_id = $lastId;
+            //         $media->image_type = 'industries';
+            //         $media->image_alt = '';
+            //         $media->image_title = '';
+            //         $image_name2 = '';
+            //         $media->image = $image_name2;
+            //         $save = $media->save();
+            //     }
+            // }
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -174,13 +196,25 @@ class IndustriesController extends Controller
         }
 
         if($request->file('image')){
-            // dd($request->old_image);
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
-
 
 
         /*if($request->file('images')){
@@ -218,21 +252,28 @@ class IndustriesController extends Controller
         $save = $testimonial->save();
 
         if($save){
-            if($request->file('images')){
-                foreach($request->file('images') as $index => $imageData){
-                    $media = new Media;
-                    $media->media_id = $id;
-                    $media->image_type = 'industries';
-                    $media->image_alt = $request->alt[$index];
-                    $media->image_title = $request->title[$index];
-                    $image_name2 = uploadMultipleImageThumb($imageData);
-                    $media->image = $image_name2;
-                    $save = $media->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
+            // if($request->file('images')){
+            //     foreach($request->file('images') as $index => $imageData){
+            //         $media = new Media;
+            //         $media->media_id = $id;
+            //         $media->image_type = 'industries';
+            //         $media->image_alt = $request->alt[$index];
+            //         $media->image_title = $request->title[$index];
+            //         $image_name2 = uploadMultipleImageThumb($imageData);
+            //         $media->image = $image_name2;
+            //         $save = $media->save();
                     
-                }
-            }
+            //     }
+            // }
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

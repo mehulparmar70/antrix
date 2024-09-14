@@ -126,29 +126,21 @@ function updateOrder(data) {
       <div class="row">
       
       <div class="col-sm-6"> 
-        <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">{{$pageType}}</li>
-
-              </ol>
+   
 
           </div>
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
 
-              @if($pageSlug== 'main_category')
-                <a href="{{route('admin.category.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add Main Category </a>
+           
+                <button onclick="popupmenu(`{{route('admin.category.create')}}?type=main_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add Main Category </button>
 
-                @elseif($pageSlug== 'sub_category')
+               
                   <a href="{{route('admin.category.create')}}?type=sub_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
                     &nbsp;&nbsp;Add Sub Category </a>
-                @else
-
-                <a href="{{route('admin.category.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Add Main Category </a>
-                @endif
+           
             </ol>
           </div>
 
