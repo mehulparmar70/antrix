@@ -121,7 +121,7 @@ else{
             <div class="col-md-12">
                  
              <input type="hidden" id="page_type" value="singleUpload">
-              <form id="slideridajax" method="post" enctype="multipart/form-data"
+              <form id="editCategoryidajax" method="post" enctype="multipart/form-data"
               class="form-horizontal"  onsubmit="return false;">
               
                 @csrf

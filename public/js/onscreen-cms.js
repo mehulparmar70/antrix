@@ -724,7 +724,7 @@ function editindustriessubmit(id) {
 }
 
 function editcategoriessubmit(id) {
-  var form = document.getElementById('slideridajax'); // Get the form element
+  var form = document.getElementById('editCategoryidajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
   $.ajax({
       type: "POST",
@@ -812,7 +812,7 @@ function addindustriessubmit() {
 }
 
 function addCategorieSubmit() {
-  var form = document.getElementById('addindustires'); // Get the form element
+  var form = document.getElementById('addCategory'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
   $.ajax({
       type: "POST",

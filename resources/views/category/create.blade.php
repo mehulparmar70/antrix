@@ -123,7 +123,7 @@ else{
             <div class="col-md-12">
                  
              
-              <form method="post" id="addindustires" enctype="multipart/form-data" class="form-horizontal" 
+              <form method="post" id="addCategory" enctype="multipart/form-data" class="form-horizontal" 
               onsubmit="return false;">
               
                 @csrf
