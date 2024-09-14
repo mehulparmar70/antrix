@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Testimonials;
+use App\Models\admin\Pages;
 
 class TestimonialController extends Controller
 {
@@ -15,11 +16,13 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        
+        $type = 'Testimonials';
         $data = [
-            'testimonials' =>  Testimonials::orderBy('item_no')->get()
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'testimonials' =>  Testimonials::orderBy('item_no')->get(),
+            'type' => $type
         ];
-        return view('adm.pages.testimonial.index', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**

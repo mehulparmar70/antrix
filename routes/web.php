@@ -12,7 +12,7 @@ use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\AwardController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\CaseStudiesController;
-use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VideoController;
