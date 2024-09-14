@@ -76,7 +76,7 @@ $(".updates_menu_active").addClass( "menu_active");
           @foreach($updates as $update)
           <div class="update_item">
             <h2 class="onscreen_page_blog_block" @if(session('LoggedUser'))
-                data-link="{{route('blog.edit', $update->id)}}"
+                {{-- data-link="{{route('blog.edit', $update->id)}}" --}}
                 data-delete-link="{{route('admin.index')}}/blog/delete/{{ $update->id}}"
               @endif>{{ $update->title }}</h2>
             <a class="update_inner match" href="{{ url('updates') }}/{{$update->slug}}">
