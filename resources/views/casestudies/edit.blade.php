@@ -51,48 +51,19 @@ $('.add-more').click(function () {
 
 
 <div class="content-wrapper">
-    <section class="content-header">
-
-    <div class="container-fluid">
-    
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit CaseStudies</li>
-            </ol>
-          </div>
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('casestudies.index')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Manage CaseStudies </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit CaseStudies</h1>
-          </div>
-        </div>
-    </div>
-
-      </div>
-
-    </section>
+ 
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div class="">
         
-          <div class="card-body">
+          <div class="">
             <div class="form-horizontal row">
             
             <div class="col-md-12">
                  
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{route('casestudies.update', $testimonial->id)}}">
+              <form id="editcasestudies" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              onsubmit="return false;" >
                 @csrf
 
                 @method('PUT')
@@ -134,7 +105,7 @@ $('.add-more').click(function () {
                         <div class="col-md-12 col-sm-12 col-lg-12">
                           @if($testimonial->image)
                           <div class="image-area">
-                            <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}/images/{{$testimonial->image}}"> 
+                            <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}images/{{$testimonial->image}}"> 
                             <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="case_studies" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}" style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
                               @else
@@ -241,8 +212,8 @@ $('.add-more').click(function () {
 
                 </div>
                 <div class="card-footer text-center">
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save</button>
+                <button type="button" onclick="editcasestudiesubmit({{$testimonial->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                Update </button>
                 </div>
               </form>
               </div>

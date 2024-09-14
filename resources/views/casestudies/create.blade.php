@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 <script>
@@ -57,52 +49,22 @@ $('.add-more').click(function () {
 });
 </script>
 
-@endsection
-@section('content')
+
 
 <div class="content-wrapper">
-    <section class="content-header">
 
-    <div class="container-fluid">
-    
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add New CaseStudies</li>
-            </ol>
-          </div>
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('casestudies.index')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Manage CaseStudies </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Add New CaseStudies</h1>
-          </div>
-        </div>
-    </div>
-
-      </div>
-
-    </section>
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div class="">
         
-          <div class="card-body">
+          <div class="">
             <div class="form-horizontal row">
             
             <div class="col-md-12">
                  
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{route('casestudies.store')}}">
+              <form id="addcasestudies" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              onsubmit="return false;" >
                 @csrf
                 <div class="form-group">
                   @if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
@@ -219,8 +181,8 @@ $('.add-more').click(function () {
 
                 </div>
                 <div class="card-footer text-center">
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save</button>
+                <button type="button" onclick="addcasestudiessubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Save</button>
                 </div>
               </form>
               </div>
@@ -235,4 +197,3 @@ $('.add-more').click(function () {
     </section>
   </div>
 
-  @endsection

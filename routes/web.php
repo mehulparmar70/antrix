@@ -79,7 +79,8 @@ Route::get('blogs', [BlogController::class, 'index'])->name('blog.index');
 Route::get('casestudies', [CaseStudiesController::class, 'index'])->name('casestudies.index');
 Route::get('casestudies/create', [CaseStudiesController::class, 'create'])->name('casestudies.create');
 Route::get('casestudies/{id}/edit', [CaseStudiesController::class, 'edit'])->name('casestudies.edit');
-Route::put('/casestudies/{id}', [CaseStudyController::class, 'update'])->name('casestudies.update');
+Route::put('/casestudies/{id}', [CaseStudiesController::class, 'update'])->name('casestudies.update');
+Route::post('/casestudies/store', [CaseStudiesController::class, 'store'])->name('casestudies.store');
 
 
 Route::get('case-studies', [HomeController::class, 'casestudies']);

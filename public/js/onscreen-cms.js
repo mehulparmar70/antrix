@@ -700,6 +700,43 @@ function editslidersubmit(id) {
 
   });
 }
+function editcasestudiesubmit(id) {
+  var form = document.getElementById('editcasestudies'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/casestudies/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            // Close the edit modal
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); // This will refresh the entire page
+            // OR, you can selectively refresh the content
+            // Example: $('#contentSection').load(location.href + ' #contentSection')
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
 function editindustriessubmit(id) {
   var form = document.getElementById('editindustries'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
@@ -780,6 +817,39 @@ function addslidersubmit() {
                 message: response.message,
                 position: 'topRight'
             });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+function addcasestudiessubmit() {
+  var form = document.getElementById('addcasestudies'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/casestudies/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
         } else {
             iziToast.error({
                 title: 'Error',
@@ -808,6 +878,8 @@ function addindustriessubmit() {
                 message: response.message,
                 position: 'topRight'
             });
+            $('.modal-container').remove();
+            location.reload();
         } else {
             iziToast.error({
                 title: 'Error',
@@ -835,6 +907,8 @@ function addCategorieSubmit() {
                 message: response.message,
                 position: 'topRight'
             });
+            $('.modal-container').remove();
+            location.reload();
         } else {
             iziToast.error({
                 title: 'Error',

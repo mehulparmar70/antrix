@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\CaseStudies;
 use App\Models\admin\Pages;
 use Session;
+use Intervention\Image\Facades\Image;
 
 class CaseStudiesController extends Controller
 {
@@ -29,8 +30,12 @@ class CaseStudiesController extends Controller
      */
     public function create()
     {
-        $data = ['testimonials' =>  CaseStudies::all()];
-        return view('adm.pages.casestudies.create',$data);
+        $type = 'CasestudiesCreate';
+        $data = [
+            'type' => $type,
+            'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
+            'testimonials' =>  CaseStudies::all()];
+            return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -46,11 +51,6 @@ class CaseStudiesController extends Controller
         $file = $request->file('file');
         $file->move($destinationPath,$file->getClientOriginalName());*/
 
-
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,webp',
-            'file' => 'required|file|mimes:pdf'
-        ]);
 
          
         $item_no = CaseStudies::orderBy('item_no', 'desc')->first();
@@ -68,8 +68,27 @@ class CaseStudiesController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadTinyImageThumb($request);
-        $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/web/casestudies'));
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
+        $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/casestudies'));
 
         $casestudies = new CaseStudies;
         $casestudies->item_no = $item_no;
@@ -92,15 +111,15 @@ class CaseStudiesController extends Controller
         $save = $casestudies->save();
 
         if($save){
-            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-            {
-                session()->put('success','CaseStudies Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'CaseStudies Added...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Case Studies Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -148,9 +167,7 @@ class CaseStudiesController extends Controller
 
         /*print_r($_REQUEST);
         exit();*/
-        $request->validate([
-            
-        ]);
+     
 
         $item_no = CaseStudies::orderBy('item_no', 'desc')->first();
         /*if($item_no){
@@ -166,16 +183,29 @@ class CaseStudiesController extends Controller
         }
 
         if($request->file('image')){
-            // dd($request->old_image);
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
 
         if($request->file('file')){
             // dd($request->old_image);
-            $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/web/casestudies'));
+            $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/casestudies'));
             deleteBulkImage($request->old_file);
         }else{
             $file_name = $request->old_file;
@@ -202,15 +232,15 @@ class CaseStudiesController extends Controller
         $save = $casestudies->save();
 
         if($save){
-            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-            {
-                session()->put('success','CaseStudies Updated...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'CaseStudies Updated...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

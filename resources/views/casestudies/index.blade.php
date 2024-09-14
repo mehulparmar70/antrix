@@ -101,27 +101,18 @@ $(function () {
       
     <div class="row">
       
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">CaseStudies List</li>
-            </ol>
-          </div>
+      
 
         
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('casestudies.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New CaseStudies </a>
+          <ol class="breadcrumb float-sm-right"><button onclick="popupmenu(`{{route('casestudies.create')}}`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New CaseStudies </button>
               <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
               
           </ol>
         </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>CaseStudies List</h1>
-          </div>
-        </div>
+        
     </div>
 
 
@@ -134,13 +125,13 @@ $(function () {
       
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="">
               
-              <div class="card-body  p-0">                
-                <table  id="example1" class="table table-bordered table-striped" >
+              <div class="  p-0">                
+                <table  id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      
                       <th>Image</th>
                       <th>Title</th>
                       <th style="min-width: 50% !important;">Description</th>
@@ -152,16 +143,16 @@ $(function () {
                   <tbody class="row_position">
                     @foreach($testimonials as $i => $testimonial)
                       <tr id="{{$testimonial->id}}"> 
-                        <td>{{$testimonial->item_no}}</td>
+                        
                         
 
                         @if(isset($testimonial->image))
                           <td><img class="rounded"  width="150"
-                            src="{{asset('/')}}/images/{{$testimonial->image}}"></td>
+                            src="{{asset('/')}}images/{{$testimonial->image}}"></td>
                         @else
 
                           <td><img class="rounded"  width="150"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
+                          src="{{asset('/')}}img/no-item.jpeg"></td>
                         @endif
 
                         <td>{{$testimonial->title}}</td>
@@ -192,7 +183,7 @@ $(function () {
                            data-type="editmodal" 
                            onclick="popupmenu('{{ route('casestudies.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;"
                            class="btn btn-sm btn-dark float-left mr-2"  title="Edit CaseStudies"><i class="fa fa-edit"></i></a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete CaseStudies"  data-id="{{route('admin.index')}}/casestudies/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash-alt"></i>
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete CaseStudies"  data-id="{{route('admin.index')}}/casestudies/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       
                       

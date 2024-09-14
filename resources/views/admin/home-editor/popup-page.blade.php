@@ -37,6 +37,7 @@
        
           @includeWhen($type == 'Casestudies', 'casestudies.index')
           @includeWhen($type == 'casestudies_edit', 'casestudies.edit')
+          @includeWhen($type == 'CasestudiesCreate', 'casestudies.create')
           @includeWhen($type == 'Slider', 'slider.index')
           @includeWhen($type == 'EditSlider', 'slider.edit')
           @includeWhen($type == 'Industries', 'industries.index')
