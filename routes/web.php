@@ -153,7 +153,7 @@ Route::get('/partners/create', [PartnerController::class, 'create'])->name('part
 
 Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
-Route::post('/award/{id}', [AwardController::class, 'update'])->name('award.update');
+Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.update');
 
 
 Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkDelete'])->name('item.bulk-delete');

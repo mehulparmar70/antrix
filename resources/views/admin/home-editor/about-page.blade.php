@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <label for="short_description">Short Description</label>
                 <input type="hidden" class="form-control" name="type" value="about_page">
-                <input type="text" class="form-control" name="short_description" placeholder="Short Description">
+                <input type="text" class="form-control" name="short_description" placeholder="Short Description" value="{{ $pageData->subtitle }}">
             </div>
         </div>
 
@@ -47,9 +47,9 @@
             <!-- SEO Content Section -->
             <div class="col-md-6">
                 <label>Add SEO Contents</label>
-                <input type="text" class="form-control mb-2" name="seo_title" placeholder="SEO Title">
-                <input type="text" class="form-control mb-2" name="seo_keywords" placeholder="SEO Keywords">
-                <textarea class="form-control mb-2" name="seo_description" placeholder="SEO Description"></textarea>
+                <input type="text" class="form-control mb-2" name="seo_title" placeholder="SEO Title" value="{{ $pageData->meta_title }}">
+                <input type="text" class="form-control mb-2" name="seo_keywords" placeholder="SEO Keywords" value="{{ $pageData->meta_keyword }}">
+                <textarea class="form-control mb-2" name="seo_description" placeholder="SEO Description" >{{ $pageData->meta_description }}</textarea>
 
                 <!-- SEO Options -->
                 <div class="row">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <input type="text" class="form-control mt-2" name="canonical_url" placeholder="Canonical URL">
+                <input type="text" class="form-control mt-2" name="canonical_url" placeholder="Canonical URL" value="{{ $pageData->canonical_url }}">
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox" name="active" value="1" id="active" checked>
                     <label class="form-check-label" for="active">

@@ -6114,9 +6114,9 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
 
   border-radius: 5px;
 
-  text-align: center;
+  text-align: centser;
 
-  z-index: 99999999;
+  z-index: 100;
 
 }
 

@@ -133,7 +133,7 @@ $('.add-more').click(function () {
                   <div class="col-sm-12 row">
                     <div class="col-sm-4">
                       <label for="link">Link</label>
-                      <input type="text" class="form-control" name="page_link" placeholder="Link" value="@if(old('page_link')){{old('page_link')}}@else{{$client->page_link}}@endif">    
+                      <input type="text" class="form-control" name="page_link" placeholder="Link" value="@if(old('page_link')){{old('page_link')}}@else{{$client->url}}@endif">    
                       <span class="text-danger">@error('page_link') {{$message}} @enderror</span>
                       <div class="form-check mt-4">
                           <input type="checkbox" class="form-check-input  pull-right" name="status" 
@@ -206,7 +206,7 @@ $('.add-more').click(function () {
 
                   <div class="col-sm-3">
                   
-                    <button type="save" class="btnUpload btn btn-success btn-sm mr-2" 
+                    <button onclick="editclientsubmit({{$client->id}})" type="button" class="btnUpload btn btn-success btn-sm mr-2" 
                       style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
                       <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;&nbsp;Update
                     </button>

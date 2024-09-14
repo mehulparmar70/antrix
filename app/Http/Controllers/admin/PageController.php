@@ -266,17 +266,18 @@ class PageController extends Controller
                     $pageEditor = Pages::find($ifExist->id);
                     $pageEditor->type = $request->type;
                     $pageEditor->description = $request->description;
+                    $pageEditor->subtitle = $request->short_description;
                     $pageEditor->url = $request->url;
                     $pageEditor->featured_image = $image_name;
                     $pageEditor->image_alt = $request->image_alt;
                     $pageEditor->image_title = $request->image_title;
-                    $pageEditor->search_index = $request->search_index;
-                    $pageEditor->search_follow = $request->search_follow;
+                    $pageEditor->search_index = $request->allow_search_engines;
+                    $pageEditor->search_follow = $request->follow_links;
                     $pageEditor->canonical_url = $request->canonical_url;
                     $pageEditor->page_title = isset($page_title) ? $page_title : NULL;
-                    $pageEditor->meta_title = $request->meta_title;
-                    $pageEditor->meta_keyword = $request->meta_keyword;
-                    $pageEditor->meta_description = $request->meta_description;
+                    $pageEditor->meta_title = $request->seo_title;
+                    $pageEditor->meta_keyword = $request->seo_keywords;
+                    $pageEditor->meta_description = $request->seo_description;
                     $pageEditor->status = 1;
                     
                     $save = $pageEditor->save();
@@ -316,6 +317,7 @@ class PageController extends Controller
                     $pageEditor->type = $request->type;
                     $pageEditor->description = $request->description;
                     $pageEditor->url = $request->url;
+                    $pageEditor->subtitle = $request->short_description;
                     $pageEditor->featured_image = $image_name;
                     $pageEditor->image_alt = $request->image_alt;
                     $pageEditor->image_title = $request->image_title;

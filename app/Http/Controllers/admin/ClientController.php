@@ -186,7 +186,7 @@ class ClientController extends Controller
     } else {
         $status = 0;
     }
-
+    
     if($request->file('image')){
         $image = $request->file('image');
         $image_name = time() . '_' . $image->getClientOriginalName();
@@ -212,7 +212,7 @@ class ClientController extends Controller
     $client->name = $request->name;
     $client->note  = $request->note;  
     $client->image = $image_name;
-    $client->url = $request->url;
+    $client->url = $request->page_link;
     $client->short_description = $request->short_description;
     $client->status = $status;     
 

@@ -12,17 +12,17 @@
 
     @foreach($blogsSlider as $blogsList)
 
-    <a href="{{ url('blog') }}/{{$blogsList->slug}}" class="client_item slick-slide">
+    <a href="{{ url('blog.index') }}" class="client_item slick-slide">
 
       <div class="update_img onscreen_media_testimonial_item" @if(session('LoggedUser'))
 
-                        data-create-link="{{route('blog.create')}}"
+                        data-create-link="{{route('blog.index')}}"
 
                
 
                         data-delete-link="{{route('admin.index')}}/blog/delete/{{ $blogsList->id}}"
 
-                      @endif><img src="{{url('web')}}/media/md/{{$blogsList->image}}" /></div>
+                      @endif><img src="{{url('/')}}/images/{{$blogsList->image}}" /></div>
 
       <p>
 

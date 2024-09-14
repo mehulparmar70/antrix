@@ -60,18 +60,18 @@ function updateOrder(data) {
       
         <div class="row">
 
-          <div class="col-md-5 ">
-              <div class="card-header">
+          <div class="col-md-12 ">
+              <div class="">
                       <h3 class="card-title">Edit Award</h3>
                 </div>
                 
 
                 <form id="awardeditajax" method="post" enctype="multipart/form-data"  class="form-horizontal editawardform" 
-                action="{{route('award.update', $award->id)}}">
+                onsubmit="return false;">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="page_type" value="singleUpload">
-                  <div class="card-body p-2 pt-4">
+                  <div class=" p-2 pt-4">
 
                   <div class="form-group row">
                       <div class="col-sm-12">
@@ -100,7 +100,7 @@ function updateOrder(data) {
 
                           @if($award->image)
                             <img class="mt-2 perview-img"  height="120"
-                              src="{{asset('web')}}/media/xs/{{$award->image}}">
+                              src="{{asset('/')}}/images/{{$award->image}}">
                               @else
                               <img class="perview-img"  height="120"
                             src="{{asset('/')}}/img/no-item.jpeg">
@@ -135,83 +135,15 @@ function updateOrder(data) {
                       <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Award & Close</button>
                     @else
-                      <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Award</button>
+                    <button type="button" onclick="editawardsubmit({{$award->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Update </button>
                     @endif
                   </div>
                 </form>
 
               </div>
            
-           <div class="col-md-7 card card-theme">
-              <div class="card-header">
-                      <h3 class="card-title">Award Lists</h3>
-                </div>
-                
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap" id="example2">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Logo</th>
-                        <th>Note</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    
-                  <tbody class="row_position">
-                      @foreach($awards as $i => $award)
-                      <tr id="{{$award->id}}"> 
-                        <td>{{$award->item_no}}</td>
-
-                          <td>{{$award->name}}</td>
-                          @if($award->image)
-                          <td><img class="rounded" style="width:150px"
-                              src="{{asset('web')}}/media/lg/{{$award->image}}" width="120"></td>
-                              @else
-                              
-                          <td><img class="rounded" style="width:150px"
-                              src="{{asset('/')}}/img/no-user.jpeg" width="120"></td>
-                          @endif
-
-
-                          <td>{{$award->note}}</td>
-                          <td>
-                          
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                                id="exampleCheck1"
-                                
-                                  onClick="updateStatus({{$award->id}})"
-                                  @if($award->status == 1)checked
-                                  @endif 
-                                  @if(old('status'))checked
-                                  @endif
-                                  />
-                                  
-                                @if($award->status == 0)
-                                <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
-                            </div>	
-                            
-                          </td>
-                          <td>
-                          <a href="{{route('client.edit',$award->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit client"><i class="far fa-edit"></i></a>
-                            
-                            <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
-                             data-id="{{route('admin.index')}}/client/{{ $award->id}}" data-title="{{ $award->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
-                            </button>  
-
-                        </td>
-                        </tr>
-                      @endforeach
-
-                    </tbody>
-                  </table>
-                  
-                </div>
-              </div>
+         
            </div>
            
         </div>
@@ -222,33 +154,4 @@ function updateOrder(data) {
   </div>
   
   
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete Client</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <label>Client Name</label>
-            <h5 class="modal-title delete-title">Delete Category</h5>
-            </div>
-            <div class="modal-footer justify-content-between d-block ">
-              
-            <form class="delete-form float-right" action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-              <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
-              
-
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-  
+   

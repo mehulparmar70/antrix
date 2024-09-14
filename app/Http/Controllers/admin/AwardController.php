@@ -158,15 +158,22 @@ class AwardController extends Controller
         // Check the status from the request
         $status = $request->status == 'on' ? 1 : 0;
     
-        // Handle image upload
-        if ($request->file('image')) {
+        if($request->file('image')){
             $image = $request->file('image');
             $image_name = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('web/images'), $image_name);  // Save the image to the 'images' directory
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
     
             // Delete the old image if it exists
             if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
-                unlink(public_path('web/images/' . $request->old_image));
+                unlink(public_path('images/' . $request->old_image));
             }
         } else {
             $image_name = $request->old_image;

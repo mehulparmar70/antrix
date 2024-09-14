@@ -151,7 +151,7 @@ function updateOrder(data) {
                   <table class="table table-hover text-nowrap" id="clienttable">
                     <thead>
                       <tr>
-                        <th>ID</th>
+                 
                         <th>Name</th>
                         <th>Logo</th>
                         <th>Note</th>
@@ -163,7 +163,7 @@ function updateOrder(data) {
                   <tbody class="row_position">
                       @foreach($clients as $i => $client)
                       <tr id="{{$client->id}}"> 
-                        <td>{{$client->item_no}}</td>
+            
 
                           <td>{{$client->name}}</td>
                           @if($client->image)

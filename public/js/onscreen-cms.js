@@ -632,7 +632,7 @@ function editclientsubmit(id) {
 
   $.ajax({
       type: "POST",
-      url: base_url+"/powerup/industries-update/"+id, // Form action URL
+      url: base_url+"/powerup/client/"+id, // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -643,6 +643,14 @@ function editclientsubmit(id) {
                 message: response.message,
                 position: 'topRight'
             });
+                        // Close the edit modal
+                        $('.modal-container').remove();
+
+                        // Refresh the content of the already open popup or page
+                        // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+                        location.reload(); // This will refresh the entire page
+                        // OR, you can selectively refresh the content
+                        //  $('#contentSection').load(location.href + ' #contentSection');
         } else {
             iziToast.error({
                 title: 'Error',
@@ -786,7 +794,7 @@ function editawardsubmit(id) {
 
   $.ajax({
       type: "POST",
-      url: base_url+"/powerup/client/"+id, // Form action URL
+      url: base_url+"/powerup/award/"+id, // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -797,6 +805,11 @@ function editawardsubmit(id) {
                 message: response.message,
                 position: 'topRight'
             });
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); 
         } else {
             iziToast.error({
                 title: 'Error',
