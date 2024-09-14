@@ -113,41 +113,6 @@ else{
 ?>
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        
-      <div class="row">
-    
-
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              
-              @if($pageType == 'main_category')
-                <a href="{{route('admin.category.create')}}?type=sub_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add Sub Category </a>
-
-                @elseif($pageType == 'sub_category')
-                  <a href="{{route('admin.photo.manage')}}?page=list" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Manage Photos </a>
-                @else
-
-                <a href="{{route('admin.category.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Add Main Category </a>
-                @endif
-                <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              </ol>
-          </div>
-          </div>
-
-        <div class="mb-2">
-          <div class="row col-sm-8">
-            <h3 class="mb-0">Create {{$pageTitle}} </h3>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="">
@@ -158,15 +123,15 @@ else{
             <div class="col-md-12">
                  
              
-              <form method="post"  enctype="multipart/form-data" class="form-horizontal" 
-              action="{{route('admin.category.store')}}">
+              <form method="post" id="addCategory" enctype="multipart/form-data" class="form-horizontal" 
+              onsubmit="return false;">
               
                 @csrf
-                <div class="card-body p-0">
+                <div class="p-0">
                   <input type="hidden" id="page_type" value="singleUpload">
               <div class="hidden-block form-group row">
               @if($pageType == 'sub_category')
-              <div class="category-block col-sm-4 " >
+              <div class="category-block col-sm-4" >
                     <div class="sub-category" >
                       <label  class="text-dark" class="text-dark" for="search_index">Main Category</label>
                       <select name="category_parent_id" class="form-control category_parent_id" required>
@@ -344,20 +309,22 @@ else{
                     
                     
                   <div class="col-sm-12 text-center mt-4 row">
-                    @if(request()->get('onscreenCms') == 'true')
+                    {{-- @if(request()->get('onscreenCms') == 'true')
                     <div class="col-sm-6 mt-4 text-right">
                       
                       <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save & Close</button>
                     </div>
-                    @endif
+                    @endif --}}
                     <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-                    <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save & Create Sub Category</button>
+                    {{-- <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      Save & Create Sub Category</button> --}}
+                      <button type="button" onclick="addCategorieSubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Save & Create Sub Category</button>
                     </div>
                   </div>
 
-                  @elseif($pageType == 'sub_category')
+                  {{-- @elseif($pageType == 'sub_category')
                     
                   <div class="col-sm-12 text-center mt-4 row">
                     @if(request()->get('onscreenCms') == 'true')
@@ -373,7 +340,7 @@ else{
                         Save & Add Photos</button>
                       </div>
                     @endif
-                  </div>
+                  </div> --}}
                 @endif
                 </div>
 

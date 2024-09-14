@@ -121,7 +121,7 @@ else{
             <div class="col-md-12">
                  
              <input type="hidden" id="page_type" value="singleUpload">
-              <form id="slideridajax" method="post" enctype="multipart/form-data"
+              <form id="editCategoryidajax" method="post" enctype="multipart/form-data"
               class="form-horizontal"  onsubmit="return false;">
               
                 @csrf
@@ -302,16 +302,15 @@ else{
                   
                 @if($type == 'Main_Category')
                   <div class="col-sm-12 text-center row">
-                
                     <div class="col-sm-6 text-right">
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save Edits & Exit</button>
+                      {{-- <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      Save Edits & Exit</button> --}}
+                      <button type="button" onclick="editcategoriessubmit({{$category->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Save Edits & Exit</button>
                     </div>
-                    
-                    
                   </div>
 
-                  @elseif($type == 'sub_category')
+                  {{-- @elseif($type == 'sub_category')
                   <div class="col-sm-12 text-center mt-4 row">
                     @if(request()->get('onscreenCms') == 'true')
                       <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -326,7 +325,7 @@ else{
                         Save & Add Photos</button>
                       </div>
                     @endif
-                  </div>
+                  </div> --}}
                 @endif
 
                 </div>

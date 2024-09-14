@@ -182,6 +182,18 @@
   box-shadow: none;
   width: 100%;
 }
+#editCategoryidajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addCategory
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #addsliderajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */
