@@ -432,7 +432,7 @@ $(document).ready(function () {
         <div class="container">
           <div class="header_menu">
             <p class="menu_button">
-              <img src="{{url('/')}}/images/menu1.png" alt="menu" />MENU
+              <img src="{{url('/')}}/images/menu1.png"  alt="menu" />MENU
             </p>
             <div class="menu_item_img">
               <a href="{{url('')}}" class="item nav-item" @if(session('LoggedUser'))
@@ -441,10 +441,10 @@ $(document).ready(function () {
               <a href="{{url('custom-industrial-inflatable-products')}}" class="nav-item"><i class="fa fa-product-hunt product_menu_active" aria-hidden="true"><div class="border"></div> <span class="tooltiptext">Our Products </span></i > </a>
               <a href="{{url('about')}}" class="nav-item"><i class="fa fa-info-circle" aria-hidden="true"><div class="border"></div> <span class="tooltiptext">About</span></i ></a> 
               <a href="{{url('case-studies')}}" class="nav-item">
-                <i class="fa fa-book case_studies_menu_active" aria-hidden="true"><div class="border"></div><span class="tooltiptext">Case Studies</span></i>
+                <i class="fa fa-book case_studies_menu_active"  aria-hidden="true"><div class="border"></div><span class="tooltiptext">Case Studies</span></i>
               </a>
               <a href="{{url('testimonials')}}" class="nav-item">
-              <i class="fa fa-quote-left testimonials_menu_active"
+              <i class="fa fa-quote-left testimonials_menu_active" 
                 ><div class="border"></div>
                 <span class="tooltiptext">Testimonials</span></i
               >
@@ -455,13 +455,13 @@ $(document).ready(function () {
                 <span class="tooltiptext">Updates</span></i
               >
               </a>
-              <a href="{{url('contact-us')}}" class="nav-item">
+              <a href="{{url('contact-us')}}" class="nav-item ">
               <i class="fa fa-address-book" aria-hidden="true"
                 ><div class="border"></div>
                 <span class="tooltiptext">Contact Us</span></i
               >
               </a>
-              <i class="fa fa-envelope-o"
+              <i class="fa fa-envelope-o "
                 ><div class="border"></div>
                 <span class="tooltiptext">Discuss with us</span></i
               >
