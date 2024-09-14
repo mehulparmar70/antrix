@@ -331,7 +331,7 @@ function checkEmailFilter(){
     return EmailFilter::first();
 }
 
-function sendMailNotification($type, $to = 'sales@giantinflatables.in', $title, $data = []){
+function sendMailNotification(string $type = "", string $to = 'sales@giantinflatables.in', string $title = "", array $data = []){
 // return $data['email'];
     $user['to'] = $to;
     $user['email'] = $data['email'];
