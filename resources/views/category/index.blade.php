@@ -188,7 +188,7 @@ function updateOrder(data) {
                         
                         @if(isset(getImageFromCategory($parent_category->id)[0]->image))
                         <td><img class="rounded img-block"  width="200" 
-                          src="{{asset('web')}}/media/sm/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
+                          src="{{asset('/')}}/images/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
                           @else
 
                         <td><img class="rounded"   width="100"
@@ -416,7 +416,7 @@ function updateOrder(data) {
                         <td>{{++$i}}</td>
                         @if(isset($parent_category->image))
                         <td><img class="rounded img-block"  width="200" 
-                          src="{{asset('web')}}/media/sm/{{$parent_category->image}}"/></td>
+                          src="{{asset('/')}}/images/{{$parent_category->image}}"/></td>
                           @else
 
                         <td><img class="img-circle elevation-2"  height="30" width="30"

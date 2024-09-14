@@ -31,7 +31,7 @@
               @foreach($slider as $key => $slider)
                 <tr id="{{$slider->id}}">
                 <td>{{$slider->slider_no}}</td>
-                  <td><img width="100" src="{{url('web')}}/media/sm/{{$slider->image}}"></td>
+                  <td><img width="100" src="{{url('/')}}/images/{{$slider->image}}"></td>
                   <td>{{$slider->title}}</td>
                   <td>{{$slider->description}}</td>
                   <td>
@@ -66,7 +66,7 @@
                   <button class="btn btn-xs btn-danger del-modal float-left" 
                           title="Delete slider" 
                           data-id="{{route('admin.index')}}/slider/{{$slider->id}}" 
-                          data-image="{{url('web')}}/media/sm/{{ $slider->image}}" 
+                          data-image="{{url('/')}}/images/{{ $slider->image}}" 
                           data-title="{{ $slider->title}}"  
                           data-toggle="modal" 
                           data-target="#modal-default">

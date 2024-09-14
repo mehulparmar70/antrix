@@ -248,7 +248,7 @@ function updateStatus($id) {
                             <td>
                             @if($product->count() > 0)
                                 <img class="rounded"  width="250"
-                                  src="{{asset('web')}}/media/sm/{{$product->image}}">  
+                                  src="{{asset('/')}}/images/{{$product->image}}">  
                               @else
                                 <img class="rounded"  width="180"
                                 src="{{asset(/)}}/img/no-item.jpeg">

@@ -97,8 +97,8 @@
                   data-delete-link="{{route('admin.index')}}/client/delete/{{ $clientList['id']}}"
                   @endif></div>
                 @endif
-                <a data-fancybox="gallery" href="{{url('web')}}/media/sm/{{$clientList['image']}}" >
-                  <img src="{{url('web')}}/media/sm/{{$clientList['image']}}" class="@if(session('LoggedUser')) pt-1 @endif"/>
+                <a data-fancybox="gallery" href="{{url('/')}}/images/{{$clientList['image']}}" >
+                  <img src="{{url('/')}}/images/{{$clientList['image']}}" class="@if(session('LoggedUser')) pt-1 @endif"/>
                 </a>
               </div>
             @endforeach

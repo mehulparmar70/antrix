@@ -1099,7 +1099,7 @@ class HomeController extends Controller
         $searchKey = 0;
         if (count($getBlog) > 0) {
             foreach ($getBlog as $key => $value) {
-                $searchData[$searchKey]['Image'] = url('web').'/media/md/'.$value->image;
+                $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->short_description;
                 $searchData[$searchKey]['Title'] = $value->title;
                 $searchData[$searchKey]['Slug'] = 'updates/'.$value->slug;
@@ -1108,7 +1108,7 @@ class HomeController extends Controller
         }
         if (count($getCategory) > 0) {
             foreach ($getCategory as $key => $value) {
-                $searchData[$searchKey]['Image'] = asset('web').'/media/sm/'.getImageFromCategory($value->id)[0]->image;
+                $searchData[$searchKey]['Image'] = asset('/').'/images/'.getImageFromCategory($value->id)[0]->image;
                 $searchData[$searchKey]['Description'] = $value->meta_description;
                 $searchData[$searchKey]['Title'] = $value->name;
                 $searchData[$searchKey]['Slug'] = $value->slug;
@@ -1117,7 +1117,7 @@ class HomeController extends Controller
         }
         if (count($getCaseStudies) > 0) {
             foreach ($getCaseStudies as $key => $value) {
-                $searchData[$searchKey]['Image'] = url('web').'/media/md/'.$value->image;
+                $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->meta_description;
                 $searchData[$searchKey]['Title'] = $value->title;
                 $searchData[$searchKey]['Slug'] = 'case-studies/'.$value->slug;

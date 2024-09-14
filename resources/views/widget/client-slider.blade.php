@@ -16,7 +16,7 @@
                   @foreach($clientArrs as $i => $clientArr)
                     @foreach($clientArr as $client)
                         <div class="col-lg-12 col-md-12 col-12">
-                            <div class="logo-boder"><img src="{{url('web')}}/media/sm/{{$client['logo']}}" alt=""  title=""  class="img-fluid"></div>
+                            <div class="logo-boder"><img src="{{url('/')}}/images/{{$client['logo']}}" alt=""  title=""  class="img-fluid"></div>
                         </div>
                     @endforeach
                   @endforeach

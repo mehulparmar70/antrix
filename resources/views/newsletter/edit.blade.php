@@ -104,13 +104,13 @@ $(".newsletter a").addClass( "active-menu");
                       <br>
                       <div class="col-8">
                         <input type="hidden" name="old_image" value="{{$testimonial->image}}">
-                        <?php $fileName = public_path().'/web/media/xs/'.$testimonial->image; ?>
+                        <?php $fileName = public_path().'/images/'.$testimonial->image; ?>
                         @if(!file_exists($fileName))
                             <img class="elevation-2 perview-img"  height="120" src="{{asset('/')}}/img/no-item.jpeg">
                         @elseif($testimonial->image)
                             <!-- <img class="mt-2"  height="120"src="{{asset('web')}}/media/xs/{{$testimonial->image}}"> -->
                             <div class="image-area">
-                              <img class="elevation-2 perview-img"  height="120"src="{{asset('web')}}/media/xs/{{$testimonial->image}}"> 
+                              <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}/images/{{$testimonial->image}}"> 
                               <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="newsletters" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}" style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </div>
                         @else

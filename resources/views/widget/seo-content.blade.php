@@ -47,7 +47,7 @@
                           <?php 
                           // print_r($pageData);
                           // $imageFile = asset('web').'/media/xs/'.$pageData->featured_image; 
-                          $imageFile = public_path().'/web/media/lg/'.$pageData->featured_image; 
+                          $imageFile = public_path().'/images/'.$pageData->featured_image; 
                           // print_r();
                           ?>
                           @if(!file_exists($imageFile))

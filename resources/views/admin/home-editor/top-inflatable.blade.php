@@ -139,14 +139,14 @@ $(".page a").addClass( "active-menu");
                   <tbody>
                     @foreach($topInflatables as $topInflatable)
                       <tr>
-                        <td><img width="100" src="{{url('web')}}/media/sm/{{$topInflatable->image}}"></td>
+                        <td><img width="100" src="{{url('/')}}/images/{{$topInflatable->image}}"></td>
                         <td>{{$topInflatable->title}}</td>
                         <td>@if($topInflatable->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
                         
                         <td>
                         
                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete topInflatable"  data-id="{{ $topInflatable->id}}" 
-                            data-image="{{url('web')}}/media/sm/{{ $topInflatable->image}}" data-title="{{ $topInflatable->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                            data-image="{{url('/')}}/images/{{ $topInflatable->image}}" data-title="{{ $topInflatable->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                           </button>
                           
                       

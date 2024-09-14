@@ -12,9 +12,9 @@
 
 @if(isset($pageData->image))
 
-  <meta itemprop="image" content="{{asset('web')}}/media/sm/{{$pageData->image}}">
+  <meta itemprop="image" content="{{asset('/')}}/images/{{$pageData->image}}">
 @elseif(isset($pageData['featured_image']))
-  <meta itemprop="image" content="{{asset('web')}}/media/sm/{{$pageData['featured_image']}}">
+  <meta itemprop="image" content="{{asset('/')}}/images/{{$pageData['featured_image']}}">
 @else
   <meta itemprop="image" content="{{asset('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}">
 @endif
@@ -25,7 +25,7 @@
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:url" content="{{ Request::url() }}" />
 @if(isset($pageData['featured_image']))
-  <meta property="og:image" content="{{asset('web')}}/media/sm/{{$pageData['featured_image']}}" />
+  <meta property="og:image" content="{{asset('/')}}/images/{{$pageData['featured_image']}}" />
 @else
   <meta property="og:image" content="{{asset('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" />
 @endif

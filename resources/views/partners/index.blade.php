@@ -151,7 +151,7 @@ $(function () {
 
                         @if(isset($blog->image))
                         <td><img class="rounded object-fit"  width="150"
-                          src="{{asset('web')}}/media/sm/{{$blog->image}}"></td>
+                          src="{{asset('/')}}/images/{{$blog->image}}"></td>
                           @else
 
                         <td><img class="rounded"    width="100"

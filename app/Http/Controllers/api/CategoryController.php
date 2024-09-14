@@ -111,7 +111,7 @@ class CategoryController extends Controller
                     foreach(getImagesFromSubCategory($sub_category->id) as $i => $productImage){
                         if($i < 1){
                             // $response['SubCategories'][$key]['Image'] = asset('web').'/media/sm/'.$productImage->image;
-                            $response['SubCategories'][$key]['Image'] = '<img class="rounded img-block m-1"  width="200" src="'.asset('web').'/media/sm/'.$productImage->image.'"/>';
+                            $response['SubCategories'][$key]['Image'] = '<img class="rounded img-block m-1"  width="200" src="'.asset('/').'/images/'.$productImage->image.'"/>';
                         } else {
                             break;
                         }

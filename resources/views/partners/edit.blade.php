@@ -107,7 +107,7 @@ $(".partners a").addClass( "active-menu");
                       @if($blog->image)
                         <!-- <img class="elevation-2 perview-img"  height="120"src="{{asset('web')}}/media/xs/{{$blog->image}}">  -->
                         <div class="image-area mt-3">
-                          <img class="elevation-2 perview-img"  height="120"src="{{asset('web')}}/media/xs/{{$blog->image}}"> 
+                          <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}/images/{{$blog->image}}"> 
                           <a class="remove-image" href="#" data-id="{{ $blog->id }}" data-table="partners" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$blog->id}}" style="display: inline; position: absolute;display: inline;; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </div>
                       @else

@@ -134,7 +134,7 @@ $('.add-more').click(function () {
                         <div class="col-md-12 col-sm-12 col-lg-12">
                           @if($testimonial->image)
                           <div class="image-area">
-                            <img class="elevation-2 perview-img"  height="120"src="{{asset('web')}}/media/xs/{{$testimonial->image}}"> 
+                            <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}/images/{{$testimonial->image}}"> 
                             <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="case_studies" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}" style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                           </div>
                               @else

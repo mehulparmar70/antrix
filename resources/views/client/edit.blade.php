@@ -191,7 +191,7 @@ $('.add-more').click(function () {
                  <label for="">{{++$key}}</label>
                 </div>
                 <div class="col-sm-2">
-                  <img src="{{url('')}}/web/media/sm/{{$image->image}}" width="140"/>
+                  <img src="{{url('/')}}/images/{{$image->image}}" width="140"/>
                 </div>
 
                 <div class="col-sm-3">

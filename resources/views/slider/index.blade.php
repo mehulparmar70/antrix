@@ -208,7 +208,7 @@ function updateStatus($id) {
                          <button class="btn btn-xs btn-danger del-modal float-left" 
                                   title="Delete slider" 
                                   data-id="{{route('admin.index')}}/slider/{{$slider->id}}" 
-                                  data-image="{{url('web')}}/media/sm/{{ $slider->image}}" 
+                                  data-image="{{url('/')}}/images/{{ $slider->image}}" 
                                   data-title="{{ $slider->title}}"  
                                   data-toggle="modal" 
                                   data-target="#modal-default">

@@ -58,7 +58,7 @@
                   data-delete-link="{{route('admin.index')}}/client/delete/{{ $clientList['id']}}"
                   @endif></div>
                   @endif
-                    <img src="{{url('web')}}/media/sm/{{$clientList['image']}}" alt="{{ $clientList['note'] }}" />
+                    <img src="{{url('/')}}/images/{{$clientList['image']}}" alt="{{ $clientList['note'] }}" />
                   </a>
                 @endforeach
             </div>

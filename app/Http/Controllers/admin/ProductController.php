@@ -305,12 +305,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-         if(File::exists(public_path('web').'/media/lg/'.$product->image)){
-          unlink(public_path('web').'/media/lg/'.$product->image);
-          unlink(public_path('web').'/media/md/'.$product->image);
-          unlink(public_path('web').'/media/sm/'.$product->image);
-          unlink(public_path('web').'/media/xs/'.$product->image);
-          unlink(public_path('web').'/media/icon/'.$product->image);
+         if(File::exists(public_path('/').'/images/'.$product->image)){
+          unlink(public_path('/').'/images/'.$product->image);
+          unlink(public_path('/').'/images/'.$product->image);
+          unlink(public_path('/').'/images/'.$product->image);
+          unlink(public_path('/').'/images/'.$product->image);
+          unlink(public_path('/').'/images/'.$product->image);
 
           deleteTableUrlData($product->id,'product_link');
          $product = $product->delete();

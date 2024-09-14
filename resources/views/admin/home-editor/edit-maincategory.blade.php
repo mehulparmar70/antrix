@@ -288,7 +288,7 @@ else{
                       <div class="col-sm-12 mt-5">
                         @if($category->image)
                           <label  class="text-dark" class="text-dark" for="search_index">Image Uploaded</label><br>
-                          <img class="mt-2 elevation-2 perview-img" src="{{asset('web')}}/media/xs/{{$category->image}}">
+                          <img class="mt-2 elevation-2 perview-img" src="{{asset('/')}}/images/{{$category->image}}">
                           <a class="remove-image" href="#" data-id="{{ $category->id }}" data-table="categories" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$category->id}}" style="display: inline; position: absolute; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         @else
                         <label  class="text-dark" class="text-dark" for="search_index"></label>
