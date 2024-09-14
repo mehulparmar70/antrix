@@ -66,7 +66,8 @@ Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name
 
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit'])->name('admin.category.edit');
 Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
-Route::get('/category/store',[CategoryController::class, 'create'])->name('admin.category.store');
+Route::post('/category/store',[CategoryController::class, 'store'])->name('admin.category.store');
+Route::post('/category/update/{id}',[CategoryController::class, 'update'])->name('admin.category.update');
 
 
 // Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');

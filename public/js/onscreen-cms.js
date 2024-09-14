@@ -95,7 +95,7 @@ $('.onscreen-product-image').each(function(){
 });
 
 $('.product_title_main').each(function(){
-  $(this).prepend(`<div class="onscreen-product-title"><a class="adminAddItem" title="Add" href="`+$('.route-category-create').text()+`"onclick="popupmenu('`+$('.route-category-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-title"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.product_title_1').each(function() {
@@ -723,6 +723,38 @@ function editindustriessubmit(id) {
   });
 }
 
+function editcategoriessubmit(id) {
+  var form = document.getElementById('slideridajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/category/update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+
+
 function addslidersubmit() {
   var form = document.getElementById('addsliderajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
@@ -779,6 +811,32 @@ function addindustriessubmit() {
   });
 }
 
+function addCategorieSubmit() {
+  var form = document.getElementById('addindustires'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/category/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
 
 function editawardsubmit(id) {
   var form = document.getElementById('awardeditajax'); // Get the form element

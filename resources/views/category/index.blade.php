@@ -132,15 +132,8 @@ function updateOrder(data) {
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-
-           
                 <button onclick="popupmenu(`{{route('admin.category.create')}}?type=main_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
                   &nbsp;&nbsp;Add Main Category </button>
-
-               
-                  <a href="{{route('admin.category.create')}}?type=sub_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                    &nbsp;&nbsp;Add Sub Category </a>
-           
             </ol>
           </div>
 

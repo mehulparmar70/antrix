@@ -117,7 +117,27 @@ class CategoryController extends Controller
         }else{
             $parent_id = 0;
         }
-        $image_name = uploadTinyImageThumb($request);
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
         $status = ($request->status == null ? 0 : 1);
         $category = new Category;
         $category->name = $request->name;
@@ -142,38 +162,41 @@ class CategoryController extends Controller
 
         $save = $category->save();
         if($save){
-            // return back()->with('success', 'New Category Added...');
-
-            if($request->page_type == 'main_category'){
-                return(redirect(route('admin.category.edit',$parent_id).'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            if ($request->close == "1") {
+                session()->put('success','Category Added...');
+                return(redirect(route('admin.close')));
+            } else {
+                return back()->with('success', 'Category Added...');
             }
-            elseif($request->page_type == 'sub_category'){
-                if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-                {
-                    if ($request->close == "1") {
-                        session()->put('success','Sub Category Added...');
-                        return(redirect(route('admin.close')));
-                    }else if ($request->close == "2") {
-                        session()->put('success','Sub Category Added...');
-                        return(redirect(route('admin.index').'/category/create?onscreenCms=true&type=sub_category&id='.$parent_id))->with('success', 'Sub Category Added...'); 
-                    } else {
-                        return(redirect(route('admin.index').'/photo?onscreenCms=true&page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
-                    }
-                }
-                return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
-            }
-
-            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-            {
-                if ($request->close == "1") {
-                    session()->put('success','Main Category Added...');
-                    return(redirect(route('admin.close')));
-                } else {
-                    return(redirect(route('admin.index').'/category/create?onscreenCms=true&type=sub_category&id='.$category->id))->with('success', 'Main Category Added...');   
-                }
-            }
+            // if($request->page_type == 'main_category'){
+            //     return(redirect(route('admin.category.edit',$parent_id).'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            // }
+            // elseif($request->page_type == 'sub_category'){
+            //     if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
+            //     {
+            //         if ($request->close == "1") {
+            //             session()->put('success','Sub Category Added...');
+            //             return(redirect(route('admin.close')));
+            //         }else if ($request->close == "2") {
+            //             session()->put('success','Sub Category Added...');
+            //             return(redirect(route('admin.index').'/category/create?onscreenCms=true&type=sub_category&id='.$parent_id))->with('success', 'Sub Category Added...'); 
+            //         } else {
+            //             return(redirect(route('admin.index').'/photo?onscreenCms=true&page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            //         }
+            //     }
+            //     return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+            // }
+            // if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
+            // {
+            //     if ($request->close == "1") {
+            //         session()->put('success','Main Category Added...');
+            //         return(redirect(route('admin.close')));
+            //     } else {
+            //         return(redirect(route('admin.index').'/category/create?onscreenCms=true&type=sub_category&id='.$category->id))->with('success', 'Main Category Added...');   
+            //     }
+            // }
         
-            return(redirect(route('admin.index').'/category/create?type=sub_category&id='.$category->id))->with('success', 'Main Category Added...');   
+            // return(redirect(route('admin.index').'/category/create?type=sub_category&id='.$category->id))->with('success', 'Main Category Added...');   
         }else{
             return back()->with('fail', 'Something went wrong, try again later...');
         }
@@ -240,10 +263,25 @@ class CategoryController extends Controller
             
         ]);
   
-        if($request->file('image')){
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
             $image_name = $request->old_image;
         }
 
@@ -280,39 +318,40 @@ class CategoryController extends Controller
         $save = $category->save();
 
             if($save){
-                if($request->pageType == 'main_category'){
-
-                    if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-                    {
-                        if ($request->close == "1") {
-                            session()->put('success','Sub Category Updated...');
-                            return(redirect(route('admin.close')));
-                        } else {
-                            return(redirect(route('admin.category.create').'?onscreenCms=true&type=sub_category&id='.$id))->with('success', 'Sub Category Added...');   
-                        }
-                    }
-
-                    return(redirect(route('admin.category.create').'?type=sub_category&id='.$id))->with('success', 'Sub Category Added...');   
+                if ($request->close == "1") {
+                    session()->put('success','Category Updated...');
+                    return(redirect(route('admin.close')));
+                } else {
+                    return back()->with('success', 'Category Updated...');
                 }
-                elseif($request->pageType == 'sub_category'){
-                    if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
-                    {
-                        if ($request->close == "1") {
-                            session()->put('success','Sub Category Updated...');
-                            return(redirect(route('admin.close')));
-                        } else if ($request->close == "2") {
-                            session()->put('success','Sub Category Updated...');
-                            return(redirect(route('admin.category.create').'?onscreenCms=true&type=sub_category&id='.$id))->with('success', 'Sub Category Added...'); 
-                        }else {
-
-                            return(redirect(route('admin.index').'/photo?onscreenCms=true&page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Updated...');   
-                        }
-                    }
-                    return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Updated...');   
-                }
-    
-                
-                return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
+                // if($request->pageType == 'main_category'){
+                //     if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
+                //     {
+                //         if ($request->close == "1") {
+                //             session()->put('success','Sub Category Updated...');
+                //             return(redirect(route('admin.close')));
+                //         } else {
+                //             return(redirect(route('admin.category.create').'?onscreenCms=true&type=sub_category&id='.$id))->with('success', 'Sub Category Added...');   
+                //         }
+                //     }
+                //     return(redirect(route('admin.category.create').'?type=sub_category&id='.$id))->with('success', 'Sub Category Added...');   
+                // }
+                // elseif($request->pageType == 'sub_category'){
+                //     if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
+                //     {
+                //         if ($request->close == "1") {
+                //             session()->put('success','Sub Category Updated...');
+                //             return(redirect(route('admin.close')));
+                //         } else if ($request->close == "2") {
+                //             session()->put('success','Sub Category Updated...');
+                //             return(redirect(route('admin.category.create').'?onscreenCms=true&type=sub_category&id='.$id))->with('success', 'Sub Category Added...'); 
+                //         }else {
+                //             return(redirect(route('admin.index').'/photo?onscreenCms=true&page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Updated...');   
+                //         }
+                //     }
+                //     return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Updated...');   
+                // }
+                // return(redirect(route('admin.index').'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
             
                 // return redirect(route('admin.category.create').'?type=sub_category&id='.$category->id)->with('success', 'Category Updated...');
                 // return back()->with('success', 'Category Updated...');
