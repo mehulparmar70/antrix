@@ -164,6 +164,6 @@ Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.s
 
 Route::get('/industries-index', [IndustriesController::class,'index'])->name('industries.index');
 Route::get('/industries-create', [IndustriesController::class,'create'])->name('industries.create');
-Route::get('/industries-edit/{id}', [IndustriesController::class,'edit'])->name('industries.create');
+Route::get('/industries-edit/{id}', [IndustriesController::class,'edit'])->name('industries.edit');
 });
 

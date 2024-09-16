@@ -12,11 +12,12 @@
 
     <div class="onscreen_media_industries_item" @if(session('LoggedUser'))
 
-      data-create-link="{{url('powerup/industries-index')}}"
+      data-create-link="{{url('powerup/industries-create')}}"
 
-      data-link="{{url('powerup/industries-index')}}"
-
-      data-delete-link="{{route('industries.index')}}"
+      
+      data-edit-link="{{ route('industries.edit', $industriesList->id) }}" 
+      data-delete-link="{{route('industries.delete','$industriesList->id')}}"
+      data-index-link="{{route('industries.index')}}"
 
     @endif></div>
 

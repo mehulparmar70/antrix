@@ -1,18 +1,27 @@
 <div id="ajaxModal" 
-     class="modal {{ $type }}" 
+     class="cmsModal modal {{ $type }}" 
      tabindex="-1" 
      role="dialog" 
      aria-labelledby="popupFormLabel" 
      aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ $type }}</h5>
-        <button type="button" class="close" aria-label="Close" onclick="closeModal('{{ $type }}')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="cmsModal-dialog " role="document">
+    <div class="cmsModal-content">
+      <div class="cmsModal-header">
+        <h5 class="cmsModal-title" id="modalTitleId">{{ $type }}</h5>
+        <div class="cmsModal-cta">
+                        <!-- <a href="javascript:void(0);" class="cmsLinkBtn green">
+                            <span class="icon">&times</span>
+                            Save & Exit
+                        </a> -->
+                   
+                        <a href="javascript:void(0);" type="button" class="cmsLinkBtn red" aria-label="Close" onclick="closeModal('{{ $type }}')">
+                        <span class="icon">&times</span>
+                        Exit without saving
+        </a>
+                    </div>
+       
       </div>
-      <div class="modal-body" id="modalBodyContentpopup">
+      <div class="cmsModal-body" id="modalBodyContentpopup">
         @if(isset($pageData) && !empty($pageData))
           @includeWhen($type == 'About', 'admin.home-editor.about-page')
           @includeWhen($type == 'Product', 'admin.home-editor.product-page')
@@ -51,6 +60,7 @@
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'CreateMainCategory', 'category.create')  
       </div>
+     
     </div>
   </div>
 </div>

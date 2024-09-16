@@ -9,7 +9,9 @@
         
       </dt> -->
       <dt data-id="{{ $topInflatable->id }}" data-isproducttab="1" class="product_title_main @if(session('homePageCatId') == $topInflatable->id) active @endif" @if(session('LoggedUser'))
-                                    data-link="{{route('admin.category.list')}}?type=main_category"
+                                    data-create-link="{{route('admin.category.create')}}?type=main_category"
+                                    data-index-link="{{route('admin.category.list')}}?type=main_category"
+                                    data-edit-link="{{route('admin.category.edit',$topInflatable->id)}}?type=main_category"
                                     data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatable->id}}"
                                 @endif>
         <!-- <a href="{{ $topInflatable->slug }}">{{$topInflatable->name}}</a> -->
@@ -35,8 +37,9 @@
                 </div>
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
-                      data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
+                      data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                      data-index-link="{{route('admin.category.list')}}"
                     @endif></div>
                 <div class="big_text small_text">
                   <a href="{{url('')}}/{{$topInflatableLp->slug}}">{{ $topInflatableLp->name }}</a>
@@ -48,8 +51,9 @@
                 <img src="{{url('web')}}/media/md/noimage.png" />
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
-                      data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
+                      data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                      data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                     @endif></div>
                 <div class="big_text small_text">
                   <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="noImageFontClr">{{ $topInflatableLp->name }}</a>
@@ -62,11 +66,12 @@
           @else
             <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatable->slug}}">
               <div class="tab_top">
-                <img src="{{url('web')}}/media/md/noimage.png" />
+                <img src="{{url('/')}}/images/noimage.png" />
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
-                      data-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category&onscreenCms=true"
+                      data-edit-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category&onscreenCms=true"
                       data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatable->id}}"
+                      data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                     @endif></div>
                 <div class="big_text small_text">
                   <a href="{{url('')}}/{{$topInflatable->slug}}" class="noImageFontClr">{{ $topInflatable->name }}</a>

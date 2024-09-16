@@ -116,7 +116,10 @@ $('.onscreen-product-image').each(function(){
 });
 
 $('.product_title_main').each(function(){
-  $(this).prepend(`<div class="onscreen-product-title"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-title"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
 $('.product_title_1').each(function() {
@@ -174,8 +177,9 @@ $('.onscreen_media_casestudies_item').each(function(){
 $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
   <a href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`);
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>
+  <a href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
 
@@ -294,19 +298,22 @@ $('.onscreen_blog_detail_page').each(function(){
   $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$('route-blog-index').text()+`"onclick="popupmenu('`+$('.route-blog-index').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
-$('.product_internal_title').each(function(){
-  // $(this).prepend(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+$('.product_internal_title').each(function() {
   var html = '';
-  if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
-  } else {
-    html += `<a class="adminAddItem" title="Add" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
-  }
-  html += `<a class="adminEditItem" title="Edit" href="`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/category?type=main_category'+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`;
-  $(this).prepend(html);
 
+  // Accessing the data attributes properly using $(this).attr('data-create-link'), etc.
+  html += `<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `" onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+
+  html += `<a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `" onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+
+  html += `<a class="adminDeleteItem" title="Delete" href="` + $(this).attr('data-delete-link') + `" data-msg="This action will delete Sub-Category & photos permanently. If you are sure about this, press OK or Cancel now."> <i class='fa fa-trash'></i></a>`;
+
+  html += `<a class="adminListItem" title="List" href="` + $(this).attr('data-index-link') + `" onclick="popupmenu('` + $(this).attr('data-index-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-list'></i></a>`;
+
+  // Append the generated HTML
+  $(this).prepend(html);
 });
+
 
 $('.product_internal_title_slick').each(function(){
   $(this).append(`<div class="onscreen-product-internal-title-link"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
@@ -485,7 +492,7 @@ function popupmenu(link, type, location, left, width, height) {
         })
         .then(data => {
             modalContainer.innerHTML = `<div >${data}</div>`;
-            modalContainer.querySelector('.modal').style.display = 'block';
+            modalContainer.querySelector('.cmsModal').style.display = 'block';
         })
         .catch(error => {
             console.error('Error loading content:', error);
