@@ -66,8 +66,29 @@ $('.logo-g, .product, .about, .testimonial, .blog, .contact,.menu_crud').each(fu
 });
 
 $('.content_banners').each(function(){
-  $(this).append(`<a class="onscreen-banner-slider" href="`+$(this).attr('data-link')+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  const createLink = $(this).attr('data-create-link');
+  const editLink = $(this).attr('data-edit-link');
+  const deleteLink = $(this).attr('data-delete-link');
+  const listLink = $(this).attr('data-index-link');
+  
+  
+  // Append buttons for Create, Edit, Delete, and List actions
+  $(this).append(`
+      <a class="onscreen-banner-slider" href="${createLink}" class="onscreen-menu adminEditItem" title="Create" onclick="popupmenu('${createLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+          <i class="fa fa-plus"></i>
+      </a>
+      <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+          <i class="fa fa-edit"></i>
+      </a>
+      <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+          <i class="fa fa-trash"></i>
+      </a>
+      <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+          <i class="fa fa-list"></i>
+      </a>
+  `);
 });
+
 
 
 
@@ -472,32 +493,15 @@ function popupmenu(link, type, location, left, width, height) {
 }else
 {
   fetch(link)
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.text();
-  })
-  .then(data => {
-      document.getElementById('modalBodyContent').innerHTML = data;
-      initializeEditor();
-      
-      // Second fetch request to get additional content
-      return fetch(link);
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.text();
-  })
-  .then(data => {
-      document.getElementById('modalBodyContent').innerHTML = data;
-      document.getElementById('ajaxModal').style.display = 'block';
-  })
-  .catch(error => {
-      console.error('Error loading content:', error);
-  });
+  .then(response => response.text())
+            .then(data => {
+                document.getElementById('modalBodyContent').innerHTML = data;
+                document.getElementById('ajaxModal').style.display = 'block';
+
+                // Initialize the CKEditor after modal content is loaded
+                initializeEditor();
+            })
+            .catch(error => console.error('Error loading content:', error));
 }
  
 }
