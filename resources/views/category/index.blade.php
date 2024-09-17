@@ -131,10 +131,17 @@ function updateOrder(data) {
           </div>
 
           <div class="col-sm-6">
+            @if($pageSlug == 'main_category' || $pageSlug == null )
             <ol class="breadcrumb float-sm-right">
                 <button onclick="popupmenu(`{{route('admin.category.create')}}?type=main_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
                   &nbsp;&nbsp;Add Main Category </button>
             </ol>
+            @elseif($pageSlug == 'sub_category')
+            <ol class="breadcrumb float-sm-right">
+              <button onclick="popupmenu(`{{route('admin.category.create')}}?type=sub_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                &nbsp;&nbsp;Add Sub Category </button>
+          </ol>
+          @endif
           </div>
 
         <div class="mb-2">
@@ -153,18 +160,9 @@ function updateOrder(data) {
         <div class="row">
           <div class="col-12">
             <div class="">
-<!--               
-            <div class="  bg-dark">
-                  <h3 class="card-title"><i class="fa fa-th-list nav-icon"></i>&nbsp;&nbsp;
-                  {{$pageType}}
-                  
-                </h3>
-                 
-                </div> -->
 
                 <div class=" p-0">
-                  <!-- <form action="{{route('item.bulk-delete')}}" method="post">
-                    @csrf -->
+
                 <input type="hidden" name="type" value="main_category">
                 
                 <table  id="clienttable" class="table table-bordered table-striped">
@@ -269,97 +267,117 @@ function updateOrder(data) {
     </section>
 
   @elseif($pageSlug == 'sub_category')
-<section class="content">
-  <div class="container-fluid"> 
-    <div class="card card-default"> 
-      <div class="card-body"> 
-        <div class="form-horizontal row"> 
-          <div class="col-md-12" style="background: whitesmoke; padding: 10px !important; "> 
-            <select class="form-control form-control-sm  mr-3 col-sm-3 category_parent_id pull-left" required>
-              <option value="">Select Main Category</option>
-                @foreach($parent_categories as $parent_category)
-                  <option value="{{$parent_category->id}}">{{$parent_category->name}}</option>
-                @endforeach
-              </select> 
-          </div> 
-        </div> 
-      </div> 
-    </div> 
-  </div> 
-</section>
-    <section class="content">
-      <div class="container-fluid">
-      
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-            <div class="card-header  bg-dark">
-                  <h3 class="card-title"><i class="fa fa-th-list nav-icon"></i>&nbsp;&nbsp;Sub Categories</h3>
-                  <div id="example1_wrapper">
-                  </div>
-                </div>
+  <section class="content">
+    <div class="container-fluid">
+    
+      <div class="row">
+        <div class="col-12">
+          <div class="">
 
-              <div class="card-body table-responsive p-0">
-                <form action="{{route('item.bulk-delete')}}" method="post">
-                @csrf
-                <input type="hidden" name="type" value="sub_category">
-                <table  id="example2" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      
-                    <!-- <th width="50">Order</th> -->
-                      <th><input type="checkbox" class="" name="status" id="subCategoryCheckAll"/></th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th width="300">Main Category</th>
-                      <th>Status</th>
-                      <th width="100">Action</th>
-                    </tr>
-                    @if(count($sub_categories) > 0)
-                
-                      <tr>
-                          
-                      <!-- <th>Order</th> -->
-                      <!-- <td>
-                      <input type="checkbox" class="checkAll" name="status" 
-                              id="checkAll"
-                          />
-                          </td> -->
+              <div class=" p-0">
 
-                      <td colspan="6">
-                        
-                      <button type="submit" name="action" value="active"
-                          class="btn btn-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;
-                          Active</button>
-
-                        <button type="submit" name="action" value="deactive"
-                          class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
-
-                          <button type="submit" name="action" value="delete"
-                          class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
-
-                          <!-- 
-                      <button type="submit" 
-                          class="btn btn-danger btn-sm">Delete</button> -->
-                        
-                        </td></tr>
-
-
-                    @endif
-                  </thead>
+              <input type="hidden" name="type" value="main_category">
+              
+              <table  id="clienttable" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    
+                  <th width="50">Order</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody  class="row_position">
                   
-                </table>
-            </form>
-                
-              </div>
+                  @foreach($parent_categories as $i => $parent_category)
+                  
+
+                    <tr id="{{$parent_category->id}}"> 
+                      <td>{{$parent_category->item_no}}</td>
+                      
+                      @if(isset(getImageFromCategory($parent_category->id)[0]->image))
+                      <td><img class="rounded img-block"  width="200" 
+                        src="{{asset('/')}}/images/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
+                        @else
+
+                      <td><img class="rounded"   width="100"
+                        src="{{asset('/')}}/img/no-item.jpeg"></td>
+                        @endif
+                        
+                      <td>{{$parent_category->name}}</td>
+
+                    <td>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input  pull-right" name="status" 
+                          id="exampleCheck1"
+                          
+                            onClick="updateStatus({{$parent_category->id}})"
+                            @if($parent_category->status == 1)checked
+                            @endif 
+                            @if(old('status'))checked
+                            @endif
+                            />
+                            
+                          @if($parent_category->status == 0)
+                          <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                        </div>	
+                    </td>
+                    <td width="150">
+                      
+                    <div class="row">
+
+                    @if(isset(getParentCategory($parent_category->id)['category']))
+                    <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
+                      // echo $mainCategorySlug = $finalSlug;
+                    ?>
+                    @endif
+
+                      @if(isset(getParentCategory($parent_category->id)['subcategory']))
+                        <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
+                          $subCategorySlug = $finalSlug;
+                          // echo($subCategorySlug);
+
+                        ?>
+                      @endif
+
+                      @if(isset(getParentCategory($parent_category->id)['subcategory2']))
+                        <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
+                          $subCategory2Slug = $finalSlug;
+                          // echo($subCategory2Slug);
+                        ?>
+                      @endif
+
+
+                        <!-- <a class="btn btn-xs btn-dark" 
+                        href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
+                        <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
+                          onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                            &nbsp;&nbsp;&nbsp;
+                    
+
+                        <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
+                        data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
+                                </button>
+                        </div>
+                    </td>
+                    </tr>
+                  @endforeach
+              </tbody>
+              </table>
+          <!-- </form> -->
+              
             </div>
           </div>
         </div>
-
-
       </div>
-    </section>
 
+
+    </div>
+  </section>
     @else
 
 
