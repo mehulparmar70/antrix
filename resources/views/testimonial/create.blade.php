@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 <script>
@@ -37,52 +29,22 @@ $(".testimonial a").addClass( "active-menu");
 
 </script>
 
-@endsection
-@section('content')
+
 
 <div class="content-wrapper">
-    <section class="content-header">
 
-    <div class="container-fluid">
-    
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add New Testimonial</li>
-            </ol>
-          </div>
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('testimonials.index')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Manage Testimonial </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Add New Testimonial</h1>
-          </div>
-        </div>
-    </div>
-
-      </div>
-
-    </section>
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div >
         
-          <div class="card-body">
+          <div >
             <div class="form-horizontal row">
             
             <div class="col-md-12">
                  
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{route('testimonials.store')}}">
+              <form id="createtestimonial" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              onsubmit="return false;">
                 @csrf
                 <input type="hidden" id="page_type" value="singleUpload">
                 <div class="row mb-5">
@@ -150,4 +112,4 @@ $(".testimonial a").addClass( "active-menu");
     </section>
   </div>
 
-  @endsection
+

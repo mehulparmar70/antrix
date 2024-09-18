@@ -170,6 +170,18 @@
   box-shadow: none;
   width: 100%;
 }
+#createtestimonial
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addnewslettercr
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #addcasestudies
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */

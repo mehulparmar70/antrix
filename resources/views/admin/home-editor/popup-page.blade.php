@@ -52,6 +52,7 @@
           @includeWhen($type == 'Industries', 'industries.index')
           @includeWhen($type == 'industries_edit', 'industries.edit')
           @includeWhen($type == 'Testimonials', 'testimonial.index')
+          @includeWhen($type == 'testimonial_create', 'testimonial.create')
 
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')

@@ -32,8 +32,12 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        $data = ['testimonials' =>  Testimonials::all()];
-        return view('adm.pages.testimonial.create',$data);
+        $type = 'testimonial_create';
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'testimonials' =>  Testimonials::all(),
+        'type' => $type];
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**

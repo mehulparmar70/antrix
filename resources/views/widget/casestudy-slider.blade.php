@@ -4,7 +4,7 @@
 
     <a href="{{ url('case-studies') }}">CASE STUDY</a>
 
-    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create="{{route('casestudies.index')}}" data-delete="{{route('casestudies.index')}}" data-link="{{route('casestudies.index')}}" @endif></div>
+    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('casestudies.create')}}" data-delete="{{route('casestudies.index')}}" data-link="{{route('casestudies.index')}}" @endif></div>
 
   </div>
 

@@ -22,46 +22,16 @@ $(".newsletter a").addClass( "active-menu");
 
 
 <div class="content-wrapper">
-    <section class="content-header">
-
-    <div class="container-fluid">
-    
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add Newsletter</li>
-            </ol>
-          </div>
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('newsletter.index')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Manage Newsletter </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Add Newsletter</h1>
-          </div>
-        </div>
-    </div>
-
-      </div>
-
-    </section>
 
   <section class="content">
     <div class="container-fluid">
-      <div class="card card-default">
-        <div class="card-body">
+      <div class="">
+        <div class="">
           <div class="form-horizontal row">
           
           <div class="col-md-12">
                
-            <form enctype="multipart/form-data" method="post" class="form-horizontal" action="{{route('newsletter.store')}}">
+            <form id="addnewslettercr" enctype="multipart/form-data" method="post" class="form-horizontal" onsubmit="return false;">
               @csrf
               <div class="row">
                 <div class="col-sm-4">

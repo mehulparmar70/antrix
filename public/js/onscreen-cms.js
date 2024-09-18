@@ -253,7 +253,7 @@ $('.crud').each(function(){
 });
 
 $('.title-crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+$(this).attr('data-create')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-delete')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });

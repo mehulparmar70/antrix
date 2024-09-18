@@ -4,7 +4,7 @@
 
     <a href="{{url('/awards')}}">AWARDS & ASSOCATIONS</a>
 
-    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create="{{route('award.index')}}" data-delete="{{route('award.index')}}" data-link="{{route('award.index')}}" @endif></div>
+    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('award.index')}}" data-delete="{{route('award.index')}}" data-link="{{route('award.index')}}" @endif></div>
 
   </div>
 
