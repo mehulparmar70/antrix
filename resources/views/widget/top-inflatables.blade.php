@@ -1,20 +1,12 @@
 <dl class="responsive-tabs top-inflatable" style="position: relative">
   @foreach(customMainCat() as $key => $topInflatable)
     @if(customMainCat() > 0)
-      <!-- <dt data-id="{{ $topInflatable->id }}" data-isproducttab="1" class="product_title_main getCatogery @if(session('homePageCatId') == $topInflatable->id) active @endif" @if(session('LoggedUser'))
-                                    data-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category"
-                                    data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatable->id}}"
-                                @endif>
-        <a href="{{ $topInflatable->slug }}">{{$topInflatable->name}}</a>
-        
-      </dt> -->
       <dt data-id="{{ $topInflatable->id }}" data-isproducttab="1" class="product_title_main @if(session('homePageCatId') == $topInflatable->id) active @endif" @if(session('LoggedUser'))
                                     data-create-link="{{route('admin.category.create')}}?type=main_category"
                                     data-index-link="{{route('admin.category.list')}}?type=main_category"
                                     data-edit-link="{{route('admin.category.edit',$topInflatable->id)}}?type=main_category"
                                     data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatable->id}}"
                                 @endif>
-        <!-- <a href="{{ $topInflatable->slug }}">{{$topInflatable->name}}</a> -->
         <a style="color: #999;" href="{{$topInflatable->slug}}">{{$topInflatable->name}}</a>
         
       </dt>
