@@ -151,6 +151,7 @@ Route::put('client/{id}', [ClientController::class, 'update'])->name('client.upd
 Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
 Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
+Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 Route::put('/video/update/{id}', [VideoController::class, 'update'])->name('video.update');
 Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
 Route::get('/partners/create', [PartnerController::class, 'create'])->name('partners.create');

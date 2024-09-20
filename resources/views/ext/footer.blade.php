@@ -263,6 +263,7 @@
 				<a href="{{url('/videos')}}" >PRODUCT VIDEOS </a>
 				</div>
 				<div class="kiis_blk">
+					
 				@foreach($videos as $video)
 				<?php 
 				preg_match('/src="([^"]+)"/', $video->youtube_embed, $match);
@@ -275,7 +276,7 @@
 					style="background-image: url('{{$tumbnail}}')"
 					>
 					<a data-fancybox href="{{ $match[1] }}">
-						<img src="{{url('sardar')}}/images/video2.png" />
+						<img src="{{url('/')}}/images/video2.png" />
 						<div class="onscreen_video_popup_block"></div>
 					</a>
 					</section>

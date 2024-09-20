@@ -901,6 +901,34 @@ function addindustriessubmit() {
     },
   });
 }
+function addvideosubmit() {
+  var form = document.getElementById('addvideo'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/video/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
 function addnewslettersubmit() {
   var form = document.getElementById('addnewslettercr'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

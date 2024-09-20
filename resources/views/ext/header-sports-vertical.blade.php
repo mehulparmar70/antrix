@@ -188,6 +188,12 @@
   box-shadow: none;
   width: 100%;
 }
+#addvideo
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #socialmediaajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */

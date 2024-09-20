@@ -46,10 +46,7 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         // dd($request->status);
-        $request->validate([
-            
-            'title' => 'required',
-        ]);
+       
 
         
         $item_no = Video::orderBy('item_no','desc')->first();
@@ -81,7 +78,26 @@ class VideoController extends Controller
         // }
 
 
-        $image_name = uploadTinyImageThumb($request);
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
         $video = new Video;
         $video->title = $request->title;
         $video->item_no = $item_no;
@@ -93,9 +109,15 @@ class VideoController extends Controller
         $save = $video->save();
 
         if($save){
-            return back()->with('success', 'Video Added...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
