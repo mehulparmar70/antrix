@@ -901,6 +901,34 @@ function addindustriessubmit() {
     },
   });
 }
+function addnewslettersubmit() {
+  var form = document.getElementById('addnewslettercr'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/newsletter/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
 
 function addCategorieSubmit() {
   var form = document.getElementById('addCategory'); // Get the form element
@@ -908,6 +936,90 @@ function addCategorieSubmit() {
   $.ajax({
       type: "POST",
       url: base_url+"/powerup/category/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+function editsocialmediasubmit() {
+  var form = document.getElementById('socialmediaajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/settings/social-media", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+function editnewslettersubmit(id) {
+  var form = document.getElementById('editnewsletter'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/newsletter/update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+function edittestimonailsubmit(id) {
+  var form = document.getElementById('testimonaileditajax'); // Get the form element
+  var formData = new FormData(form); 
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/testimonials/update/"+id, // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -938,6 +1050,40 @@ function editawardsubmit(id) {
   $.ajax({
       type: "POST",
       url: base_url+"/powerup/award/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); 
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+function editvideosubmit(id) {
+  var form = document.getElementById('videoajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/video/update/"+id, // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data

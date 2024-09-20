@@ -183,9 +183,17 @@ $(function () {
                     </div>	
                         </td>
                         <td width="150">
-                        
-                          <a href="{{route('testimonials.edit',$testimonial->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Testimonials"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Testimonial"  data-id="{{route('admin.index')}}/testimonials/{{ $testimonial->id}}" data-title="{{ $testimonial->client_name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                        <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-client" 
+                            data-id="{{ $testimonial->id }}" 
+                            data-url="{{ route('testimonials.edit', $testimonial->id) }}" 
+                            title="Edit Testimonial" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('testimonials.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
+                          
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Testimonial"  data-id="{{route('admin.index')}}/testimonials/{{ $testimonial->id}}" data-title="{{ $testimonial->client_name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       
                       

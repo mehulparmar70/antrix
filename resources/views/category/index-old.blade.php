@@ -81,10 +81,10 @@ $(".category a").addClass( "active-menu");
                       <td>{{++$i}}</td>
                       <td>
                       {{$parent_category->name}}
-                      <a  class="badge badge-info" href="{{route('admin.category.edit',$parent_category->id)}}"><i class="far fa-edit"></i></a>
+                      <a  class="badge badge-info" href="{{route('admin.category.edit',$parent_category->id)}}"><i class="fa fa-edit"></i></a>
                       
                       &nbsp;&nbsp;&nbsp;
-                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                               </button>
 
                               
@@ -112,10 +112,10 @@ $(".category a").addClass( "active-menu");
                           <tr>
                             <td>
                             {{$subCategory1->name}}
-                            <a  class="badge badge-info"  href="{{route('admin.category.edit',$subCategory1->id)}}"><i class="far fa-edit"></i></a>
+                            <a  class="badge badge-info"  href="{{route('admin.category.edit',$subCategory1->id)}}"><i class="fa fa-edit"></i></a>
 
                             &nbsp;&nbsp;&nbsp;
-                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $subCategory1->id}}" data-title="{{ $subCategory1->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $subCategory1->id}}" data-title="{{ $subCategory1->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                               </button>
                       
                               <div class="form-check">
@@ -155,10 +155,10 @@ $(".category a").addClass( "active-menu");
                               <tr>
                                 <td>
                                 {{$subCategory2->name}}
-                                  <a class="badge badge-info" href="{{route('admin.category.edit',$subCategory2->id)}}"><i class="far fa-edit"></i></a>
+                                  <a class="badge badge-info" href="{{route('admin.category.edit',$subCategory2->id)}}"><i class="fa fa-edit"></i></a>
                               
                       &nbsp;&nbsp;&nbsp;
-                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $subCategory2->id}}" data-title="{{ $subCategory2->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              <button class="btn btn-xs btn-danger del-modal"  title="Delete Category"  data-id="{{route('admin.index')}}/category/delete/{{ $subCategory2->id}}" data-title="{{ $subCategory2->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                               </button>
 
                               
@@ -223,7 +223,7 @@ $(".category a").addClass( "active-menu");
                     @method('DELETE')
                     @csrf
               <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <a  href="" class="btn btn-danger float-right del-link" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</a>
+              <a  href="" class="btn btn-danger float-right del-link" title="Delete Record"><i class="fa fa-trash"></i> Delete</a>
               
 
             </form>

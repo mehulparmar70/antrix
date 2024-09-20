@@ -1,11 +1,4 @@
-@extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 <script>
@@ -27,53 +20,21 @@ $(".testimonial a").addClass( "active-menu");
 
 </script>
 
-@endsection
-@section('content')
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit Testimonial</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('testimonials.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New Testimonial </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit Testimonial</h1>
-          </div>
-        </div>
-    </div>
-
-
-      </div>
-    </section>
+   
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
+        <div >
         
-          <div class="card-body">
+          <div >
             <div class="form-horizontal row">
             
               <div class="col-md-12">   
               <input type="hidden" id="page_type" value="singleUpload">
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{route('testimonials.update', $testimonial->id)}}">
+              <form id="testimonaileditajax" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              onsubmit="return false;">
                 @csrf
 
                 @method('PUT')
@@ -141,12 +102,8 @@ $(".testimonial a").addClass( "active-menu");
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                  @if(request()->get('onscreenCms') == 'true')
-                    <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save Testimonial & Close</button>
-                  @else
-                    <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save Testimonial</button>
-                  @endif
+                <button type="button" onclick="edittestimonailsubmit({{$testimonial->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      Update </button>
                 </div>
               </form>
               </div>
@@ -158,4 +115,3 @@ $(".testimonial a").addClass( "active-menu");
     </section>
   </div>
 
-  @endsection

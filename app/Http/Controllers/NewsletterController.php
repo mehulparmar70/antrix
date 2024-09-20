@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Newsletter;
 use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 class NewsletterController extends Controller
 {
@@ -52,12 +53,7 @@ class NewsletterController extends Controller
         $file->move($destinationPath,$file->getClientOriginalName());*/
 
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,webp',
-            'slug' => "required|unique:newsletters,slug",
-        ]);
-
-         
+  
         $item_no = Newsletter::orderBy('item_no', 'desc')->first();
 
         if($item_no){
@@ -73,9 +69,26 @@ class NewsletterController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadTinyImageThumb($request);
-        // $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/web/Newsletter'));
-
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
         $Newsletter = new Newsletter;
         $Newsletter->item_no = $item_no;
         $Newsletter->title = $request->title;
@@ -97,14 +110,15 @@ class NewsletterController extends Controller
         $save = $Newsletter->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Newsletter Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Newsletter Added...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Industries Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -127,17 +141,14 @@ class NewsletterController extends Controller
      */
     public function edit($id)
     {
+        $type = 'newsletter_edit';
         $testimonial = Newsletter::find($id);
         $data = [
-            'testimonial' =>  $testimonial
+            'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
+            'testimonial' =>  $testimonial,
+            'type' => $type
         ];
-
-        if($testimonial){
-            return view('adm.pages.newsletter.edit', $data);
-        }else{
-            return redirect(route('newsletter.index'))->with('fail', 'Testimonials Not Available...');
-        }
-        
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -150,10 +161,7 @@ class NewsletterController extends Controller
     public function update(Request $request, $id)
     {
 
-        $request->validate([
-            
-        ]);
-
+     
         $item_no = Newsletter::orderBy('item_no', 'desc')->first();
         if($item_no){
             $item_no =  $item_no->item_no + 1;
@@ -168,13 +176,25 @@ class NewsletterController extends Controller
         }
 
         if($request->file('image')){
-            // dd($request->old_image);
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
-
         /*if($request->file('file')){
             // dd($request->old_image);
             $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/web/Newsletter'));
@@ -204,14 +224,15 @@ class NewsletterController extends Controller
         $save = $Newsletter->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Newsletter Updated...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Newsletter Updated...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

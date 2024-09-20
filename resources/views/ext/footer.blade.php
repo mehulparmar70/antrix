@@ -415,7 +415,7 @@
 			<div class="footer_blk">
 			<div class="footer_item footer_width">
 				<h2 class="social_footer" @if(session('LoggedUser'))
-						data-link="{{route('admin.setting.social-media')}}"
+						data-link="{{route('setting.social-media')}}"
 						@endif>Contact Us</h2>
 				<img src="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" alt="Logo" class="img1300" />
 

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Video;
+use Intervention\Image\Facades\Image;
+use App\Models\admin\Pages;
 
 class VideoController extends Controller
 {
@@ -28,8 +30,11 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $data = ['videos' =>  Video::all()];
-        return view('adm.pages.video.create',$data);
+        $type = 'Addvideo';
+        $data = [
+            'pageData' =>  Pages::where('type', 'video_page')->first(),
+            'videos' =>  Video::all(),'type' => $type];
+            return view('admin.home-editor.popup-page',$data);
     }
 
     /**
@@ -113,16 +118,14 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
+        $type = 'Video_edit';
         $video = Video::find($id);
         $data = [
-            'video' =>  $video
+            'pageData' =>  Pages::where('type', 'video_page')->first(),
+            'video' =>  $video,'type' => $type
         ];
 
-        if($video){
-            return view('adm.pages.video.edit', $data);
-        }else{
-            return redirect(route('video.index'))->with('fail', 'Video Not Available...');
-        }
+        return view('admin.home-editor.popup-page', $data);
 
     }
 
@@ -135,9 +138,7 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-
-        ]);
+      
 
         
         $item_no = Video::orderBy('item_no')->first();
@@ -166,9 +167,15 @@ class VideoController extends Controller
         $save = $video->save();
 
         if($save){
-            return back()->with('success', 'Video Updated...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

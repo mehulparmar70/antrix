@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\admin\Category;
 use App\Models\admin\Slider;
 use DB;
+use Intervention\Image\Facades\Image;
+
 class SliderController extends Controller
 {
     /**

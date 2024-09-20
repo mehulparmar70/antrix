@@ -64,7 +64,7 @@ $(".page a").addClass( "active-menu");
 
                   <div class="card-footer text-center">
                     @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy" aria-hidden="true"></i>
                       Save & Close</button>
                     @else
                       <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Data</button>

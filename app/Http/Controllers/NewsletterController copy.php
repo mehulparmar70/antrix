@@ -158,13 +158,25 @@ class NewsletterController extends Controller
         }
 
         if($request->file('image')){
-            // dd($request->old_image);
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
-
         /*if($request->file('file')){
             // dd($request->old_image);
             $file_name = uploadAnyFile($request, $name = 'file', $saveName = date("Ymdhis"), $path = public_path('/web/Newsletter'));

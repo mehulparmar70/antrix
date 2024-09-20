@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Testimonials;
 use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 class TestimonialController extends Controller
 {
@@ -119,16 +120,15 @@ class TestimonialController extends Controller
      */
     public function edit($id)
     {
+        $type = 'Testimonial_edit';
         $testimonial = Testimonials::find($id);
         $data = [
-            'testimonial' =>  $testimonial
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'testimonial' =>  $testimonial,
+            'type' => $type
         ];
 
-        if($testimonial){
-            return view('adm.pages.testimonial.edit', $data);
-        }else{
-            return redirect(route('testimonials.index'))->with('fail', 'Testimonials Not Available...');
-        }
+        return view('admin.home-editor.popup-page', $data);
         
     }
 
@@ -142,9 +142,7 @@ class TestimonialController extends Controller
     public function update(Request $request, $id)
     {
 
-        $request->validate([
-            'image' => 'image|mimes:jpg,png,jpeg,webp',
-        ]);
+       
 
         $item_no = Testimonials::orderBy('item_no', 'desc')->first();
         if($item_no){
@@ -158,12 +156,24 @@ class TestimonialController extends Controller
         }else{
             $status = 0;
         }
-
         if($request->file('image')){
-            // dd($request->old_image);
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
         
@@ -183,14 +193,15 @@ class TestimonialController extends Controller
         $save = $testimonial->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Testimonials Updated...');
-                return(redirect(route('admin.close')));
-            } else { 
-                return back()->with('success', 'Testimonials Updated...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
