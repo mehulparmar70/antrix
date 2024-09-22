@@ -103,6 +103,7 @@ class VideoController extends Controller
         $video->item_no = $item_no;
         $video->short_description = $request->short_description;
         $video->video_date = $request->video_date;
+        
         $video->youtube_embed = $request->youtube_embed;
 
         $video->status = $status;
@@ -191,7 +192,7 @@ class VideoController extends Controller
         if($save){
             return response()->json([
                 'success' => true,
-                'message' => 'Client Updated...'
+                'message' => 'Video Updated...'
             ]);
         }else{
             return response()->json([
@@ -207,13 +208,20 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video)
+    public function destroy($id)
     {
+        $video =  Video::find((int)$id);
         $video = $video->delete();
         if($video){
-            return back()->with('success', 'Video Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Video Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

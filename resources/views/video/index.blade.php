@@ -175,9 +175,13 @@ $(function () {
                          </a>
                             
                       
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Video"  
-                           data-id="{{route('admin.index')}}/video/{{ $video->id}}" data-title="{{ $video->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                          </button>
+                          
+             <a href="{{route('video.delete', $video->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete video" 
+                            onclick="popupmenu('{{route('video.delete', $video->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                     
                       </td>
