@@ -969,6 +969,127 @@ function addslidersubmit() {
 
   });
 }
+
+function addseoajax() {
+  var form = document.getElementById('addseoajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/settings/seo-manage-image", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+
+function addlogoajax() {
+  var form = document.getElementById('addlogoajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/settings/seo-manage", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+
+function customCodeStore() {
+  var form = document.getElementById('customCodeStore'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/custom-code/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+
+function caseStudies() {
+  var form = document.getElementById('caseStudies'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/admin/page-editor/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+
 function addcasestudiessubmit() {
   var form = document.getElementById('addcasestudies'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

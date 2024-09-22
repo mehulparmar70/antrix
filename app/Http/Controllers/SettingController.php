@@ -27,15 +27,16 @@ class SettingController extends Controller
     
     public function seoManageIndex()
     {
-        
+        $type = 'SocialMediaManagers';
         $data = [
             'socialMedia' =>  SocialMedia::first(),
             'website_logo' =>  WebsiteOption::where('option_name', 'logo')->first(),
             'website_favicon' =>  WebsiteOption::where('option_name', 'favicon')->first(),
+            'type' => $type
             
         ];
 
-        return view('adm.pages.setting.seo-manage', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     public function seoManageStore(Request $request)
