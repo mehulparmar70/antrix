@@ -73,7 +73,7 @@ public function topInflatableStore(Request $request)
             'homeAbout' =>  Pages::where('type', 'home_page')->first(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
             'clients' =>  Client::where('status', 1)->get(),
-'type' => $type,
+            'type' => $type,
             'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
         return view('admin.home-editor.popup-page', $data);

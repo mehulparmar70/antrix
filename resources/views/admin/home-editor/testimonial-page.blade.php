@@ -1,34 +1,3 @@
-{{-- <form  id="ajaxForm" method="post" enctype="multipart/form-data"  class="form-horizontal"
-                action="{{route('admin.page-editor.store')}}">
-                  @csrf
-
-                  <div class="card-body p-2">
-
-                    <div class="form-group row">
-                      <div class="col-sm-8 mt-4 mb-4">
-                        <label  class="" for="meta_description">Add Custom Url</label>
-                        <input type="text" class="form-control" name="page_url" 
-                          placeholder="Custom Url" value="<?= $url_list[0]['url']?>">
-                          <input type="hidden" class="form-control" name="page_name" 
-                          placeholder="Custom Url" value="<?= $url_list[0]['name']?>">
-                        <span class="text-danger"></span>
-                      </div>
-                      
-                    </div>
-                    
-                    <input type="hidden" name="type" value="about_page">      
-                  <div class="card-footer text-center">
-
-                    @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save & Close</button>
-                    @else
-                      <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Data</button>
-                    @endif
-                  
-                  </div>
-                </form> --}}
-
 <script>
 $( document ).ready(function() {
   $(".del-modal").click(function(){
@@ -100,13 +69,39 @@ $(".page a").addClass( "active-menu");
                     <input type="hidden" name="type" value="testimonial_page">               
                     </div>
                     <div class="form-group">
-                      <div class="col-sm-12 row">
-                        <div  class="col-sm-6">
-                          <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
-                        </div>
-                        <div  class="col-sm-6">
-                        </div>
-                      </div>
+                       <!-- SEO Content Section -->
+            <div class="col-md-6">
+              <label>Add SEO Contents</label>
+              <input type="text" class="form-control mb-2" name="seo_title" placeholder="SEO Title" value="{{ $pageData->meta_title }}">
+              <input type="text" class="form-control mb-2" name="seo_keywords" placeholder="SEO Keywords" value="{{ $pageData->meta_keyword }}">
+              <textarea class="form-control mb-2" name="seo_description" placeholder="SEO Description" >{{ $pageData->meta_description }}</textarea>
+
+              <!-- SEO Options -->
+              <div class="row">
+                  <div class="col-md-6">
+                      <label for="allow_search_engines">Allow Search Engines?</label>
+                      <select class="form-control" name="allow_search_engines">
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                      </select>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="follow_links">Follow Links?</label>
+                      <select class="form-control" name="follow_links">
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                      </select>
+                  </div>
+              </div>
+
+              <input type="text" class="form-control mt-2" name="canonical_url" placeholder="Canonical URL" value="{{ $pageData->canonical_url }}">
+              <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" name="active" value="1" id="active" checked>
+                  <label class="form-check-label" for="active">
+                      Active
+                  </label>
+              </div>
+          </div>
                     </div>
                   </div>
 
