@@ -9,6 +9,7 @@ use App\Models\admin\Pages;
 use App\Models\admin\UrlList;
 use App\Models\admin\Client;
 use DB;
+use Intervention\Image\Facades\Image;
 
 class HomeEditorController extends Controller
 {

@@ -377,11 +377,11 @@ $(".btnDelete").click(function(e) {
 
                               <i class="fa fa-eye"></i></a> 
 
-                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="far fa-edit"></i></a>
+                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="fa fa-edit"></i></a>
                               
                               
                               <button type="button" class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{route('admin.index')}}/product/{{$product->id}}"  
-                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                               </button>
                           
                           </td>
@@ -407,7 +407,7 @@ $(".btnDelete").click(function(e) {
                             class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button> -->
 
                             <button type="submit" name="action" value="delete"
-                            class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
                         </td></tr>
 
@@ -663,7 +663,7 @@ $(".btnDelete").click(function(e) {
                   
                     <a class="btnDelete btn btn-danger btn-sm mr-2" data-url="{{url('api')}}/media/media-delete/{{$image->id}}"
                       style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
-                      <i class="fas fa-trash-alt"></i>  &nbsp;&nbsp;Delete
+                      <i class="fa fa-trash"></i>  &nbsp;&nbsp;Delete
                     </a>
                     
                   </div>

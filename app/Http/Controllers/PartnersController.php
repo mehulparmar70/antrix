@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Partners;
+use Intervention\Image\Facades\Image;
+
 class PartnersController extends Controller
 {
     /**

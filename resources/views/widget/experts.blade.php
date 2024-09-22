@@ -28,7 +28,7 @@
 
             @if(session('LoggedUser'))
 
-              data-link="{{route('admin.setting.social-media')}}"
+              data-link="{{route('setting.social-media')}}"
 
             @endif
 

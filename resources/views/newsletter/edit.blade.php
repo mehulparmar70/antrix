@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 <script>
@@ -27,49 +19,18 @@ $(".newsletter a").addClass( "active-menu");
 
 </script>
 
-@endsection
-@section('content')
+
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        
-    <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit Newsletter</li>
-            </ol>
-          </div>
 
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('newsletter.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New Newsletter </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit Newsletter</h1>
-          </div>
-        </div>
-    </div>
-
-
-      </div>
-    </section>
 
   <section class="content">
     <div class="container-fluid">
-      <div class="card card-default">
-        <div class="card-body">
+      <div >
+        <div >
           <div class="form-horizontal row">
             <div class="col-md-12">
-              <form enctype="multipart/form-data" method="post" class="form-horizontal" action="{{route('newsletter.update', $testimonial->id)}}">
+              <form id="editnewsletter" onsubmit="return false;"  enctype="multipart/form-data" method="post" class="form-horizontal" >
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -111,7 +72,7 @@ $(".newsletter a").addClass( "active-menu");
                             <!-- <img class="mt-2"  height="120"src="{{asset('web')}}/media/xs/{{$testimonial->image}}"> -->
                             <div class="image-area">
                               <img class="elevation-2 perview-img"  height="120"src="{{asset('/')}}/images/{{$testimonial->image}}"> 
-                              <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="newsletters" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}" style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                              <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="newsletters" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}" style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
                         @else
                             <img class="elevation-2 perview-img"  height="120" src="{{asset('/')}}/img/no-item.jpeg">
@@ -187,12 +148,10 @@ $(".newsletter a").addClass( "active-menu");
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                  @if(request()->get('onscreenCms') == 'true')
-                  <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Update Newsletter & Close</button>
-                  @else
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>Update Newsletter</button>
-                  @endif
+                <button onclick="editnewslettersubmit({{$testimonial->id}})" type="button" class="btnUpload btn btn-success btn-sm mr-2" 
+                      style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
+                      <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;&nbsp;Update
+                    </button>
                 </div>
               </form>
             </div>
@@ -202,4 +161,3 @@ $(".newsletter a").addClass( "active-menu");
     </div>
   </section>
 </div>
-@endsection

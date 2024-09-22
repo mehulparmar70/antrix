@@ -61,7 +61,7 @@ $(".newsletter a").addClass( "active-menu");
 
   function updateOrder(data) {
   $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
+      url:"{{url('/')}}/admin/item/update-item-priority",
       type:'post',
       data:{position:data, table: 'newsletter'},
       success:function(result){
@@ -125,11 +125,11 @@ $(function () {
 
                         @if(isset($testimonial->image))
                           <td><img class="rounded"  width="150"
-                            src="{{asset('/')}}/images/{{$testimonial->image}}"></td>
+                            src="{{asset('/')}}images/{{$testimonial->image}}"></td>
                         @else
 
                           <td><img class="rounded"  width="150"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
+                          src="{{asset('/')}}img/no-item.jpeg"></td>
                         @endif
 
                         <td>{{$testimonial->title}}</td>
@@ -154,9 +154,18 @@ $(function () {
                     </div>	
                         </td>
                         <td width="150">
-                        
-                          <a href="{{route('newsletter.edit',$testimonial->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Newsletter"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Newsletter"  data-id="{{route('admin.index')}}/newsletter/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                        <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-client" 
+                            data-id="{{ $testimonial->id }}" 
+                            data-url="{{ route('newsletter.edit', $testimonial->id) }}" 
+                            title="Edit Newsletter" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('newsletter.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
+                          
+
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Newsletter"  data-id="{{route('admin.index')}}/newsletter/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       
                       

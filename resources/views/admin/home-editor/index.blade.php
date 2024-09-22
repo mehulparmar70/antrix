@@ -117,7 +117,7 @@ $(".page a").addClass( "active-menu");
                                 <td>
                                 
                                 <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete homeUrl1"  data-id="{{ $homeUrl1->id}}" 
-                                    data-url="{ $homeUrl1->url}}" data-title="{{ $homeUrl1->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                                    data-url="{ $homeUrl1->url}}" data-title="{{ $homeUrl1->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                                 </button>
                             
                             

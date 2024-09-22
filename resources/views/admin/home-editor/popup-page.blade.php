@@ -53,6 +53,11 @@
           @includeWhen($type == 'industries_edit', 'industries.edit')
           @includeWhen($type == 'Testimonials', 'testimonial.index')
           @includeWhen($type == 'testimonial_create', 'testimonial.create')
+          @includeWhen($type == 'newsletter_edit', 'newsletter.edit')
+          @includeWhen($type == 'Testimonial_edit', 'testimonial.edit')
+          @includeWhen($type == 'SocialMedia', 'setting.social-media')
+          @includeWhen($type == 'Video_edit', 'video.edit')
+          @includeWhen($type == 'Addvideo', 'video.create')
 
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')

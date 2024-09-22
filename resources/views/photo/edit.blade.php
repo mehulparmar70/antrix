@@ -537,7 +537,7 @@ $(".btnDelete").click(function(e) {
                   
                     <a class="btnDelete btn btn-danger btn-sm mr-2" data-url="{{url('api')}}/media/media-delete/{{$image->id}}"
                       style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
-                      <i class="fas fa-trash-alt"></i> &nbsp;&nbsp;Delete
+                      <i class="fa fa-trash"></i> &nbsp;&nbsp;Delete
                     </a>
                     
                   </div>

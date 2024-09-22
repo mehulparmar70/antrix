@@ -25,6 +25,7 @@ use App\Models\admin\Newsletter;
 use Illuminate\Support\Str;
 use Session;
 use DB;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -1308,11 +1309,11 @@ class HomeController extends Controller
                     $response['categorieData'][$key]['CatogeryId'] = $request->id;
 
                     foreach(getSubCategoryImages($topInflatableLp->id, 10, 'DESC') as $imgKey => $productImage){
-                        $response['categorieData'][$key]['Image'][$imgKey] = url('web').'/media/md/'.$productImage->image;
+                        $response['categorieData'][$key]['Image'][$imgKey] = url('/').'/images/'.$productImage->image;
                     }
                 } else {
                     $response['categorieData'][$key]['Code'] = 200;
-                    $response['categorieData'][$key]['Image'][0] = url('web').'/media/md/noimage.png';
+                    $response['categorieData'][$key]['Image'][0] = url('/').'/images/noimage.png';
                     $response['categorieData'][$key]['Create'] = route('admin.category.create').'?type=sub_category&onscreenCms=true&id='.$request->id;
                     $response['categorieData'][$key]['Link'] = route('admin.category.edit', $topInflatableLp->id).'?type=sub_category&onscreenCms=true&id='.$request->id;
                     $response['categorieData'][$key]['Delete'] = route('admin.index').'/category/delete/'.$topInflatableLp->id;
@@ -1325,7 +1326,7 @@ class HomeController extends Controller
             }
         } else {
             $response['MainCategoryData'] = Category::find($request->id);
-            $response['MainCategoryData']['Image'] = url('web').'/media/md/noimage.png';
+            $response['MainCategoryData']['Image'] = url('/').'/images/noimage.png';
             $response['MainCategoryData']['Create'] = route('admin.category.create').'?type=sub_category&onscreenCms=true&id='.$request->id;
             $response['MainCategoryData']['Link'] = route('admin.category.edit', $request->id).'?type=main_category&onscreenCms=true';
             $response['MainCategoryData']['Delete'] = route('admin.index').'/category/delete/'.$request->id;

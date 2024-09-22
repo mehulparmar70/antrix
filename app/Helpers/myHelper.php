@@ -169,7 +169,7 @@ function uploadImageThumb($request){
         })->save($destinationPath.'/'.$input['imagename']);
         
         //md image resize
-        $destinationPath = public_path('/web/media/md');
+        $destinationPath = public_path('/images');
         $img_md = Image::make($image->getRealPath());
         $img_md->resize(600, 600, function ($constraint) {
             $constraint->aspectRatio();

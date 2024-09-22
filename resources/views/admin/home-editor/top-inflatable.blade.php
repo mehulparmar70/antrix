@@ -146,7 +146,7 @@ $(".page a").addClass( "active-menu");
                         <td>
                         
                           <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete topInflatable"  data-id="{{ $topInflatable->id}}" 
-                            data-image="{{url('/')}}/images/{{ $topInflatable->image}}" data-title="{{ $topInflatable->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                            data-image="{{url('/')}}/images/{{ $topInflatable->image}}" data-title="{{ $topInflatable->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                           
                       
@@ -204,7 +204,7 @@ $(".page a").addClass( "active-menu");
                     @method('DELETE')
                     @csrf
               <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
+              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fa fa-trash"></i> Delete</button>
               
 
             </form>

@@ -309,11 +309,11 @@ function updateStatus($id) {
 
                               <i class="fa fa-eye"></i></a> 
 
-                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="far fa-edit"></i></a>
+                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="fa fa-edit"></i></a>
                               
                               
                               <button type="button" class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{route('admin.index')}}/product/{{$product->id}}"  
-                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                               </button>
                           
                           
@@ -342,7 +342,7 @@ function updateStatus($id) {
                             class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
 
                             <button type="submit" name="action" value="delete"
-                            class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
                         </td></tr>
 
@@ -381,7 +381,7 @@ function updateStatus($id) {
                     @method('DELETE')
                     @csrf
               <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
+              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fa fa-trash"></i> Delete</button>
               
 
             </form>

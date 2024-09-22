@@ -14,9 +14,14 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\CaseStudiesController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
+<<<<<<< HEAD
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\admin\VideoController;
+=======
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\VideoController;
+>>>>>>> 43ab5b0232ef5e7b92dc4e4b301636d5401af06c
 use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
@@ -88,13 +93,14 @@ Route::get('case-studies', [HomeController::class, 'casestudies']);
 Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
 Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 Route::get('testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
+Route::put('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
 
 Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::get('newsletter/create', [NewsletterController::class, 'create'])->name('newsletter.create');
-Route::get('newsletter/store', [NewsletterController::class, 'store'])->name('newsletter.store');
+Route::post('newsletter/store', [NewsletterController::class, 'store'])->name('newsletter.store');
+Route::put('newsletter/update/{id}', [NewsletterController::class, 'update'])->name('newsletter.update');
 Route::get('newsletter/{id}/edit', [NewsletterController::class, 'edit'])->name('newsletter.edit');
-Route::get('/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('admin.setting.social-media');
-Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('admin.setting.social-media.store');
+
 
 Route::get('/category',[CategoryController::class, 'index'])->name('admin.category.list');
 Route::get('/photo',[PhotoManageController::class, 'index'])->name('admin.photo.manage');
@@ -153,6 +159,8 @@ Route::put('client/{id}', [ClientController::class, 'update'])->name('client.upd
 Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
 Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
+Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
+Route::put('/video/update/{id}', [VideoController::class, 'update'])->name('video.update');
 Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
 Route::get('/partners/create', [PartnerController::class, 'create'])->name('partners.create');
 
@@ -168,5 +176,8 @@ Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.s
 Route::get('/industries-index', [IndustriesController::class,'index'])->name('industries.index');
 Route::get('/industries-create', [IndustriesController::class,'create'])->name('industries.create');
 Route::get('/industries-edit/{id}', [IndustriesController::class,'edit'])->name('industries.edit');
+
+Route::get('/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
+Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
 });
 

@@ -340,7 +340,7 @@ $(".dashboard a").addClass( "active-menu");
           </div>
 
           <div class="col">
-          <a href="{{route('admin.setting.social-media')}}" class="text-danger">
+          <a href="{{route('setting.social-media')}}" class="text-danger">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-facebook"></i></span>
 

@@ -263,6 +263,7 @@
 				<a href="{{url('/videos')}}" >PRODUCT VIDEOS </a>
 				</div>
 				<div class="kiis_blk">
+					
 				@foreach($videos as $video)
 				<?php 
 				preg_match('/src="([^"]+)"/', $video->youtube_embed, $match);
@@ -275,7 +276,7 @@
 					style="background-image: url('{{$tumbnail}}')"
 					>
 					<a data-fancybox href="{{ $match[1] }}">
-						<img src="{{url('sardar')}}/images/video2.png" />
+						<img src="{{url('/')}}/images/video2.png" />
 						<div class="onscreen_video_popup_block"></div>
 					</a>
 					</section>
@@ -415,7 +416,7 @@
 			<div class="footer_blk">
 			<div class="footer_item footer_width">
 				<h2 class="social_footer" @if(session('LoggedUser'))
-						data-link="{{route('admin.setting.social-media')}}"
+						data-link="{{route('setting.social-media')}}"
 						@endif>Contact Us</h2>
 				<img src="{{url('/')}}/img/{{getWebsiteOptions()['website_logo']->option_value}}" alt="Logo" class="img1300" />
 

@@ -180,8 +180,8 @@ $(function () {
                         <td width="150">
                         
                           <a target="_blank" href="{{url('partners')}}/{{$blog->slug}}" class="btn btn-sm btn-warning float-left mr-2"  title="View Partners"><i class="fa fa-eye"></i></a>
-                          <a href="{{route('partners.edit',$blog->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Partners"><i class="far fa-edit"></i></a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/partners/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                          <a href="{{route('partners.edit',$blog->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Partners"><i class="fa fa-edit"></i></a>
+                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/partners/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       
                       

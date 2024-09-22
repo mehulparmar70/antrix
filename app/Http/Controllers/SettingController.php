@@ -1,22 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\SocialMedia;
 use App\Models\admin\WebsiteOption;
+use Intervention\Image\Facades\Image;
+use App\Models\admin\Pages;
 
 class SettingController extends Controller
 {
     
     public function socialMediaIndex()
     {
+        $type = 'SocialMedia';
         $data = [
-            'socialMedia' =>  SocialMedia::first()
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'socialMedia' =>  SocialMedia::first(),
+            'type' => $type
         ];
-
-        return view('adm.pages.setting.social-media', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
 
@@ -88,9 +92,7 @@ class SettingController extends Controller
     
     public function socialMediaStore(Request $request)
     {
-        $this->validate($request,[
-
-        ]);
+       
         
         $socialMedia = new SocialMedia;
         $last_id = $socialMedia::orderBy('id','desc')->first();
@@ -130,9 +132,15 @@ class SettingController extends Controller
 
         $save = $socialMedia->save();
         if($save){
-            return back()->with('success', 'Social Media Updated...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Social Media Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 }

@@ -62,7 +62,7 @@
               @endif></div></h4>
           <!-- <h5>title here</h5> -->
           <a href="{{ url('case-studies') }}/{{$casestudie->slug}}" class="video_text">
-            <img src="{{url('web')}}/media/md/{{$casestudie->image}}" />
+            <img src="{{url('')}}/images/{{$casestudie->image}}" />
             <p>
               {!! strip_tags($casestudie->short_description) !!}
               <span>Read More</span>

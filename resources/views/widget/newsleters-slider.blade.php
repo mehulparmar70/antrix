@@ -22,7 +22,7 @@
 
                         data-delete-link="{{route('admin.index')}}/newsletter/delete/{{ $newsletterList->id}}"
 
-                      @endif><img src="{{url('web')}}/media/md/{{$newsletterList->image}}" style="height: 252px;width: 359px;" /></div>
+                      @endif><img src="{{url('/')}}/images/{{$newsletterList->image}}" style="height: 252px;width: 359px;" /></div>
 
       <p>
 

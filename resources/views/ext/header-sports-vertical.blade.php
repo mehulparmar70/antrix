@@ -182,6 +182,36 @@
   box-shadow: none;
   width: 100%;
 }
+#videoajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addvideo
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#socialmediaajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#testimonaileditajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#editnewsletter
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #addcasestudies
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */
@@ -288,7 +318,7 @@ $(document).ready(function () {
     // $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+
     // `"class='onscreen-logo' onclick="currentWindow = window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+
     // `', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> 
-    // <i class='far fa-edit'></i></a>`);
+    // <i class='fa fa-edit'></i></a>`);
 	// });
 	
 });

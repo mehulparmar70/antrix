@@ -95,27 +95,18 @@ $(function () {
 
       <div class="row">
       
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Video List</li>
-            </ol>
-          </div>
+      
 
         
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('video.create')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New Video </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
+          <ol class="breadcrumb float-sm-right"><button onclick="popupmenu(`{{route('video.create')}}?type=main_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Video </button>
+              
               
           </ol>
         </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Video List</h1>
-          </div>
-        </div>
+    
 </div>
 
 
@@ -173,10 +164,19 @@ $(function () {
                     </td>
                         
                         <td>
-                           
-                        <a href="{{route('video.edit',$video->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Blogs"><i class="far fa-edit"></i></a>
+                        <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-award" 
+                            data-id="{{ $video->id }}" 
+                            data-url="{{ route('video.edit', $video->id) }}" 
+                            title="Edit Video" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('video.edit', $video->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
+                            
+                      
                            <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Video"  
-                           data-id="{{route('admin.index')}}/video/{{ $video->id}}" data-title="{{ $video->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
+                           data-id="{{route('admin.index')}}/video/{{ $video->id}}" data-title="{{ $video->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       
                     

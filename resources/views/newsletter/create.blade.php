@@ -123,12 +123,8 @@ $(".newsletter a").addClass( "active-menu");
                 </div>
               </div>
               <div class="card-footer text-center">
-                @if(request()->get('onscreenCms') == 'true')
-                <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save Newsletter & Close</button>
-                @else
-                <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save Newsletter</button>
-                @endif
+              <button type="button" onclick="addnewslettersubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+              Save</button>
               </div>
             </form>
             </div>
