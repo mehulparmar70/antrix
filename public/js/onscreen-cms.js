@@ -674,6 +674,45 @@ function editclientsubmit(id) {
 
   });
 }
+
+function editpartnersubmit(id) {
+  var form = document.getElementById('partnereditajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/partners/update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+                        // Close the edit modal
+                        $('.modal-container').remove();
+
+                        // Refresh the content of the already open popup or page
+                        // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+                        location.reload(); // This will refresh the entire page
+                        // OR, you can selectively refresh the content
+                        //  $('#contentSection').load(location.href + ' #contentSection');
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+
 function editslidersubmit(id) {
   var form = document.getElementById('slideridajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
@@ -901,6 +940,36 @@ function addindustriessubmit() {
     },
   });
 }
+
+function addpartnersubmit() {
+  var form = document.getElementById('addpartners'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/partners/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+
 function addvideosubmit() {
   var form = document.getElementById('addvideo'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

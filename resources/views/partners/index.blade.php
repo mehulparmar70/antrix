@@ -14,18 +14,18 @@
 </style>
 
 
-<script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{url('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{url('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('/')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('/')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
@@ -95,27 +95,17 @@ $(function () {
 
       <div class="row">
       
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">partners List</li>
-            </ol>
-          </div>
+   
 
         
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('partners.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New Partner </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
+          <ol class="breadcrumb float-sm-right"><button onclick="popupmenu(`{{route('partners.create')}}`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Partner </button>
+        
           </ol>
         </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Partners List</h1>
-          </div>
-        </div>
+        
     </div>
 
 
@@ -151,7 +141,7 @@ $(function () {
 
                         @if(isset($blog->image))
                         <td><img class="rounded object-fit"  width="150"
-                          src="{{asset('/')}}/images/{{$blog->image}}"></td>
+                          src="{{asset('/')}}images/{{$blog->image}}"></td>
                           @else
 
                         <td><img class="rounded"    width="100"
@@ -179,8 +169,18 @@ $(function () {
                     </td>
                         <td width="150">
                         
+                        
+                         
                           <a target="_blank" href="{{url('partners')}}/{{$blog->slug}}" class="btn btn-sm btn-warning float-left mr-2"  title="View Partners"><i class="fa fa-eye"></i></a>
-                          <a href="{{route('partners.edit',$blog->id)}}" class="btn btn-sm btn-dark float-left mr-2"  title="Edit Partners"><i class="fa fa-edit"></i></a>
+                          <a href="javascript:void(0);" 
+                            class="btn btn-xs btn-info float-left mr-2 btn-edit-client" 
+                            data-id="{{ $blog->id }}" 
+                            data-url="{{ route('partners.edit', $blog->id) }}" 
+                            title="Edit Partners" 
+                            data-type="editmodal" 
+                            onclick="popupmenu('{{ route('partners.edit', $blog->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            <i class="fa fa-edit"></i>
+                         </a>
                            <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/partners/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
                           </button>
                       

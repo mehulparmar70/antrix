@@ -292,7 +292,7 @@
 				<div class="kiis_blk footer-partners-div">
 				@foreach($footerOurPartners as $partenr)
 				<a href="{{url('partners')}}/{{$partenr->slug}}" class="kiis_item">
-					<img src="{{url('web')}}/media/md/{{$partenr->image}}" />
+					<img src="{{url('/')}}/images/{{$partenr->image}}" />
 					<div class="crud"></div>
 				</a>
 				@endforeach

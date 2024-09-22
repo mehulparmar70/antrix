@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Partners;
 use Intervention\Image\Facades\Image;
+use App\Models\admin\Pages;
 
 class PartnersController extends Controller
 {
@@ -29,8 +30,12 @@ class PartnersController extends Controller
      */
     public function create()
     {
-        $data = ['blogs' =>  Partners::all()];
-        return view('adm.pages.partners.create',$data);
+        $type = 'Addpartners';
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'blogs' =>  Partners::all(),'type' => $type
+        ];
+        return view('admin.home-editor.popup-page',$data);
     }
 
     /**
@@ -41,15 +46,7 @@ class PartnersController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request->validate([
-            
-            'title' => 'required',
-            'short_description' => 'required',
-            'full_description' => 'required',
-            'slug' => 'required',
-        ]);
-
+   
         $list_no = Partners::orderBy('created_at', 'desc')->first();
 
         if($list_no){
@@ -64,7 +61,27 @@ class PartnersController extends Controller
             $status = 0;
         }
 
-       $image_name = uploadTinyImageThumb($request);
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
         $blog = new Partners;
         $blog->title = $request->title;
         $blog->short_description = $request->short_description;
@@ -88,14 +105,15 @@ class PartnersController extends Controller
 
         if($save){
             // return back()->with('success', 'Partners Added...');
-            if ($request->close == "1") {
-                session()->put('success','Partners Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Partners Added...');    
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Partner Added...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -118,11 +136,14 @@ class PartnersController extends Controller
      */
     public function edit($id)
     {
+        $type = 'partners_edit';
         $data = [
-            'blog' =>  Partners::find($id)
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'blog' =>  Partners::find($id),
+            'type' => $type
         ];
+        return view('admin.home-editor.popup-page', $data);
         
-        return view('adm.pages.partners.edit', $data);
     }
 
     /**
@@ -135,9 +156,7 @@ class PartnersController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->input());
-        $request->validate([
-
-        ]);
+    
 
         $list_no = Partners::orderBy('created_at', 'desc')->first();
 
@@ -154,12 +173,26 @@ class PartnersController extends Controller
         }
 
         if($request->file('image')){
-           $image_name = uploadTinyImageThumb($request);
-           deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
-        
+    
         $blog =  Partners::find($id);
         $blog->title = $request->title;
         $blog->short_description = $request->short_description;
@@ -183,14 +216,15 @@ class PartnersController extends Controller
 
         if($save){
             // return back()->with('success', 'Partners Updated...')->with('close', '1');
-            if ($request->close == "1") {
-                session()->put('success','Partners Updated');
-                return(redirect(route('admin.close')));
-            } else { 
-                return back()->with('success', 'Partners Updated')->with('close', '1');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Partner Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

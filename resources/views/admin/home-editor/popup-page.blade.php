@@ -58,6 +58,8 @@
           @includeWhen($type == 'SocialMedia', 'setting.social-media')
           @includeWhen($type == 'Video_edit', 'video.edit')
           @includeWhen($type == 'Addvideo', 'video.create')
+          @includeWhen($type == 'Addpartners', 'partners.create')
+          @includeWhen($type == 'partners_edit', 'partners.edit')
 
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')

@@ -182,6 +182,18 @@
   box-shadow: none;
   width: 100%;
 }
+#addpartners
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#partnereditajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #videoajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */

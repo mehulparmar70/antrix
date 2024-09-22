@@ -16,6 +16,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
@@ -153,8 +154,10 @@ Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.ed
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 Route::put('/video/update/{id}', [VideoController::class, 'update'])->name('video.update');
-Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
-Route::get('/partners/create', [PartnerController::class, 'create'])->name('partners.create');
+Route::get('/partners/{id}/edit', [PartnersController::class, 'edit'])->name('partners.edit');
+Route::get('/partners/create', [PartnersController::class, 'create'])->name('partners.create');
+Route::post('/partners/store', [PartnersController::class, 'store'])->name('partners.store');
+Route::put('/partners/update/{id}', [PartnersController::class, 'update'])->name('partners.update');
 
 Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');

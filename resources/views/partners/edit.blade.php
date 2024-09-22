@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Dashboard - Charotar Corporation')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 
 <script>
@@ -27,51 +19,19 @@ $(".partners a").addClass( "active-menu");
 
 </script>
 
-@endsection
-@section('content')
-
 
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
 
-      <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit Partner</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('partners.create')}}" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add New Partner </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <h1>Edit Partner</h1>
-          </div>
-        </div>
-    </div>
-
-      </div>
-    </section>
 
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
-          <div class="card-body">
+        <div >
+          <div >
             <div class="form-horizontal row">
             <div class="col-md-12">
-              <form enctype="multipart/form-data" method="post" class="form-horizontal"  
-                action="{{route('partners.update', $blog->id)}}">
+              <form id="partnereditajax" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              onsubmit="return false;">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -204,12 +164,8 @@ $(".partners a").addClass( "active-menu");
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                  @if(request()->get('onscreenCms') == 'true')
-                  <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save Partners & Close</button>
-                  @else
-                  <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save Partners</button>
-                  @endif
+                <button type="button" onclick="editpartnersubmit({{$blog->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                Update </button>
                 </div>
               </form>
               </div>
@@ -219,5 +175,3 @@ $(".partners a").addClass( "active-menu");
       </div>
     </section>
   </div>
-
-  @endsection
