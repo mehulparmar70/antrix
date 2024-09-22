@@ -1,11 +1,3 @@
-@extends('adm.layout.admin-index')
-@section('title','Logo Manage')
-
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
-
-@section('custom-js')
 
 <script>
 
@@ -13,27 +5,12 @@ $(".setting").addClass( "menu-is-opening menu-open");
 $(".setting a").addClass( "active-menu");
 
 </script>
-@endsection
-
-@section('content')
-@include('adm.widget.table-search-draggable')
 
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
 
     <div class="row">
-          <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Settings / Logo Manage</li>
-            </ol>
-          </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
         <div class="col-sm-6">
             <h3 class="mb-0">Settings / Logo Manage</h3>
           </div>
@@ -42,11 +19,10 @@ $(".setting a").addClass( "active-menu");
     </section>
 
 
-    <div class="card-body">
+    <div class="">
                 	<div class="row">
                     <div class="col-md-10">
-                    <form role="form" action="{{ route('admin.setting.seo-manage-images.store') }}" 
-                    method="post" enctype="multipart/form-data">
+                    <form id="addseoajax" role="form" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
                         {{csrf_field()}}
                     <h5 class="text-danger text-center bg-dark">Website Images</h5>
                       <table class="table">
@@ -127,8 +103,7 @@ $(".setting a").addClass( "active-menu");
                       </table>
                     </form>
 
-                      <form role="form" action="{{ route('admin.setting.seo-manage.store') }}" 
-                      method="post" enctype="multipart/form-data">
+                      <form id="addlogoajax" role="form" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
                         {{csrf_field()}}
                       <table class="table">
 
@@ -214,6 +189,4 @@ $(".setting a").addClass( "active-menu");
                 </div>
                 </div>
                 </div>
-
-
-@endsection
+ 

@@ -26,12 +26,16 @@ class CustomCodeController extends Controller
 
     public function customJs()
     {
+        $type = "customJs";
         $data = [
             'headerJs' =>  CustomCode::where('type', 'header-code')->first(),
             'footerJs' =>  CustomCode::where('type', 'footer-code')->first(),
+            'type' => $type
 
         ];
-        return view('adm.pages.custom-code.custom-js', $data);
+        return view('admin.home-editor.popup-page', $data);
+
+        // return view('adm.pages.custom-code.custom-js', $data);
     }
 
 

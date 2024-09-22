@@ -57,7 +57,7 @@
           @includeWhen($type == 'Testimonial_edit', 'testimonial.edit')
           @includeWhen($type == 'SocialMedia', 'setting.social-media')
           @includeWhen($type == 'Video_edit', 'video.edit')
-          @includeWhen($type == 'Addvideo', 'video.create')
+          
           @includeWhen($type == 'Addpartners', 'partners.create')
           @includeWhen($type == 'partners_edit', 'partners.edit')
           @includeWhen($type == 'Blogs', 'blog.index')
@@ -68,12 +68,16 @@
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')
         @endif
-        
+        @includeWhen($type == 'Addvideo', 'video.create')
+        @includeWhen($type == 'videoIndex', 'video.index')
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'CreateMainCategory', 'category.create')  
 
         @includeWhen($type == 'photo', 'photo.list-photo')
         @includeWhen($type == 'video', 'video.create')
+        @includeWhen($type == 'SocialMediaManagers', 'setting.seo-manage')
+        @includeWhen($type == 'customJs', 'custom-code.custom-js')
+
         
       </div>
      

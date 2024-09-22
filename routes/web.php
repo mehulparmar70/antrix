@@ -136,17 +136,18 @@ Route::get('products', [ProductController::class, 'index'])->name('product.index
 Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
 
 
-
 Route::get('/settings/seo-manage', [SettingController::class, 'seoManageIndex'])->name('admin.setting.seo-manage');
 Route::post('/settings/seo-manage', [SettingController::class, 'seoManageStore'])->name('admin.setting.seo-manage.store');
 Route::post('/settings/seo-manage-image', [SettingController::class, 'seoManageImageStore'])->name('admin.setting.seo-manage-images.store');
 
 
 Route::get('/custom-code/js',[CustomCodeController::class, 'customJs'])->name('admin.customJs.create');
+Route::post('/custom-code/store',[CustomCodeController::class, 'store'])->name('customJs.store');
+
 Route::get('thankyou', [HomeController::class, 'thankyou'])->name('thankyou');
 Route::post('/admin/page-editor/store', [PageController::class, 'pageEditorStore'])->name('admin.page-editor.store');
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
-Route::get('/setting/social-media', [SettingController::class, 'socialMedia'])->name('setting.social-media');
+Route::get('/setting/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
 Route::get('/admin/custom-code/js',[CustomCodeController::class, 'customJs'])->name('customJs.create');
 
 Route::get('/admin/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('home.editor');

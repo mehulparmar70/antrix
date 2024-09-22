@@ -17,10 +17,12 @@ class VideoController extends Controller
      */
     public function index()
     {
+        $type = 'videoIndex';
         $data = [
-            'videos' =>  Video::orderBy('item_no')->get()
+            'videos' =>  Video::orderBy('item_no')->get(),
+            'type' => $type
         ];
-        return view('adm.pages.video.index', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
