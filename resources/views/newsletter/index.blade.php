@@ -165,8 +165,13 @@ $(function () {
                          </a>
                           
 
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Newsletter"  data-id="{{route('admin.index')}}/newsletter/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                          </button>
+                           
+             <a href="{{route('newsletter.delete', $testimonial->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete newsletter" 
+                            onclick="popupmenu('{{route('newsletter.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                       
                       </td>

@@ -183,9 +183,13 @@ $(function () {
                            data-type="editmodal" 
                            onclick="popupmenu('{{ route('casestudies.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;"
                            class="btn btn-sm btn-dark float-left mr-2"  title="Edit CaseStudies"><i class="fa fa-edit"></i></a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete CaseStudies"  data-id="{{route('admin.index')}}/casestudies/{{ $testimonial->id}}" data-title="{{ $testimonial->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                          </button>
-                      
+                          
+             <a href="{{route('admin.casestudies.item.delete', $testimonial->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete casestudies" 
+                            onclick="popupmenu('{{route('admin.casestudies.item.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                       </td>
                       </tr>

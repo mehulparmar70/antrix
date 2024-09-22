@@ -92,12 +92,8 @@ $(".testimonial a").addClass( "active-menu");
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                  @if(request()->get('onscreenCms') == 'true')
-                    <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    Save Testimonial & Close</button>
-                  @else
-                    <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>Save Testimonial</button>
-                  @endif
+                <button type="button" onclick="addtestimonialsubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                Save</button>
                 </div>
               </form>
               </div>

@@ -367,15 +367,22 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::find((int)$id);
         $category = $category->delete();
         if($category){
             // $subCategories = DB::table('categories')->where('parent_id')
             // $category
-            return back()->with('success', 'category Deleted... 000 ');
+            return response()->json([
+                'success' => true,
+                'message' => 'Category Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     

@@ -80,7 +80,7 @@ $('.content_banners').each(function(){
       <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
           <i class="fa fa-edit"></i>
       </a>
-      <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+      <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'deletemodal', 'left=100,width=800,height=860'); return false;">
           <i class="fa fa-trash"></i>
       </a>
       <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
@@ -118,7 +118,8 @@ $('.onscreen-product-image').each(function(){
 $('.product_title_main').each(function(){
   $(this).prepend(`<div class="onscreen-product-title"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>
+
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
@@ -158,7 +159,7 @@ $('.onscreen_media_testimonial_item').each(function(){
     html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
   html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete testimonial Permanently. Do you want to continue?'> <i class='fa fa-trash'></i></a>`;
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 });
 $('.onscreen_media_casestudies_item').each(function(){
@@ -178,7 +179,8 @@ $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
   <a href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>
+
   <a href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
@@ -255,7 +257,7 @@ $('.crud').each(function(){
 $('.title-crud').each(function(){
   $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-delete')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.clients_crud').each(function(){
@@ -498,7 +500,61 @@ function popupmenu(link, type, location, left, width, height) {
         .catch(error => {
             console.error('Error loading content:', error);
         });
-}else
+}
+else if(type === 'deletemodal')
+{Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Perform the delete action if confirmed
+    fetch(link, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to delete the item.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        // Show success message using SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: data.message,
+          timer: 2000, // Auto close after 2 seconds
+          showConfirmButton: false
+        });
+        window.reload(); // Optionally reload the page after successful deletion
+      } else {
+        // Show error message if the server response indicates failure
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: data.message
+        });
+      }
+    })
+    .catch(error => {
+      // Handle any unexpected errors during the fetch request
+   
+      console.error('Error deleting item:', error);
+    });
+  }
+});
+}
+else
 {
   fetch(link)
   .then(response => response.text())
@@ -950,6 +1006,34 @@ function addindustriessubmit() {
   $.ajax({
       type: "POST",
       url: base_url+"/powerup/industries-store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+function addtestimonialsubmit() {
+  var form = document.getElementById('createtestimonial'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/testimonials/store", // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data

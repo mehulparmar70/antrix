@@ -147,17 +147,14 @@
                             onclick="popupmenu('{{route('slider.edit', $slider->id)}}', 'editmodal', 'left=100,width=800,height=600'); return false;">
                             <i class="fa fa-edit"></i>
                           </a>
-
-                         <button class="btn btn-xs btn-danger del-modal float-left" 
-                                  title="Delete slider" 
-                                  data-id="{{route('admin.index')}}/slider/{{$slider->id}}" 
-                                  data-image="{{url('/')}}/images/{{ $slider->image}}" 
-                                  data-title="{{ $slider->title}}"  
-                                  data-toggle="modal" 
-                                  data-target="#modal-default">
+                        <a href="{{route('slider.delete', $slider->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete slider" 
+                            onclick="popupmenu('{{route('slider.delete', $slider->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
                             <i class="fa fa-trash"></i>
-                          </button>
+                          </a>
 
+                        
                       
                       
                       </td>

@@ -163,12 +163,12 @@ $(function () {
                             <i class="fa fa-edit"></i>
                           </a>
 
-                          <button class="btn btn-sm btn-danger del-modal float-left" title="Delete Industries" 
-                                  data-id="{{url('powerup/industries-delete')}}/{{ $testimonial->id}}" 
-                                  data-title="{{ $testimonial->title}}" data-toggle="modal" data-target="#modal-default">
-                              <i class="fa fa-trash"></i>
-                          </button>
-
+                          <a href="{{route('industries.delete', $testimonial->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete slider" 
+                            onclick="popupmenu('{{route('industries.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                       
                       </td>

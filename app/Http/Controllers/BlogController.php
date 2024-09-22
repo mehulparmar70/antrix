@@ -220,7 +220,7 @@ class BlogController extends Controller
         if($save){
             return response()->json([
                 'success' => true,
-                'message' => 'Client Updated...'
+                'message' => 'Blog Updated...'
             ]);
         }else{
             return response()->json([
@@ -236,17 +236,24 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
+        $blog =  Blog::find((int)$id);
         // dd($blog->image);
         $delete = $blog->delete();
         deleteTableUrlData($blog->id,'product_link');
         if($delete){
 
             deleteBulkImage($blog->image);
-            return back()->with('success', 'Blog Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Blog Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

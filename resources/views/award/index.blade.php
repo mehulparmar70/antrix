@@ -196,10 +196,12 @@ function updateOrder(data) {
                             @else
                               <a href="{{route('award.edit',$client->id)}}" class="btn btn-xs btn-info float-left mr-2"  title="Edit award"><i class="fa fa-edit"></i></a>
                             @endif
-                            <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete Award" 
-                             data-id="{{route('admin.index')}}/award/{{ $client->id}}" data-title="{{ $client->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                            </button>                      
+                            <a href="{{route('award.delete', $client->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete award" 
+                            onclick="popupmenu('{{route('award.delete', $client->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>                     
                         </td>
                         </tr>
                       @endforeach

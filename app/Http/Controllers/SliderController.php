@@ -227,15 +227,24 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
+        
+        $slider = Slider::find((int)$id);
+        // dd($slider);
         // dd($slider->id);
         deleteBulkImage($slider->image);
         $slider = $slider->delete();
         if($slider){
-            return back()->with('success', 'Slider Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Slider Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
