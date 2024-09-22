@@ -56,8 +56,11 @@ class PageController extends Controller
     }
 
     public function blogPageEditor(){
+        $type = 'CaseStudies';
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Case Studies')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
