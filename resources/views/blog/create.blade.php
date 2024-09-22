@@ -1,6 +1,4 @@
 
-
-
 <script>
 
     $( document ).ready(function() {
@@ -15,67 +13,65 @@
   });  
 });
 
-$(".partners").addClass( "menu-is-opening menu-open");
-$(".partners a").addClass( "active-menu");
+$(".blog").addClass( "menu-is-opening menu-open");
+$(".blog a").addClass( "active-menu");
 
 </script>
 
 
 
-
 <div class="content-wrapper">
-
 
     <section class="content">
       <div class="container-fluid">
-        <div >
-          <div >
+        <div class="">
+          <div class="">
             <div class="form-horizontal row">
             <div class="col-md-12">
-              <form id="addpartners" enctype="multipart/form-data" method="post" class="form-horizontal"  
+              <form id="addblogajax" enctype="multipart/form-data" method="post" class="form-horizontal"  
               onsubmit="return false;">
                 @csrf
                 <div class="row">
                   <div class="col-sm-4">
-                    <label for="title">Add Partners Title</label>
-                    <input type="text" class="form-control" name="title" placeholder="Partners Title" value="{{old('title')}}" required>
+                    <label for="title">Add Update Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Blog Title" value="{{old('title')}}" required>
                     <span class="text-danger">@error('title') {{$message}} @enderror</span>
                   </div>
                   <div class="col-sm-4">
-                    <label for="title">Add Partners Short Description</label>
-                    <input type="text" class="form-control" name="short_description" placeholder="Partners Short Description" value="{{old('short_description')}}" required>     
+                    <label for="title">Add Update Short Description</label>
+                    <input type="text" class="form-control" name="short_description" placeholder="Blog Short Description" value="{{old('short_description')}}" required>     
                     <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
                   </div>
                   <div class="col-sm-4">
-                    <label for="title">Add Partners Page Url</label>
+                    <label for="title">Add Update Page Url</label>
                     <input type="text" class="form-control" name="slug" placeholder="Url" value="{{old('slug')}}" required>     
                     <span class="text-danger">@error('slug') {{$message}} @enderror</span>
                   </div>
                   <div class="col-sm-12 mt-3">
-                    <label for="full_description">Add Partners Description</label>
-                    <textarea id="editor" name="full_description" placeholder="Partners Descriptions">{{old('full_description')}}</textarea>                  
+                    <label for="full_description">Add Update Description</label>
+                    <textarea id="editor" name="full_description" placeholder="Blog Descriptions">{{old('full_description')}}</textarea>                  
                     <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
                   </div>
                 </div>
                 <div class="form-group row mt-3">
                   <div class="col-sm-6 col-md-6">
                     <div class="col-sm-12">
-                      <label for="image_alt">Add Partners Image</label><br>
+                      <label for="image_alt">Add Update Image</label><br>
                       <input type="hidden" id="page_type" value="singleUpload">
-                      <input type="file" name="image" class="file_input" id="image" require accept="image/png,image/jpeg,image/webp" required/>
+                      <input type="file" name="image" class="file_input " id="image" require accept="image/png,image/jpeg,image/webp" required/>
                       <br>
-                      <img class="elevation-2 perview-img"   width="120"src="{{asset('/')}}/img/no-item.jpeg">
+                      <img class="elevation-2 perview-img"   width="120"src="{{asset('adm')}}/img/no-item.jpeg">
                       <span class="text-danger">@error('image') {{$message}} @enderror</span>
                     </div>
                     <div class="col-sm-12 row">
                       <div class="col-sm-6">
                         <label for="image_alt">Image Alt</label>
-                        <input type="text" class="form-control" name="image_alt"  placeholder="Partners Image Alter Text (SEO)"  value="{{old('image_alt')}}">
+                        <input type="text" class="form-control" name="image_alt"  placeholder="Image Alter Text (SEO)"  value="{{old('image_alt')}}">
                         <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
                       </div>
                       <div class="col-sm-6">
                         <label for="image_title">Image Title</label>
-                        <input type="text" class="form-control" name="image_title" placeholder="Partners Image Title (SEO)" value="{{old('image_title')}}">
+                        <input type="text" class="form-control" name="image_title" placeholder="Blog Image Title (SEO)" value="{{old('image_title')}}">
                         <span class="text-danger">@error('image_title') {{$message}} @enderror</span>
                       </div>
                     </div>
@@ -125,7 +121,7 @@ $(".partners a").addClass( "active-menu");
                   </div>
                 </div>
                 <div class="card-footer text-center">
-                <button type="button" onclick="addpartnersubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                <button type="button" onclick="addblogsubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                 Save</button>
                 </div>
               </form>
@@ -136,4 +132,3 @@ $(".partners a").addClass( "active-menu");
       </div>
     </section>
   </div>
-

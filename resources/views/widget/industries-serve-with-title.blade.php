@@ -36,10 +36,10 @@
 
       data-create-link="{{url('powerup/industries-create')}}"
 
-      data-link="{{url('powerup/industries-edit',$industriesList->id)}}"
+      data-edit-link="{{url('powerup/industries-edit',$industriesList->id)}}"
 
       data-delete-link="{{route('industries.delete',$industriesList->id)}}"
-
+      data-index-link="{{route('industries.index')}}"
     @endif></div>
 
     <img src="{{url('web')}}/media/lg/{{$industriesList->image}}" />

@@ -4,7 +4,7 @@
 
     <a href="{{url('updates')}}">UPDATES</a>
 
-    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create="{{route('blog.index')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.index')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
 
   </div>
 
@@ -20,6 +20,7 @@
 
                
 
+                        data-link="{{route('blog.edit', $blogsList->id)}}"
                         data-delete-link="{{route('admin.index')}}/blog/delete/{{ $blogsList->id}}"
 
                       @endif><img src="{{url('/')}}/images/{{$blogsList->image}}" /></div>

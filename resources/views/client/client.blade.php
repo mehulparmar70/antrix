@@ -34,7 +34,7 @@
 	      <div class="inner_tab_blk_right">
           <div class="image_gallery">
             <div class="product_cat_name">
-              <img src="{{ url('') }}/sardar/images/person.png" alt="person" />
+              <img src="{{ url('') }}/images/person.png" alt="person" />
               <p>Our Clients</p>
               @if(session('LoggedUser'))
                 <a href="#" class="header_crud" @if(session('LoggedUser'))
@@ -53,8 +53,8 @@
                   <a href="{{ $href }}" class="clients_item showIndustriesImg" data-id="{{ $clientList->id }}" title="{{ $clientList->title }}" data-caption="{{ $clientList->short_description }}" data-type="clients">
                  @if(session('LoggedUser'))
                   <div href="#" style="position: absolute;padding-bottom: 10%;" class="crud" @if(session('LoggedUser'))
-                  data-create="{{route('client.create')}}"
-                  data-link="{{route('client.edit',$clientList['id'])}}"
+                  data-create-link="{{route('client.index')}}"
+                  data-edit-link="{{route('client.edit',$clientList['id'])}}"
                   data-delete-link="{{route('admin.index')}}/client/delete/{{ $clientList['id']}}"
                   @endif></div>
                   @endif
@@ -77,19 +77,19 @@
       <div class="client_wrap">
         <div class="big_text mid_text">
           <a href="{{url('/awards')}}">AWARDS & ASSOCATIONS</a>
-          <div class="title-crud fontSize" @if(session('LoggedUser')) data-create="{{route('award.index')}}" data-delete="{{route('award.index')}}" data-link="{{route('award.index')}}" @endif></div>
+          <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('award.index')}}" data-delete="{{route('award.index')}}" data-link="{{route('award.index')}}" @endif></div>
         </div>
         <div class="client_blk_page">
           @foreach($awardSlider as $awardList)
           <a class="client_item" data-fancybox="gallery" href="{{url('web')}}/media/lg/{{$awardList->image}}">
             @if(session('LoggedUser'))
               <div href="#" class="crud" @if(session('LoggedUser'))
-              data-create="{{route('award.index')}}"
-              data-link="{{route('award.edit',$awardList['id'])}}"
+              data-create-link="{{route('award.index')}}"
+              data-edit-link="{{route('award.edit',$awardList['id'])}}"
               data-delete-link="{{route('admin.index')}}/award/delete/{{ $awardList['id']}}"
               @endif></div>
             @endif
-            <img src="{{url('web')}}/media/lg/{{$awardList->image}}" />
+            <img src="{{url('/')}}/images/{{$awardList->image}}" />
           </a>
           @endforeach
           
