@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ClientController;
 use App\Http\Controllers\admin\AwardController;
-use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CaseStudiesController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
@@ -102,6 +102,9 @@ Route::get('testimonials/create', [TestimonialController::class, 'create'])->nam
 Route::get('videos/create', [VideoController::class, 'create'])->name('video.create');
 Route::get('videos', [VideoController::class, 'index'])->name('video.index');
 Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
+Route::get('blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
 Route::get('listview', [SliderController::class, 'listview'])->name('slider.listview');
 Route::post('update-sliders', [SliderController::class, 'update_list_no'])->name('slider.update');
@@ -155,6 +158,7 @@ Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.ed
 Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 Route::put('/video/update/{id}', [VideoController::class, 'update'])->name('video.update');
 Route::get('/partners/{id}/edit', [PartnersController::class, 'edit'])->name('partners.edit');
+Route::get('/partners/index', [PartnersController::class, 'index'])->name('partners.index');
 Route::get('/partners/create', [PartnersController::class, 'create'])->name('partners.create');
 Route::post('/partners/store', [PartnersController::class, 'store'])->name('partners.store');
 Route::put('/partners/update/{id}', [PartnersController::class, 'update'])->name('partners.update');

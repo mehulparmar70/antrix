@@ -188,6 +188,18 @@
   box-shadow: none;
   width: 100%;
 }
+#editblogajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addblogajax
+{
+  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #partnereditajax
 {
   background-color: #2E2E2E; /* Slightly lighter background for input fields */

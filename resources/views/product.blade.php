@@ -161,12 +161,13 @@ $industriesPageData = getPageData('industrie_page');
           <div class="item_img showProductDetails other_cat_admin" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
             <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
                 data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                 data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                data-index-link="{{ route('admin.category.list') }}"
               @endif></div>
             <div class="tab_top subCategoryImage">
           @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-          <img src="{{url('web')}}/media/md/{{$productImage->image}}" style="" />
+          <img src="{{url('/')}}/images/{{$productImage->image}}" style="" />
           @endforeach
         </div>
         <div class="big_text small_text">
@@ -180,8 +181,9 @@ $industriesPageData = getPageData('industrie_page');
           <div class="item_img showProductDetails other_cat_admin" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
             <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
                 data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                 data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                data-index-link="{{ route('admin.category.list') }}"
               @endif></div>
             <div class="tab_top subCategoryImage">
               <img src="{{url('web')}}/media/md/noimage.png" style="" />

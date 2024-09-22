@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Blog;
 use Intervention\Image\Facades\Image;
+use App\Models\admin\Pages;
 
 class BlogController extends Controller
 {
@@ -16,10 +17,13 @@ class BlogController extends Controller
      */
     public function index()
     {
+        $type = 'Blogs';
         $data = [
-            'blogs' =>  Blog::orderBy('item_no', 'ASC')->get()
+            'type' => $type,
+            'blogs' =>  Blog::orderBy('item_no', 'ASC')->get(),
+            'pageData' =>  Pages::where('type', 'blog_page')->first(),
         ];
-        return view('adm.pages.blog.index', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -29,8 +33,11 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $data = ['blogs' =>  Blog::all()];
-        return view('adm.pages.blog.create',$data);
+        $type = 'AddBlog';
+        $data = [
+            'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'blogs' =>  Blog::all(),'type' => $type];
+            return view('admin.home-editor.popup-page',$data);
     }
 
     /**
@@ -42,14 +49,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         
-        $request->validate([
-            
-            'title' => 'required',
-            'short_description' => 'required',
-            'full_description' => 'required',
-            'slug' => 'required',
-        ]);
-
+      
         $list_no = Blog::orderBy('created_at', 'desc')->first();
 
         if($list_no){
@@ -64,7 +64,26 @@ class BlogController extends Controller
             $status = 0;
         }
 
-       $image_name = uploadTinyImageThumb($request);
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->short_description = $request->short_description;
@@ -87,15 +106,16 @@ class BlogController extends Controller
         $save = $blog->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Blog Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Blog Added...');    
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Blog Updated...'
+            ]);
             
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -118,11 +138,14 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
+        $type = 'BlogEdit';
         $data = [
-            'blog' =>  Blog::find($id)
+            'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'blog' =>  Blog::find($id),
+            'type' => $type
         ];
         
-        return view('adm.pages.blog.edit', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
@@ -135,9 +158,7 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->input());
-        $request->validate([
-
-        ]);
+     
 
         $list_no = Blog::orderBy('created_at', 'desc')->first();
 
@@ -154,11 +175,26 @@ class BlogController extends Controller
         }
 
         if($request->file('image')){
-           $image_name = uploadTinyImageThumb($request);
-           deleteBulkImage($request->old_image);
-        }else{
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
+
         
         $blog =  Blog::find($id);
         $blog->title = $request->title;
@@ -182,14 +218,15 @@ class BlogController extends Controller
         $save = $blog->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Blog Updated...');
-                return(redirect(route('admin.close')));
-            } else { 
-                return back()->with('success', 'Blog Updated...')->with('close', '1');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

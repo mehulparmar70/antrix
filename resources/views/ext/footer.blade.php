@@ -293,7 +293,13 @@
 				@foreach($footerOurPartners as $partenr)
 				<a href="{{url('partners')}}/{{$partenr->slug}}" class="kiis_item">
 					<img src="{{url('/')}}/images/{{$partenr->image}}" />
-					<div class="crud"></div>
+					<!-- <div class="crud"></div> -->
+					<div class="product_internal_title" @if(session('LoggedUser'))
+                      data-create-link="{{route('partners.create')}}"
+                      data-edit-link="{{route('partners.edit', $partenr->id)}}"
+                      data-delete-link="{{route('admin.index')}}/partners/delete/{{ $partenr->id}}"
+                      data-index-link="{{route('partners.index')}}"
+                    @endif></div>
 				</a>
 				@endforeach
 				</div>
@@ -308,8 +314,14 @@
 				@foreach(getSubCategories($mainCategoryAll->id) as $key => $topInflatableLp)
 				<?php $imageName = getSubCategoryImages($topInflatableLp->id, 2, 'DESC')[0]['image']; ?>
 				<a href="{{$topInflatableLp->slug}}" class="kiis_item">
-					<img src="{{url('web')}}/media/md/{{$imageName}}" />
-					<div class="product_internal_title"></div>
+					<img src="{{url('/')}}/images/{{$imageName}}" />
+					<!-- <div class="product_internal_title"></div> -->
+					<div class="product_internal_title" @if(session('LoggedUser'))
+                      data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                      data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                      data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                      data-index-link="{{route('admin.category.list')}}"
+                    @endif></div>
 				</a>
 				@endforeach
 				@endforeach

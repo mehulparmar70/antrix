@@ -58,6 +58,7 @@ function updateStatus($id) {
 }
 </script>
 
+
 @include('widget.table-search-draggable')
 
 <div class="content-wrapper">

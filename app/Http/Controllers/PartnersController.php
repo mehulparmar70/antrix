@@ -17,10 +17,13 @@ class PartnersController extends Controller
      */
     public function index()
     {
+        $type = 'Partners';
         $data = [
-            'blogs' =>  Partners::orderBy('item_no', 'ASC')->get()
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+            'blogs' =>  Partners::orderBy('item_no', 'ASC')->get(),
+            'type' => $type
         ];
-        return view('adm.pages.partners.index', $data);
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**

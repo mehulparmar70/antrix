@@ -36,7 +36,7 @@
           @includeWhen($type == 'newsletter_add', 'newsletter.create')
           @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
           @includeWhen($type == 'video', 'video.index')
-          @includeWhen($type == 'partners', 'partners.index')
+          @includeWhen($type == 'Partners', 'partners.index')
           @includeWhen($type == 'category', 'category.index')
           @includeWhen($type == 'Main_Category', 'category.edit')
           @includeWhen($type == 'homeedit', 'admin.home-editor.index')
@@ -60,6 +60,10 @@
           @includeWhen($type == 'Addvideo', 'video.create')
           @includeWhen($type == 'Addpartners', 'partners.create')
           @includeWhen($type == 'partners_edit', 'partners.edit')
+          @includeWhen($type == 'Blogs', 'blog.index')
+          @includeWhen($type == 'AddBlog', 'blog.create')
+          @includeWhen($type == 'BlogEdit', 'blog.edit')
+          
 
         @elseif(isset($sliders) && !empty($sliders))
           @includeWhen($type == 'Slider', 'admin.home-editor.slider-page')

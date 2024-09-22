@@ -247,8 +247,8 @@ $('.header_crud').each(function(){
 });
 
 $('.crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create')+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/partenrs?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/partenrs?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
+  $(this).prepend(`<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `"onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
+  <a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `"onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete data Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
@@ -817,6 +817,36 @@ function editindustriessubmit(id) {
 
   });
 }
+function editblogsubmit(id) {
+  var form = document.getElementById('editblogajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/blog/update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
 
 function editcategoriessubmit(id) {
   var form = document.getElementById('editCategoryidajax'); // Get the form element
@@ -918,6 +948,34 @@ function addindustriessubmit() {
   $.ajax({
       type: "POST",
       url: base_url+"/powerup/industries-store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+  });
+}
+function addblogsubmit() {
+  var form = document.getElementById('addblogajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/blog/store", // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -1236,3 +1294,5 @@ function addnewsletter()
 });
 
 }
+
+
