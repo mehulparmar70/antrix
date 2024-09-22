@@ -48,9 +48,16 @@ public function topInflatableStore(Request $request)
         $save = $topInflatable->save();
 
         if($save){
-            return back()->with('success', 'Top Inflatable Added...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Top Inflatable Added...'
+            ]);
+           
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     public function topInflatableDelete($id)
@@ -59,9 +66,16 @@ public function topInflatableStore(Request $request)
         $topInflatable = DB::table('top_inflatables')->where('id',$id)->delete();
 
         if($topInflatable){
-            return back()->with('success', 'Top Inflatable Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Top Inflatable Deleted...'
+            ]);
+            
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -73,7 +87,7 @@ public function topInflatableStore(Request $request)
             'homeAbout' =>  Pages::where('type', 'home_page')->first(),
             'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
             'clients' =>  Client::where('status', 1)->get(),
-'type' => $type,
+            'type' => $type,
             'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -114,9 +128,16 @@ public function topInflatableStore(Request $request)
             $homeAbout->status = 1;
             $save = $homeAbout->save();
             if($save){
-                return back()->with('success', 'Home About Details Added...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Home About Details Added...'
+                ]);
+               
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }
     }
@@ -134,9 +155,16 @@ public function topInflatableStore(Request $request)
         $save = $urlList->save();
 
         if($save){
-            return back()->with('success', 'Top Inflatable Added...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Top Inflatable Added...'
+            ]);
+           
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     
@@ -145,9 +173,16 @@ public function topInflatableStore(Request $request)
         $urlList = DB::table('url_list')->where('id',$id)->delete();
 
         if($urlList){
-            return back()->with('success', 'Url Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Url Deleted...'
+            ]);
+           
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     

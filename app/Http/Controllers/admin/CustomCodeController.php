@@ -70,9 +70,15 @@ class CustomCodeController extends Controller
             $customCode->description = $request->description;
             $save = $customCode->save();
             if($save){
-                return back()->with('success', $request->type.' Details Updated...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Details Updated...'
+                ]);
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }
         else{
@@ -87,9 +93,15 @@ class CustomCodeController extends Controller
             $customCode->description = $request->description;
             $save = $customCode->save();
             if($save){
-                return back()->with('success', $request->type.' Details Added...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Detail Added...'
+                ]);
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }
 

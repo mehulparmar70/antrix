@@ -179,7 +179,10 @@ class ProductController extends Controller
                 return redirect(route('admin.index').'/photo?page=manage&main_category='.$request->main_category.'&sub_category='.$request->sub_category)->with('success', 'Product Details Updated...');
 
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }
         // dd($task->id);
@@ -291,9 +294,16 @@ class ProductController extends Controller
         $save = $product->save();
 
         if($save){
-            return back()->with('success', 'Product Updated...');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -314,12 +324,20 @@ class ProductController extends Controller
 
           deleteTableUrlData($product->id,'product_link');
          $product = $product->delete();
-         return back()->with('success', 'Product Deleted...');
+        
+         return response()->json([
+            'success' => true,
+            'message' => 'Client Deleted...'
+        ]);
         }
         else{
             deleteTableUrlData($product->id, 'product_link');
             $product = $product->delete();
-            return back()->with('success', 'Product Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Product Updated...'
+            ]);
+            
         }
 
        

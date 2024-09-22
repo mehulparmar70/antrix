@@ -56,8 +56,11 @@ class PageController extends Controller
     }
 
     public function blogPageEditor(){
+        $type = 'CaseStudies';
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Case Studies')->where('status',1)->get(),
+            'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
@@ -287,13 +290,21 @@ class PageController extends Controller
                             $pageType = $request->type;
                             $pos = strpos($pageType, '_');
                             $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
-                            session()->put('success', $pageType . ' Details Updated...');
-                            return back()->with('success', $request->type . ' Details Updated...');
+                            return response()->json([
+                                'success' => true,
+                                'message' => 'Detail Updated...'
+                            ]);
                         } else {
-                            return back()->with('success', $request->type . ' Details Updated...');
+                            return response()->json([
+                                'success' => true,
+                                'message' => 'Detail Updated...'
+                            ]);
                         }
                     } else {
-                        return back()->with('fail', 'Something went wrong, try again later...');
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Something went wrong, try again later...'
+                        ]);
                     }
                 } else {
                     // If no page exists, create a new one
@@ -333,13 +344,21 @@ class PageController extends Controller
                             $pageType = $request->type;
                             $pos = strpos($pageType, '_');
                             $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
-                            session()->put('success', $pageType . ' Details Added...');
-                            return response()->json(['success' => true, 'message' => $pageType . ' Details Added...']);
+                            return response()->json([
+                                'success' => true,
+                                'message' => 'Detail Added...'
+                            ]);
                         } else {
-                            return back()->with('success', $request->type . ' Details Added...');
+                            return response()->json([
+                                'success' => true,
+                                'message' => 'Detail Added...'
+                            ]);
                         }
                     } else {
-                        return back()->with('fail', 'Something went wrong, try again later...');
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Something went wrong, try again later...'
+                        ]);
                     }
                 }
         return redirect('/')->with('success', $request->type . ' Details Added...');

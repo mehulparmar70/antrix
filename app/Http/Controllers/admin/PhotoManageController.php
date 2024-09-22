@@ -102,7 +102,7 @@ class PhotoManageController extends Controller
         elseif($subCategory->count() > 0 && $request->subCategory){
 
             $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
-            dd($isProductAvailable);
+       
             $data = [
                 'productDetail' => $isProductAvailable
             ];
@@ -179,9 +179,16 @@ class PhotoManageController extends Controller
             if($save){
                 // photo?page=add&main_category=470&sub_category=471
                 // return
-                return back()->with('success', 'Product Details Updated...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Product Details Updated...'
+                ]);
+              
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }else{
             // $product = Product::where('category_id', $request->category_id)->first();
@@ -203,9 +210,17 @@ class PhotoManageController extends Controller
             $save = $product->save();
 
             if($save){
-                return back()->with('success', 'Product Details Created...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Product Details Created...'
+                ]);
+              
+               
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
         }
         // dd($task->id);

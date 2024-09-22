@@ -60,11 +60,7 @@ class AwardController extends Controller
         }else{
             $list_no = 1;
         }
-        $request->validate([
-            'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpg,png,jpeg,webp'
-        ]);
-
+     
         if($request->status){
             $status = 1;
         }else{
