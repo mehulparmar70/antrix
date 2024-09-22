@@ -14,18 +14,12 @@ use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\CaseStudiesController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
-<<<<<<< HEAD
-use App\Http\Controllers\admin\SettingController;
-use App\Http\Controllers\admin\PhotoManageController;
-use App\Http\Controllers\admin\VideoController;
-=======
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\VideoController;
->>>>>>> 43ab5b0232ef5e7b92dc4e4b301636d5401af06c
+use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
-
+use App\Http\Controllers\admin\PhotoManageController;
 
 $adminRewrite = 'powerup';
 
