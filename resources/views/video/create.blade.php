@@ -1,11 +1,11 @@
-@extends('adm.layout.admin-index')
+{{-- @extends('adm.layout.admin-index')
 @section('title','Dashboard - Charotar Corporation')
 
 @section('toast')
   @include('adm.widget.toast')
 @endsection
 
-@section('custom-js')
+@section('custom-js') --}}
 
 
 <script>
@@ -26,9 +26,9 @@ $(".video").addClass( "menu-is-opening menu-open");
 $(".video a").addClass( "active-menu");
 
 </script>
-
+{{-- 
 @endsection
-@section('content')
+@section('content') --}}
 
 
 
@@ -38,23 +38,6 @@ $(".video a").addClass( "active-menu");
 
 
       <div class="row">
-      
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add New Video</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><a href="{{route('video.index')}}?type=main_category" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Manage Video </a>
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-              
-          </ol>
-        </div>
         <div class="row mb-2">
           <div class="col-sm-12">
             <h1>Add New Video</h1>
@@ -154,4 +137,4 @@ $(".video a").addClass( "active-menu");
     </section>
   </div>
 
-  @endsection
+  {{-- @endsection --}}

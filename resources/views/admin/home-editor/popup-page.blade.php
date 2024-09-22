@@ -60,6 +60,10 @@
         
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'CreateMainCategory', 'category.create')  
+
+        @includeWhen($type == 'photo', 'photo.list-photo')
+        @includeWhen($type == 'video', 'video.create')
+        
       </div>
      
     </div>

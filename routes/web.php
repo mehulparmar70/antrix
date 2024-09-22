@@ -15,6 +15,7 @@ use App\Http\Controllers\CaseStudiesController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
@@ -96,8 +97,10 @@ Route::get('/settings/social-media', [SettingController::class, 'socialMediaInde
 Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('admin.setting.social-media.store');
 
 Route::get('/category',[CategoryController::class, 'index'])->name('admin.category.list');
+Route::get('/photo',[PhotoManageController::class, 'index'])->name('admin.photo.manage');
 Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
 Route::get('videos/create', [VideoController::class, 'create'])->name('video.create');
+Route::post('videos/store', [VideoController::class, 'store'])->name('video.store');
 Route::get('videos', [VideoController::class, 'index'])->name('video.index');
 Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');

@@ -28,8 +28,9 @@ class VideoController extends Controller
      */
     public function create()
     {
-        $data = ['videos' =>  Video::all()];
-        return view('adm.pages.video.create',$data);
+        $data = ['videos' =>  Video::all(),'type'=>'video'];
+        // return view('adm.pages.video.create',$data);
+        return view('admin.home-editor.popup-page',$data);
     }
 
     /**
