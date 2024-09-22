@@ -123,7 +123,7 @@ $(function () {
 
 
               <div class=" table-responsive p-0">
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="blogs" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -176,9 +176,12 @@ $(function () {
                           </a>
 
                           
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/blog/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
-                          </button>
-                      
+                          <a href="{{route('blog.delete', $blog->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete blog" 
+                            onclick="popupmenu('{{route('blog.delete', $blog->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                       </td>
                       </tr>

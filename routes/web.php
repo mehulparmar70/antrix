@@ -62,13 +62,14 @@ Route::get('/register', [AdminAuthController::class, 'register']);
 Route::get('slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
 Route::put('slider/{id}', [SliderController::class, 'update'])->name('slider.update');
 
-Route::delete('industries/{id}', [IndustriesController::class, 'destroy'])->name('industries.delete');
+Route::post('industries/delete/{id}', [IndustriesController::class, 'destroy'])->name('industries.delete');
 
 
 Route::get('/category/edit/{id}',[CategoryController::class, 'edit'])->name('admin.category.edit');
 Route::get('/category/create',[CategoryController::class, 'create'])->name('admin.category.create');
 Route::post('/category/store',[CategoryController::class, 'store'])->name('admin.category.store');
 Route::post('/category/update/{id}',[CategoryController::class, 'update'])->name('admin.category.update');
+Route::post('dashboard/category/delete/{id}',[CategoryController::class, 'destroy'])->name('admin.category.delete');
 
 
 // Route::get('/dashboard',[DashboardController::class, 'index'])->name('admin.index');
@@ -89,12 +90,15 @@ Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']
 Route::get('testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
 Route::get('testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
 Route::put('testimonials/update/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+Route::post('testimonials/store', [TestimonialController::class, 'store'])->name('testimonials.store');
+Route::post('testimonials/delete/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.delete');
 
 Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::get('newsletter/create', [NewsletterController::class, 'create'])->name('newsletter.create');
 Route::post('newsletter/store', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::put('newsletter/update/{id}', [NewsletterController::class, 'update'])->name('newsletter.update');
 Route::get('newsletter/{id}/edit', [NewsletterController::class, 'edit'])->name('newsletter.edit');
+Route::post('newsletter/delete/{id}', [NewsletterController::class, 'destroy'])->name('newsletter.delete');
 
 
 Route::get('/category',[CategoryController::class, 'index'])->name('admin.category.list');
@@ -107,10 +111,13 @@ Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create
 Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
 Route::get('blog/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 Route::put('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::post('blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.delete');
+
 Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
 Route::get('listview', [SliderController::class, 'listview'])->name('slider.listview');
 Route::post('update-sliders', [SliderController::class, 'update_list_no'])->name('slider.update');
 Route::post('slider/store', [SliderController::class, 'store'])->name('slider.store');
+Route::post('slider/delete/{id}', [SliderController::class, 'destroy'])->name('slider.delete');
 
 
 
@@ -156,17 +163,23 @@ Route::post('/client/store', [ClientController::class, 'store'])->name('client.s
 Route::get('/client/{id}/edit', [ClientController::class, 'edit'])->name('client.edit');
 Route::put('client/{id}', [ClientController::class, 'update'])->name('client.update');
 Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+Route::post('/client/delete/{id}', [ClientController::class, 'destroy'])->name('client.delete');
+
+Route::post('/award/delete/{id}', [AwardController::class, 'destroy'])->name('award.delete');
 Route::get('/award/{id}/edit', [AwardController::class, 'edit'])->name('award.edit');
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
 Route::put('/video/update/{id}', [VideoController::class, 'update'])->name('video.update');
+Route::post('/video/delete/{id}', [VideoController::class, 'destroy'])->name('video.delete');
+
 Route::get('/partners/{id}/edit', [PartnersController::class, 'edit'])->name('partners.edit');
 Route::get('/partners/index', [PartnersController::class, 'index'])->name('partners.index');
 Route::get('/partners/create', [PartnersController::class, 'create'])->name('partners.create');
 Route::post('/partners/store', [PartnersController::class, 'store'])->name('partners.store');
 Route::put('/partners/update/{id}', [PartnersController::class, 'update'])->name('partners.update');
+Route::post('/partners/delete/{id}', [PartnersController::class, 'destroy'])->name('partners.delete');
 
-Route::delete('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
+Route::post('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
 Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.update');
 

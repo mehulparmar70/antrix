@@ -259,19 +259,15 @@ class CaseStudiesController extends Controller
         
         if($delete){
             deleteBulkImage($casestudies->image);
-            if($request->ajax())
-            {
-                return response()->json(['success' => 'CaseStudies Deleted...']);
-            } else {
-                return back()->with('success', 'CaseStudies Deleted...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Case Studies Updated...'
+            ]);
         }else{
-            if($request->ajax())
-            {
-                return response()->json(['fail' => 'Something went wrong, try again later...']);
-            } else {
-                return back()->with('fail', 'Something went wrong, try again later...');
-            }
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
             // 
         }
 

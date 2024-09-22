@@ -242,20 +242,26 @@ class NewsletterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,Newsletter $Newsletter)
+    public function destroy($id)
     {
         /*dd($Newsletter);
         exit();*/
-        
+        $Newsletter = Newsletter::find((int)$id);
         deleteTableUrlData($Newsletter->id, 'newsletter_link');
 
         $delete = $Newsletter->delete();
         
         if($delete){
             deleteBulkImage($Newsletter->image);
-            return back()->with('success', 'Newsletter Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Newsletter Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
 
 

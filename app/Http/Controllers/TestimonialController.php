@@ -50,11 +50,7 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         
-        $request->validate([
-
-            'image' => 'required|image|mimes:jpg,png,jpeg,webp',
-        ]);
-
+       
          
         $item_no = Testimonials::orderBy('item_no', 'desc')->first();
 
@@ -71,7 +67,26 @@ class TestimonialController extends Controller
             $status = 0;
         }
 
-        $image_name = uploadTinyImageThumb($request);
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
         $testimonial = new Testimonials;
         $testimonial->client_name = $request->client_name;
         $testimonial->item_no = $item_no;
@@ -90,14 +105,15 @@ class TestimonialController extends Controller
         $save = $testimonial->save();
 
         if($save){
-            if ($request->close == "1") {
-                session()->put('success','Testimonials Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Testimonials Added...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Testimonial Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -211,19 +227,25 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonials $testimonial)
+    public function destroy($id)
     {
         // dd($testimonial);
-        
+        $testimonial =  Testimonials::find((int)$id);
         deleteTableUrlData($testimonial->id, 'testimonial_link');
 
         $delete = $testimonial->delete();
         
         if($delete){
             deleteBulkImage($testimonial->image);
-            return back()->with('success', 'Testimonial Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Testimonial Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
 
 

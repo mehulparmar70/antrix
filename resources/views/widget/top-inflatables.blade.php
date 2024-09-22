@@ -30,7 +30,7 @@
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
-                      data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                      data-delete-link="{{route('admin.category.delete',$topInflatableLp->id)}}"
                       data-index-link="{{route('admin.category.list')}}"
                     @endif></div>
                 <div class="big_text small_text">

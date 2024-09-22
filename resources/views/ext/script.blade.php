@@ -4,6 +4,7 @@
    
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
    
     <script type="importmap">
             {
@@ -22,6 +23,8 @@
 <script src="{{asset('/')}}/dist/js/custom.js"></script>
 
 <script src="{{asset('/')}}/plugins/toastr/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if(session('LoggedUser'))
 

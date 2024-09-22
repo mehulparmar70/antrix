@@ -16,7 +16,7 @@
 
       
       data-edit-link="{{ route('industries.edit', $industriesList->id) }}" 
-      data-delete-link="{{route('industries.delete','$industriesList->id')}}"
+      data-delete-link="{{ route('industries.delete', $industriesList->id) }}"
       data-index-link="{{route('industries.index')}}"
 
     @endif></div>

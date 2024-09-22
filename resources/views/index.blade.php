@@ -56,14 +56,16 @@
 
       $('.responsive-tabs').responsiveTabs();*/
     </script>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
 
 <section class="banner">
   <div class="banner_slick_123">
     <div class="banner_123">
+  
       @foreach ($sliders as $key => $slider)
+     
       <div class="banner_slick_item slick-slide">
         <img src="{{ url('/') }}/images/{{ $slider->image }}" alt="{{$slider->description}}" />
         <div class="container">
@@ -77,7 +79,8 @@
                 data-create-link="{{ route('slider.index') }}" 
                 data-edit-link="{{ route('slider.edit', $slider->id) }}" 
 
-                data-index-link="{{ route('slider.index') }}">
+                data-index-link="{{ route('slider.index') }}"
+                data-delete-link="{{ route('slider.delete',$slider->id) }}">
             </div>
 
           @endif

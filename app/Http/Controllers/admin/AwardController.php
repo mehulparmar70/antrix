@@ -189,14 +189,15 @@ class AwardController extends Controller
         $save = $award->save();
     
         if ($save) {
-            if ($request->close == "1") {
-                session()->put('success', 'Award Updated...');
-                return redirect(route('admin.close'));
-            } else {
-                return back()->with('success', 'Award Updated...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Award Updated...'
+            ]);
         } else {
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     
@@ -207,13 +208,21 @@ class AwardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Award $award)
+    public function destroy($id)
     {
+        $award = Award::find((int)$id);
+        deleteBulkImage($award->image);
         $delete = $award->delete();
         if($delete){
-            return back()->with('success', 'Award Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Award Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
 
     }
