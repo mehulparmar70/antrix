@@ -108,7 +108,7 @@ $(function () {
             <div class="">
               
               <div class="  p-0">                
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="industries"  id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>

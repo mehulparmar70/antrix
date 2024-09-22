@@ -105,7 +105,7 @@ $(function () {
             <div class="card">
               
               <div class="card-body  p-0">                
-                <table  id="example1" class="table table-bordered table-striped" >
+                <table data-table="newsletters" id="example1" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>

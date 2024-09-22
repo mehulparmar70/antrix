@@ -493,6 +493,7 @@ function popupmenu(link, type, location, left, width, height) {
         .then(data => {
             modalContainer.innerHTML = `<div >${data}</div>`;
             modalContainer.querySelector('.cmsModal').style.display = 'block';
+            initializeDynamicContent();
         })
         .catch(error => {
             console.error('Error loading content:', error);
@@ -507,6 +508,7 @@ function popupmenu(link, type, location, left, width, height) {
 
                 // Initialize the CKEditor after modal content is loaded
                 initializeEditor();
+                initializeDynamicContent();
             })
             .catch(error => console.error('Error loading content:', error));
 }
@@ -1296,3 +1298,119 @@ function addnewsletter()
 }
 
 
+function initializeDynamicContent() {
+  // Check if jQuery is loaded
+  if (typeof jQuery == 'undefined') {
+      // Load jQuery dynamically
+      var script = document.createElement('script');
+      script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+      document.head.appendChild(script);
+
+      // Wait for jQuery to load, then load jQuery UI
+      script.onload = function() {
+          loadJQueryUI();
+      };
+  } else {
+      // jQuery is already loaded, directly load jQuery UI
+      loadJQueryUI();
+  }
+
+  function loadJQueryUI() {
+      // Check if jQuery UI is loaded
+      if (typeof jQuery.ui == 'undefined') {
+          // Load jQuery UI dynamically
+          var scriptUI = document.createElement('script');
+          scriptUI.src = "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js";
+          document.head.appendChild(scriptUI);
+
+          // Optional: Load jQuery UI CSS for styling
+          var link = document.createElement('link');
+          link.rel = "stylesheet";
+          link.href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
+          document.head.appendChild(link);
+
+          // Wait for jQuery UI to load, then initialize sortable
+          scriptUI.onload = function() {
+              initializeSortable();
+          };
+      } else {
+          // jQuery UI is already loaded, directly initialize sortable
+          initializeSortable();
+      }
+  }
+
+  function initializeSortable() {
+      $(document).ready(function() {
+          // Apply sortable to the elements after jQuery UI is loaded
+          $(".row_position").sortable({
+              stop: function() {
+                  var selectedData = [];
+                  $('.row_position>tr').each(function() {
+                      selectedData.push($(this).attr("id"));
+                  });
+                  console.log(selectedData);
+                  var tableType = $(this).closest('table').data('table');
+                console.log("Table Type:", tableType);
+                  updateOrder(selectedData,tableType);
+
+                  toastr.success('Slider Order Updated...');
+              }
+          });
+      });
+  }
+}
+
+
+
+
+  // Function to update the slider order
+  function updateOrder(data,table) {
+    let url;
+    if (table === 'slider') {
+        url = base_url + "/api/admin/slider/update-status";
+    } else if (table === 'industries' || table === 'casestudies' || table === 'categories'
+      || table === 'clients' || table === 'awards' || table === 'blogs'
+      || table === 'case_studies' || table === 'testimonials' || table === 'newsletters'
+      || table === 'videos' || table === 'partners' 
+    ) {
+      url = base_url + "/api/admin/item/update-item-priority"; // Adjust this based on your actual route
+  }
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            position: data,
+            table: table, // Send the table name
+            _token: "{{ csrf_token() }}" // Ensure CSRF token is sent with the request
+        },
+        success: function(result) {
+            iziToast.success({
+                title: 'Success',
+                message: 'Order Updated..',
+                position: 'topRight'
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error updating order:', error);
+        }
+    });
+  }
+
+  // Function to update the slider status
+  window.updateStatus = function(id) {
+      $.ajax({
+          url:  base_url+"{{ route('status.update') }}",
+          type: 'POST',
+          data: {
+              id: id,
+              table: 'slider',
+              _token: "{{ csrf_token() }}" // CSRF token
+          },
+          success: function(result) {
+              location.reload(); // Reload page after status update
+          },
+          error: function(xhr, status, error) {
+              console.error('Error updating status:', error);
+          }
+      });
+  };

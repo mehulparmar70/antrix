@@ -4,6 +4,7 @@
    
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
    
     <script type="importmap">
             {

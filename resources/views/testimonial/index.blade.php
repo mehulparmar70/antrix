@@ -132,7 +132,7 @@ $(function () {
             <div class="">
               
               <div class=" p-0">                
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="testimonials" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                      

@@ -123,7 +123,7 @@ $(function () {
 
 
               <div class=" table-responsive p-0">
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="blogs" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>

@@ -165,7 +165,7 @@ function updateOrder(data) {
 
                 <input type="hidden" name="type" value="main_category">
                 
-                <table  id="clienttable" class="table table-bordered table-striped">
+                <table data-table="categories" id="clienttable" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       

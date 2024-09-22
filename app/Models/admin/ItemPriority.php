@@ -12,17 +12,17 @@ class ItemPriority extends Model
     // function updateSlider($data = array()){ 
 
     function updateItemPriorityModel($data = array(), $table){
-        // dd($data);
+        
         switch ($table) {
-            case 'testimonial':
+            case 'testimonials':
                 $table = 'testimonials';
                 break;
 
-            case 'blog':
+            case 'blogs':
                 $table = 'blogs';
                 break;
 
-                case 'video':
+                case 'videos':
                     $table = 'videos';
                     break;
                 case 'top_inflatable':
@@ -38,7 +38,7 @@ class ItemPriority extends Model
                 $table = 'criteria_metas';
             break;
                     
-            case 'client':
+            case 'clients':
                 $table = 'clients';
             break;
                     
@@ -56,6 +56,21 @@ class ItemPriority extends Model
 
             case 'media':
                 $table = 'media';
+            break;
+            case 'industries':
+                $table = 'industries';
+            break;
+            case 'awards':
+                $table = 'awards';
+            break;
+            case 'case_studies':
+                $table = 'case_studies';
+            break;
+            case 'newsletters':
+                $table = 'newsletters';
+            break;
+            case 'partners':
+                $table = 'partners';
             break;
                         
             default:               

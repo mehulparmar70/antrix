@@ -148,7 +148,7 @@ function updateOrder(data) {
                       <h3 class="card-title">Client Lists</h3>
                 </div>
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap" id="clienttable">
+                  <table data-table="clients" class="table table-hover text-nowrap" id="clienttable">
                     <thead>
                       <tr>
                  
