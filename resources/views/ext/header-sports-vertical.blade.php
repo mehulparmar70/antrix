@@ -7,6 +7,23 @@
 <body>
   
 <style>
+  .mac-style-toast {
+    background-color: #f5f5f7 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+}
+
+.mac-style-toast .iziToast-title {
+    font-weight: bold;
+    color: #333 !important;
+}
+
+.mac-style-toast .iziToast-message {
+    font-size: 14px;
+    color: #555 !important;
+}
+
 /* Modal Background */
 .modal {
     display: none; /* Hidden by default */
