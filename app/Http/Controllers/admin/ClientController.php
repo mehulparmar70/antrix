@@ -126,14 +126,15 @@ class ClientController extends Controller
                     $save = $media->save();
                 }
             }
-            if ($request->close == "1") {
-                session()->put('success','Client Added...');
-                return(redirect(route('admin.close')));
-            } else {
-                return back()->with('success', 'Client Added...');
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Created...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 
@@ -266,10 +267,10 @@ class ClientController extends Controller
                 'message' => 'Client Deleted...'
             ]);
         }else{
-            return response()->json([
-                'success' => false,
-                'message' => 'Something went wrong, try again later...'
-            ]);
+           return response()->json([
+            'success' => false,
+            'message' => 'Something went wrong, try again later...'
+        ]);
         }
 
     }

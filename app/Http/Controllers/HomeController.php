@@ -223,22 +223,19 @@ class HomeController extends Controller
         return view('product-internal', $data);
     }
     
-    public function product_internal(Request $slug)
+    public function product_internal($slug)
     {
-        
         //Session::forget('homePageCatId');
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->whereNotIn('parent_id', [0])->first();
-
-        // dd($current_cat);  
 
         if(isset($current_cat)){
             // dd($current_cat);
             if(!isset($current_cat)){
-                // return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('custom-industrial-inflatable-products'));
             }
             
             if($current_cat->status == 0){
-                // return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('custom-industrial-inflatable-products'));
             }
             $mainCategory = Category::find($current_cat->parent_id);
             $subCategory = Category::where(['parent_id' => $mainCategory->id, 'status' => 1])->get();
@@ -288,7 +285,7 @@ class HomeController extends Controller
                 'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
             ];
-            return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('sardar.product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
         
@@ -296,17 +293,10 @@ class HomeController extends Controller
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->first();
         // dd($current_cat);
         if(!isset($current_cat)){
-            if($current_cat==false)
-            {
-                return redirect(url('/'));
-            }
-            else{
-                return redirect(url('custom-industrial-inflatable-products'));
-            }
-            
+            return redirect(url('custom-industrial-inflatable-products'));
         }
         if($current_cat->status == 0){
-            return redirect(url(''));
+            return redirect(url('custom-industrial-inflatable-products'));
         }
 
         $criteriaData = Criteria::where('slug', $slug)->first();
@@ -381,6 +371,7 @@ class HomeController extends Controller
         return response()->view('product-internal', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
+
 
     public function product_details($slug)
     {
