@@ -196,3 +196,13 @@ Route::get('/settings/social-media', [SettingController::class, 'socialMediaInde
 Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
 });
 
+Route::get('/{slug}', [HomeController::class, 'product_internal']);
+
+Route::get('product/{slug}', [HomeController::class, 'product_internal']);
+Route::get('/product/{category}', [HomeController::class, 'category_product']);
+Route::get('/{category}/{slug}', [HomeController::class, 'category_product']);
+Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category_subcategory_product']);
+Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
+
+Route::get('/search', [HomeController::class, 'search_criteria']);
+
