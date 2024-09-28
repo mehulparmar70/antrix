@@ -85,7 +85,7 @@ public function topInflatableStore(Request $request)
         $data = [
             'topInflatables' =>  TopInflatables::orderBy('id', 'DESC')->where('status',1)->get(),
             'homeAbout' =>  Pages::where('type', 'home_page')->first(),
-            'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
+            'homeUrls1' =>  UrlList::where('name', 'Home')->get(),
             'clients' =>  Client::where('status', 1)->get(),
             'type' => $type,
             'pageData' =>  Pages::where('type', 'home_page')->first(),

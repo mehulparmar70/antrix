@@ -18,7 +18,6 @@ $(".page a").addClass( "active-menu");
 
 </script>
 
-
 <div class="content-wrapper">
     
 
@@ -59,7 +58,7 @@ $(".page a").addClass( "active-menu");
                         @include('widget.seo-content')
 
                         <label for="url">Page Url</label>
-                        <input type="url" class="form-control" name="url" placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
+                        <input type="url" class="form-control" name="url" placeholder="Page Url" value="{{$homeUrls1[0]['url']}}">
                         <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
                       </div>
                       <div  class="col-sm-6">
