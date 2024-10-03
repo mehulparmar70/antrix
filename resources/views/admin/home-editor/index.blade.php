@@ -19,41 +19,40 @@ $(".page a").addClass( "active-menu");
 </script>
 
 
-<div class="content-wrapper">
+<div class="cmsModal-row">
     
 
    
       <div class="container-fluid">
 
-        <div >
-          <div class="">
-            <div class="form-horizontal row">
+       
             
-            <div class="col-md-12 ">
-              <div class="  ">
-             
+          
+          
                 <form  id="ajaxForm"  method="post" enctype="multipart/form-data" 
                 class="form-horizontal" 
                 action="{{route('admin.page-editor.store')}}">
                   @csrf
 
                   <input type="hidden" name="type" value="home_page">             
-                  <div class="card-body p-2">
-                    <div class="form-group row">
+                  <div class="cmsModal-row">
+                    <div class="cmsModal-column">
                       
-                      <div class="col-sm-8 mt-4 mb-4">
-                        <label  class="" for="meta_description">Page Short Description</label>
-                        <textarea type="text" class="form-control" name="page_title" 
+                      <div class="cmsModal-formGroup">
+                        <label  class="cmsModal-formLabel" for="meta_description">Page Short Description</label>
+                        <textarea type="text" class="cmsModal-formControl" name="page_title" 
                           placeholder="Page Short Description">@if(old('page_title')){{old('page_title')}}@else{{$homeAbout->page_title}}@endif</textarea>
                         <span class="text-danger"></span>
                       </div>
-                      
-                      <div class="col-sm-12">
-                          <label class="text-dark" for="search_index">Home Page Description</label>
-                          <textarea id="editor" name="description" placeholder="Product Descriptions">
+                    </div>
+                    <div class="cmsModal-column">
+                      <div class="cmsModal-formGroup">
+                          <label class="cmsModal-formLabel" for="search_index">Home Page Description</label>
+                          <textarea class="cmsModal-formControl" id="editor" name="description" placeholder="Product Descriptions">
                           {{$homeAbout->description}}</textarea>
                       </div> 
-                    </div>
+                    </div> 
+                   
                     <div class="form-group row col-sm-12">
                       <div  class="col-sm-6">
                         @include('widget.seo-content')
@@ -78,73 +77,7 @@ $(".page a").addClass( "active-menu");
                     @endif
                   </div>
                 </form>
-            </div>
             
-            <!-- <div class="col-md-6 card card-theme">
-                <div class="card card-theme">
-                    <div class="card-header">
-                        <h3 class="card-title">Click & Explore</h3>
-                    </div>
-                
-              
-                </div>
-
-                
-                <div class="col-md-6 card card-theme">
-                  <div class="card card-dark">
-                    <div class="card-header">
-                        <h3 class="card-title">ALL INFLATABLES List</h3>
-                    </div>
-                
-                    <div class="card">
-                    <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Url</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($homeUrls1 as $homeUrl1)
-                            <tr>
-                                <td>{{$homeUrl1->title}}</td>
-                                <td  style="max-width: 270px;">{{$homeUrl1->url}}</td>
-                                <td>@if($homeUrl1->status == 0)<p class="badge badge-danger">Inactive</p>@else<p class="badge badge-success">Active</p>@endif</td>
-                                
-                                <td>
-                                
-                                <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete homeUrl1"  data-id="{{ $homeUrl1->id}}" 
-                                    data-url="{ $homeUrl1->url}}" data-title="{{ $homeUrl1->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                                </button>
-                            
-                            
-                            </td>
-
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Title</th>
-                            <th>Url</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </tfoot>
-                        </table>
-                        
-                    </div>
-                    </div>
-
-
-                </div>
-              </div>
-
-             </div> -->
 
 
       </div>
