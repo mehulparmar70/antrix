@@ -559,8 +559,10 @@ else
   fetch(link)
   .then(response => response.text())
             .then(data => {
-                document.getElementById('modalBodyContent').innerHTML = data;
-                document.getElementById('ajaxModal').style.display = 'block';
+              document.getElementById('iframpopup')
+        .contentDocument.write(data);
+                // document.getElementById('modalBodyContent').innerHTML = data;
+                document.getElementById('iframpopup').style.display = 'block';
 
                 // Initialize the CKEditor after modal content is loaded
                 initializeEditor();

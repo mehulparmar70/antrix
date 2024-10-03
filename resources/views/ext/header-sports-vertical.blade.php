@@ -715,6 +715,27 @@ $(document).ready(function () {
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
     </div>
+    <style>
+      #iframpopup
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  border-radius: 8px;
+  border: 0 none;
+}
+    </style>
+    <iframe id="iframpopup" style="position: fixed;
+    z-index: 99;width: 1300px;
+    height: 500px;">
+
+    </iframe>
     <!-- iziToast JS -->
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 </body>

@@ -8,16 +8,8 @@
   border: 1px solid #767779;
   color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 8px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  outline: 0;
+
+ 
 }
 .cmsModal * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -43,7 +35,7 @@
 }
 .cmsModal .cmsModal-row .cmsModal-column {
   flex: 1 0 0%;
-  ax-width: 100%;
+  max-width: 100%;
   padding-right: calc(var(--gutter-x) * 0.5);
   padding-left: calc(var(--gutter-x) * 0.5);
 }
