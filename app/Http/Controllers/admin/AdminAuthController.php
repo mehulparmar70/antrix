@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\admin\admin;
+use App\Models\admin\Admin;
 use Illuminate\Support\Facades\Hash;
 
 
