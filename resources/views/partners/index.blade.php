@@ -99,8 +99,8 @@ $(function () {
 
         
         <div class="col-sm-12">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><button onclick="popupmenu(`{{route('partners.create')}}`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+          <ol class=" float-sm-right">
+          <ol class=" float-sm-right"><button onclick="popupmenu(`{{route('partners.create')}}`,'editmodal','','','','')" class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
                   &nbsp;&nbsp;Add New Partner </button>
         
           </ol>
@@ -118,11 +118,11 @@ $(function () {
       
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="">
 
 
-              <div class="card-body table-responsive p-0">
-                <table  id="example1" class="table table-bordered table-striped" >
+              <div class=" table-responsive p-0">
+                <table  id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -145,7 +145,7 @@ $(function () {
                           @else
 
                         <td><img class="rounded"    width="100"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
+                          src="{{asset('/')}}img/no-item.jpeg"></td>
                           @endif
 
                         <td>{{$blog->title}}</td>

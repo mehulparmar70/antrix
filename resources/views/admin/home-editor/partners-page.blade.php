@@ -1,110 +1,62 @@
-@extends('layout.admin-index')
-@section('title','Blog Page Editor')
+<form id="ajaxForm" method="post" enctype="multipart/form-data" class="form-horizontal" action="{{route('admin.page-editor.store')}}">
+  <div class="cmsModal-formGroup">
+  @csrf
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
+  <div class=" p-2">
 
-@section('custom-js')
-<script>
-
-
-$(".page").addClass( "menu-is-opening menu-open");
-$(".page a").addClass( "active-menu");
-
-</script>
-@endsection
-
-@section('content')
-@include('adm.widget.table-search-draggable')
-
-<div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-
-      <div class="row">
-      <div class="col-sm-6">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-              <li class="breadcrumb-item active">Partenrs Page Manage</li>
-            </ol>
-          </div>
-
-        
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-              <a class="btn btn-dark btn-sm ml-1" onclick="goBack()"> ❮ Back</a>
-          </ol>
-        </div>
-        <div class="mb-2">
-          <div class="col-sm-12">
-            <h3 class="mb-0">Partenrs Page Manage</h3>
-          </div>
-        </div>
-    </div>
-
+    <div class="form-group row">
+      <div class="col-sm-4 mt-4 mb-4">
+        <label class="cmsModal-formLabel"for="meta_description">Page Short Description</label>
+        <textarea type="text" class="cmsModal-formControl" name="short_description"
+          placeholder="Page Short Description">@if(old('subtitle')){{old('subtitle')}}@else{{$pageData->subtitle}}@endif</textarea>
+        <span class="text-danger"></span>
       </div>
-    </section>
+      <div class="col-sm-4 mt-4 mb-4">
+        <label class="cmsModal-formLabel"  label for="custom_url">Add Custom URL</label>
 
-    <section class="content">
-      <div class="container-fluid">
-
-        <div class="card card-default">
-          <div class="">
-            <div class="form-horizontal row">
-            
-            <div class="col-md-12 card card-theme">
-              <div class="card">
-                <form method="post" enctype="multipart/form-data"  class="form-horizontal" 
-                action="{{route('admin.page-editor.store')}}">
-                  @csrf
-
-                  <div class="card-body p-2">
-
-                    <div class="form-group row">
-                      <div class="col-sm-8 mt-4 mb-4">
-                        <label  class="" for="meta_description">Page Short Description</label>
-                        <textarea type="text" class="form-control" name="page_title" 
-                          placeholder="Page Short Description">@if(old('page_title')){{old('page_title')}}@else{{$pageData->page_title}}@endif</textarea>
-                        <span class="text-danger"></span>
-                      </div>
-                      <div class="col-sm-12">
-                          <textarea id="editor" name="description" placeholder="Blog Descriptions">
+        <input type="text" class="cmsModal-formControl" name="page_url" 
+          placeholder="Custom Url" value="<?= $url_list['url']?>">
+          <input type="hidden" class="cmsModal-formControl" name="page_name" 
+          placeholder="Custom Url" value="<?= $url_list['name']?>">
+        <span class="text-danger"></span>
+      </div>
+      <div class="col-sm-4 mt-4 mb-4">
+        <div class="cmsModal-formGroup">
+          <label class="cmsModal-formLabel" for="name">Display Main Menu</label>
+          <input type="text" name="name" class="cmsModal-formControl"
+          value="{{ old('name', $url_list->name ?? '') }}">
+      </div>>
+      </div>
+      <div class="col-sm-12">
+        <textarea id="editor" name="description" placeholder="Blog Descriptions">
                           {{$pageData->description}}</textarea>
-                          <span class="text-danger">@error('description') {{$message}} @enderror</span>
-                        </div>
-                      
-                    <input type="hidden" name="type" value="partenr_page">               
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-12 row">
-                        <div  class="col-sm-6">
-                          @include('widget.seo-content')
-                          <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
-                        </div>
-                        <div  class="col-sm-6">
-                          @include('widget.seo-content-2')
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card-footer text-center">
-                    @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save & Close</button>
-                    @else
-                      <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Data</button>
-                    @endif
-                  </div>
-                </form>
-            </div>
-
-        </div>
-
-
+        <span class="text-danger">@error('description') {{$message}} @enderror</span>
       </div>
-    </section>
+
+      <input type="hidden" name="type" value="partenr_page">
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12 row">
+        <div class="col-sm-6">
+          @include('widget.seo-content')
+          <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
+        </div>
+        <div class="col-sm-6">
+          @include('widget.seo-content-2')
+        </div>
+      </div>
+    </div>
   </div>
 
-  @endsection
+  <div class="card-footer text-center">
+    @if(request()->get('onscreenCms') == 'true')
+    <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o"
+        aria-hidden="true"></i>
+      Save & Close</button>
+    @else
+    <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save
+      Data</button>
+    @endif
+  </div>
+  </div>
+</form>

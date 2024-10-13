@@ -127,13 +127,21 @@ class ClientController extends Controller
                 }
             }
             if ($request->close == "1") {
-                session()->put('success','Client Added...');
-                return(redirect(route('admin.close')));
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Client Updated...'
+                ]);
             } else {
-                return back()->with('success', 'Client Added...');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Client Updated...'
+                ]);
             }
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

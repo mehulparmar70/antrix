@@ -277,7 +277,15 @@
 					>
 					<a data-fancybox href="{{ $match[1] }}">
 						<img src="{{url('/')}}/images/video2.png" />
-						<div class="onscreen_video_popup_block"></div>
+						<div class="onscreen_video_popup_block" 
+							@if(session('LoggedUser'))
+								data-create-link="{{ route('video.create') }}"
+								data-edit-link="{{ route('video.edit', $video->id) }}" 
+								data-delete-link="{{ route('video.delete', $video->id) }}"
+								data-index-link="{{ route('video.index') }}"
+							@endif>
+						</div>
+
 					</a>
 					</section>
 				</div>
@@ -456,7 +464,7 @@
 				</p>
 			</div>
 			<div class="footer_item">
-				<h2 class="footer_page_link_information">Company Links </h2>
+				<h2 class="footer_page_link_information" data-link="{{ route('admin.pageLink.create') }}">Company Links </h2>
 				<ul class="footerLinks" >
 				@foreach(getFooterLinks()['pageLinks'] as $pageLink)
 						<li>

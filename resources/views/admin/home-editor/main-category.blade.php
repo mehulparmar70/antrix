@@ -102,12 +102,12 @@
                     @if(request()->get('onscreenCms') == 'true')
                     <div class="col-sm-6 mt-4 text-right">
                       
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save & Close</button>
                     </div>
                     @endif
                     <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-                    <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save & Create Sub Category</button>
                     </div>
                   </div>

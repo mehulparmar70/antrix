@@ -65,12 +65,12 @@
         @if(request()->get('onscreenCms') == 'true')
         <input type="hidden" name="onscreenCms" value="true">
         <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+        <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
         Save & Exit</button>
         </div>
         @else
         <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+        <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
             Save </button>
         </div>
         @endif

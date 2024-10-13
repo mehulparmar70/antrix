@@ -7,298 +7,172 @@
 <body>
   
 <style>
-/* Modal Background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1050; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-/* Modal Content */
-.modal-content {
-    background-color: #2e2e2e; /* Dark background color */
-    color: #fff; /* White text */
-    margin: auto;
-    padding: 0;
-    border-radius: 8px; /* Rounded corners */
-    
-    width: 90%; /* Responsive width */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    position: relative; /* For absolute positioned close button */
-    border: 1px solid #444;
-}
-
-/* Header */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #444;
-    background-color: #2e2e2e;
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #fff;
-}
-
-.close {
-    font-size: 1.5rem;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background: none;
-    outline: none;
-}
-
-/* Body */
-.modal-body {
-    padding: 20px;
-    background-color: #2e2e2e;
-}
-
-/* Input Fields */
-.modal-body input[type="text"],
-.modal-body textarea,
-.modal-body select {
-    background-color: #3c3c3c; /* Slightly lighter background for input fields */
-    color: #ddd; /* Slightly lighter text color */
-    border: 1px solid #444; /* Subtle border */
-    border-radius: 5px; /* Rounded corners */
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for better UX */
-    margin-bottom: 15px; /* Space between fields */
-    font-size: 0.9rem;
-}
-
-/* File Upload Area */
-.input-group {
-    margin-top: 10px;
-}
-
-.custom-file-input {
-    display: none; /* Hide default file input */
-}
-
-.custom-file-label {
-    background-color: #444; /* Dark background */
-    color: #ccc; /* Light text */
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#imagePreview {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    gap: 10px;
-}
-
-/* Footer */
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-top: 1px solid #444;
-    background-color: #2e2e2e;
-}
-
-/* Buttons */
-.btn {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-dark {
-    background-color: #333;
-    color: #fff;
-}
-
-.btn-info {
-    background-color: #17a2b8;
-    color: #fff;
-}
-
-.btn-dark:hover, .btn-info:hover {
-    opacity: 0.9; /* Hover effect */
-}
-
-.form-check-input {
-    margin-right: 5px;
-}
-
-.form-check-label {
-    color: #fff;
-}
 #ajaxForm
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addindustires
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #awardeditajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #editcasestudies
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #createtestimonial
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addnewslettercr
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addpartners
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #editblogajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addblogajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #partnereditajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #videoajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addvideo
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #socialmediaajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #testimonaileditajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #editnewsletter
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addcasestudies
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #editindustries
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #clienteditajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #slideridajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #editCategoryidajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addCategory
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addsliderajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addseoajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #addlogoajax
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #customCodeStore
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
 #caseStudies
 {
-  background-color: #2E2E2E; /* Slightly lighter background for input fields */
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#editblogpage
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#editlinks
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
   width: 100%;
 }
@@ -395,8 +269,8 @@ $(document).ready(function () {
                         <dt data-isproducttab="1" class="product_title_main" @if(session('LoggedUser'))
                         data-link="{{route('admin.category.list')}}?type=main_category"
                         @endif> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Main Category</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sub Category</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Main Category</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sub Category</a></li>
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Photos</a></li>
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Video</a></li>
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true','','','','',''); return false;">Sub Category</a></li>  --}}
@@ -522,33 +396,52 @@ $(document).ready(function () {
             </form>
           </div>
           <div class="solution">
+          @php
+    // Fetch specific menu items by ID from the url_list table
+    $clientLink = App\Models\admin\UrlList::find(102);  // Home link
+    $awardsLink = App\Models\admin\UrlList::find(103);  // Our Products link
+    $videoLink = App\Models\admin\UrlList::find(104);  // About link
+    $newsletterLink = App\Models\admin\UrlList::find(105);  // Case Studies link
+    $partnersLink = App\Models\admin\UrlList::find(106);  // Testimonials link
+
+@endphp
             <h2>Innovative Industrial Inflatable Solutions</h2>
             <div class="solution-blk main_div">
               <ul class="ulclass">
                 <li class="our_clients" @if(session('LoggedUser'))
             data-link="{{route('admin.client-page.editor')}}"
-          @endif><a href="{{ url('client') }}" class="nav-item">clients</a></li>
+          @endif><a href="{{ url('client') }}" class="nav-item">{{ $clientLink->name }}</a></li>
                 <li class="menu_crud"
                 @if(session('LoggedUser'))
                     data-link="{{route('admin.awards-page.editor')}}"
-                @endif><a href="{{ url('awards') }}" class="nav-item">awards</a></li>
+                @endif><a href="{{ url('awards') }}" class="nav-item">{{ $awardsLink->name }}</a></li>
                 <li class="menu_crud"
                 @if(session('LoggedUser'))
                     data-link="{{route('admin.video-page.editor')}}"
-                @endif><div ></div><a href="{{ url('videos') }}" class="nav-item">videos</a></li>
+                @endif><div ></div><a href="{{ url('videos') }}" class="nav-item">{{ $videoLink->name }}</a></li>
                 <li class="menu_crud"
                 @if(session('LoggedUser'))
                     data-link="{{route('admin.newsletter-page.editor')}}"
-                @endif><a href="{{ url('news-letters') }}" class="nav-item newsletter">newsletters</a></li>
+                @endif><a href="{{ url('news-letters') }}" class="nav-item newsletter">{{ $newsletterLink->name }}</a></li>
                 <li class="menu_crud"
                 @if(session('LoggedUser'))
                     data-link="{{route('admin.partners-page.editor')}}"
-                @endif><a href="{{ url('partenrs') }}" class="nav-item partenrs">Partners</a></li>
+                @endif><a href="{{ url('partenrs') }}" class="nav-item partenrs">{{ $partnersLink->name }}</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      @php
+    // Fetch specific menu items by ID from the url_list table
+    $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+    $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+    $aboutLink = App\Models\admin\UrlList::find(97);  // About link
+    $caseStudiesLink = App\Models\admin\UrlList::find(100);  // Case Studies link
+    $testimonialsLink = App\Models\admin\UrlList::find(98);  // Testimonials link
+    $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
+    $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+@endphp
       <div class="header_nav">
         <div class="container">
           <div class="header_menu">
@@ -556,76 +449,112 @@ $(document).ready(function () {
               <img src="{{url('/')}}/images/menu1.png"  alt="menu" />MENU
             </p>
             <div class="menu_item_img">
-              <a href="{{url('')}}" class="item nav-item" @if(session('LoggedUser'))
-                data-link="{{route('admin.home.editor')}}"
-            @endif><i class="fa fa-home home_menu_active" aria-hidden="true"><div class="border"></div><span class="tooltiptext">Home</span></i></a>
-              <a href="{{url('custom-industrial-inflatable-products')}}" class="nav-item"><i class="fa fa-product-hunt product_menu_active" aria-hidden="true"><div class="border"></div> <span class="tooltiptext">Our Products </span></i > </a>
-              <a href="{{url('about')}}" class="nav-item"><i class="fa fa-info-circle" aria-hidden="true"><div class="border"></div> <span class="tooltiptext">About</span></i ></a> 
-              <a href="{{url('case-studies')}}" class="nav-item">
-                <i class="fa fa-book case_studies_menu_active"  aria-hidden="true"><div class="border"></div><span class="tooltiptext">Case Studies</span></i>
+              <a href="{{ $homeLink->url }}" class="item nav-item home_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.home.editor')}}"
+              @endif>
+                  <i class="fa fa-home home_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $homeLink->name }}</span>
+                  </i>
               </a>
-              <a href="{{url('testimonials')}}" class="nav-item">
-              <i class="fa fa-quote-left testimonials_menu_active" 
-                ><div class="border"></div>
-                <span class="tooltiptext">Testimonials</span></i
-              >
+          
+              <a href="{{ $productLink->url }}" class="nav-item product_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.product-page.editor')}}"
+              @endif>
+                  <i class="fa fa-product-hunt product_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $productLink->name }}</span>
+                  </i>
               </a>
-              <a href="{{url('updates')}}" class="nav-item">
-              <i class="fa fa-refresh updates_menu_active" aria-hidden="true"
-                ><div class="border"></div>
-                <span class="tooltiptext">Updates</span></i
-              >
+          
+              <a href="{{ $aboutLink->url }}" class="nav-item about_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.about-page.editor')}}"
+              @endif>
+                  <i class="fa fa-info-circle about_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $aboutLink->name }}</span>
+                  </i>
               </a>
-              <a href="{{url('contact-us')}}" class="nav-item ">
-              <i class="fa fa-address-book" aria-hidden="true"
-                ><div class="border"></div>
-                <span class="tooltiptext">Contact Us</span></i
-              >
+          
+              <a href="{{ $caseStudiesLink->url }}" class="nav-item case_studies_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.casestudies-page.editor')}}"
+              @endif>
+                  <i class="fa fa-book case_studies_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $caseStudiesLink->name }}</span>
+                  </i>
               </a>
-              <i class="fa fa-envelope-o "
-                ><div class="border"></div>
-                <span class="tooltiptext">Discuss with us</span></i
-              >
+          
+              <a href="{{ $testimonialsLink->url }}" class="nav-item testimonials_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.testimonial-page.editor')}}"
+              @endif>
+                  <i class="fa fa-quote-left testimonials_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $testimonialsLink->name }}</span>
+                  </i>
+              </a>
+          
+              <a href="{{ $updatesLink->url }}" class="nav-item updates_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.blog-page.editor')}}"
+              @endif>
+                  <i class="fa fa-refresh updates_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $updatesLink->name }}</span>
+                  </i>
+              </a>
+          
+              <a href="{{ $contactLink->url }}" class="nav-item contact_menu" @if(session('LoggedUser'))
+                  data-link="{{route('admin.contact-page.editor')}}"
+              @endif>
+                  <i class="fa fa-address-book contact_menu_active" aria-hidden="true">
+                      <div class="border"></div>
+                      <span class="tooltiptext">{{ $contactLink->name }}</span>
+                  </i>
+              </a>
+          
+              <i class="fa fa-envelope-o ">
+                  <div class="border"></div>
+                  <span class="tooltiptext">Discuss with us</span>
+              </i>
+          
               @include('widget.contact-form1')
-              <img
-                src="{{url('/')}}/images/graylogo.png"
-                alt="graylogo"
-                class="graylogo"
-              />
-            </div>
+              <img src="{{url('/')}}/images/graylogo.png" alt="graylogo" class="graylogo" />
           </div>
+          
+          </div>
+
           <div class="navbar main_div">
             <ul class="ulclass">
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.home.editor')}}"
-                @endif><a href="{{url('')}}" class="home nav-item">HOME</a>
+                @endif><a href="{{url('')}}" class="home nav-item">{{ $homeLink->name }}</a>
             </li>
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.product-page.editor')}}"
                 @endif>
-                <a href="{{url('custom-industrial-inflatable-products')}}" class="our_product_menu nav-item">OUR PRODUCTS </a>
+                <a href="{{url('custom-industrial-inflatable-products')}}" class="our_product_menu nav-item">{{ $productLink->name }}</a>
               </li>
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.about-page.editor')}}"
                 @endif>
-                <a class="item nav-item" href="{{url('about')}}">ABOUT</a>
+                <a class="item nav-item" href="{{url('about')}}">{{ $aboutLink->name }}</a>
               </li>
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.casestudies-page.editor')}}"
-                @endif><a href="{{url('case-studies')}}" class="nav-item case_studies_menu">CASE STUDIES</a></li>
+                @endif><a href="{{url('case-studies')}}" class="nav-item case_studies_menu">{{ $caseStudiesLink->name }}</a></li>
               <li class="menu_crud nav-item" @if(session('LoggedUser'))
                     data-link="{{route('admin.testimonial-page.editor')}}"
                 @endif>
                 <a href="{{url('testimonials')}}" class="item nav-item testimonials_menu"
-                >TESTIMONIALS</a>
+                >{{ $testimonialsLink->name }}</a>
               </li>
               <li class="menu_crud" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
-                @endif><a class="updates_menu nav-item" href="{{url('updates')}}">Updates</a></li>
+                @endif><a class="updates_menu nav-item" href="{{url('updates')}}">{{ $updatesLink->name }}</a></li>
               <li class="menu_crud " @if(session('LoggedUser'))
                     data-link="{{route('admin.contact-page.editor')}}"
                 @endif>
-                <a href="{{url('contact-us')}}" class="item nav-item">CONTACT US</a></li>
+                <a href="{{url('contact-us')}}" class="item nav-item">{{ $contactLink->name }}</a></li>
             </ul>
           </div>
           <!-- <div class="btn_form">

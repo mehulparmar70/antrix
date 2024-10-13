@@ -21,6 +21,7 @@ use App\Http\Controllers\HomeEditorController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
 use App\Http\Controllers\admin\PhotoManageController;
+use App\Http\Controllers\admin\BlockControlController;
 
 $adminRewrite = 'powerup';
 
@@ -102,6 +103,7 @@ Route::get('/photo',[PhotoManageController::class, 'index'])->name('admin.photo.
 Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
 Route::get('videos/create', [VideoController::class, 'create'])->name('video.create');
 Route::post('videos/store', [VideoController::class, 'store'])->name('video.store');
+Route::post('videos/destroy', [VideoController::class, 'destroy'])->name('video.delete');
 Route::get('videos', [VideoController::class, 'index'])->name('video.index');
 Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
 Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
@@ -181,5 +183,17 @@ Route::get('/industries-edit/{id}', [IndustriesController::class,'edit'])->name(
 
 Route::get('/settings/social-media', [SettingController::class, 'socialMediaIndex'])->name('setting.social-media');
 Route::post('/settings/social-media', [SettingController::class, 'socialMediaStore'])->name('setting.social-media.store');
+Route::get('/block-control/page-links',[BlockControlController::class, 'pageLinkCreate'])->name('admin.pageLink.create');
+
+Route::post('/block-control/page-links',[BlockControlController::class, 'pageLinkStore'])->name('admin.pageLink.store');
+
+Route::post('/block-control/page-links/update/{id}',[BlockControlController::class, 'pageLinkUpdate'])->name('admin.pageLink.update');
+
+//common links form categories, products, Testimonials, Blog, etc
+
+Route::get('/block-control/common-links/{pageType}',[BlockControlController::class, 'commonLinkCreate'])->name('admin.commonLink.create');
+Route::post('/block-control/common-links',[BlockControlController::class, 'commonLinkStore'])->name('admin.commonLink.store');
+Route::post('/block-control/common-links/update',[BlockControlController::class, 'commonLinkUpdate'])->name('admin.commonLink.update');
+Route::delete('/block-control/delete',[BlockControlController::class, 'deleteBlockControl'])->name('admin.blockControl.delete');
 });
 

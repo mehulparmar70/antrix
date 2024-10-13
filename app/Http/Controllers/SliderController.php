@@ -104,13 +104,22 @@ class SliderController extends Controller
             $slider_list->slider_no = $slider_no;
             $slider_list->save();
             if ($request->close == "1") {
-                session()->put('success','Slider Added...');
-                return(redirect(route('admin.close')));
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Slider Added...'
+                ]);
             } else {
-                return back()->with('success', 'Slider Added...');
+                
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Slider Added...'
+                    ]);
             }
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

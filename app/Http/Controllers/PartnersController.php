@@ -17,7 +17,7 @@ class PartnersController extends Controller
      */
     public function index()
     {
-        $type = 'Partners';
+        $type = 'Partners_List';
         $data = [
             'pageData' =>  Pages::where('type', 'client_page')->first(),
             'blogs' =>  Partners::orderBy('item_no', 'ASC')->get(),

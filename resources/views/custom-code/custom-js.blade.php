@@ -56,21 +56,23 @@ function updateStatus($id) {
 <div class="content-wrapper">
 
     <section class="content">
+    <div class="cmsModal-formGroup">
       <div class="container-fluid">
       
         <div class="row">
         
-        <div class="col-md-6 card card-dark">
-              <div class="card-header">
-                      <h3 class="card-title">Header Js</h3>
+        <div class="col-md-6">
+              <div class="">
+                      <h3 class="">Header Js</h3>
                 </div>
-                <form id="customCodeStore" method="post" role="form" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
+                <form id="ajaxForm" method="post" enctype="multipart/form-data"  class="form-horizontal" 
+                action="{{route('customJs.store')}}">
                   @csrf
-                  <div class="card-body p-2 pt-4">
+                  <div class=" p-2 pt-4">
                   <input type="hidden" name="type" value="header-code">
                    <div class="form-group row">
                       <div class="col-sm-12">
-                            <textarea name="description" class="form-control" rows="14" cols="14" 
+                            <textarea name="description" class="cmsModal-formControl" rows="14" cols="14" 
                             placeholder="Paste your js code here">{{$headerJs->description}}</textarea>
                             <span class="text-danger">@error('category_id') {{$message}} @enderror</span>
                           </div>
@@ -83,17 +85,18 @@ function updateStatus($id) {
 
               </div>
 
-            <div class="col-md-6 card card-dark">
-              <div class="card-header">
-                      <h3 class="card-title">Footer Js</h3>
+            <div class="col-md-6">
+              <div class="">
+                      <h3 class="">Footer Js</h3>
                 </div>
-                <form id="customCodeStore" method="post" role="form" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
+                <form id="ajaxForm" method="post" enctype="multipart/form-data"  class="form-horizontal" 
+                action="{{route('customJs.store')}}">
                   @csrf
-                  <div class="card-body p-2 pt-4">
+                  <div class=" p-2 pt-4">
                   <input type="hidden" name="type" value="footer-code">
                    <div class="form-group row">
                       <div class="col-sm-12">
-                            <textarea name="description"  class="form-control" rows="14" 
+                            <textarea name="description"  class="cmsModal-formControl" rows="14" 
                             cols="14" placeholder="Paste your js code here">{{$footerJs->description}}</textarea>
                             <span class="text-danger">@error('category_id') {{$message}} @enderror</span>
                           </div>
@@ -109,39 +112,10 @@ function updateStatus($id) {
 
 
       </div>
+      </div>
     </section>
   </div>
-  
-  <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Delete ALL INFLATABLES</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <label>Inflatable Name</label>
-            <h5 class="modal-title delete-title">Delete Top Inflatable</h5>
-            </div>
-            <div class="modal-footer justify-content-between d-block ">
-              
-            <form class="delete-form float-right" action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <input type="hidden" class="delete-id" name="id" >
-                    <input type="hidden" class="table" name="table" value="top_inflatable" >
-                    
-              <button type="button" class="btn btn-default mr-4" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger float-right" title="Delete Record"><i class="fas fa-trash-alt"></i> Delete</button>
-              
 
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
   

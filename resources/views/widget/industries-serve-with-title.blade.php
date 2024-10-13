@@ -42,7 +42,7 @@
       data-index-link="{{route('industries.index')}}"
     @endif></div>
 
-    <img src="{{url('web')}}/media/lg/{{$industriesList->image}}" />
+    <img src="{{url('/')}}/images/{{$industriesList->image}}" />
 
     <h3>{{$industriesList->title}}</h3>
 

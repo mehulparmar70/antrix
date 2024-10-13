@@ -405,12 +405,12 @@ else{
                   <div class="col-sm-12 text-center row">
                     @if(request()->get('onscreenCms') == 'true')
                     <div class="col-sm-6 text-right">
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Edits & Exit</button>
                     </div>
                     @endif
                     <div class="<?php if(request()->get('onscreenCms') == 'true'){ echo 'col-sm-6  text-left'; } else { echo 'col-sm-12 text-center'; } ?>">
-                      <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Create Sub Category</button>
                     </div>
                   </div>
@@ -418,15 +418,15 @@ else{
                   @elseif($pageType == 'sub_category')
                   <div class="col-sm-12 text-center mt-4 row">
                     @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="col-sm-4 cmsBtn blue mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save & Close</button>
-                      <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="col-sm-4 cmsBtn blue mr-2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Add Photos</button>
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Create Sub Category</button>
                     @else
                       <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-                        <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Add Photos</button>
                       </div>
                     @endif

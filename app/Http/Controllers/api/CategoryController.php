@@ -173,7 +173,106 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $close = $request->close;
+        
+
+        if($request->status){
+            $status = $request->status;
+        }else{
+            $status = 0;
+        }
+
+        if(isset($request->category_parent_id)){
+            $parent_id = $request->category_parent_id;
+        }else{
+            $parent_id = 0;
+        }
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
+        $status = ($request->status == null ? 0 : 1);
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description  = $request->description;
+        $category->short_description  = $request->short_description;
+        
+        $category->image  = $image_name ; 
+        $category->image_alt = $request->image_alt;      
+        $category->image_title = $request->image_title;      
+        $category->slug  = $request->slug;
+        $category->meta_title  = $request->meta_title;
+        $category->meta_keyword  = $request->meta_keyword;
+        $category->meta_description  = $request->meta_description;
+
+        $category->search_index = $request->search_index;      
+        $category->search_follow = $request->search_follow;      
+        $category->canonical_url = $request->canonical_url;    
+
+        $category->status  = $status;
+
+        $category->parent_id  = $parent_id;
+
+        $save = $category->save();
+        if($save){
+            // return back()->with('success', 'New Category Added...');
+
+            if($request->page_type == 'main_category'){
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Category Updated...'
+                ]);
+            }
+            elseif($request->page_type == 'sub_category'){
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Category Updated...'
+                ]);
+            }
+
+            if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
+            {
+                if ($request->close == "1") {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Category Updated...'
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Category Updated...'
+                    ]);
+                }
+            }
+        
+            return response()->json([
+                'success' => true,
+                'message' => 'Category Updated...'
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
+        }
     }
 
     /**

@@ -75,21 +75,27 @@ function updateOrder(data) {
                   <div class="card-body p-2 pt-4">
                   <div class="form-group row">
                       <div class="col-sm-12">
-                        <label for="name">Client Name</label>
-                          <input class="form-control"  type="text" name="name" placeholder="Client name">
+                        <div class="cmsModal-formGroup">
+                          <label for="name">Client Name</label>
+                          <input class="cmsModal-formControl"  type="text" name="name" placeholder="Client name">
                           <span class="text-danger">@error('name') {{$message}} @enderror</span>
                           </div>
+                        </div>
+                       
                       </div>
 
                       <div class="form-group row">
                       <div class="col-sm-12">
+                        <div class="cmsModal-formGroup">
                         <label for="note">Client Note</label>
-                          <textarea class="form-control" type="text" name="note" placeholder="Alt Text / Client Note"></textarea>
+                          <textarea class="cmsModal-formControl" type="text" name="note" placeholder="Alt Text / Client Note"></textarea>
                           <span class="text-danger">@error('note') {{$message}} @enderror</span>
+                          </div>
                           </div>
                       </div>
 
                       <div class="form-group row">
+                        <div class="cmsModal-formGroup">
                         <input type="hidden" id="page_type" value="singleUploadMultipleInput">
                         <div class="col-sm-12">
                         <label for="image_alt">Logo</label><br>
@@ -100,10 +106,12 @@ function updateOrder(data) {
                         <img class="perview-img image"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
                       </div>
+                      </div>
 
 
 
                   <div class="form-check mt-4">
+                    <div class="cmsModal-formGroup">
                     <input type="checkbox" class="form-check-input  pull-right" name="status" 
                         id="exampleCheck1"
                       checked
@@ -111,16 +119,20 @@ function updateOrder(data) {
                         
                       <h5> <span class="badge badge-success">Active</span></h5>
                       </div>
+                      </div>
   
 
                     </div>
                     <div class="form-group row">
                       <div class="col-sm-12">
+                        <div class="cmsModal-formGroup">
                         <label for="name">Url</label>
-                          <input class="form-control"  type="text" name="url" placeholder="Url">
+                          <input class="cmsModal-formControl"  type="text" name="url" placeholder="Url">
                           <span class="text-danger">@error('url') {{$message}} @enderror</span>
                       </div>
+                      </div>
                       <div class="col-sm-12">
+                        <div class="cmsModal-formGroup">
                         <label for="image_alt">Image</label><br>
                         <input type="file" name="client_images" class="file_input " id="image" required
                           accept="image/png,image/jpeg,image/webp">
@@ -129,14 +141,15 @@ function updateOrder(data) {
                         <img class="perview-img client_images"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
                         <span class="text-danger">@error('client_images') {{$message}} @enderror</span>
                       </div>
+                      </div>
                     </div>
                   </div>
                   <div class="card-footer text-right">
                     @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Client & Close</button>
                     @else
-                      <button type="submit" class="btn btn-dark"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Client</button>
+                      <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Client</button>
                     @endif
                   </div>
                 </form>

@@ -1,9 +1,10 @@
+<div class="bodymodal">
 <div id="ajaxModal" 
-     class="cmsModal modal {{ $type }}" 
+     class="cmsModal {{ $type }}" 
      tabindex="-1" 
      role="dialog" 
      aria-labelledby="popupFormLabel" 
-     aria-hidden="true">
+     aria-hidden="true" >
   <div class="cmsModal-dialog " role="document">
     <div class="cmsModal-content">
       <div class="cmsModal-header">
@@ -26,8 +27,10 @@
           @includeWhen($type == 'About', 'admin.home-editor.about-page')
           @includeWhen($type == 'Product', 'admin.home-editor.product-page')
           @includeWhen($type == 'CaseStudies', 'admin.home-editor.casestudies-page')
+          @includeWhen($type == 'Blog_Page', 'admin.home-editor.blog-page')
           @includeWhen($type == 'Testimonial', 'admin.home-editor.testimonial-page')
           @includeWhen($type == 'Contact', 'admin.home-editor.contact-page')
+          @includeWhen($type == 'Video_Page', 'admin.home-editor.video-page')
           @includeWhen($type == 'Client', 'client.index')
           @includeWhen($type == 'client_edit', 'client.edit')
           @includeWhen($type == 'Award', 'award.index')
@@ -35,10 +38,11 @@
           @includeWhen($type == 'newsletter', 'newsletter.index')
           @includeWhen($type == 'newsletter_add', 'newsletter.create')
           @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
-          @includeWhen($type == 'video', 'video.index')
-          @includeWhen($type == 'Partners', 'partners.index')
+          @includeWhen($type == 'Videos', 'video.index')
+          @includeWhen($type == 'partners', 'admin.home-editor.partners-page')
           @includeWhen($type == 'category', 'category.index')
           @includeWhen($type == 'Main_Category', 'category.edit')
+          @includeWhen($type == 'sub_category', 'category.create')
           @includeWhen($type == 'homeedit', 'admin.home-editor.index')
           @includeWhen($type == 'EditClient', 'admin.home-editor.client-page')
           @includeWhen($type == 'EditAward', 'admin.home-editor.awards-page')
@@ -60,6 +64,7 @@
           
           @includeWhen($type == 'Addpartners', 'partners.create')
           @includeWhen($type == 'partners_edit', 'partners.edit')
+          @includeWhen($type == 'Partners_List', 'partners.index')
           @includeWhen($type == 'Blogs', 'blog.index')
           @includeWhen($type == 'AddBlog', 'blog.create')
           @includeWhen($type == 'BlogEdit', 'blog.edit')
@@ -77,10 +82,13 @@
         @includeWhen($type == 'video', 'video.create')
         @includeWhen($type == 'SocialMediaManagers', 'setting.seo-manage')
         @includeWhen($type == 'customJs', 'custom-code.custom-js')
+        @includeWhen($type == 'EditpageLink', 'block-control.page-link-edit')
+        @includeWhen($type == 'pageLink', 'block-control.page-link')
 
         
       </div>
      
     </div>
   </div>
+</div>
 </div>

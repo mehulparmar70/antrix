@@ -65,6 +65,17 @@ $('.logo-g, .product, .about, .testimonial, .blog, .contact,.menu_crud').each(fu
   $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
 });
 
+
+$('.home_menu, .product_menu, .about_menu, .case_studies_menu, .testimonials_menu, .updates_menu, .contact_menu').each(function(){
+  if ($(this).attr('data-link')) {
+      $(this).append(`<a href="` + $(this).attr('data-link') + `?onscreenCms=true" class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('` + $(this).attr('data-link') + `?onscreenCms=true', 'toolbar=no, location=no','left=200,width=990,height=860'); return false;">
+          <i class='fa fa-edit'></i>
+      </a>`);
+  }
+});
+
+
+
 $('.content_banners').each(function(){
   const createLink = $(this).attr('data-create-link');
   const editLink = $(this).attr('data-edit-link');
@@ -223,8 +234,15 @@ $('.social_footer').each(function(){
 });
 
 $('.footer_page_link_information').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-information' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
+  const link = $(this).attr('data-link'); // Get the data-link attribute
+  $(this).append(`
+      <a href="${link}?onscreenCms=true" class='footer-page-link-information' 
+         onclick="popupmenu('${link}?onscreenCms=true', 'toolbar=no, location=no','left=${left},width=${popupWinWidth},height=860'); return false;">
+         <i class='fa fa-edit'></i>
+      </a>
+  `);
 });
+
 
 $('.footer_page_blog_information').each(function(){
   $(this).after(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='footer-page-link-blog' onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`);
@@ -279,11 +297,31 @@ $('.onscreen_popup_crud').each(function(){
 });
 
 $('.onscreen_video_popup_block').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a data-link="{{route('admin.awards-page.editor')}}" class="adminAddItem" title="Add" href="`+$('.route-video-create').text()+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/video'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+base_url+'/powerup/page-editor/video'+''+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete Video Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
-
+  // Get the data attributes from the current element
+  const createLink = $(this).attr('data-create-link');
+  const editLink = $(this).attr('data-edit-link');
+  const deleteLink = $(this).attr('data-delete-link');
+  const indexLink = $(this).attr('data-index-link');
+  
+  // Append buttons dynamically with the proper links
+  $(this).before(`
+      <div class="onscreen-popup-title-link">
+          <a class="adminAddItem" title="Add" href="${createLink}" onclick="popupmenu('${createLink}', 'toolbar=no, location=no','left=${left},width=${popupWinWidth},height=860'); return false;">
+              <i class='fa fa-plus'></i>
+          </a>
+          <a class="adminEditItem" title="Edit" href="${editLink}?onscreenCms=true" onclick="popupmenu('${editLink}?onscreenCms=true', 'toolbar=no, location=no','left=${left},width=${popupWinWidth},height=860'); return false;">
+              <i class='fa fa-edit'></i>
+          </a>
+          <a class="adminDeleteItem" title="Delete" href="${deleteLink}" data-msg="This will delete the video permanently. Do you want to continue?">
+              <i class='fa fa-trash'></i>
+          </a>
+          <a class="onscreen-menu adminEditItem" title="List" href="${indexLink}?onscreenCms=true" onclick="popupmenu('${indexLink}?onscreenCms=true', 'toolbar=no, location=no','left=${left},width=${popupWinWidth},height=860'); return false;">
+              <i class='fa fa-list'></i>
+          </a>
+      </div>
+  `);
 });
+
 
 
 $('.onscreen_page_blog_block').each(function(){
@@ -572,6 +610,7 @@ function saveData(event) {
       success: function(response) {
           // Handle success
           console.log(response);
+
         
           console.log('Form submitted successfully.');
           $('#ajaxModal').css('display', 'none'); // Close the modal
@@ -817,6 +856,38 @@ function editindustriessubmit(id) {
 
   });
 }
+function editpagelinksubmit(id) {
+  var form = document.getElementById('editlinks'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/block-control/page-links/update/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'topRight'
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'topRight'
+            });
+        }
+    },
+
+
+  });
+}
+
+
 function editblogsubmit(id) {
   var form = document.getElementById('editblogajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

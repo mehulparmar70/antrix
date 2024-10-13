@@ -1,90 +1,71 @@
+<div class="row">
 <form id="ajaxForm" method="post" enctype="multipart/form-data" class="form-horizontal" action="{{ route('admin.page-editor.store') }}">
     @csrf
 
-    <div class="card-body p-2">
+  
         <!-- Main Category and Custom URL Section -->
-        <div class="form-group row">
+        <div class="cmsModal-row">
             <!-- <div class="col-md-4">
                 <label for="main_category">Add Main Category</label>
-                <input type="text" class="form-control" name="main_category" placeholder="Add Main Category">
+                <input type="text" class="cmsModal-formControl" name="main_category" placeholder="Add Main Category">
             </div> -->
-            <div class="col-md-6">
-                <label for="custom_url">Add Custom URL</label>
+            <div class="cmsModal-column">
+                <div class="cmsModal-formGroup">
+                     <label class="cmsModal-formLabel"  label for="custom_url">Add Custom URL</label>
 
-                        <input type="text" class="form-control" name="page_url" 
-                          placeholder="Custom Url" value="<?= $url_list[0]['url']?>">
-                          <input type="hidden" class="form-control" name="page_name" 
-                          placeholder="Custom Url" value="<?= $url_list[0]['name']?>">
+                        <input type="text" class="cmsModal-formControl" name="page_url" 
+                          placeholder="Custom Url" value="<?= $url_list['url']?>">
+                          <input type="hidden" class="cmsModal-formControl" name="page_name" 
+                          placeholder="Custom Url" value="<?= $url_list['name']?>">
                         <span class="text-danger"></span>
             </div>
-            <div class="col-md-6">
-                <label for="short_description">Short Description</label>
-                <input type="hidden" class="form-control" name="type" value="about_page">
-                <input type="text" class="form-control" name="short_description" placeholder="Short Description" value="{{ $pageData->subtitle }}">
+            
+        </div>
+        <div class="cmsModal-column">
+            <div class="cmsModal-formGroup">
+                <label class="cmsModal-formLabel" for="name">Display Main Menu</label>
+                <input type="text" name="name" class="cmsModal-formControl"
+                value="{{ old('name', $url_list->name ?? '') }}">
             </div>
         </div>
-
+        
+        <div class="cmsModal-column">
+            <div class="cmsModal-formGroup">
+            <label class="cmsModal-formLabel" for="short_description">Short Description</label>
+            <input type="hidden" class="cmsModal-formControl" name="type" value="about_page">
+            <input type="text" class="cmsModal-formControl" name="short_description" placeholder="Short Description" value="{{ $pageData->subtitle }}">
+        </div>
+        </div>
+        </div>
         <!-- Description Section -->
-        <div class="form-group">
-            <label for="description">Add Description</label>
+        <div class="cmsModal-row">
+            <div class="cmsModal-column">
+                <div class="cmsModal-formGroup">
+            <label class="cmsModal-formLabel" for="description">Add Description</label>
             <textarea id="editor" name="description" placeholder="About Descriptions" >{{ $pageData->description }}</textarea>
             <span class="text-danger">@error('description') {{ $message }} @enderror</span>
         </div>
+        </div>
+        </div>
 
         <!-- Feature Image Upload Section -->
-        <div class="form-group row">
-            <div class="col-md-6">
-                <label for="feature_image">Add Feature Image</label>
-                <div class="input-group">
-                    <input type="file" class="custom-file-input" id="feature_image" name="feature_image">
-                    <label class="custom-file-label" for="feature_image">Choose file</label>
-                </div>
-                <div id="imagePreview" class="mt-3">
-                    <!-- Image previews will be dynamically loaded here -->
-                </div>
-            </div>
-
-            <!-- SEO Content Section -->
-            <div class="col-md-6">
-                <label>Add SEO Contents</label>
-                <input type="text" class="form-control mb-2" name="seo_title" placeholder="SEO Title" value="{{ $pageData->meta_title }}">
-                <input type="text" class="form-control mb-2" name="seo_keywords" placeholder="SEO Keywords" value="{{ $pageData->meta_keyword }}">
-                <textarea class="form-control mb-2" name="seo_description" placeholder="SEO Description" >{{ $pageData->meta_description }}</textarea>
-
-                <!-- SEO Options -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="allow_search_engines">Allow Search Engines?</label>
-                        <select class="form-control" name="allow_search_engines">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="follow_links">Follow Links?</label>
-                        <select class="form-control" name="follow_links">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                </div>
-
-                <input type="text" class="form-control mt-2" name="canonical_url" placeholder="Canonical URL" value="{{ $pageData->canonical_url }}">
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" name="active" value="1" id="active" checked>
-                    <label class="form-check-label" for="active">
-                        Active
-                    </label>
-                </div>
-            </div>
+        <div class="cmsModal-row">
+            <div class="cmsModal-column">
+            @include('widget.seo-content')
+            <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
+          </div>
+          <div class="cmsModal-column">
+            @include('widget.seo-content-2')
+          </div>
         </div>
 
         <!-- Form Footer Buttons -->
         <div class="card-footer text-center">
-            <button type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save & Close</button>
-            <button  class="btn btn-dark" name="closemodal"><i class="fa fa-close" aria-hidden="true"></i> Close</button>
+            <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save & Close</button>
+            <button  class="cmsBtn blue" name="closemodal"><i class="fa fa-close" aria-hidden="true"></i> Close</button>
         </div>
-    </div>
+   
 </form>
 
 
+</div>

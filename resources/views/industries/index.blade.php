@@ -86,8 +86,8 @@ $(function () {
 
         
         <div class="col-sm-12">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><button  onclick="popupmenu(`{{url('powerup/industries-create')}}`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+          <ol class=" float-sm-right">
+          <ol class=" float-sm-right"><button  onclick="popupmenu(`{{url('powerup/industries-create')}}`,'editmodal','','','','')" class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
                   &nbsp;&nbsp;Add New Industries </button>
               
           </ol>

@@ -112,6 +112,7 @@ else{
   
 
     <section class="content">
+      <div class="cmsModal-formGroup">
       <div class="container-fluid">
         <div class="">
         
@@ -139,8 +140,8 @@ else{
 
               <div class="form-group row category-block col-sm-12" >
                     <div class="col-sm-4 pull-left sub-category "  >
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit Main Category</label>
-                      <select name="category_parent_id" class="form-control category_parent_id" required>
+                      <label  class="cmsModal-formLabel" for="search_index">Edit Main Category</label>
+                      <select name="category_parent_id" class="cmsModal-formControl category_parent_id" required>
                         <option value="">Select Main Category</option>
                           @foreach($parent_categories as $parent_category)
                               <option value="{{$parent_category->id}}"
@@ -170,16 +171,16 @@ else{
                     @endif
                     <input type="hidden" name="type" value="name">
                     <div class="@if($type == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit Name</label>
-                      <input type="text" class="form-control name-input" name="name" 
+                      <label  class="cmsModal-formLabel" for="search_index">Edit Name</label>
+                      <input type="text" class="cmsModal-formControl name-input" name="name" 
                          placeholder=" Name" 
                           value="@if(old('name')){{old('name')}}@else{{$category->name}}@endif" required>
                          
                       <span class="text-danger">@error('name') {{$message}} @enderror</span>
                     </div>
                     <div class="@if($type == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif ">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit Page Url</label>
-                      <input class="form-control" name="slug" placeholder="URL label" 
+                      <label  class="cmsModal-formLabel" for="search_index">Edit Page Url</label>
+                      <input class="cmsModal-formControl" name="slug" placeholder="URL label" 
                         
                         value="@if(old('slug')){{old('slug')}}@else{{$category->slug}}@endif"
                          required>
@@ -187,14 +188,14 @@ else{
                     </div>
 
                     <div class="@if($type == 'main_category') col-sm-4 col-md-6 @else col-sm-6 mt-2 @endif ">
-                      <label  class="text-dark" class="text-dark" for="search_index">Edit Page Short Description</label>
-                        <textarea class="form-control" name="short_description">@if(old('short_description')){{old('short_description')}}@else{{$category->short_description}}@endif</textarea>
+                      <label  class="cmsModal-formLabel" for="search_index">Edit Page Short Description</label>
+                        <textarea class="cmsModal-formControl" name="short_description">@if(old('short_description')){{old('short_description')}}@else{{$category->short_description}}@endif</textarea>
                         <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
                     </div>
                   </div>
                   <div class="form-group row col-sm-12">
                     <div class="col-sm-12">
-                        <label  class="text-dark" class="text-dark" for="search_index">Edit Description</label>
+                        <label  class="cmsModal-formLabel" for="search_index">Edit Description</label>
                         <textarea id="editor" name="description" placeholder="Category Descriptions" 
                         >@if(old('description')){{old('description')}}@else{{$category->description}}@endif</textarea>
                                   
@@ -204,44 +205,44 @@ else{
                   <div class="form-group row col-sm-12">
                     <div class="col-sm-6">
                       <div class="col-sm-12">
-                        <label  class="text-dark" class="text-dark" for="search_index">Edit Image</label>
+                        <label  class="cmsModal-formLabel" for="search_index">Edit Image</label>
                         <input type="file" name="image" class="file_input " id="image" accept="image/png,image/jpeg,image/webp" />
                         <input type="hidden" name="old_image" value="{{$category->image}}">
                       </div>  
                       <div class="col-sm-12 mt-5">
                         @if($category->image)
-                          <label  class="text-dark" class="text-dark" for="search_index">Image Uploaded</label><br>
-                          <img class="mt-2 elevation-2 perview-img" src="{{asset('/')}}/images/{{$category->image}}">
-                          <a class="remove-image" href="#" data-id="{{ $category->id }}" data-table="categories" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$category->id}}" style="display: inline; position: absolute; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          <label  class="cmsModal-formLabel" for="search_index">Image Uploaded</label><br>
+                          <img class="mt-2 elevation-2 perview-img" src="{{asset('/')}}images/{{$category->image}}">
+                          <!-- <a class="remove-image" href="#" data-id="{{ $category->id }}" data-table="categories" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$category->id}}" style="display: inline; position: absolute; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
                         @else
-                        <label  class="text-dark" class="text-dark" for="search_index"></label>
-                          <img class="elevation-2 perview-img" src="{{asset('/')}}/img/no-item.jpeg" style="height: 120px;">
+                        <label  class="cmsModal-formLabel" for="search_index"></label>
+                          <img class="elevation-2 perview-img" src="{{asset('/')}}img/no-item.jpeg" style="height: 120px;">
                         @endif
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <label class="text-dark" for="search_index">Edit SEO Details</label>
+                      <label class="cmsModal-formLabel" for="search_index">Edit SEO Details</label>
                       <div class="col-sm-12 mb-2  p-0">
-                        <input type="text" class="form-control" name="meta_title" 
+                        <input type="text" class="cmsModal-formControl" name="meta_title" 
                             placeholder="Seo Title" 
                           value="@if(old('meta_title')){{old('meta_title')}}@else{{$category->meta_title}}@endif">
                           <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
                       </div>
                       <div class="col-sm-12 mb-2  p-0">
-                        <input type="text" class="form-control" name="meta_keyword" 
+                        <input type="text" class="cmsModal-formControl" name="meta_keyword" 
                           placeholder="Seo Keywords with ," 
                           value="@if(old('meta_keyword')){{old('meta_keyword')}}@else{{$category->meta_keyword}}@endif">
                         <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
                       </div>
                       <div class="col-sm-12 mb-2  p-0">
-                        <textarea type="text" class="form-control" name="meta_description" 
+                        <textarea type="text" class="cmsModal-formControl" name="meta_description" 
                           placeholder="Seo Description">@if(old('meta_description')){{old('meta_description')}}@else{{$category->meta_description}}@endif</textarea>
                         <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
                       </div>
                       <div class="form-group row col-sm-12">
                         <div class="col-sm-6">
-                          <label  class="text-dark" class="text-dark" for="search_index">Allow search engines?</label>
-                          <select class="form-control col-sm-5" name="search_index">
+                          <label  class="cmsModal-formLabel" for="search_index">Allow search engines?</label>
+                          <select class="cmsModal-formControl col-sm-5" name="search_index">
                               <option value="1"
                                 @if($category->search_index == 1)
                                     selected
@@ -256,8 +257,8 @@ else{
                           </select>
                         </div>
                         <div class="col-sm-6">
-                          <label  class="text-dark" class="text-dark" for="search_follow">Follow links?</label>
-                          <select class="form-control col-sm-5" name="search_follow">
+                          <label  class="cmsModal-formLabel" for="search_follow">Follow links?</label>
+                          <select class="cmsModal-formControl col-sm-5" name="search_follow">
                           <option value="1"
 
                             @if($category->search_follow == 1)
@@ -273,8 +274,8 @@ else{
                           </select>
                         </div>
                         <div class="col-sm-12 mt-1">
-                          <label  class="text-dark" class="text-dark" for="search_index">Canonical URL</label>
-                          <input type="text" class="form-control" name="canonical_url" 
+                          <label  class="cmsModal-formLabel" for="search_index">Canonical URL</label>
+                          <input type="text" class="cmsModal-formControl" name="canonical_url" 
                               placeholder="Canonical URL" 
                             value="@if(old('canonical_url')){{old('canonical_url')}}@else{{$category->canonical_url}}@endif">
                           <span class="text-dark"></span>
@@ -303,9 +304,9 @@ else{
                 @if($type == 'Main_Category')
                   <div class="col-sm-12 text-center row">
                     <div class="col-sm-6 text-right">
-                      {{-- <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      {{-- <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Edits & Exit</button> --}}
-                      <button type="button" onclick="editcategoriessubmit({{$category->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="button" onclick="editcategoriessubmit({{$category->id}})" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save Edits & Exit</button>
                     </div>
                   </div>
@@ -313,15 +314,15 @@ else{
                   {{-- @elseif($type == 'sub_category')
                   <div class="col-sm-12 text-center mt-4 row">
                     @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="col-sm-4 cmsBtn blue mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save & Close</button>
-                      <button type="submit" class="col-sm-4 btn btn-info btn-save mr-2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="col-sm-4 cmsBtn blue mr-2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Add Photos</button>
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Create Sub Category</button>
                     @else
                       <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-                        <button type="submit" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Add Photos</button>
                       </div>
                     @endif
@@ -339,6 +340,8 @@ else{
         </div>
 
 
+      </div>
+      </div>
       </div>
       
     </section>

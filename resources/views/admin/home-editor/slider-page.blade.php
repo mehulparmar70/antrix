@@ -1,7 +1,7 @@
 <div class="row">
 
 <a href="{{route('slider.index')}}?onscreenCms=true" 
-   class="btn btn-info btn-save mt-2"
+   class="cmsBtn blue mt-2"
    onclick="popupmenu('{{route('slider.index')}}?onscreenCms=true', 'editmodal', 'left=100,width=800,height=600'); return false;">
    <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Add New Sliders
 </a>

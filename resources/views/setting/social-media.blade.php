@@ -130,7 +130,7 @@ $(".setting a").addClass( "active-menu");
 
                         <tr>
                           <td></td>
-                          <td><button type="button" onclick="editsocialmediasubmit()" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                          <td><button type="button" onclick="editsocialmediasubmit()" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                           Update </button></td>
                         </tr>
 

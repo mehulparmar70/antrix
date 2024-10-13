@@ -75,38 +75,44 @@ function updateOrder(data) {
 
                   <div class="form-group row">
                       <div class="col-sm-12">
-                        <label for="name">Client Name</label>
-                          <input class="form-control" type="text" name="name" placeholder="Client name"
+                      <div class="cmsModal-formGroup">
+                        <label for="name" class="cmsModal-formLabel">Client Name</label>
+                          <input class="cmsModal-formControl" type="text" name="name" placeholder="Client name"
                           value="@if(old('name')){{old('name')}}@else{{$award->name}}@endif">
                           <span class="text-danger">@error('name') {{$message}} @enderror</span>
                           </div>
                       </div>
+                      </div>
 
                       <div class="form-group row">
                       <div class="col-sm-12">
-                        <label for="note">Client Note</label>
-                          <textarea class="form-control" type="text" name="note" placeholder="Alt Text / Client Note">@if(old('note')){{old('note')}}@else{{$award->note}}@endif</textarea>
+                        <div class="cmsModal-formGroup">
+                        <label for="note" class="cmsModal-formLabel">Client Note</label>
+                          <textarea class="cmsModal-formControl" type="text" name="note" placeholder="Alt Text / Client Note">@if(old('note')){{old('note')}}@else{{$award->note}}@endif</textarea>
                           <span class="text-danger">@error('note') {{$message}} @enderror</span>
                           </div>
+                      </div>
                       </div>
 
                       <div class="form-group row">
                         <div class="col-sm-12">
-                        <label for="image_alt">Logo</label><br>
+                          <div class="cmsModal-formGroup">
+                        <label for="image_alt" class="cmsModal-formLabel">Logo</label><br>
                         <input type="file" name="image" class="image file_input" id="image"
                         accept="image/png,image/jpeg,image/webp"
                         >
                           <input type="hidden" name="old_image" value="{{$award->image}}">
 
                           @if($award->image)
-                            <img class="mt-2 perview-img"  height="120"
-                              src="{{asset('/')}}/images/{{$award->image}}">
+                            <img class="mt-2 perview-img" width="200px"
+                              src="{{asset('/')}}images/{{$award->image}}">
                               @else
-                              <img class="perview-img"  height="120"
-                            src="{{asset('/')}}/img/no-item.jpeg">
+                              <img class="perview-img"  width="200px"
+                            src="{{asset('/')}}img/no-item.jpeg">
                           @endif
 
                         <span class="text-danger">@error('image') {{$message}} @enderror</span>
+                      </div>
                       </div>
 
 
@@ -132,10 +138,10 @@ function updateOrder(data) {
 
                   <div class="card-footer text-right">
                     @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="btn btn-info btn-save" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                       Save Award & Close</button>
                     @else
-                    <button type="button" onclick="editawardsubmit({{$award->id}})" class="btn btn-info btn-save"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    <button type="button" onclick="editawardsubmit({{$award->id}})" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                     Update </button>
                     @endif
                   </div>

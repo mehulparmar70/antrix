@@ -1,5 +1,3 @@
-
-
 <!-- DataTables  & Plugins -->
 <!-- <script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -21,82 +19,82 @@
 
 <script>
 
-$( document ).ready(function() {
+  $(document).ready(function () {
 
-$("#subCategoryCheckAll").click(function (e) { 
-    // $(".checkList").attr('checked', true);
-  
-    // console.log($('.checkList'))
-    $('.checkList').each(function () { this.checked = !this.checked; });
-});
+    $("#subCategoryCheckAll").click(function (e) {
+      // $(".checkList").attr('checked', true);
+
+      // console.log($('.checkList'))
+      $('.checkList').each(function () { this.checked = !this.checked; });
+    });
 
 
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    // $('.delete-form').attr('action','/admin/category/'+ delete_id);
-    $('.del-link').attr('href',delete_id);
-    
-    $('.delete-title').html(data_title);
-  });  
-});
+    $(".del-modal").click(function () {
+      var delete_id = $(this).attr('data-id');
+      var data_title = $(this).attr('data-title');
 
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'category'},
-      success:function(result){
+      // $('.delete-form').attr('action','/admin/category/'+ delete_id);
+      $('.del-link').attr('href', delete_id);
+
+      $('.delete-title').html(data_title);
+    });
+  });
+
+  function updateStatus($id) {
+    $.ajax({
+      url: "{{route('status.update')}}",
+      type: 'post',
+      data: { id: $id, table: 'category' },
+      success: function (result) {
         console.log(result);
         location.reload();
 
       }
-  })
-}
-
-$(".listing").addClass( "menu-is-opening menu-open");
-$(".listing a").addClass( "active-menu");
-
-
-
-$(function () {
-  if ($("#example1").length > 0) {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    })
   }
 
+  $(".listing").addClass("menu-is-opening menu-open");
+  $(".listing a").addClass("active-menu");
+
+
+
+  $(function () {
+    if ($("#example1").length > 0) {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false,
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }
+
   });
 
-//   $(function () {
-//     $("#example2").DataTable({
-//       "responsive": true, "lengthChange": false,
-//     }).buttons().container().appendTo('#example2_wrapper .col-md-12:eq(0)');
+  //   $(function () {
+  //     $("#example2").DataTable({
+  //       "responsive": true, "lengthChange": false,
+  //     }).buttons().container().appendTo('#example2_wrapper .col-md-12:eq(0)');
 
-//   });
+  //   });
 
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            updateOrder(selectedData);
-            toastr.success('Category Order Updated...')
-        }
+  $(".row_position").sortable({
+    stop: function () {
+      var selectedData = new Array();
+      $('.row_position>tr').each(function () {
+        selectedData.push($(this).attr("id"));
+      });
+      updateOrder(selectedData);
+      toastr.success('Category Order Updated...')
+    }
   });
 
-function updateOrder(data) {
-  $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'categories'},
-      success:function(result){
+  function updateOrder(data) {
+    $.ajax({
+      url: "{{url('api')}}/admin/item/update-item-priority",
+      type: 'post',
+      data: { position: data, table: 'categories' },
+      success: function (result) {
         console.log(result);
       }
-  })
-}
+    })
+  }
 </script>
 
 
@@ -120,436 +118,432 @@ function updateOrder(data) {
 
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
+
+    <div class="container-fluid">
 
       <div class="row">
-      
-      <div class="col-sm-6"> 
-   
 
-          </div>
+        <div class="col-sm-6">
 
-          <div class="col-sm-6">
-            @if($pageSlug == 'main_category' || $pageSlug == null )
-            <ol class="breadcrumb float-sm-right">
-                <button onclick="popupmenu(`{{route('admin.category.create')}}?type=main_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                  &nbsp;&nbsp;Add Main Category </button>
-            </ol>
-            @elseif($pageSlug == 'sub_category')
-            <ol class="breadcrumb float-sm-right">
-              <button onclick="popupmenu(`{{route('admin.category.create')}}?type=sub_category`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
-                &nbsp;&nbsp;Add Sub Category </button>
+        <ol class=" float-sm-right">
+            <button onclick="popupmenu(`{{route('admin.category.create')}}?type=main_category`,'editmodal','','','','')"
+              class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
+              &nbsp;&nbsp;Add Main Category </button>
           </ol>
-          @endif
-          </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+ 
+          <ol class=" float-sm-right">
+            <button onclick="popupmenu(`{{route('admin.category.create')}}?type=sub_category`,'editmodal','','','','')"
+              class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
+              &nbsp;&nbsp;Add Sub Category </button>
+          </ol>
+     
+        </div>
 
         <div class="mb-2">
           <div class="col-sm-12">
             <h3 class="mb-0">{{$pageType}}</h3>
           </div>
-          </div>
         </div>
       </div>
-    </section>
+    </div>
+
 
   @if($pageSlug == 'main_category' || $pageSlug == null )
-    <section class="content">
-      <div class="container-fluid">
-      
-        <div class="row">
-          <div class="col-12">
-            <div class="">
-
-                <div class=" p-0">
-
-                <input type="hidden" name="type" value="main_category">
-                
-                <table  id="clienttable" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      
-                    <th width="50">Order</th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody  class="row_position">
-                    
-                    @foreach($parent_categories as $i => $parent_category)
-                    
-
-                      <tr id="{{$parent_category->id}}"> 
-                        <td>{{$parent_category->item_no}}</td>
-                        
-                        @if(isset(getImageFromCategory($parent_category->id)[0]->image))
-                        <td><img class="rounded img-block"  width="200" 
-                          src="{{asset('/')}}/images/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
-                          @else
-
-                        <td><img class="rounded"   width="100"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
-                          @endif
-                          
-                        <td>{{$parent_category->name}}</td>
-
-                      <td>
-                          <div class="form-check">
-                            <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                            id="exampleCheck1"
-                            
-                              onClick="updateStatus({{$parent_category->id}})"
-                              @if($parent_category->status == 1)checked
-                              @endif 
-                              @if(old('status'))checked
-                              @endif
-                              />
-                              
-                            @if($parent_category->status == 0)
-                            <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
-                          </div>	
-                      </td>
-                      <td width="150">
-                        
-                      <div class="row">
-
-                      @if(isset(getParentCategory($parent_category->id)['category']))
-                      <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
-                        // echo $mainCategorySlug = $finalSlug;
-                      ?>
-                      @endif
-
-                        @if(isset(getParentCategory($parent_category->id)['subcategory']))
-                          <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
-                            $subCategorySlug = $finalSlug;
-                            // echo($subCategorySlug);
-
-                          ?>
-                        @endif
-
-                        @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-                          <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
-                            $subCategory2Slug = $finalSlug;
-                            // echo($subCategory2Slug);
-                          ?>
-                        @endif
-
-
-                          <!-- <a class="btn btn-xs btn-dark" 
-                          href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
-                          <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
-                            onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                              &nbsp;&nbsp;&nbsp;
-                      
-
-                          <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
-                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                                  </button>
-                          </div>
-                      </td>
-                      </tr>
-                    @endforeach
-                </tbody>
-                </table>
-            <!-- </form> -->
-                
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </section>
-
-  @elseif($pageSlug == 'sub_category')
-  <section class="content">
+ 
     <div class="container-fluid">
-    
+
       <div class="row">
         <div class="col-12">
           <div class="">
 
-              <div class=" p-0">
+            <div class=" p-0">
 
               <input type="hidden" name="type" value="main_category">
-              
-              <table  id="clienttable" class="table table-bordered table-striped">
+
+              <table id="clienttable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+
                     
-                  <th width="50">Order</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody  class="row_position">
-                  
+                <tbody class="row_position">
+
                   @foreach($parent_categories as $i => $parent_category)
-                  
 
-                    <tr id="{{$parent_category->id}}"> 
-                      <td>{{$parent_category->item_no}}</td>
-                      
-                      @if(isset(getImageFromCategory($parent_category->id)[0]->image))
-                      <td><img class="rounded img-block"  width="200" 
-                        src="{{asset('/')}}/images/{{getImageFromCategory($parent_category->id)[0]->image}}"/></td>
-                        @else
 
-                      <td><img class="rounded"   width="100"
-                        src="{{asset('/')}}/img/no-item.jpeg"></td>
-                        @endif
-                        
-                      <td>{{$parent_category->name}}</td>
+           
+                  <tr id="{{$parent_category->id}}">
+                
 
-                    <td>
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                          id="exampleCheck1"
-                          
-                            onClick="updateStatus({{$parent_category->id}})"
-                            @if($parent_category->status == 1)checked
-                            @endif 
-                            @if(old('status'))checked
-                            @endif
-                            />
-                            
-                          @if($parent_category->status == 0)
-                          <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
-                        </div>	
-                    </td>
-                    <td width="150">
-                      
-                    <div class="row">
+                    @if(isset($parent_category->image))
+                    <td><img class="rounded img-block" width="200"
+                        src="{{asset('/')}}images/{{$parent_category->image}}" /></td>
+                    @else
 
-                    @if(isset(getParentCategory($parent_category->id)['category']))
-                    <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
-                      // echo $mainCategorySlug = $finalSlug;
-                    ?>
+                    <td><img class="rounded" width="100" src="{{asset('/')}}img/no-item.jpeg"></td>
                     @endif
 
-                      @if(isset(getParentCategory($parent_category->id)['subcategory']))
-                        <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
-                          $subCategorySlug = $finalSlug;
-                          // echo($subCategorySlug);
+                    <td>{{$parent_category->name}}</td>
 
-                        ?>
-                      @endif
-
-                      @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-                        <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
-                          $subCategory2Slug = $finalSlug;
-                          // echo($subCategory2Slug);
-                        ?>
-                      @endif
-
-
-                        <!-- <a class="btn btn-xs btn-dark" 
-                        href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
-                        <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
-                          onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
-                          <i class="fa fa-edit"></i>
-                        </a>
-                            &nbsp;&nbsp;&nbsp;
-                    
-
-                        <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
-                        data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                                </button>
-                        </div>
-                    </td>
-                    </tr>
-                  @endforeach
-              </tbody>
-              </table>
-          <!-- </form> -->
-              
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </section>
-    @else
-
-
-    <section class="content">
-      <div class="container-fluid">
-      
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              
-            <div class="card-header  bg-dark">
-                  <h3 class="card-title"><i class="fa fa-th-list nav-icon"></i>&nbsp;&nbsp;
-                  {{$pageType}}
-                  
-
-                </h3>
-                 
-                </div>
-
-              <div class="card-body table-responsive p-0">
-                <form action="{{route('item.bulk-delete')}}" method="post">
-                    @csrf
-              <input type="hidden" name="type" value="main_category">
-                <table  id="example2" class="table table-bordered">
-                  <thead>
-                    <tr>
-                      
-                    <th width="50">Order</th>
-                      <th>
-                        <input type="checkbox" class="checkAll" name="status" 
-                            id="checkAll"
+                    <td>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
+                          onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                        @endif
+                        @if(old('status'))checked
+                        @endif
                         />
 
-                      </th>
-                      <th>Image</th>
-                      <th>Main Category</th>
-                      <th>Status</th>
-                      <th width="150" >Action</th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody  class="row_position">
-                    
-                    @foreach($parent_categories as $i => $parent_category)
-                      
+                        @if($parent_category->status == 0)
+                        <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
+                            class="badge badge-success">Active</span></h5>@endif
+                    </td>
+            </div>
+            </td>
+            <td width="150">
 
-                      <tr> 
-                        <td>
-                          <input type="checkbox" class="checkList" name="checkList[]" 
-                              id="checkList" value="{{$parent_category->id}}"
-                          />    
+              <div class="row">
 
-                        </td>
-                        <td>{{++$i}}</td>
-                        @if(isset($parent_category->image))
-                        <td><img class="rounded img-block"  width="200" 
-                          src="{{asset('/')}}/images/{{$parent_category->image}}"/></td>
-                          @else
-
-                        <td><img class="img-circle elevation-2"  height="30" width="30"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
-                          @endif
-                          
-                        <td>{{$parent_category->name}}</td>
-
-                      <td>
-                          <div class="form-check">
-                            <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                            id="exampleCheck1"
-                            
-                              onClick="updateStatus({{$parent_category->id}})"
-                              @if($parent_category->status == 1)checked
-                              @endif 
-                              @if(old('status'))checked
-                              @endif
-                              />
-                              
-                            @if($parent_category->status == 0)
-                            <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
-                          </div>	
-                      </td>
-
-                    <th width="50">Order</th>
-
-                      <th class="">
-                      <div class="row">
-
-                      @if(isset(getParentCategory($parent_category->id)['category']))
-                      <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
+                @if(isset(getParentCategory($parent_category->id)['category']))
+                <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
                         // echo $mainCategorySlug = $finalSlug;
                       ?>
-                      @endif
+                @endif
 
-                        @if(isset(getParentCategory($parent_category->id)['subcategory']))
-                          <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
+                @if(isset(getParentCategory($parent_category->id)['subcategory']))
+                <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
                             $subCategorySlug = $finalSlug;
                             // echo($subCategorySlug);
 
                           ?>
-                        @endif
+                @endif
 
-                        @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-                          <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
+                @if(isset(getParentCategory($parent_category->id)['subcategory2']))
+                <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
                             $subCategory2Slug = $finalSlug;
                             // echo($subCategory2Slug);
                           ?>
-                        @endif
+                @endif
 
 
-                        <a target="_blank" href="{{url('')}}/{{$finalSlug}}{{$product->slug}}" 
-                           class="btn btn-xs btn-warning float-left mr-2">
-                           <i class="fa fa-eye"></i></a> 
-
-                          <!-- <a class="btn btn-xs btn-dark"
-                           href="{{route('admin.category.edit',$parent_category->id)}}"><i class="fa fa-edit"></i></a> -->
-                           <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category" 
-                            onclick="popupmenu('{{url('category/edit',$parent_category->id)}}', 'editmodal');">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                              &nbsp;&nbsp;&nbsp;
-                      
-
-                          <button type="button" class="btn btn-xs btn-danger del-modal"  title="Delete Category" 
-                          data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}" data-title="{{ $parent_category->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                                  </button>
-                          </div>
-                      </th>
-                      </tr>
-                    @endforeach
-                </tbody>
-
-                @if($parent_categories->count() > 0)
-                  <tfooter>
-                    <tr>
-                    <td>
-                    
-                    <input type="checkbox" class="checkAll" name="status" 
-                            id="checkAll"
-                        />
-                    </td>
-                      <td colspan="5">
-
-                      <button type="submit" name="action" value="active"
-                        class="btn btn-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;
-                        Active</button>
-
-                      <button type="submit" name="action" value="deactive"
-                        class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
-
-                        <button type="submit" name="action" value="delete"
-                        class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                <!-- <a class="btn btn-xs btn-dark" 
+                          href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
+                <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category"
+                  onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
+                  <i class="fa fa-edit"></i>
+                </a>
+                &nbsp;&nbsp;&nbsp;
 
 
-                      </td></tr>
-                  </tfooter>
-                  @endif
-
-                </table>
-            </form>
-                
+                <button type="button" class="btn btn-xs btn-danger del-modal" title="Delete Category"
+                  data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}"
+                  data-title="{{ $parent_category->name}}" data-toggle="modal" data-target="#modal-default"><i
+                    class="fa fa-trash"></i>
+                </button>
               </div>
-            </div>
+            </td>
+            </tr>
+            @endforeach
+            </tbody>
+            </table>
+            <!-- </form> -->
+
           </div>
         </div>
-
-
       </div>
-    </section>
+    </div>
+
+
+
+
+
+@elseif($pageSlug == 'sub_category')
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="">
+
+          <div class=" p-0">
+
+            <input type="hidden" name="type" value="main_category">
+
+            <table id="clienttable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+
+                  <th width="50">Order</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="row_position">
+
+                @foreach($parent_categories as $i => $parent_category)
+
+
+                <tr id="{{$parent_category->id}}">
+                  <td>{{$parent_category->item_no}}</td>
+
+                  @if(isset(getImageFromCategory($parent_category->id)[0]->image))
+                  <td><img class="rounded img-block" width="200"
+                      src="{{asset('/')}}/images/{{getImageFromCategory($parent_category->id)[0]->image}}" /></td>
+                  @else
+
+                  <td><img class="rounded" width="100" src="{{asset('/')}}img/no-item.jpeg"></td>
+                  @endif
+
+                  <td>{{$parent_category->name}}</td>
+
+                  <td>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
+                        onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                      @endif
+                      @if(old('status'))checked
+                      @endif
+                      />
+
+                      @if($parent_category->status == 0)
+                      <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
+                          class="badge badge-success">Active</span></h5>@endif
+                  </td>
+          </div>
+          </td>
+          <td width="150">
+
+            <div class="row">
+
+              @if(isset(getParentCategory($parent_category->id)['category']))
+              <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
+                      // echo $mainCategorySlug = $finalSlug;
+                    ?>
+              @endif
+
+              @if(isset(getParentCategory($parent_category->id)['subcategory']))
+              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
+                          $subCategorySlug = $finalSlug;
+                          // echo($subCategorySlug);
+
+                        ?>
+              @endif
+
+              @if(isset(getParentCategory($parent_category->id)['subcategory2']))
+              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
+                          $subCategory2Slug = $finalSlug;
+                          // echo($subCategory2Slug);
+                        ?>
+              @endif
+
+
+              <!-- <a class="btn btn-xs btn-dark" 
+                        href="{{route('admin.category.edit',$parent_category->id)}}?type=main_category"><i class="fa fa-edit"></i></a> -->
+              <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category"
+                onclick="popupmenu('{{url('powerup/category/edit',$parent_category->id)}}', 'editmodal');">
+                <i class="fa fa-edit"></i>
+              </a>
+              &nbsp;&nbsp;&nbsp;
+
+
+              <button type="button" class="btn btn-xs btn-danger del-modal" title="Delete Category"
+                data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}"
+                data-title="{{ $parent_category->name}}" data-toggle="modal" data-target="#modal-default"><i
+                  class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+          </tr>
+          @endforeach
+          </tbody>
+          </table>
+          <!-- </form> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+@else
+
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+
+          <div class="card-header  bg-dark">
+            <h3 class="card-title"><i class="fa fa-th-list nav-icon"></i>&nbsp;&nbsp;
+              {{$pageType}}
+
+
+            </h3>
+
+          </div>
+
+          <div class="card-body table-responsive p-0">
+            <form action="{{route('item.bulk-delete')}}" method="post">
+              @csrf
+              <input type="hidden" name="type" value="main_category">
+              <table id="example2" class="table table-bordered">
+                <thead>
+                  <tr>
+
+                    <th width="50">Order</th>
+                    <th>
+                      <input type="checkbox" class="checkAll" name="status" id="checkAll" />
+
+                    </th>
+                    <th>Image</th>
+                    <th>Main Category</th>
+                    <th>Status</th>
+                    <th width="150">Action</th>
+                  </tr>
+                </thead>
+
+                <tbody class="row_position">
+
+                  @foreach($parent_categories as $i => $parent_category)
+
+
+                  <tr>
+                    <td>
+                      <input type="checkbox" class="checkList" name="checkList[]" id="checkList"
+                        value="{{$parent_category->id}}" />
+
+                    </td>
+                    <td>{{++$i}}</td>
+                    @if(isset($parent_category->image))
+                    <td><img class="rounded img-block" width="200"
+                        src="{{asset('/')}}/images/{{$parent_category->image}}" /></td>
+                    @else
+
+                    <td><img class="img-circle elevation-2" height="30" width="30"
+                        src="{{asset('/')}}img/no-item.jpeg"></td>
+                    @endif
+
+                    <td>{{$parent_category->name}}</td>
+
+                    <td>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
+                          onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                        @endif
+                        @if(old('status'))checked
+                        @endif
+                        />
+
+                        @if($parent_category->status == 0)
+                        <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
+                            class="badge badge-success">Active</span></h5>@endif
+                    </td>
+          </div>
+          </td>
+
+          <th width="50">Order</th>
+
+          <th class="">
+            <div class="row">
+
+              @if(isset(getParentCategory($parent_category->id)['category']))
+              <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
+                        // echo $mainCategorySlug = $finalSlug;
+                      ?>
+              @endif
+
+              @if(isset(getParentCategory($parent_category->id)['subcategory']))
+              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
+                            $subCategorySlug = $finalSlug;
+                            // echo($subCategorySlug);
+
+                          ?>
+              @endif
+
+              @if(isset(getParentCategory($parent_category->id)['subcategory2']))
+              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
+                            $subCategory2Slug = $finalSlug;
+                            // echo($subCategory2Slug);
+                          ?>
+              @endif
+
+
+              <a target="_blank" href="{{url('')}}/{{$finalSlug}}{{$product->slug}}"
+                class="btn btn-xs btn-warning float-left mr-2">
+                <i class="fa fa-eye"></i></a>
+
+              <!-- <a class="btn btn-xs btn-dark"
+                           href="{{route('admin.category.edit',$parent_category->id)}}"><i class="fa fa-edit"></i></a> -->
+              <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Main Category"
+                onclick="popupmenu('{{url('category/edit',$parent_category->id)}}', 'editmodal');">
+                <i class="fa fa-edit"></i>
+              </a>
+              &nbsp;&nbsp;&nbsp;
+
+
+              <button type="button" class="btn btn-xs btn-danger del-modal" title="Delete Category"
+                data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}"
+                data-title="{{ $parent_category->name}}" data-toggle="modal" data-target="#modal-default"><i
+                  class="fa fa-trash"></i>
+              </button>
+            </div>
+          </th>
+          </tr>
+          @endforeach
+          </tbody>
+
+          @if($parent_categories->count() > 0)
+          <tfooter>
+            <tr>
+              <td>
+
+                <input type="checkbox" class="checkAll" name="status" id="checkAll" />
+              </td>
+              <td colspan="5">
+
+                <button type="submit" name="action" value="active" class="btn btn-primary btn-sm"><i class="fa fa-check"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  Active</button>
+
+                <button type="submit" name="action" value="deactive" class="btn btn-info btn-sm"><i class="fa fa-times"
+                    aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button>
+
+                <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm"><i class="fa fa-trash"
+                    aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+
+
+              </td>
+            </tr>
+          </tfooter>
+          @endif
+
+          </table>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
 @endif
 
 
-  </div>
-  
- 
+</div>

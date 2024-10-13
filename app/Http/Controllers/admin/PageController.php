@@ -19,7 +19,7 @@ class PageController extends Controller
         $type = 'Product';
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Our Products')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',96)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -29,7 +29,7 @@ class PageController extends Controller
         $type = 'About';
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','About Us')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',97)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -39,27 +39,28 @@ class PageController extends Controller
         $type = 'Testimonial';
         $data = [
             'pageData' =>  Pages::where('type', 'testimonial_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Testimonials')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',98)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
     }
     
     public function videoPageEditor(){
-        $type = 'video';
+        $type = 'Video_Page';
         $data = [
             'pageData' =>  Pages::where('type', 'video_page')->first(),
             'type' => $type,
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',99)->where('status',1)->first(),
             'videos' =>  Video::orderBy('item_no')->get()
         ];
         return view('admin.home-editor.popup-page', $data);
     }
 
     public function blogPageEditor(){
-        $type = 'CaseStudies';
+        $type = 'Blog_Page';
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Case Studies')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',113)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -70,6 +71,7 @@ class PageController extends Controller
         $data = [
             'pageData' =>  Pages::where('type', 'partenr_page')->first(),
             'type' => $type,
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',106)->where('status',1)->first(),
             'blogs' =>  Partners::orderBy('item_no', 'ASC')->get()
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -78,7 +80,7 @@ class PageController extends Controller
         $type = 'Contact';
         $data = [
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Contact Us')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',101)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -87,7 +89,7 @@ class PageController extends Controller
         $type = 'CaseStudies';
         $data = [
             'pageData' =>  Pages::where('type', 'casestudies_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Case Studies')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',100)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -97,7 +99,7 @@ class PageController extends Controller
    
         $data = [
             'pageData' =>  Pages::where('type', 'newsletter_page')->first(),
-            'url_list' =>  UrlList::where('type', 'page_link')->where('name','Our Products')->where('status',1)->get(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',105)->where('status',1)->first(),
             'type' => $type,
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -120,6 +122,7 @@ class PageController extends Controller
         $type = 'EditClient';
         $data = [
             'type' => $type,
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',102)->where('status',1)->first(),
             'pageData' =>  Pages::where('type', 'client_page')->first(),
         ];
         return view('admin.home-editor.popup-page', $data);
@@ -127,6 +130,7 @@ class PageController extends Controller
     public function awardsPageEditor(){
         $type = 'EditAward';
         $data = [
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',103)->where('status',1)->first(),
             'pageData' =>  Pages::where('type', 'award_page')->first(),
             'type' => $type,
         ];
@@ -232,11 +236,12 @@ class PageController extends Controller
     public function pageEditorStore(Request $request) {
         // dd($request);
         $newUrl = $request->page_url;
+        $menuname = $request->name;
         $newName = $request->page_name;
         UrlList::where('type', 'page_link')
                 ->where('name', $newName)
                 ->where('status', 1)
-                ->update(['url' => $newUrl]);
+                ->update(['url' => $newUrl,'name'=>$menuname]);
 
 
                 $ifExist = Pages::where('type', $request->type)->first();
@@ -270,17 +275,17 @@ class PageController extends Controller
                     $pageEditor->type = $request->type;
                     $pageEditor->description = $request->description;
                     $pageEditor->subtitle = $request->short_description;
-                    $pageEditor->url = $request->url;
+                    $pageEditor->url = $request->page_urls;
                     $pageEditor->featured_image = $image_name;
                     $pageEditor->image_alt = $request->image_alt;
                     $pageEditor->image_title = $request->image_title;
-                    $pageEditor->search_index = $request->allow_search_engines;
-                    $pageEditor->search_follow = $request->follow_links;
+                    $pageEditor->search_index = $request->search_index;
+                    $pageEditor->search_follow = $request->search_follow;
                     $pageEditor->canonical_url = $request->canonical_url;
                     $pageEditor->page_title = isset($page_title) ? $page_title : NULL;
-                    $pageEditor->meta_title = $request->seo_title;
-                    $pageEditor->meta_keyword = $request->seo_keywords;
-                    $pageEditor->meta_description = $request->seo_description;
+                    $pageEditor->meta_title = $request->meta_title;
+                    $pageEditor->meta_keyword = $request->meta_keyword;
+                    $pageEditor->meta_description = $request->meta_description;
                     $pageEditor->status = 1;
                     
                     $save = $pageEditor->save();

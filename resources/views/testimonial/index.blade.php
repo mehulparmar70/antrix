@@ -9,18 +9,18 @@
 </style>
 
 <!-- DataTables  & Plugins -->
-<script src="{{url('adm')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{url('adm')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{url('adm')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{url('adm')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{url('adm')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('/')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('/')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('/')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('/')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
@@ -105,8 +105,8 @@ $(function () {
 
         
         <div class="col-sm-12">
-          <ol class="breadcrumb float-sm-right">
-          <ol class="breadcrumb float-sm-right"><button onclick="popupmenu(`{{url('powerup/testimonials/create')}}`,'editmodal','','','','')" class="btn btn-success btn-sm ml-2"><i class="fa fa-plus" aria-hidden="true"></i>
+          <ol class=" float-sm-right">
+          <ol class=" float-sm-right"><button onclick="popupmenu(`{{url('powerup/testimonials/create')}}`,'editmodal','','','','')" class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
                   &nbsp;&nbsp;Add New Testimonial </button>
 
               
@@ -148,16 +148,16 @@ $(function () {
                   <tbody class="row_position">
                     @foreach($testimonials as $i => $testimonial)
                       <tr id="{{$testimonial->id}}"> 
-                        <td>{{$testimonial->item_no}}</td>
+                        
                         
 
                         @if(isset($testimonial->image))
                           <td><img class="rounded"  width="150"
-                            src="{{asset('/')}}/images/{{$testimonial->image}}"></td>
+                            src="{{asset('/')}}images/{{$testimonial->image}}"></td>
                         @else
 
                           <td><img class="rounded"  width="150"
-                          src="{{asset('')}}/img/no-item.jpeg"></td>
+                          src="{{asset('')}}img/no-item.jpeg"></td>
                         @endif
 
                         <td>{{$testimonial->client_name}}</td>

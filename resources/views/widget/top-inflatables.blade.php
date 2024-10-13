@@ -24,7 +24,7 @@
               <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
                 <div class="tab_top subCategoryImage subCategoryImage-{{ $topInflatableLp->id }}">
                   @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                  <img src="{{url('/')}}/images/{{$productImage->image}}" style="height: 540px !important;" />
+                  <img src="{{url('/')}}images/{{$productImage->image}}" style="height: 540px !important;" />
                   @endforeach
                 </div>
                 <div class="product_internal_title" @if(session('LoggedUser'))
@@ -40,7 +40,7 @@
             <?php } else { ?>
             <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
               <div class="tab_top">
-                <img src="{{url('web')}}/media/md/noimage.png" />
+                <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
@@ -58,7 +58,7 @@
           @else
             <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatable->slug}}">
               <div class="tab_top">
-                <img src="{{url('/')}}/images/noimage.png" />
+                <img src="{{url('/')}}/img/no-item.jpeg" />
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-edit-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category&onscreenCms=true"

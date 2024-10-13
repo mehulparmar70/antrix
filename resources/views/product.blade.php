@@ -186,7 +186,8 @@ $industriesPageData = getPageData('industrie_page');
                 data-index-link="{{ route('admin.category.list') }}"
               @endif></div>
             <div class="tab_top subCategoryImage">
-              <img src="{{url('web')}}/media/md/noimage.png" style="" />
+            <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
+
             </div>
         <div class="big_text small_text">
           <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="noImageFontClr">{{ $topInflatableLp->name }}</a>
