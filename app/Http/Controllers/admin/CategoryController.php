@@ -100,7 +100,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $close = $request->close;
-       
 
 
         if($request->status){
@@ -159,17 +158,10 @@ class CategoryController extends Controller
 
         $save = $category->save();
         if($save){
-            if ($request->close == "1") {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Category Added...'
-                ]);
-            } else {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Category Added...'
-                ]);
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Category Created...'
+            ]);
             // if($request->page_type == 'main_category'){
             //     return(redirect(route('admin.category.edit',$parent_id).'/photo?page=manage&main_category='.$parent_id.'&sub_category='.$category->id))->with('success', 'Sub Category Added...');   
             // }
@@ -262,11 +254,7 @@ class CategoryController extends Controller
         $close = $request->close;
         //
         // dd($request->input());
-        $request->validate([
-            'name' => 'required|max:255',
-            'image' => 'image|mimes:jpg,png,jpeg,webp'
-            
-        ]);
+    
   
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -323,12 +311,10 @@ class CategoryController extends Controller
         $save = $category->save();
 
             if($save){
-                if ($request->close == "1") {
-                    session()->put('success','Category Updated...');
-                    return(redirect(route('admin.close')));
-                } else {
-                    return back()->with('success', 'Category Updated...');
-                }
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Category Updated...'
+                ]);
                 // if($request->pageType == 'main_category'){
                 //     if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
                 //     {
@@ -361,7 +347,10 @@ class CategoryController extends Controller
                 // return redirect(route('admin.category.create').'?type=sub_category&id='.$category->id)->with('success', 'Category Updated...');
                 // return back()->with('success', 'Category Updated...');
             }else{
-                return back()->with('fail', 'Something went wrong, try again later...');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Something went wrong, try again later...'
+                ]);
             }
 
 }
@@ -372,15 +361,22 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::find((int)$id);
         $category = $category->delete();
         if($category){
             // $subCategories = DB::table('categories')->where('parent_id')
             // $category
-            return back()->with('success', 'category Deleted... 000 ');
+            return response()->json([
+                'success' => true,
+                'message' => 'Category Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
     

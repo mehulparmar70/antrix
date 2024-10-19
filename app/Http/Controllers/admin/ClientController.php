@@ -126,17 +126,10 @@ class ClientController extends Controller
                     $save = $media->save();
                 }
             }
-            if ($request->close == "1") {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Client Updated...'
-                ]);
-            } else {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Client Updated...'
-                ]);
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Created...'
+            ]);
         }else{
             return response()->json([
                 'success' => false,
@@ -262,15 +255,22 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Client $client)
+    public function destroy($id)
     {
         // dd($client)
+        $client = Client::find((int)$id);
         $delete = $client->delete();
         if($delete){
             deleteBulkImage($client->image);
-            return back()->with('success', 'Client Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Client Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+           return response()->json([
+            'success' => false,
+            'message' => 'Something went wrong, try again later...'
+        ]);
         }
 
     }

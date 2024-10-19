@@ -14,7 +14,7 @@ class ItemPriorityController extends Controller
     
     public function updateItemNo(Request $request){
         // dd($request->input());
-
+        
         $positions = $request->position;
         $data = array();
         $ItemPriority = new ItemPriority;

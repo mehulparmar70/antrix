@@ -7,6 +7,140 @@
 <body>
   
 <style>
+  .mac-style-toast {
+    background-color: #f5f5f7 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+}
+
+.mac-style-toast .iziToast-title {
+    font-weight: bold;
+    color: #333 !important;
+}
+
+.mac-style-toast .iziToast-message {
+    font-size: 14px;
+    color: #555 !important;
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #2e2e2e; /* Dark background color */
+    color: #fff; /* White text */
+    margin: auto;
+    padding: 0;
+    border-radius: 8px; /* Rounded corners */
+    
+    width: 90%; /* Responsive width */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    position: relative; /* For absolute positioned close button */
+    border: 1px solid #444;
+}
+
+/* Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+    background-color: #2e2e2e;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.close {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* Body */
+.modal-body {
+    padding: 20px;
+    background-color: #2e2e2e;
+}
+
+/* Input Fields */
+.modal-body input[type="text"],
+.modal-body textarea,
+.modal-body select {
+    background-color: #3c3c3c; /* Slightly lighter background for input fields */
+    color: #ddd; /* Slightly lighter text color */
+    border: 1px solid #444; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better UX */
+    margin-bottom: 15px; /* Space between fields */
+    font-size: 0.9rem;
+}
+
+/* File Upload Area */
+.input-group {
+    margin-top: 10px;
+}
+
+.custom-file-input {
+    display: none; /* Hide default file input */
+}
+
+.custom-file-label {
+    background-color: #444; /* Dark background */
+    color: #ccc; /* Light text */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#imagePreview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* Footer */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #444;
+    background-color: #2e2e2e;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
 
 #ajaxForm
 {
@@ -628,6 +762,27 @@ $(document).ready(function () {
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
     </div>
+    <style>
+      #iframpopup
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  border-radius: 8px;
+  border: 0 none;
+}
+    </style>
+    <iframe id="iframpopup" style="position: fixed;
+    z-index: 99;width: 1300px;
+    height: 500px;">
+
+    </iframe>
     <!-- iziToast JS -->
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 </body>

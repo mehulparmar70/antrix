@@ -263,10 +263,11 @@
 				<a href="{{url('/videos')}}" >PRODUCT VIDEOS </a>
 				</div>
 				<div class="kiis_blk">
-					
+  				
 				@foreach($videos as $video)
 				<?php 
 				preg_match('/src="([^"]+)"/', $video->youtube_embed, $match);
+				
 				$url = array_slice(explode('/', $match[1]), -1)[0];
 				$tumbnail = 'https://img.youtube.com/vi/'.$url.'/hqdefault.jpg';
 				?>

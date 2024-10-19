@@ -91,7 +91,7 @@ $('.content_banners').each(function(){
       <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
           <i class="fa fa-edit"></i>
       </a>
-      <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
+      <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'deletemodal', 'left=100,width=800,height=860'); return false;">
           <i class="fa fa-trash"></i>
       </a>
       <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', 'left=100,width=800,height=860'); return false;">
@@ -129,7 +129,8 @@ $('.onscreen-product-image').each(function(){
 $('.product_title_main').each(function(){
   $(this).prepend(`<div class="onscreen-product-title"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now" href="`+$(this).attr('data-delete-link')+`"> <i class='fa fa-trash'></i></a>
+
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
@@ -169,7 +170,7 @@ $('.onscreen_media_testimonial_item').each(function(){
     html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
   html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This will delete testimonial Permanently. Do you want to continue?'> <i class='fa fa-trash'></i></a>`;
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 });
 $('.onscreen_media_casestudies_item').each(function(){
@@ -189,7 +190,8 @@ $('.onscreen_media_industries_item').each(function(){
   $(this).prepend(`<div class="onscreen-media-industries-item-link">
   <a href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-edit-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`" data-msg='This action will delete QuickView & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>
+
   <a href="`+$(this).attr('data-index-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-list'></i></a>`);
 });
 
@@ -273,7 +275,7 @@ $('.crud').each(function(){
 $('.title-crud').each(function(){
   $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-delete')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
 });
 
 $('.clients_crud').each(function(){
@@ -531,20 +533,78 @@ function popupmenu(link, type, location, left, width, height) {
         .then(data => {
             modalContainer.innerHTML = `<div >${data}</div>`;
             modalContainer.querySelector('.cmsModal').style.display = 'block';
+            initializeDynamicContent();
         })
         .catch(error => {
             console.error('Error loading content:', error);
         });
-}else
+}
+else if(type === 'deletemodal')
+{Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Perform the delete action if confirmed
+    fetch(link, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to delete the item.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        // Show success message using SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: data.message,
+          timer: 2000, // Auto close after 2 seconds
+          showConfirmButton: false
+        });
+        window.reload(); // Optionally reload the page after successful deletion
+      } else {
+        // Show error message if the server response indicates failure
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: data.message
+        });
+      }
+    })
+    .catch(error => {
+      // Handle any unexpected errors during the fetch request
+   
+      console.error('Error deleting item:', error);
+    });
+  }
+});
+}
+else
 {
   fetch(link)
   .then(response => response.text())
             .then(data => {
-                document.getElementById('modalBodyContent').innerHTML = data;
-                document.getElementById('ajaxModal').style.display = 'block';
+              document.getElementById('iframpopup')
+        .contentDocument.write(data);
+                // document.getElementById('modalBodyContent').innerHTML = data;
+                document.getElementById('iframpopup').style.display = 'block';
 
                 // Initialize the CKEditor after modal content is loaded
                 initializeEditor();
+                initializeDynamicContent();
             })
             .catch(error => console.error('Error loading content:', error));
 }
@@ -691,7 +751,12 @@ function editclientsubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
                         // Close the edit modal
                         $('.modal-container').remove();
@@ -705,7 +770,12 @@ function editclientsubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -729,7 +799,12 @@ function editpartnersubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
                         // Close the edit modal
                         $('.modal-container').remove();
@@ -743,7 +818,12 @@ function editpartnersubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -767,7 +847,12 @@ function editslidersubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             // Close the edit modal
             $('.modal-container').remove();
@@ -781,7 +866,12 @@ function editslidersubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -804,7 +894,12 @@ function editcasestudiesubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             // Close the edit modal
             $('.modal-container').remove();
@@ -818,7 +913,12 @@ function editcasestudiesubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -840,7 +940,12 @@ function editindustriessubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -848,7 +953,12 @@ function editindustriessubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -902,7 +1012,12 @@ function editblogsubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -910,7 +1025,12 @@ function editblogsubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -933,7 +1053,12 @@ function editcategoriessubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -941,7 +1066,12 @@ function editcategoriessubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -966,7 +1096,12 @@ function addslidersubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -974,7 +1109,12 @@ function addslidersubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -998,7 +1138,12 @@ function addseoajax() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1006,7 +1151,12 @@ function addseoajax() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1028,7 +1178,12 @@ function addlogoajax() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1036,7 +1191,12 @@ function addlogoajax() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1058,7 +1218,12 @@ function customCodeStore() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,           
             });
             $('.modal-container').remove();
             location.reload();
@@ -1066,7 +1231,12 @@ function customCodeStore() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,           
             });
         }
     },
@@ -1088,7 +1258,12 @@ function caseStudies() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1096,7 +1271,12 @@ function caseStudies() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1118,7 +1298,12 @@ function addcasestudiessubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1126,7 +1311,12 @@ function addcasestudiessubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1148,7 +1338,12 @@ function addindustriessubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1156,7 +1351,50 @@ function addindustriessubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+  });
+}
+function addtestimonialsubmit() {
+  var form = document.getElementById('createtestimonial'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/testimonials/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1176,7 +1414,12 @@ function addblogsubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1184,7 +1427,12 @@ function addblogsubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1205,7 +1453,12 @@ function addpartnersubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1213,7 +1466,12 @@ function addpartnersubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1234,7 +1492,12 @@ function addvideosubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1242,7 +1505,12 @@ function addvideosubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1262,7 +1530,12 @@ function addnewslettersubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1270,7 +1543,12 @@ function addnewslettersubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1291,7 +1569,12 @@ function addCategorieSubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1299,7 +1582,12 @@ function addCategorieSubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1319,7 +1607,12 @@ function editsocialmediasubmit() {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1327,7 +1620,12 @@ function editsocialmediasubmit() {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1347,7 +1645,12 @@ function editnewslettersubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1355,7 +1658,12 @@ function editnewslettersubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1375,7 +1683,12 @@ function edittestimonailsubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
             location.reload();
@@ -1383,7 +1696,12 @@ function edittestimonailsubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1405,7 +1723,12 @@ function editawardsubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
 
@@ -1416,7 +1739,12 @@ function editawardsubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1439,7 +1767,12 @@ function editvideosubmit(id) {
             iziToast.success({
                 title: 'Success',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
             $('.modal-container').remove();
 
@@ -1450,7 +1783,12 @@ function editvideosubmit(id) {
             iziToast.error({
                 title: 'Error',
                 message: response.message,
-                position: 'topRight'
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
             });
         }
     },
@@ -1488,3 +1826,124 @@ function addnewsletter()
 }
 
 
+function initializeDynamicContent() {
+  // Check if jQuery is loaded
+  if (typeof jQuery == 'undefined') {
+      // Load jQuery dynamically
+      var script = document.createElement('script');
+      script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+      document.head.appendChild(script);
+
+      // Wait for jQuery to load, then load jQuery UI
+      script.onload = function() {
+          loadJQueryUI();
+      };
+  } else {
+      // jQuery is already loaded, directly load jQuery UI
+      loadJQueryUI();
+  }
+
+  function loadJQueryUI() {
+      // Check if jQuery UI is loaded
+      if (typeof jQuery.ui == 'undefined') {
+          // Load jQuery UI dynamically
+          var scriptUI = document.createElement('script');
+          scriptUI.src = "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js";
+          document.head.appendChild(scriptUI);
+
+          // Optional: Load jQuery UI CSS for styling
+          var link = document.createElement('link');
+          link.rel = "stylesheet";
+          link.href = "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
+          document.head.appendChild(link);
+
+          // Wait for jQuery UI to load, then initialize sortable
+          scriptUI.onload = function() {
+              initializeSortable();
+          };
+      } else {
+          // jQuery UI is already loaded, directly initialize sortable
+          initializeSortable();
+      }
+  }
+
+  function initializeSortable() {
+      $(document).ready(function() {
+          // Apply sortable to the elements after jQuery UI is loaded
+          $(".row_position").sortable({
+              stop: function() {
+                  var selectedData = [];
+                  $('.row_position>tr').each(function() {
+                      selectedData.push($(this).attr("id"));
+                  });
+                  console.log(selectedData);
+                  var tableType = $(this).closest('table').data('table');
+                console.log("Table Type:", tableType);
+                  updateOrder(selectedData,tableType);
+
+                  toastr.success('Slider Order Updated...');
+              }
+          });
+      });
+  }
+}
+
+
+
+
+  // Function to update the slider order
+  function updateOrder(data,table) {
+    let url;
+    if (table === 'slider') {
+        url = base_url + "/api/admin/slider/update-status";
+    } else if (table === 'industries' || table === 'casestudies' || table === 'categories'
+      || table === 'clients' || table === 'awards' || table === 'blogs'
+      || table === 'case_studies' || table === 'testimonials' || table === 'newsletters'
+      || table === 'videos' || table === 'partners' 
+    ) {
+      url = base_url + "/api/admin/item/update-item-priority"; // Adjust this based on your actual route
+  }
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            position: data,
+            table: table, // Send the table name
+            _token: "{{ csrf_token() }}" // Ensure CSRF token is sent with the request
+        },
+        success: function(result) {
+            iziToast.success({
+                title: 'Success',
+                message: 'Order Updated..',
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error updating order:', error);
+        }
+    });
+  }
+
+  // Function to update the slider status
+  window.updateStatus = function(id) {
+      $.ajax({
+          url:  base_url+"{{ route('status.update') }}",
+          type: 'POST',
+          data: {
+              id: id,
+              table: 'slider',
+              _token: "{{ csrf_token() }}" // CSRF token
+          },
+          success: function(result) {
+              location.reload(); // Reload page after status update
+          },
+          error: function(xhr, status, error) {
+              console.error('Error updating status:', error);
+          }
+      });
+  };

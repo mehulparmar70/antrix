@@ -283,19 +283,25 @@ class IndustriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonials $testimonial)
+    public function destroy($id)
     {
         // dd($testimonial);
-        
+        $testimonial =  Industries::find((int)$id);
         deleteTableUrlData($testimonial->id, 'testimonial_link');
 
         $delete = $testimonial->delete();
         
         if($delete){
             deleteBulkImage($testimonial->image);
-            return back()->with('success', 'Data Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Industries Deleted...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
 
 

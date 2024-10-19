@@ -237,17 +237,24 @@ class PartnersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partners $partners)
+    public function destroy($id)
     {
         // dd($partners->image);
+        $partners =  Partners::find((int)$id);
         $delete = $partners->delete();
         deleteTableUrlData($partners->id,'product_link');
         if($delete){
 
             deleteBulkImage($partners->image);
-            return back()->with('success', 'Partners Deleted...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Partner Updated...'
+            ]);
         }else{
-            return back()->with('fail', 'Something went wrong, try again later...');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
         }
     }
 

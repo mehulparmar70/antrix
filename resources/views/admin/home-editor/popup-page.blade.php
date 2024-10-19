@@ -1,10 +1,12 @@
-<div class="bodymodal">
+
 <div id="ajaxModal" 
      class="cmsModal {{ $type }}" 
      tabindex="-1" 
      role="dialog" 
      aria-labelledby="popupFormLabel" 
-     aria-hidden="true" >
+     aria-hidden="true">
+     <link rel="stylesheet" href="{{asset('/')}}css/popup.css">
+     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
   <div class="cmsModal-dialog " role="document">
     <div class="cmsModal-content">
       <div class="cmsModal-header">
