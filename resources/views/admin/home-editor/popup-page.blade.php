@@ -84,6 +84,7 @@
         @includeWhen($type == 'customJs', 'custom-code.custom-js')
         @includeWhen($type == 'EditpageLink', 'block-control.page-link-edit')
         @includeWhen($type == 'pageLink', 'block-control.page-link')
+        @includeWhen($type == 'sitemap', 'site-map')
 
         
       </div>

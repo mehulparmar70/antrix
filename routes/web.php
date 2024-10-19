@@ -23,12 +23,16 @@ use App\Http\Controllers\admin\CustomCodeController;
 use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\admin\BlockControlController;
 
+
 $adminRewrite = 'powerup';
 
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
-Route::get('sitemap.html', [HomeController::class, 'sitemap'])->name('sitemap');
+Route::get('sitemap.xml', [HomeController::class, 'sitemap'])->name('sitemap');
+Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemapEdit');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+// Route::get('sitemap', [SitemapController::class, 'siteMap'])->name('siteMap');
+
 
 Route::get('custom-industrial-inflatable-products', [HomeController::class, 'product'])->name('products');
 Route::get('/about', [HomeController::class, 'about'])->name('admin');

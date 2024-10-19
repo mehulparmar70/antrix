@@ -8,6 +8,8 @@ use App\Models\admin\TopInflatables;
 use App\Models\admin\Pages;
 use App\Models\admin\UrlList;
 use App\Models\admin\Client;
+use App\Models\admin\Category;
+use App\Models\admin\Blog;
 use DB;
 use Intervention\Image\Facades\Image;
 
@@ -79,6 +81,7 @@ public function topInflatableStore(Request $request)
         ];
         return view('admin.home-editor.popup-page', $data);
     }
+ 
 
     public function homeEditorAboutStore(Request $request)
     {   

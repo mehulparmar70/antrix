@@ -537,13 +537,33 @@ class HomeController extends Controller
 
     public function sitemap()
     {
-        //Session::forget('homePageCatId');
-        
+        $data = [
+            'urls' => UrlList::where('type', 'page_link')->get(), 
+            'mainCategories' => Category::where('parent_id', 0)->orderBy('item_no')->get(),
+            'blogs' => Blog::where('status', 1)->orderBy('item_no')->get(),
+            'pageData' => Pages::where('type', 'home_page')->first(),
+            'footerTestimonial' => $this->footerTestimonial,
+            'footerVideo' => $this->footerVideo,
+            'footerBlog' => $this->footerBlog,
+            'topCategories' => $this->topCategories,
+            'clients' => Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'awardSlider' => Award::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'caseStudiesSlider' => CaseStudies::where('status', 1)->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+            'newsletterSlider' => Newsletter::where('status', 1)->orderBy('item_no')->get(),
+        ];
+    
+        // Return the sitemap view with XML header
+        return response()->view('sitemap', $data, 200)
+                         ->header('Content-Type', 'application/xml');
+    }
+    
+    public function sitemapEdit()
+    {    $type = 'sitemap';
         $data = [
             'mainCategories' => Category::where('parent_id', 0)->orderBy('item_no')->get(),
             'blogs' => Blog::where('status', 1)->orderBy('item_no')->get(),
             'pageData' =>  Pages::where('type', 'home_page')->first(),
-
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
@@ -553,13 +573,15 @@ class HomeController extends Controller
             'caseStudiesSlider' =>  CaseStudies::where(['status' => 1])->orderBy('item_no')->get(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'newsletterSlider' =>  Newsletter::where(['status' => 1])->orderBy('item_no')->get(),
+            'topInflatables' =>  TopInflatables::orderBy('id', 'DESC')->where('status',1)->get(),
+            'homeAbout' =>  Pages::where('type', 'home_page')->first(),
+            'homeUrls1' =>  UrlList::where('type', 'home_url1')->get(),
+            'urls' => UrlList::where('type', 'page_link')->get(), 
+            'type' => $type,
+            'pageData' =>  Pages::where('type', 'home_page')->first(),
         ];
-        return response()->view('site-map', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
-
-
+        return view('admin.home-editor.popup-page', $data);
     }
-
-
     public function slugChecker4($category, $subCategory, $slug, $image)
     {
         return 'image'.$image;
