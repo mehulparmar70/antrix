@@ -161,7 +161,7 @@ function updateOrder(data) {
                       <h3 class="card-title">Client Lists</h3>
                 </div>
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap" id="clienttable">
+                  <table data-table="clients" class="table table-hover text-nowrap" id="clienttable">
                     <thead>
                       <tr>
                  
@@ -218,10 +218,12 @@ function updateOrder(data) {
                             <i class="fa fa-edit"></i>
                          </a>
                          
-                            <button class="btn btn-xs btn-danger del-modal float-left"  title="Delete client" 
-                             data-id="{{route('admin.index')}}/client/{{ $client->id}}" data-title="{{ $client->name}}" 
-                              data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                            </button>                      
+                         <a href="{{route('client.delete', $client->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete client" 
+                            onclick="popupmenu('{{route('client.delete', $client->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>                  
                         </td>
                         </tr>
                       @endforeach

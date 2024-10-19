@@ -118,11 +118,11 @@ $(function () {
       
         <div class="row">
           <div class="col-12">
-            <div class="">
+            <div>
 
 
               <div class=" table-responsive p-0">
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="partners" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -181,8 +181,13 @@ $(function () {
                             onclick="popupmenu('{{ route('partners.edit', $blog->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
-                           <button class="btn btn-sm btn-danger del-modal float-left"  title="Delete Blog"  data-id="{{route('admin.index')}}/partners/{{$blog->id}}" data-title="{{ $blog->title}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
-                          </button>
+                          
+             <a href="{{route('partners.delete', $blog->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete partners" 
+                            onclick="popupmenu('{{route('partners.delete', $blog->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
                       
                       
                       </td>
