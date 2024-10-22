@@ -158,22 +158,18 @@ else{
       @endif
 
       <div class="@if($pageType == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
-        <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}} Name</label>
+        <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}}</label>
         <input type="hidden" name="type" value="name">
-        <input type="text" class="cmsModal-formControl name-input" name="name" placeholder="{{$pageTitle}} Name"
+        <input type="text" class="cmsModal-formControl name-input" name="name" placeholder="Add {{$pageTitle}}"
           value="{{old('name')}}" required>
 
         <span class="text-danger">@error('name') {{$message}} @enderror</span>
       </div>
-      <div class="@if($pageType == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
-        <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}} Page Url</label>
-        <input class="cmsModal-formControl" name="slug" placeholder="URL label" value="{{old('slug')}}" required>
-        <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-      </div>
+   
       <div class="@if($pageType == 'main_category') col-sm-4 col-md-6 @else col-sm-6 mt-2 @endif">
-        <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}} Page Short
+        <label class="cmsModal-formLabel" for="search_index">Short
           Description</label>
-        <textarea class="cmsModal-formControl" name="short_description">{{old('short_description')}}</textarea>
+        <input type="text" class="cmsModal-formControl" name="short_description" placeholder="Short Description">{{old('short_description')}}</input>
         <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
       </div>
 
@@ -191,7 +187,7 @@ else{
         <div class="col-sm-6">
 
           <div class="col-sm-12">
-            <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}} Image</label><br>
+            <label class="cmsModal-formLabel" for="search_index">Add Feature Image</label><br>
             <input type="file" name="image" class="file_input " id="image" accept="image/png,image/jpeg,image/webp" />
             <span class="text-danger">@error('image') {{$message}} @enderror</span>
           </div>
@@ -206,8 +202,13 @@ else{
 
 
         <div class="col-sm-6">
+        <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
+        <div class="@if($pageType == 'main_category') col-sm-12 col-md-12 @else col-sm-12 @endif">
+        <input class="cmsModal-formControl" name="slug" placeholder="URL label" value="{{old('slug')}}" required>
+        <span class="text-danger">@error('slug') {{$message}} @enderror</span>
+      </div>
           <div class="col-sm-12 mb-2  p-0">
-            <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
+
             <input type="text" class="cmsModal-formControl" name="meta_title" placeholder="Seo Title"
               value="{{old('meta_title')}}">
             <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>

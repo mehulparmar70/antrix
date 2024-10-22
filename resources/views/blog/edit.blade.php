@@ -47,7 +47,7 @@
       <label class="cmsModal-formLabel" for="full_description">Edit Update Description</label>
       <input  type="hidden" id="full_description"
         value="@if(old('full_description')){{old('full_description')}}@else{{ $blog->full_description }}@endif">
-      <textarea class="cmsModal-formControl" id="editor" name="full_description" placeholder="Blog Descriptions"
+      <textarea id="editor" name="full_description" placeholder="Blog Descriptions"
         maxlength="1">@if(old('full_description')){{old('full_description')}}@endif</textarea>
       <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
     </div>

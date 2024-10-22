@@ -70,14 +70,9 @@
       <div class="card-body">
         <div class="form-horizontal row">
 
-          <div class="col-md-4">
-            <div class="">
-              <div class="card-header">
-                <h3 class="card-title">Add New Slider</h3>
-                <div id="example1_wrapper">
-
-                </div>
-              </div>
+          <div class="col-md-12">
+            
+           
 
               <form id="addsliderajax" method="post" enctype="multipart/form-data" class="form-horizontal"
                 onsubmit="return false;">
@@ -148,9 +143,9 @@
 
 
             </div>
-            </div>
+            
             </form>
-          </div>
+         
 
 
          

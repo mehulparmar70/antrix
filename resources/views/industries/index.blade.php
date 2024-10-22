@@ -132,11 +132,11 @@ $(function () {
                         @else
 
                           <td><img class="rounded"  width="150"
-                          src="{{asset('/')}}/img/no-item.jpeg"></td>
+                          src="{{asset('/')}}img/no-item.jpeg"></td>
                         @endif
 
                         <td>{{$testimonial->title}}</td>
-                        <td>{{$testimonial->short_description}}</td>
+                        <td >{{$testimonial->short_description}}</td>
                         
 							
                         <td>

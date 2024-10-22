@@ -38,6 +38,7 @@
 
       <p>
 
+        {{$testimonial->client_name}} <br>  
         {{$testimonial->short_description}}
 
         <span>Read More</span>

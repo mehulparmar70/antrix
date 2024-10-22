@@ -15,7 +15,9 @@
             }
         </script>
 
-     
+        <link rel="stylesheet" href="{{asset('/')}}css/popup.css">
+     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="{{asset('/')}}/js/popper.min.js"></script>
 <script src="{{asset('/')}}/js/bootstrap.min.js"></script>
 

@@ -192,6 +192,7 @@ Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.updat
 
 Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkDelete'])->name('item.bulk-delete');
 Route::post('/slider-store', [SliderController::class, 'store'])->name('slider.store');
+Route::get('/slider-create', [SliderController::class, 'create'])->name('slider.create');
 
 
 Route::get('/industries-index', [IndustriesController::class,'index'])->name('industries.index');

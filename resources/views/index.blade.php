@@ -76,7 +76,7 @@
           @if(session('LoggedUser'))
             <!-- <a class="onscreen-banner-slider" href="{{ url('/powerup/slider?onscreenCms=true') }}" onclick="window.open('{{ url("/powerup/slider?onscreenCms=true") }}', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;" ><i class='fa fa-edit'></i></a> -->
             <div class="content_banners" 
-                data-create-link="{{ route('slider.index') }}" 
+                data-create-link="{{ route('slider.create') }}" 
                 data-edit-link="{{ route('slider.edit', $slider->id) }}" 
 
                 data-index-link="{{ route('slider.index') }}"

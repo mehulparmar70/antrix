@@ -154,7 +154,8 @@ class StatusController extends Controller
                 ->update(['status'=>!$data->status]);
     
                 if($save){
-                    return ['status' => 'Status Changed...'];
+                    return response()->json(['status' => 'success', 'new_status' => !$data->status]);
+
                 }else{
                     return 'Something went wrong, try again!!!';
                 }

@@ -12,30 +12,27 @@
       <div class="card-body">
         <div class="form-horizontal row">
 
+          <div class="col-sm-12">
+            <ol class=" float-sm-right">
+              <ol class=" float-sm-right"><button
+                  onclick="popupmenu(`{{route('slider.create')}}`,'editmodal','','','','')"
+                  class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
+                  &nbsp;&nbsp;Add New Slider </button>
+  
+  
+              </ol>
+          </div>
             
-            <div class="col-md-8 ">
-              <div class="">
-              <div class="card-header">
-                <h3 class="card-title">Slider List</h3>
-              </div>
+            <div class="col-md-12 ">
+           
+             
               
-            <div >
-              <div >
-                <table data-table="slider" id="clienttable" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
+       
+         
+         
 
-              <div>
-                <div>
-                  <table id="clienttable" class="table table-bordered table-striped">
+            
+                  <table  data-table="slider" id="clienttable" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th>Id</th>
@@ -55,19 +52,19 @@
                         <td>{{$slider->title}}</td>
                         <td>{{$slider->description}}</td>
                         <td>
-
                           <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="status" value="0" id="exampleCheck1"
-                              onClick="updateStatus({{$slider->id}})" @if($slider->status == 1)checked
-                            @endif
-                            @if(old('status'))checked
-                            @endif
+                              onClick="updateStatus({{ $slider->id }}, 'slider')" 
+                              @if($slider->status == 1) checked @endif 
                             />
-
-                            @if($slider->status == 0)<p class="badge badge-danger">Inactive</p>@else<p
-                              class="badge badge-success">Active</p>@endif
+                        
+                            <!-- Status text -->
+                            <span id="statusText{{ $slider->id }}" class="badge @if($slider->status == 0) badge-danger @else badge-success @endif">
+                              @if($slider->status == 0) Inactive @else Active @endif
+                            </span>
+                          </div>
                         </td>
-
+                        
                         <td>
                         <a href="{{route('slider.edit', $slider->id)}}" 
                             class="btn btn-xs btn-info float-left mr-2"  
@@ -107,15 +104,15 @@
                 </tfoot>
                 </table>
 
-              </div>
-            </div>
+           
+        
 
-          </div>
+    
 
 
-        </div>
 
-      </div>
+
+  
 
 
     </div>

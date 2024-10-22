@@ -27,6 +27,7 @@
 
       <p>
 
+        {!! html_entity_decode($blogsList->title) !!} <br>
         {!! html_entity_decode($blogsList->short_description) !!}
 
         <span>Read More</span>

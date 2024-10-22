@@ -26,6 +26,7 @@
 
           <p>
 
+            {!! strip_tags($caseStudiesList->title) !!} <br>
             {!! strip_tags($caseStudiesList->short_description) !!}
 
             <span>Read More</span>

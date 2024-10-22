@@ -534,6 +534,7 @@ function popupmenu(link, type, location, left, width, height) {
             modalContainer.innerHTML = `<div >${data}</div>`;
             modalContainer.querySelector('.cmsModal').style.display = 'block';
             initializeDynamicContent();
+            initializeEditor();
         })
         .catch(error => {
             console.error('Error loading content:', error);
@@ -597,14 +598,11 @@ else
   fetch(link)
   .then(response => response.text())
             .then(data => {
-              document.getElementById('iframpopup')
-        .contentDocument.write(data);
-                // document.getElementById('modalBodyContent').innerHTML = data;
-                document.getElementById('iframpopup').style.display = 'block';
+                document.getElementById('modalBodyContent').innerHTML = data;
+                document.getElementById('ajaxModal').style.display = 'block';
 
                 // Initialize the CKEditor after modal content is loaded
                 initializeEditor();
-                initializeDynamicContent();
             })
             .catch(error => console.error('Error loading content:', error));
 }
@@ -1930,17 +1928,38 @@ function initializeDynamicContent() {
   }
 
   // Function to update the slider status
-  window.updateStatus = function(id) {
+  window.updateStatus = function(id,type) {
       $.ajax({
-          url:  base_url+"{{ route('status.update') }}",
+          url:  base_url+"/api/admin/update-status",
           type: 'POST',
           data: {
               id: id,
-              table: 'slider',
+              table: type,
               _token: "{{ csrf_token() }}" // CSRF token
           },
           success: function(result) {
-              location.reload(); // Reload page after status update
+            iziToast.success({
+              title: 'Success',
+              message: 'Status Updated..',
+              position: 'center',   // Centering the notification
+              timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+              transitionIn: 'fadeInDown',   // Smooth transition like macOS
+              transitionOut: 'fadeOutUp',
+              class: 'mac-style-toast',     // Custom class for macOS style
+              layout: 2,    
+          });
+
+          var checkbox = $('#exampleCheck1');
+          var statusText = $('#statusText' + id);
+          
+          if (checkbox.is(':checked')) {
+            checkbox.prop('checked', false);  // Uncheck the checkbox
+            statusText.removeClass('badge-success').addClass('badge-danger').text('Inactive');  // Set status to inactive
+          } else {
+            checkbox.prop('checked', true);  // Check the checkbox
+            statusText.removeClass('badge-danger').addClass('badge-success').text('Active');  // Set status to active
+          }
+              // location.reload(); // Reload page after status update
           },
           error: function(xhr, status, error) {
               console.error('Error updating status:', error);

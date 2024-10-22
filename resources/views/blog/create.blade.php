@@ -33,11 +33,7 @@
         value="{{old('short_description')}}" required>
       <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
     </div>
-    <div class="col-sm-4">
-      <label for="title" class="cmsModal-formLabel">Add Update Page Url</label>
-      <input type="text" class="cmsModal-formControl" name="slug" placeholder="Url" value="{{old('slug')}}" required>
-      <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-    </div>
+   
     <div class="col-sm-12 mt-3">
       <label for="full_description" class="cmsModal-formLabel">Add Update Description</label>
       <textarea id="editor" name="full_description"
@@ -72,8 +68,13 @@
       </div>
     </div>
     <div class="col-sm-6 col-md-6">
+    <div class="col-sm-12 mb-2  p-0">
+    <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
+      <input type="text" class="cmsModal-formControl" name="slug" placeholder="Url" value="{{old('slug')}}" required>
+      <span class="text-danger">@error('slug') {{$message}} @enderror</span>
+    </div>
       <div class="col-sm-12 mb-2  p-0">
-        <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
+
         <input type="text" class="cmsModal-formControl" name="meta_title" placeholder="Seo Title" value="{{old('meta_title')}}">
         <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
       </div>

@@ -36,6 +36,14 @@ class SliderController extends Controller
     public function create()
     {
         //
+        $type = 'Add_Slider';
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+                    'type' => $type
+                ];
+        // dd($data);
+        return view('admin.home-editor.popup-page',$data);
+        // return view('slider.create',$data);
     }
 
     /**

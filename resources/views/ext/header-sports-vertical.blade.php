@@ -7,6 +7,34 @@
 <body>
   
 <style>
+  /* Limit the text to 5 characters */
+.text-limit {
+    display: inline-block;
+    max-width: 5ch; /* Limits to 5 characters */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Tooltip styling */
+.text-limit:hover::after {
+    content: attr(data-full-text); /* Display the full content on hover */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    top: 100%; /* Position the tooltip below the text */
+    left: 0;
+    white-space: nowrap;
+    z-index: 100;
+    font-size: 12px;
+    min-width: 100px;
+}
+
   .mac-style-toast {
     background-color: #f5f5f7 !important;
     border-radius: 12px !important;
@@ -762,27 +790,8 @@ $(document).ready(function () {
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
     </div>
-    <style>
-      #iframpopup
-{
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  outline: 0;
-  border-radius: 8px;
-  border: 0 none;
-}
-    </style>
-    <iframe id="iframpopup" style="position: fixed;
-    z-index: 99;width: 1300px;
-    height: 500px;">
 
-    </iframe>
+  
     <!-- iziToast JS -->
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 </body>

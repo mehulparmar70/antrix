@@ -24,7 +24,7 @@
               <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
                 <div class="tab_top subCategoryImage subCategoryImage-{{ $topInflatableLp->id }}">
                   @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                  <img src="{{url('/')}}images/{{$productImage->image}}" style="height: 540px !important;" />
+                  <img src="{{url('/')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
                   @endforeach
                 </div>
                 <div class="product_internal_title" @if(session('LoggedUser'))

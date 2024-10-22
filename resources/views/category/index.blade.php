@@ -244,12 +244,13 @@
                 </a>
                 &nbsp;&nbsp;&nbsp;
 
-
-                <button type="button" class="btn btn-xs btn-danger del-modal" title="Delete Category"
-                  data-id="{{route('admin.index')}}/category/delete/{{ $parent_category->id}}"
-                  data-title="{{ $parent_category->name}}" data-toggle="modal" data-target="#modal-default"><i
-                    class="fa fa-trash"></i>
-                </button>
+                <a href="{{route('admin.category.delete', $parent_category->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete slider" 
+                            onclick="popupmenu('{{route('admin.category.delete', $parent_category->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
+             
               </div>
             </td>
             </tr>

@@ -5,8 +5,7 @@
      role="dialog" 
      aria-labelledby="popupFormLabel" 
      aria-hidden="true">
-     <link rel="stylesheet" href="{{asset('/')}}css/popup.css">
-     <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
+
   <div class="cmsModal-dialog " role="document">
     <div class="cmsModal-content">
       <div class="cmsModal-header">
@@ -63,6 +62,7 @@
           @includeWhen($type == 'Testimonial_edit', 'testimonial.edit')
           @includeWhen($type == 'SocialMedia', 'setting.social-media')
           @includeWhen($type == 'Video_edit', 'video.edit')
+          @includeWhen($type == 'Add_Slider', 'slider.create')
           
           @includeWhen($type == 'Addpartners', 'partners.create')
           @includeWhen($type == 'partners_edit', 'partners.edit')

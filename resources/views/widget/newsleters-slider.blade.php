@@ -26,6 +26,7 @@
 
       <p>
 
+        {{ $newsletterList->title }} <br>
         {{ $newsletterList->short_description }}
 
         <span>Read More</span>

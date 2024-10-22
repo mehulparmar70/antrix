@@ -110,7 +110,7 @@ $(".listing a").addClass( "active-menu");
 async function updateProductImage(e) {
   e.preventDefault();
 
-  alert('test'+e.target.image_alt.value);
+  
 
   const formData = new FormData();
   formData.append('image_alt', e.target.image_alt.value);
@@ -119,13 +119,13 @@ async function updateProductImage(e) {
   axios.post(GLOBAL.API + 'media/update-product-image', formData)
   .then(res => {
     if(res.data == 'success'){
-      alert('1');
+      
       toastr.success('Field Updated...')
         getMedias();
         console.log('done');  
     }
     else if(res.data == 'not-exists'){
-      alert('0');
+     
 
         console.log('file Already deleted');
     }
