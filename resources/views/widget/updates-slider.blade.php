@@ -4,7 +4,7 @@
 
     <a href="{{url('updates')}}">UPDATES</a>
 
-    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.index')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+    <div class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
 
   </div>
 

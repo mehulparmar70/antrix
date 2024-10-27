@@ -70,6 +70,7 @@
           @includeWhen($type == 'Blogs', 'blog.index')
           @includeWhen($type == 'AddBlog', 'blog.create')
           @includeWhen($type == 'BlogEdit', 'blog.edit')
+          @includeWhen($type == 'BlogEdit', 'blog.edit')
           
 
         @elseif(isset($sliders) && !empty($sliders))
@@ -80,7 +81,7 @@
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'CreateMainCategory', 'category.create')  
 
-        @includeWhen($type == 'photo', 'photo.list-photo')
+        @includeWhen($type == 'photo_manage', 'photo.list-photo')
         @includeWhen($type == 'video', 'video.create')
         @includeWhen($type == 'SocialMediaManagers', 'setting.seo-manage')
         @includeWhen($type == 'customJs', 'custom-code.custom-js')

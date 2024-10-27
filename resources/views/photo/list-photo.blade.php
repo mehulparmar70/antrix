@@ -1,34 +1,9 @@
-@extends('adm.layout.admin-index')
-@section('title','Add:- Product')
 
-@section('toast')
-  @include('adm.widget.toast')
-@endsection
 
 @section('custom-js')
 
 <script>
 
-$('.category_parent_id').on('change', function() {
-        var parent = $(this).find(':selected').val();
-
-        $.get( `{{url('api')}}/get/getSubCategories/`+parent, { category_parent_id: parent })
-
-        .done(function( data ) {
-        if(JSON.stringify(data.length) == 0){
-            $('.sub_category_parent_id').html('<option value=>Select Sub Category</option>');
-        }
-        else{
-                $('.sub_category_parent_id').empty();     
-            $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
-            for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
-            }
-        }
-    });
-    $('.category_id').val(parent);
-
-    });
 
 
     $('.sub_category_parent_id').on('change', function() {
@@ -157,6 +132,8 @@ $(".btnDelete").click(function(e) {
     </script>
 
 @endsection
+
+
 <?php 
   $pageType = $_GET['page'];
 
@@ -170,7 +147,7 @@ $(".btnDelete").click(function(e) {
 ?>
 
 
-@section('content')
+
 
 <?php
   if(isset($_REQUEST['sub_category']))
@@ -178,11 +155,11 @@ $(".btnDelete").click(function(e) {
       $sub_category  = $_REQUEST['sub_category'];
       $productDetail = DB::table('products')->where('category_id', $sub_category)->first();
     }else{
-      $productDetail = null;
+      $productDetail = "";
     }
 
 
-  // dd($productDetail);
+
 ?>
 
 <div class="content-wrapper">
@@ -377,11 +354,11 @@ $(".btnDelete").click(function(e) {
 
                               <i class="fa fa-eye"></i></a> 
 
-                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="fa fa-edit"></i></a>
+                              <a href="{{route('admin.index')}}/product?image={{$product->id}}" class="btn btn-xs btn-info float-left mr-2"  title="Manage Photos"><i class="far fa-edit"></i></a>
                               
                               
                               <button type="button" class="btn btn-xs btn-danger del-modal float-left"  title="Delete product"  data-id="{{route('admin.index')}}/product/{{$product->id}}"  
-                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i>
+                              data-title="{{ $product->name}}"  data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
                               </button>
                           
                           </td>
@@ -407,7 +384,7 @@ $(".btnDelete").click(function(e) {
                             class="btn btn-info btn-sm"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Deactive</button> -->
 
                             <button type="submit" name="action" value="delete"
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
+                            class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>
 
                         </td></tr>
 
@@ -663,7 +640,7 @@ $(".btnDelete").click(function(e) {
                   
                     <a class="btnDelete btn btn-danger btn-sm mr-2" data-url="{{url('api')}}/media/media-delete/{{$image->id}}"
                       style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
-                      <i class="fa fa-trash"></i>  &nbsp;&nbsp;Delete
+                      <i class="fas fa-trash-alt"></i>  &nbsp;&nbsp;Delete
                     </a>
                     
                   </div>
@@ -688,5 +665,3 @@ $(".btnDelete").click(function(e) {
       </div>
     </section>
   </div>
-
-  @endsection

@@ -1966,3 +1966,29 @@ function initializeDynamicContent() {
           }
       });
   };
+
+
+  // $(document).ready(function() {
+    $('.category_parent_id').on('change', function() {
+      console.log("ttt");
+            var parent = $(this).find(':selected').val();
+    
+            $.get( `{{url('api')}}/get/getSubCategories/`+parent, { category_parent_id: parent })
+    
+            .done(function( data ) {
+            if(JSON.stringify(data.length) == 0){
+                $('.sub_category_parent_id').html('<option value=>Select Sub Category</option>');
+            }
+            else{
+                    $('.sub_category_parent_id').empty();     
+                $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
+                for(var i = 0 ; i < JSON.stringify(data.length); i++){  
+                    $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
+                }
+            }
+        });
+        
+        $('.category_id').val(parent);
+    
+        });
+        // });

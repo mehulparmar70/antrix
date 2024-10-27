@@ -107,7 +107,7 @@ Route::post('newsletter/delete/{id}', [NewsletterController::class, 'destroy'])-
 
 
 Route::get('/category',[CategoryController::class, 'index'])->name('admin.category.list');
-Route::get('/photo',[PhotoManageController::class, 'index'])->name('admin.photo.manage');
+Route::get('dashboard/photo',[PhotoManageController::class, 'index'])->name('admin.photo.manage');
 Route::get('testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
 Route::get('videos/create', [VideoController::class, 'create'])->name('video.create');
 Route::post('videos/store', [VideoController::class, 'store'])->name('video.store');

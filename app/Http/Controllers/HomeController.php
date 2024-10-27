@@ -285,7 +285,7 @@ class HomeController extends Controller
                 'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
             ];
-            return response()->view('sardar.product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
         
@@ -587,6 +587,7 @@ class HomeController extends Controller
         
         $criteriaData = Criteria::where('slug', $slug)->first();
 
+        
         $current_sub_cat = Category::where(['parent_id' => $isProductDetails->id])->get();
 
         // $current_sub_cat = DB::table('categories')

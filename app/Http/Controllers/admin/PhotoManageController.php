@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\admin\Category;
 use App\Models\admin\Product;
 use App\Models\admin\Media;
+use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 use File;
 use DB;
@@ -21,8 +23,12 @@ class PhotoManageController extends Controller
        }
        
        
-    public function Index(Request $request){
+       public function Index(Request $request){
         
+        // dd($request);
+    //     die();
+        
+        // $photos = category::where('id', $request->subCategory)->first();
         $subCategory = category::where('id', $request->sub_category)->get();
 
         if($request->page == 'add' && $request->main_category == null && $request->sub_category == null)
@@ -30,26 +36,28 @@ class PhotoManageController extends Controller
 
             $data = [
                 'Maincategories' =>  $this->Maincategories,
-                'type' => 'createPhoto'
             ];
-            // return view('adm.pages.photo.create', $data);
-            return view('admin.home-editor.popup-page', $data);
+            return view('adm.pages.photo.create', $data);
         }
 
         elseif($request->page == 'add' && $request->main_category != null && $request->sub_category != null ){
+            
 
-            $sub_category = DB::table('products')->where('category_id', $request->sub_category)->first();
-            if($sub_category){
-                
-                $photoDetails = DB::table('media')->where('media_id', $sub_category->id)->get();
-                
-                $data = [
-                    'Maincategories' =>  $this->Maincategories,
-                    'subCategory' => $request->sub_category,
-                    'photoDetails' => $photoDetails,
-                ];
-                return view('adm.pages.photo.edit', $data);
-            }
+  $sub_category = DB::table('products')->where('category_id', $request->sub_category)->first();
+
+    if($sub_category){
+        
+        $photoDetails = DB::table('media')->where('media_id', $sub_category->id)->get();
+        // dd($photoDetails);
+        
+        $data = [
+            'Maincategories' =>  $this->Maincategories,
+            'subCategory' => $request->sub_category,
+            'photoDetails' => $photoDetails,
+        ];
+        return view('adm.pages.photo.edit', $data);
+    }
+
 
             $data = [
                 'Maincategories' =>  $this->Maincategories,
@@ -60,11 +68,12 @@ class PhotoManageController extends Controller
     
         }
         
+    
         if($request->page == 'manage' && $request->main_category != null && $request->sub_category != null)
         {
             $isSubCategory = DB::table('categories')->where('id', $request->sub_category)->first();
             if(!$isSubCategory){
-                return redirect(route('admin.index').'/photo?type=photo');
+                return redirect(route('admin.index').'/photo?page=list');
             }
             $photoDetails = DB::table('media')->where('media_id', $isSubCategory->id)->get();
             
@@ -75,7 +84,7 @@ class PhotoManageController extends Controller
             ];
             return view('adm.pages.photo.manage', $data);
         }
-        elseif($request->type == 'photo') {
+        elseif($request->page == 'list') {
             $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
             if($isProductAvailable){
                 $photoDetails = DB::table('media')->where('media_id', $isProductAvailable->id)->get();
@@ -83,17 +92,23 @@ class PhotoManageController extends Controller
                 $photoDetails = null;
             }
             $data = [
-                'type' => 'photo',
                 'Maincategories' =>  $this->Maincategories,
                 'subCategory' => $request->sub_category,
                 'photoDetails' => $photoDetails,
+                'type'=>'photo_manage',
+                'pageData' =>  Pages::where('type', 'client_page')->first(),
+
             ];
-            // return view('adm.pages.photo.list-photo', $data);
             return view('admin.home-editor.popup-page', $data);
+            // return view('adm.pages.photo.list-photo', $data);
         }
         else{
             return redirect(route('admin.index').'/photo?page=list');
         }
+            // dd('manage');
+
+
+        // else
         
         if(isset($product) && $request->image){
             return view('adm.pages.photo.image', ['product' => $product]);
@@ -102,7 +117,7 @@ class PhotoManageController extends Controller
         elseif($subCategory->count() > 0 && $request->subCategory){
 
             $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
-       
+            dd($isProductAvailable);
             $data = [
                 'productDetail' => $isProductAvailable
             ];
@@ -123,7 +138,6 @@ class PhotoManageController extends Controller
         $data = ['parent_categories' =>  $this->parent_categories];
         return view('adm.pages.photo.create',$data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
