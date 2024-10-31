@@ -44,7 +44,7 @@ class PhotoManageController extends Controller
             
 
   $sub_category = DB::table('products')->where('category_id', $request->sub_category)->first();
-
+            
     if($sub_category){
         
         $photoDetails = DB::table('media')->where('media_id', $sub_category->id)->get();
@@ -68,9 +68,29 @@ class PhotoManageController extends Controller
     
         }
         
+        if($request->pagefrom==="productpage")
+        {
+            $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
+        if($isProductAvailable){
+            $photoDetails = DB::table('media')->where('media_id', $isProductAvailable->id)->get();
+        }else{
+            $photoDetails = null;
+        }
+        $data = [
+            'Maincategories' =>  $this->Maincategories,
+            'subCategory' => $request->sub_category,
+            'photoDetails' => $photoDetails,
+            'type'=>'photo_manage',
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+
+        ];
+         return view('admin.home-editor.popup-page', $data);
+        }
     
         if($request->page == 'manage' && $request->main_category != null && $request->sub_category != null)
         {
+        
+            // dd("test");  
             $isSubCategory = DB::table('categories')->where('id', $request->sub_category)->first();
             if(!$isSubCategory){
                 return redirect(route('admin.index').'/photo?page=list');
@@ -81,8 +101,11 @@ class PhotoManageController extends Controller
                 'Maincategories' =>  $this->Maincategories,
                 'subCategory' => $request->sub_category,
                 'photoDetails' => $photoDetails,
+                'type'=>'photo_manage',
+                'pageData' =>  Pages::where('type', 'client_page')->first(),
             ];
-            return view('adm.pages.photo.manage', $data);
+            // return view('admin.home-editor.popup-page', $data);
+            return view('photo.manage', $data)->render();
         }
         elseif($request->page == 'list') {
             $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
@@ -117,7 +140,7 @@ class PhotoManageController extends Controller
         elseif($subCategory->count() > 0 && $request->subCategory){
 
             $isProductAvailable = DB::table('products')->where('category_id', $request->sub_category)->first();
-            dd($isProductAvailable);
+          
             $data = [
                 'productDetail' => $isProductAvailable
             ];

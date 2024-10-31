@@ -74,10 +74,10 @@ function goBack() {
           <div class="update_item">
             <h2>{{$updatesList->title}}</h2>
             <a class="update_inner match" href="{{ url('updates') }}/{{$updatesList->slug}}">
-              <img src="{{ url('web') }}/media/md/{{ $updatesList->image }}" />
+              <img src="{{ url('') }}/images/{{ $updatesList->image }}" />
               <p>
                 {!! html_entity_decode($updatesList->short_description) !!}
-                <span><img src="{{ url('sardar') }}/images/osearch.png" /> &nbsp; click toview</span>
+                <span><img src="{{ url('') }}/images/osearch.png" /> &nbsp; click toview</span>
               </p>
             </a>
           </div>

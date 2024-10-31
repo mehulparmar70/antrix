@@ -617,7 +617,7 @@ $('#summernote').summernote({
                       <tr id="{{$image->id}}"> 
                         <td>{{$image->item_no}}</td>
                           <td>
-                            <img src="{{url('')}}/web/media/md/{{$image->image}}" width="100"/>
+                            <img src="{{url('')}}/images/{{$image->image}}" width="100"/>
                           </td>
                           <td>{{$image->image_title}}</td>
                           <td>{{$image->image_alt}}</td>

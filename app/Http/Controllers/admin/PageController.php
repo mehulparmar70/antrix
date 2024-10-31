@@ -366,7 +366,7 @@ class PageController extends Controller
                         ]);
                     }
                 }
-        return redirect('/')->with('success', $request->type . ' Details Added...');
+
         // Get the page title from the request
         // $page_title = $request->page_title;
         

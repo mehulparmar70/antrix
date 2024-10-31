@@ -30,38 +30,48 @@ class CategoryController extends Controller
     }
     
 
-    public function index()
+    public function index(Request $request)
     {
 
+       
         $type = 'category';
         $subCategories = array();
         $productRangeCategories = array();
         $productRangeSubcategories = array();
-
-        foreach($this->parent_categories as $parent_category){
-            $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
-            foreach($subCats as $subCat){
-                $subCategories[] = $subCat;
-            }
+        if($request->type==="sub_category")
+        {
+            $pageSlug ="sub_category";
+            $subCategories = Category::where('parent_id', '!=', 0)->get();
         }
+     else {
+        $pageSlug ="main_category";
+        // Fetch main categories where parent_id is 0
+        $subCategories = Category::where('parent_id', 0)->get();
+    }
+        // foreach($this->parent_categories as $parent_category){
+        //     $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
+        //     foreach($subCats as $subCat){
+        //         $subCategories[] = $subCat;
+        //     }
+        // }
+        // dd($subCategories);
+        // foreach($this->parent_categories as $parent_category){
+        //     $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
 
-        foreach($this->parent_categories as $parent_category){
-            $subCats = category::where(['parent_id'=>$parent_category->id])->orderBy('id','DESC')->get();
-
-            foreach($subCats as $subCat){
-                $productRanges = category::where(['parent_id'=>$subCat->id])->orderBy('id','DESC')->get();
-                foreach($productRanges as $productRange){
-                    $productRangeCategories[] = $productRange;
-                }
-                $productRangeSubcategories[] = $subCat;
-            }
-        }
+        //     foreach($subCats as $subCat){
+        //         $productRanges = category::where(['parent_id'=>$subCat->id])->orderBy('id','DESC')->get();
+        //         foreach($productRanges as $productRange){
+        //             $productRangeCategories[] = $productRange;
+        //         }
+        //         $productRangeSubcategories[] = $subCat;
+        //     }
+        // }
         
         $data = [
             'pageData' =>  Pages::where('type', 'product_page')->first(),
             'parent_categories' =>  $this->parent_categories, 
-        'sub_categories' => $subCategories, 'productRangeCategories' => $productRangeCategories,
-         'productRangeSubcategories' => $productRangeSubcategories, 'seach_id' => null,'type' => $type];
+        'categories' => $subCategories, 
+         'seach_id' => null,'type' => $type];
         
         return view('admin.home-editor.popup-page', $data);
     }
@@ -220,28 +230,36 @@ class CategoryController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $category = Category::where('id', $id)->first();
-        // $this->parent_categories
-        $type="Main_Category";
-        $data = [
-            'type'=> $type, 
-        'pageData' =>  Pages::where('type', 'client_page')->first(),
-                'parent_categories' => $this->parent_categories,
-                'categories' =>  category::where(['parent_id'=>0])->whereNotIn('id',[$id])
-                            ->orderBy('id','DESC')->get(),
-                 'category'=> $category ];
+        // dd( $id);
+        if($request->type==="sub_category")
+        {
+            $category = Category::where('id', $id)->first();
+        }
+        else
+        {
+            $category = Category::where('id', $request->id)->first();
+        }
        
-                
-        // if($category){
-            // return view('adm.pages.category.edit',$data);
-            return view('admin.home-editor.popup-page',$data);
-
-        // }else{
-        //     return redirect(route('admin.category.list'))->with('fail', 'Category Not Available...');
-        // }
-        
+            
+        // Determine type based on parent_id
+        $type = $category->parent_id == 0 ? "Main_Category" : "Sub_Category";
+        // dd($type);
+        $parentid= $category->parent_id;
+        $data = [
+            'type' => $type, 
+            'pageData' => Pages::where('type', 'client_page')->first(),
+            'parent_categories' => $this->parent_categories,
+            'parentid' => $parentid,
+            'categories' => Category::where('parent_id', 0)
+                                     ->whereNotIn('id', [$id])
+                                     ->orderBy('id', 'DESC')
+                                     ->get(),
+            'category' => $category 
+        ];
+    
+        return view('admin.home-editor.popup-page', $data);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

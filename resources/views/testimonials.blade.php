@@ -74,13 +74,13 @@ function goBack() {
         <div class="inner_tab_blk_right">
           <div class="image_gallery">
             <div class="product_cat_name">
-              <img src="{{ url('') }}/sardar/images/person.png" alt="person" />
+              <img src="{{ url('') }}/images/person.png" alt="person" />
               <p>Testimonials</p>
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.testimonial-page.editor')}}"
                                         @endif></div>
             </div>
-            <img src="{{ url('') }}/sardar/images/banner2.jpg" alt="banner" / class="case-img">
+            <img src="{{ url('') }}/images/banner2.jpg" alt="banner" / class="case-img">
           </div>
         </div>
         <div class="inner_tab_blk_left">
@@ -113,7 +113,7 @@ function goBack() {
               <img src="{{url('web')}}/media/lg/{{$testimonial->image}}" />
               <p>
                 {!! $testimonial->short_description !!}
-                <span><img src="{{ url('') }}/sardar/images/osearch.png" /> &nbsp; click to view</span>
+                <span><img src="{{ url('') }}/images/osearch.png" /> &nbsp; click to view</span>
               </p>
             </a>
           </div>

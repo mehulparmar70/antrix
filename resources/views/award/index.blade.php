@@ -61,80 +61,16 @@
 
 
 
-    <div class="col-md-5 ">
-      <div>
-        <h3 class="card-title">Add Award</h3>
+  <div class="col-sm-12">
+        <ol class=" float-sm-right">
+        <ol class=" float-sm-right"><button  onclick="popupmenu(`{{url('powerup/award/createaward')}}`,'editmodal','','','','')" class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
+                &nbsp;&nbsp;Add New Award </button>
+            
+        </ol>
       </div>
 
-
-      <form method="post" id="ajaxForm" enctype="multipart/form-data" class="form-horizontal"
-        action="{{route('award.store')}}">
-        @csrf
-        <input type="hidden" id="page_type" value="singleUpload">
-        <div class="card-body p-2 pt-4">
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <div class="cmsModal-formGroup">
-                <label for="name" class="cmsModal-formLabel">Award Name</label>
-                <input class="cmsModal-formControl" type="text" name="name" placeholder="Award name">
-                <span class="text-danger">@error('name') {{$message}} @enderror</span>
-              </div>
-             
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <div class="cmsModal-formGroup">
-              <label for="note" class="cmsModal-formLabel">Award Note</label>
-              <textarea class="cmsModal-formControl" type="text" name="note" placeholder="Alt Text / Award Note"></textarea>
-              <span class="text-danger">@error('note') {{$message}} @enderror</span>
-            </div>
-          </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <div class="cmsModal-formGroup">
-              <label for="image_alt" class="cmsModal-formLabel">Logo</label><br>
-              <input type="file" name="image" class="file_input" id="image" required
-                accept="image/png,image/jpeg,image/webp">
-              <br>
-              <p class="text-danger">Supportable Format: <br> JPG,JPEG,PNG,WEBP</p><br>
-              <img class="perview-img favicon" height="120" src="{{asset('/')}}img/no-item.jpeg">
-              <span class="text-danger">@error('image') {{$message}} @enderror</span>
-            </div>
-            </div>
-
-
-
-            <div class="form-check mt-4">
-              <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1" checked />
-
-              <h5> <span class="badge badge-success">Active</span></h5>
-            </div>
-
-
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          @if(request()->get('onscreenCms') == 'true')
-          <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o"
-              aria-hidden="true"></i>
-            Save Award & Close</button>
-          @else
-          <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save
-            Award</button>
-          @endif
-        </div>
-      </form>
-
-    </div>
-
-    <div class="col-md-7">
-      <div>
-        <h3 class="card-title">Award Lists</h3>
-      </div>
+    <div class="col-md-12">
+ 
       <div class="card-body table-responsive p-0">
         <table class="table table-hover text-nowrap" id="clienttable">
           <thead>
@@ -167,7 +103,7 @@
 
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                    onClick="updateStatus({{$client->id}})" @if($client->status == 1)checked
+                    onClick="updateStatus({{$client->id}},'award')" @if($client->status == 1)checked
                   @endif
                   @if(old('status'))checked
                   @endif

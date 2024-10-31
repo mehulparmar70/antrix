@@ -60,106 +60,13 @@ function updateOrder(data) {
 
 
     <div class="form-group row">
-      
-     
-
-          <div class="col-md-5 ">
-              <div>
-                      <h3 class="card-title">Add Client</h3>
-                </div>
-                
-
-                <form method="post"  id="ajaxForm" enctype="multipart/form-data"  class="form-horizontal" action="{{route('client.store')}}">
-                  @csrf
-
-                  <div class="card-body p-2 pt-4">
-                  <div class="form-group row">
-                      <div class="col-sm-12">
-                        <div class="cmsModal-formGroup">
-                          <label for="name">Client Name</label>
-                          <input class="cmsModal-formControl"  type="text" name="name" placeholder="Client name">
-                          <span class="text-danger">@error('name') {{$message}} @enderror</span>
-                          </div>
-                        </div>
-                       
-                      </div>
-
-                      <div class="form-group row">
-                      <div class="col-sm-12">
-                        <div class="cmsModal-formGroup">
-                        <label for="note">Client Note</label>
-                          <textarea class="cmsModal-formControl" type="text" name="note" placeholder="Alt Text / Client Note"></textarea>
-                          <span class="text-danger">@error('note') {{$message}} @enderror</span>
-                          </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <div class="cmsModal-formGroup">
-                        <input type="hidden" id="page_type" value="singleUploadMultipleInput">
-                        <div class="col-sm-12">
-                        <label for="image_alt">Logo</label><br>
-                        <input type="file" name="image" class="file_input " id="image" required
-                          accept="image/png,image/jpeg,image/webp">
-                          <br>
-                        <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP</p><br>
-                        <img class="perview-img image"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
-                        <span class="text-danger">@error('image') {{$message}} @enderror</span>
-                      </div>
-                      </div>
-
-
-
-                  <div class="form-check mt-4">
-                    <div class="cmsModal-formGroup">
-                    <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                        id="exampleCheck1"
-                      checked
-                        />
-                        
-                      <h5> <span class="badge badge-success">Active</span></h5>
-                      </div>
-                      </div>
-  
-
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-sm-12">
-                        <div class="cmsModal-formGroup">
-                        <label for="name">Url</label>
-                          <input class="cmsModal-formControl"  type="text" name="url" placeholder="Url">
-                          <span class="text-danger">@error('url') {{$message}} @enderror</span>
-                      </div>
-                      </div>
-                      <div class="col-sm-12">
-                        <div class="cmsModal-formGroup">
-                        <label for="image_alt">Image</label><br>
-                        <input type="file" name="client_images" class="file_input " id="image" required
-                          accept="image/png,image/jpeg,image/webp">
-                          <br>
-                        <p class="text-danger">Supportable Format:  <br> JPG,JPEG,PNG,WEBP<br> </p>
-                        <img class="perview-img client_images"  height="120" src="{{asset('/')}}img/no-item.jpeg"> 
-                        <span class="text-danger">@error('client_images') {{$message}} @enderror</span>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer text-right">
-                    @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save Client & Close</button>
-                    @else
-                      <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save Client</button>
-                    @endif
-                  </div>
-                </form>
-
-              </div>
-           
-           <div class="col-md-7 ">
-              <div >
-                      <h3 class="card-title">Client Lists</h3>
-                </div>
+      <div class="col-sm-12">
+        <ol class=" float-sm-right">
+        <ol class=" float-sm-right"><button  onclick="popupmenu(`{{url('powerup/client/create')}}`,'editmodal','','','','')" class="cmsBtn blue"><i class="fa fa-plus" aria-hidden="true"></i>
+                &nbsp;&nbsp;Add New Client </button>
+            
+        </ol>
+      </div>
                 <div class="card-body table-responsive p-0">
                   <table data-table="clients" class="table table-hover text-nowrap" id="clienttable">
                     <thead>
@@ -195,7 +102,7 @@ function updateOrder(data) {
                                 <input type="checkbox" class="form-check-input  pull-right" name="status" 
                                 id="exampleCheck1"
                                 
-                                  onClick="updateStatus({{$client->id}})"
+                                  onClick="updateStatus({{$client->id}},'client')"
                                   @if($client->status == 1)checked
                                   @endif 
                                   @if(old('status'))checked
@@ -203,7 +110,7 @@ function updateOrder(data) {
                                   />
                                   
                                 @if($client->status == 0)
-                                <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif</td>
+                                <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span class="badge badge-success">Active</span></h5>@endif
                             </div>	
                             
                           </td>
@@ -236,11 +143,12 @@ function updateOrder(data) {
            
            
       
+ 
+  
+  
+
+
     </div>
-  
-  
-
-
     </div>
 
   

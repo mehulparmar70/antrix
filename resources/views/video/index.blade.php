@@ -148,7 +148,7 @@
 
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                          onClick="updateStatus({{$video->id}})" @if($video->status == 1)checked
+                          onClick="updateStatus({{$video->id}},'video')" @if($video->status == 1)checked
                         @endif
                         @if(old('status'))checked
                         @endif

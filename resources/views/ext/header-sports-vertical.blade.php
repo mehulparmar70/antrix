@@ -212,6 +212,24 @@
   box-shadow: none;
   width: 100%;
 }
+#searchphoto
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addaward
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#addclient
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #editblogajax
 {
   background-color: #272B2E; /* Slightly lighter background for input fields */
@@ -261,6 +279,12 @@
   width: 100%;
 }
 #addcasestudies
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
+#adproductsform
 {
   background-color: #272B2E; /* Slightly lighter background for input fields */
   box-shadow: none;
@@ -433,7 +457,8 @@ $(document).ready(function () {
                         @endif> --}}
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Main Category</a></li>
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sub Category</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Products</a></li>
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Products</a></li> -->
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Photos</a></li>
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Video</a></li>
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true','','','','',''); return false;">Sub Category</a></li>  --}}
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;">Manage Products</a></li>  --}}
@@ -455,9 +480,12 @@ $(document).ready(function () {
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/category?type=sub_category&onscreenCms=true','','','','',''); return false;"
                         >Sub Category</a></li> --}}
-                        <li><a href=""
+                        <!-- <li><a class="adminEditItem" href=""
+                            onclick="popupmenu('{{route('admin.index')}}/products?page=list&onscreenCms=true','','','','',''); return false;"
+                        >Manage Products</a></li> -->
+                        <li><a class="adminEditItem" href=""
                             onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
-                        >Manage Products</a></li>
+                        >Manage Photos</a></li>
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.index')}}?type=videoIndex&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Video</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/video?onscreenCms=true','','','','',''); return false;"

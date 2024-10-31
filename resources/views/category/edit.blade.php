@@ -133,7 +133,7 @@ else{
                 <div class="p-0">
 
               <div class="hidden-block form-group row">
-                  @if($type == 'sub_category')
+                  @if($type == 'Sub_Category')
 
                   <input type="hidden" name="pageType" class="parent_id" 
                       value="sub_category"> 
@@ -146,7 +146,7 @@ else{
                           @foreach($parent_categories as $parent_category)
                               <option value="{{$parent_category->id}}"
                               
-                          @if($_REQUEST['id'] == $parent_category->id )
+                          @if($parentid == $parent_category->id )
                               selected
                             @endif
 
@@ -159,7 +159,7 @@ else{
                     </div>
                 
                     <input type="hidden" name="parent_id" class="parent_id" 
-                    value="{{$_REQUEST['id']}}"/>
+                    value="{{$parentid}}"/>
 
                     <input type="hidden" name="page_type" value="sub_category"/>
                     @else
@@ -311,22 +311,19 @@ else{
                     </div>
                   </div>
 
-                  {{-- @elseif($type == 'sub_category')
+                   @elseif($type == 'Sub_Category')
                   <div class="col-sm-12 text-center mt-4 row">
-                    @if(request()->get('onscreenCms') == 'true')
-                      <button type="submit" class="col-sm-4 cmsBtn blue mr-2" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      Save & Close</button>
+                 
+                  <button type="button" onclick="editcategoriessubmit({{$category->id}})" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                  Save Edits & Exit</button>
                       <button type="submit" class="col-sm-4 cmsBtn blue mr-2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Add Photos</button>
                       <button type="submit" class="cmsBtn blue" name="close" value="2"><i class="fa fa-floppy-o" aria-hidden="true"></i>
                         Save & Create Sub Category</button>
-                    @else
-                      <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-                        <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        Save & Add Photos</button>
-                      </div>
-                    @endif
-                  </div> --}}
+                   
+                  
+                    
+                  </div> 
                 @endif
 
                 </div>

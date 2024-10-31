@@ -150,7 +150,7 @@
   <div class="card-footer text-center">
     <button type="button" onclick="editblogsubmit({{$blog->id}})" class="cmsBtn blue"><i class="fa fa-floppy-o"
         aria-hidden="true"></i>
-      Update </button>
+      Update Blog</button>
   </div>
   </div>
 </form>

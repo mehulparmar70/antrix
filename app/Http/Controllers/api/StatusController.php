@@ -80,6 +80,9 @@ class StatusController extends Controller
             case 'video':
                 $table = 'videos';
                 break;
+            case 'industries':
+                $table = 'industries';
+                break;
                 
             case 'top_inflatable':
                 $table = 'top_inflatables';
@@ -112,6 +115,9 @@ class StatusController extends Controller
             case 'product':
                 $table = 'products';
             break;
+            case 'award':
+                $table = 'awards';
+            break;
             
             
             case 'criteria':
@@ -125,9 +131,15 @@ class StatusController extends Controller
             case 'url_list':
                 $table = 'url_list';
             break;
+            case 'newsletters':
+                $table = 'newsletters';
+            break;
 
             case 'case_studies':
                 $table = 'case_studies';
+            break;
+            case 'partners':
+                $table = 'partners';
             break;
                         
             

@@ -144,7 +144,7 @@ class BlogController extends Controller
             'blog' =>  Blog::find($id),
             'type' => $type
         ];
-        
+            // dd($data);
         return view('admin.home-editor.popup-page', $data);
     }
 

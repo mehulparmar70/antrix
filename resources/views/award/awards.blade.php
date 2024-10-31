@@ -34,7 +34,7 @@
 	      <div class="inner_tab_blk_right">
           <div class="image_gallery">
             <div class="product_cat_name">
-              <img src="{{ url('') }}/sardar/images/person.png" alt="person" />
+              <img src="{{ url('') }}/images/person.png" alt="person" />
               <p>Our Awards</p>
               @if(session('LoggedUser'))
                 <a href="#" class="header_crud" @if(session('LoggedUser'))

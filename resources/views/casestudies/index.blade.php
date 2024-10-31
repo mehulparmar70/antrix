@@ -165,7 +165,7 @@ $(function () {
                         <input type="checkbox" class="form-check-input  pull-right" name="status" 
                         id="exampleCheck1"
                         
-                          onClick="updateStatus({{$testimonial->id}})"
+                          onClick="updateStatus({{$testimonial->id}},'case_studies')"
                           @if($testimonial->status == 1)checked
                           @endif 
                           @if(old('status'))checked

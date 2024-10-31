@@ -53,7 +53,7 @@ $(document).ready(function() {
     });
 
    
-    $('.file_input').imageuploadify();
+    
 
     window.onunload = refreshParent;
 

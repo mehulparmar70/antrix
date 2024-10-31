@@ -1,9 +1,9 @@
 #file_input{
   display: none;
 }
-body{
+/*body{
   text-align: center;
-}
+}*/
 
 .drop-zone {
   cursor: pointer;

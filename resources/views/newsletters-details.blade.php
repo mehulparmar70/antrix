@@ -93,7 +93,7 @@ function goBack() {
           @endif></div></h4>
           <!-- <h5>title here</h5> -->
           <a href="{{ url('news-letters') }}/{{$newsletterList->slug}}" class="video_text">
-            <img src="{{url('web')}}/media/md/{{$newsletterList->image}}" />
+            <img src="{{url('')}}/images/{{$newsletterList->image}}" />
           </a>
         </div>
         @endforeach

@@ -510,7 +510,7 @@ $(".btnDelete").click(function(e) {
           @csrf
               <div class="row  col-sm-12 mb-3 text-center selected-images" style="">
                 <div class="col-sm-3">
-                  <img src="{{url('')}}/web/media/md/{{$image->image}}" width="200"/>
+                  <img src="{{url('')}}/images/{{$image->image}}" width="200"/>
                 </div>
 
                 <div class="col-sm-3">

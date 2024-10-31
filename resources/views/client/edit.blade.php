@@ -104,8 +104,8 @@
         <div class="cmsModal-formGroup">
           <label for="image_alt">Edit Icon Alt</label>
           <input type="text" class="cmsModal-formControl" name="image_alt" placeholder="Icon Alter Text (SEO)"
-            value="@if(old('image_alt')){{old('image_alt')}}@else{{$client->image_alt}}@endif">
-          <span class="text-danger">@error('image_alt') {{$message}} @enderror</span>
+            value="@if(old('alt_text')){{old('alt_text')}}@else{{$client->alt_text}}@endif">
+          <span class="text-danger">@error('alt_text') {{$message}} @enderror</span>
         </div>
       </div>
       <div class="cmsModal-column">
@@ -132,9 +132,9 @@
       <div class="cmsModal-column">
         <div class="cmsModal-formGroup">
           <label for="link">Link</label>
-        <input type="text" class="cmsModal-formControl" name="page_link" placeholder="Link"
-          value="@if(old('page_link')){{old('page_link')}}@else{{$client->url}}@endif">
-        <span class="text-danger">@error('page_link') {{$message}} @enderror</span>
+        <input type="text" class="cmsModal-formControl" name="url" placeholder="Link"
+          value="@if(old('url')){{old('url')}}@else{{$client->url}}@endif">
+        <span class="text-danger">@error('url') {{$message}} @enderror</span>
         <div class="form-check mt-4">
           <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
             @if($client->status == 1)checked

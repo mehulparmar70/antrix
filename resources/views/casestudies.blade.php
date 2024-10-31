@@ -26,13 +26,13 @@
 	      <div class="inner_tab_blk_right">
 	        <div class="image_gallery">
 	          <div class="product_cat_name">
-	            <img src="{{ url('') }}/sardar/images/person.png" alt="person" />
+	            <img src="{{ url('') }}/images/person.png" alt="person" />
 	            <p>Explore Case Studies</p>
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.casestudies-page.editor')}}"
                                         @endif></div>
 	          </div>
-	          <img src="{{ url('') }}/sardar/images/banner2.jpg" alt="banner" / class="case-img">
+	          <img src="{{ url('') }}/images/banner2.jpg" alt="banner" / class="case-img">
 	        </div>
 	      </div>
 	      <div class="inner_tab_blk_left">

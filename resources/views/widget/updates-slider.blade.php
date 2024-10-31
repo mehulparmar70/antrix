@@ -12,7 +12,7 @@
 
     @foreach($blogsSlider as $blogsList)
 
-    <a href="{{ route('blog.index') }}" class="client_item slick-slide">
+    <a href="{{ route('update.index') }}" class="client_item slick-slide">
 
       <div class="update_img onscreen_media_testimonial_item" @if(session('LoggedUser'))
 
@@ -23,7 +23,14 @@
                         data-link="{{route('blog.edit', $blogsList->id)}}"
                         data-delete-link="{{route('blog.delete',$blogsList->id)}}"
 
-                      @endif><img src="{{url('/')}}/images/{{$blogsList->image}}" /></div>
+                      @endif>
+                      <div>
+  @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
+    <img src="{{ url('/') }}/images/{{ $blogsList->image }}" alt="Blog Image" />
+  @else
+    <img src="{{ url('/') }}/img/no-item.jpeg" alt="Default Image" />
+  @endif
+</div></div>
 
       <p>
 

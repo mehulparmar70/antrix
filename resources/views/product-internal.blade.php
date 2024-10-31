@@ -148,13 +148,13 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
             <?php $imageName = getSubCategoryImages($topInflatableLp->id, 2, 'DESC')[0]['image']; ?>
             <div class="item_img showProductDetails other_cat_admin" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
               <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
-                  data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
+                  data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
                   data-create-link="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
                   data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
                 @endif></div>
               <div class="tab_top subCategoryImage">
                 @foreach(getImages($topInflatableLp->id) as $key => $productImage)
-                <img src="{{url('web')}}/media/md/{{$productImage->image}}" style="height: 543px !important;" />
+                <img src="{{url('')}}/images/{{$productImage->image}}" style="height: 543px !important;" />
                 @endforeach
               </div>
               <div class="big_text small_text">
@@ -169,7 +169,7 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
                   data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
                 @endif></div>
               <div class="tab_top">
-                <img src="{{url('web')}}/media/md/noimage.png" />
+                <img src="{{url('')}}/images/noimage.png" />
                 <div class="big_text small_text">
                   <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="noImageFontClr">{{ $topInflatableLp->name }}</a>
                 </div>
@@ -184,7 +184,7 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
                 data-create-link="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
               @endif></div>
             <div class="tab_top">
-              <img src="{{url('web')}}/media/md/noimage.png" />
+              <img src="{{url('')}}/images/noimage.png" />
               <div class="big_text small_text">
                 <a href="{{url('')}}/{{$mainCategory->slug}}" class="noImageFontClr">{{ $mainCategory->name }}</a>
               </div>
@@ -223,10 +223,10 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
                         data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
                         @endif>
         <?php if (count(getSubCategoryImages($subCategories1->id)) > 0) { $imageName = getImages($subCategories1->id)[0]['image']; ?>
-          <img src="{{url('web')}}/media/md/{{$imageName}}"  />
+          <img src="{{url('')}}/images/{{$imageName}}"  />
           <p>{{$subCategories1->name}} </p>
         <?php } else { ?>
-          <img src="{{url('web')}}/media/md/noimage.png" />
+          <img src="{{url('')}}/images/noimage.png" />
           <p class="noImageFontClr">{{$subCategories1->name}} </p>
         <?php } ?>
         

@@ -287,7 +287,7 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
 									<div class="inner_tab_blk_right">
 										<div class="image_gallery">
 											<div class="product_cat_name">
-	                      <img src="{{url('')}}/sardar/images/person.png" alt="person" />
+	                      <img src="{{url('')}}/images/person.png" alt="person" />
 	                      <p>{{$subCategory->name}}</p>
                       	@if(session('LoggedUser'))
 							          	<a href="#" class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
@@ -310,14 +310,14 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
 															@endif
 														>
 		                        <li>
-		                          <img src="{{url('web')}}/media/md/{{$productImage->image}}" alt="banner" />
+		                          <img src="{{url('')}}/images/{{$productImage->image}}" alt="banner" />
 		                        </li>
 	                      	</div>
 	                        @endforeach
 	                      <?php } else { ?>
 	                      	<div class="" style="">
 		                        <li>
-		                          <img src="{{url('web')}}/media/md/noimage.png" alt="banner" />
+		                          <img src="{{url('')}}/images/noimage.png" alt="banner" />
 		                        </li>
 	                      	</div>
 	                      <?php } ?>
@@ -328,13 +328,13 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
 	                      	@foreach($productImages as $productImage)
 	                      	<div class="BigInnerinflatableSub_slider mb-3 image-set"
 													@if(session('LoggedUser'))
-														data-link="{{route('admin.photo.manage')}}?page=manage&onscreenCms=true&main_category={{$current_cat->id}}&sub_category={{$subCategory->id}}"
+														data-link="{{route('admin.photo.manage')}}?page=manage&pagefrom=productpage&type=sub_category&onscreenCms=true&main_category={{$current_cat->id}}&sub_category={{$subCategory->id}}"
 														data-delete-link="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
 														data-id="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
 													@endif
 												>
-	                          <a data-fancybox="gallery" href="{{url('web')}}/media/md/{{$productImage->image}}" > 
-	                          	<img src="{{url('web')}}/media/md/{{$productImage->image}}" alt="banner" />
+	                          <a data-fancybox="gallery" href="{{url('')}}/images/{{$productImage->image}}" > 
+	                          	<img src="{{url('')}}/images/{{$productImage->image}}" alt="banner" />
 	                          </a>
 	                        </div>
 	                        @endforeach
@@ -346,8 +346,8 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
 															data-id="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
 														@endif
 													>
-		                          <a data-fancybox="gallery" href="{{url('web')}}/media/md/noimage.png" > 
-		                          	<img src="{{url('web')}}/media/md/noimage.png" alt="banner" />
+		                          <a data-fancybox="gallery" href="{{url('')}}/images/noimage.png" > 
+		                          	<img src="{{url('')}}/images/noimage.png" alt="banner" />
 		                          </a>
 		                        </div>
 	                      <?php } ?>
@@ -400,7 +400,7 @@ $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray
 													data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$subCategories1->id}}"
 													data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
 													@endif>
-          <img src="{{url('web')}}/media/md/{{$imageName}}" />
+          <img src="{{url('')}}/images/{{$imageName}}" />
           <p>{{$subCategories1->name}} </p>
         </a>
         @endforeach

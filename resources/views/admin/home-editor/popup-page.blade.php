@@ -34,8 +34,10 @@
           @includeWhen($type == 'Video_Page', 'admin.home-editor.video-page')
           @includeWhen($type == 'Client', 'client.index')
           @includeWhen($type == 'client_edit', 'client.edit')
+          @includeWhen($type == 'AddClient', 'client.create')
           @includeWhen($type == 'Award', 'award.index')
           @includeWhen($type == 'award_edit', 'award.edit')
+          @includeWhen($type == 'AddAward', 'award.create')
           @includeWhen($type == 'newsletter', 'newsletter.index')
           @includeWhen($type == 'newsletter_add', 'newsletter.create')
           @includeWhen($type == 'IndustriesPage', 'admin.home-editor.industrie-page')
@@ -43,6 +45,7 @@
           @includeWhen($type == 'partners', 'admin.home-editor.partners-page')
           @includeWhen($type == 'category', 'category.index')
           @includeWhen($type == 'Main_Category', 'category.edit')
+          @includeWhen($type == 'Sub_Category', 'category.edit')
           @includeWhen($type == 'sub_category', 'category.create')
           @includeWhen($type == 'homeedit', 'admin.home-editor.index')
           @includeWhen($type == 'EditClient', 'admin.home-editor.client-page')
@@ -78,10 +81,16 @@
         @endif
         @includeWhen($type == 'Addvideo', 'video.create')
         @includeWhen($type == 'videoIndex', 'video.index')
+        @includeWhen($type == 'Product_List', 'product.index')
+        @includeWhen($type == 'Product_Add', 'product.create')
+        @includeWhen($type == 'product_edit', 'product.edit')
+
         @includeWhen($type == 'AddIndustries', 'industries.create')
         @includeWhen($type == 'CreateMainCategory', 'category.create')  
 
         @includeWhen($type == 'photo_manage', 'photo.list-photo')
+        @includeWhen($type == 'photo_manage_edit', 'photo.manage')
+
         @includeWhen($type == 'video', 'video.create')
         @includeWhen($type == 'SocialMediaManagers', 'setting.seo-manage')
         @includeWhen($type == 'customJs', 'custom-code.custom-js')

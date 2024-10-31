@@ -32,6 +32,7 @@ console.log('base_url',url);
 
 
 $(document).ready(function(){
+ 
   var screen = $(window).width();
   var popupWinWidth = 990;
   var left = (screen - popupWinWidth) / 2;
@@ -135,17 +136,49 @@ $('.product_title_main').each(function(){
 });
 
 $('.product_title_1').each(function() {
-  var html = `<div class="onscreen-our-product"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+  var html = `<div class="onscreen-our-product">
+                <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" 
+                   onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+                  <i class='fa fa-edit'></i>
+                </a>
+              </div>`;
   $(this).prepend(html);
 });
-$('.product_title').each(function(){
-  var html = `<div class="onscreen-our-product"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+
+$('.product_title').each(function() {
+  var html = `<div class="onscreen-our-product">
+                <a class="adminAddItem" title="Add" href="${$(this).attr('data-link')}" 
+                   onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+                  <i class='fa fa-plus'></i>
+                </a>
+                <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" 
+                   onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+                  <i class='fa fa-edit'></i>
+                </a>`;
+  
   if ($(this).attr('data-delete-link') != undefined) {
-    html += `<a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg='This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`;
+    html += `<a class="adminDeleteItem" title="Delete" href="${$(this).attr('data-delete-link')}" 
+               data-msg='This action will delete Main-Category & photos permanently. If you are sure about this, then Press OK or Press Cancel Now'>
+              <i class='fa fa-trash'></i></a>`;
   }
+  
+  html += `</div>`;
   $(this).prepend(html);
 });
+
+
+// $('.product_title_1').each(function() {
+//   var html = `<div class="onscreen-our-product"><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+//   $(this).prepend(html);
+// });
+// $('.product_title').each(function(){
+//   var html = `<div class="onscreen-our-product"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-link')+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+//   html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+//   if ($(this).attr('data-delete-link') != undefined) {
+//     html += `<a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg='This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now'> <i class='fa fa-trash'></i></a>`;
+//   }
+//   $(this).prepend(html);
+// });
 
 $('.onscreen_media_testimonial_title').each(function(){
   $(this).prepend(`<div class="onscreen-media-title-link"><a style="font-size:18px !important" class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a><a style="font-size:18px !important" class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a><a style="font-size:18px !important" class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
@@ -170,7 +203,7 @@ $('.onscreen_media_testimonial_item').each(function(){
     html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
   }
   html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal'); return false;"> <i class='fa fa-trash'></i></a>`;
+  <a class="adminDeleteItem" title="Delete" onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal',event);"> <i class='fa fa-trash'></i></a>`;
   $(this).prepend(html);
 });
 $('.onscreen_media_casestudies_item').each(function(){
@@ -272,11 +305,25 @@ $('.crud').each(function(){
   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This will delete data Permanently. Do you want to continue?"> <i class='fa fa-trash'></i></a>`);
 });
 
-$('.title-crud').each(function(){
-  $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
-  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-trash'></i></a>`);
+$('.title-crud').each(function() {
+  $(this).prepend(`
+    <a class="adminAddItem" title="Add" href="${$(this).attr('data-create-link')}" onclick="popupmenu('${$(this).attr('data-create-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+      <i class='fa fa-plus'></i>
+    </a>
+    <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+      <i class='fa fa-edit'></i>
+    </a>
+    <a class="adminDeleteItem" title="Delete" href="${$(this).attr('data-link')}?onscreenCms=true" onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
+      <i class='fa fa-trash'></i>
+    </a>
+  `);
 });
+
+// $('.title-crud').each(function(){
+//   $(this).prepend(`<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860',event); return false;"> <i class='fa fa-plus'></i></a>
+//   <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860',event); return false;"> <i class='fa fa-edit'></i></a>
+//   <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860',event); return false;"> <i class='fa fa-trash'></i></a>`);
+// });
 
 $('.clients_crud').each(function(){
   $(this).prepend(`<a style="font-size: 18px !important;" class="adminAddItem" title="Add" href="`+$('.data-create').text()+`"onclick="popupmenu('`+$('.route-video-create').text()+`', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> <i class='fa fa-plus'></i></a>
@@ -342,13 +389,13 @@ $('.product_internal_title').each(function() {
   var html = '';
 
   // Accessing the data attributes properly using $(this).attr('data-create-link'), etc.
-  html += `<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `" onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-plus'></i></a>`;
+  html += `<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `" onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a>`;
 
-  html += `<a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `" onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-edit'></i></a>`;
+  html += `<a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `" onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a>`;
 
   html += `<a class="adminDeleteItem" title="Delete" href="` + $(this).attr('data-delete-link') + `" data-msg="This action will delete Sub-Category & photos permanently. If you are sure about this, press OK or Cancel now."> <i class='fa fa-trash'></i></a>`;
 
-  html += `<a class="adminListItem" title="List" href="` + $(this).attr('data-index-link') + `" onclick="popupmenu('` + $(this).attr('data-index-link') + `', 'toolbar=no, location=no','left=` + left + `,width=` + popupWinWidth + `,height=860'); return false;"> <i class='fa fa-list'></i></a>`;
+  html += `<a class="adminListItem" title="List" href="` + $(this).attr('data-index-link') + `" onclick="popupmenu('` + $(this).attr('data-index-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-list'></i></a>`;
 
   // Append the generated HTML
   $(this).prepend(html);
@@ -512,9 +559,18 @@ $('.testOnload').append("<a href="+$('.testOnload').attr('data-link')+'?onscreen
   });
   
 });
+$(document).off('click', '.adminDeleteItem').on('click', '.adminDeleteItem', function(event) {
+  popupmenu(link, 'deletemodal', event);
+});
 
+function popupmenu(link, type, event) {
 
-function popupmenu(link, type, location, left, width, height) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation(); // Prevent any additional handlers from triggering
+}
+
+  console.log('Popupmenu function triggered'); // For debugging
   // First fetch request to get the content for #modalBodyContent
   if (type === 'editmodal') {
     // Create a new modal container for the 'edit' modal
@@ -575,7 +631,7 @@ else if(type === 'deletemodal')
           timer: 2000, // Auto close after 2 seconds
           showConfirmButton: false
         });
-        window.reload(); // Optionally reload the page after successful deletion
+        window.location.reload(); // Optionally reload the page after successful deletion
       } else {
         // Show error message if the server response indicates failure
         Swal.fire({
@@ -1360,6 +1416,82 @@ function addindustriessubmit() {
     },
   });
 }
+function addclientsubmit() {
+  var form = document.getElementById('addclient'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/client/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+  });
+}
+function addawardsubmit() {
+  var form = document.getElementById('addaward'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/award/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+  });
+}
 function addtestimonialsubmit() {
   var form = document.getElementById('createtestimonial'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data
@@ -1443,6 +1575,44 @@ function addpartnersubmit() {
   $.ajax({
       type: "POST",
       url: base_url+"/powerup/partners/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+  });
+}
+function addproductsubmit() {
+  var form = document.getElementById('adproductsform'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/products/store", // Form action URL
       data: formData, // Form data
       contentType: false, // Let the browser set the content type
       processData: false, // Do not process the data
@@ -1959,7 +2129,7 @@ function initializeDynamicContent() {
             checkbox.prop('checked', true);  // Check the checkbox
             statusText.removeClass('badge-danger').addClass('badge-success').text('Active');  // Set status to active
           }
-              // location.reload(); // Reload page after status update
+              location.reload(); // Reload page after status update
           },
           error: function(xhr, status, error) {
               console.error('Error updating status:', error);
@@ -1968,27 +2138,311 @@ function initializeDynamicContent() {
   };
 
 
-  // $(document).ready(function() {
-    $('.category_parent_id').on('change', function() {
-      console.log("ttt");
-            var parent = $(this).find(':selected').val();
+  $(document).on('change', '.category_parent_id', function() {
+    console.log("this change");
+      var parent = $(this).find(':selected').val();
+  
+      $.get(base_url+`/api/get/getSubCategories/` + parent, { category_parent_id: parent })
+      .done(function(data) {
+          if (data.length === 0) {
+              $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
+          } else {
+              $('.sub_category_parent_id').empty().append('<option value="">Select Sub Category</option>');
+              data.forEach(function(item) {
+                  $('.sub_category_parent_id').append(`<option value="${item.id}">${item.name}</option>`);
+              });
+          }
+      });
+      
+      $('.category_id').val(parent);
+  });
+
+  $(document).on('change', '.sub_category_parent_id', function() {
+    var parent = $(this).find(':selected').val();
+
+    $.get(base_url+`/api/get/getDepartment/` + parent, { sub_category_parent_id: parent })
+    .done(function(data) {
+        if (data.length === 0) {
+            $('.subcategory2_id').html('<option value="">Select Sub Category2</option>');
+        } else {
+            $('.subcategory2_id').empty().append('<option value="">Select Sub Category2</option>');
+            data.forEach(function(item) {
+                $('.subcategory2_id').append(`<option value="${item.id}">${item.name}</option>`);
+            });
+        }
+    });
     
-            $.get( `{{url('api')}}/get/getSubCategories/`+parent, { category_parent_id: parent })
-    
-            .done(function( data ) {
-            if(JSON.stringify(data.length) == 0){
-                $('.sub_category_parent_id').html('<option value=>Select Sub Category</option>');
-            }
-            else{
-                    $('.sub_category_parent_id').empty();     
-                $('.sub_category_parent_id').html('<option value="">Select Sub Category</option>');
-                for(var i = 0 ; i < JSON.stringify(data.length); i++){  
-                    $('.sub_category_parent_id').append('<option value='+JSON.stringify(data[i].id)+'>'+ data[i].name +'</option>')
-                }
-            }
-        });
-        
-        $('.category_id').val(parent);
-    
-        });
-        // });
+    $('.category_id').val(parent);
+});
+
+
+$(document).on('change', '.subcategory2_id', function() {
+  var parent = $(this).find(':selected').val();
+  $('.category_id').val(parent);
+});
+
+
+$('.subcategory2_id').on('change', function() {
+  var parent = $(this).find(':selected').val();
+  $('.category_id').val(parent);
+ 
+});
+
+$(".listing").addClass( "menu-is-opening menu-open");
+$(".listing a").addClass( "active-menu");
+
+var dataCounter = 1;
+$(document).on('click', '.add-more', function() {
+var dataCounter = Number($('.image-container').data('counter') || 1) + 1;
+$('.image-container').data('counter', dataCounter);
+
+var data = `
+ <div class="row col-sm-12 p-0 image-block mb-3">
+     <div class="col-sm-4">
+         <input type="file" class="image" name="image[]" required accept="image/png,image/jpeg,image/webp">
+     </div>
+     <div class="col-sm-4">
+         <input type="text" class="form-control title" name="title[]" placeholder="Title">
+     </div>
+     <div class="col-sm-4 p-0">
+         <input type="text" class="form-control alt" name="alt[]" placeholder="Alt Text">
+     </div>
+ </div>`;
+$('.res').append(data);
+});
+
+
+async function updateProductImage(e) {
+  e.preventDefault();
+
+
+  const formData = new FormData();
+  formData.append('image_alt', e.target.image_alt.value);
+  formData.append('image_title', e.target.image_title.value);
+
+  axios.post(GLOBAL.API + 'media/update-product-image', formData)
+  .then(res => {
+    if(res.data == 'success'){
+      toastr.success('Field Updated...')
+        getMedias();
+        console.log('done');  
+    }
+    else if(res.data == 'not-exists'){
+      alert('0');
+
+        console.log('file Already deleted');
+    }
+  })
+}
+
+$(document).on('submit', '.update-form', function(e) {
+  e.preventDefault();
+  var form = $(this);
+  var url = form.attr('action');
+
+  $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      success: function(data) {
+          toastr.success('Image Field Updated...');
+      }
+  });
+});
+
+
+$(document).on('click', '.btnDelete', function(e) {
+  var url = $(this).attr('data-url');
+  var el = $(this);
+
+  $.ajax({
+      type: "GET",
+      url: url,
+      success: function(result) {
+          toastr.error('Image Field Deleted...');
+          el.closest('.update-form').remove().slideUp(1000);
+      },
+      error: function() {
+          alert('error');
+      }
+  });
+});
+
+
+function searchphoto() {
+  $.ajax({
+    type: 'GET',
+    url: base_url+'/powerup/dashboard/photo', // Replace with your endpoint
+    data: $('#searchphoto').serialize(), // Serialize form data
+    success: function(response) {
+      // Handle the response, such as updating content or showing a success message
+      
+      $('#resultssearch').html(response);
+      $('.file_input').imageuploadify();
+    },
+    error: function(error) {
+      console.log(error);
+      toastr.error('An error occurred while searching.');
+    }
+  });
+}
+
+
+$(".row_position_photo").sortable({
+  stop: function () {
+    var selectedData = new Array();
+    $('.row_position_photo>form').each(function () {
+      selectedData.push($(this).attr("id"));
+    });
+    updateOrderphoto(selectedData);
+
+  }
+});
+
+
+function updateOrderphoto(data) {
+  $.ajax({
+    url: base_url + "/api/admin/item/update-item-priority",
+    type: 'post',
+    data: { position: data, table: 'media' },
+    success: function (result) {
+      toastr.success('Photo Order Updated...')
+      console.log(result);
+    }
+  })
+}
+
+
+$(document).ready(function() {
+  $('#file_input').on('change', function(event) {
+      // Prevent default behavior
+      event.preventDefault();
+
+      // Create a FormData object from the form
+      var formData = new FormData($('#uploadForm')[0]);
+
+      $.ajax({
+          url: $('#uploadForm').attr('action'), // The URL to which the request is sent
+          type: 'POST', // The type of request (GET or POST)
+          data: formData, // The data to send (FormData)
+          processData: false, // Prevent jQuery from converting the data
+          contentType: false, // Prevent jQuery from setting content type
+          success: function(response) {
+              // Handle the success response
+              toastr.success('Images uploaded successfully.'); // Show a success message
+              // Optionally clear the form or handle the response data
+              $('#file_input').val(''); // Clear the file input if needed
+          },
+          error: function(error) {
+              // Handle the error response
+              console.log(error);
+              toastr.error('An error occurred while uploading images.');
+          }
+      });
+  });
+});
+
+function uploadiamges() {
+  var form = document.getElementById('photoupload'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/api/media/upload-multiple-image", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); 
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+
+
+  });
+}
+
+
+function searchproduct() {
+  $.ajax({
+    type: 'GET',
+    url: base_url+'/powerup/dashboard/products-list', // Replace with your endpoint
+    data: $('#searchproduct').serialize(), // Serialize form data
+    success: function(response) {
+      // Handle the response, such as updating content or showing a success message
+      
+      $('#resultproduct').html(response);
+      // $('.file_input').imageuploadify();
+    },
+    error: function(error) {
+      console.log(error);
+      toastr.error('An error occurred while searching.');
+    }
+  });
+}
+
+
+//page update code
+function updateblogpage() {
+  var form = document.getElementById('editblogpage'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/admin/page-editor/store", // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+            location.reload();
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+  });
+}

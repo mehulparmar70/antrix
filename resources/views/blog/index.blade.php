@@ -154,7 +154,8 @@
 
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                          onClick="updateStatus({{$blog->id}})" @if($blog->status == 1)checked
+                          
+                          onClick="updateStatus({{ $blog->id }}, 'blog')"  @if($blog->status == 1)checked
                         @endif
                         @if(old('status'))checked
                         @endif
@@ -166,18 +167,20 @@
                       </div>
                     </td>
                     <td width="150">
-                      <a target="_blank" href="{{url('blog')}}/{{$blog->slug}}"
+                      <a target="_blank" href="{{url('updates')}}/{{$blog->slug}}"
                         class="btn btn-sm btn-warning float-left mr-2" title="View Blog"><i class="fa fa-eye"></i></a>
                       <a href="javascript:void(0);" class="btn btn-sm btn-dark float-left mr-2" title="Edit Blog"
                         onclick="popupmenu('{{route('blog.edit',$blog->id)}}', 'editmodal');">
                         <i class="fa fa-edit"></i>
                       </a>
 
-
-                      <button class="btn btn-sm btn-danger del-modal float-left" title="Delete Blog"
-                        data-id="{{route('admin.index')}}/blog/{{$blog->id}}" data-title="{{ $blog->title}}"
-                        data-toggle="modal" data-target="#modal-default"><i class="fas fa-trash-alt"></i>
-                      </button>
+                      <a href="{{route('blog.delete', $blog->id)}}" 
+                            class="btn btn-xs btn-danger float-left mr-2"  
+                            title="Delete blog" 
+                            onclick="popupmenu('{{route('blog.delete', $blog->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                     
 
 
                     </td>

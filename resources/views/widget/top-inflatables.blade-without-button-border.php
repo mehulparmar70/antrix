@@ -31,7 +31,7 @@
                                                 >
 
                                                     <!-- <img style="" class="img-fluid blur_bg" src="{{url('web')}}/media/icon/{{$media['image']}}"> -->
-                                                    <img class="img-fluid slideshow_img blur_original" src="{{url('web')}}/media/md/{{$media['image']}}">
+                                                    <img class="img-fluid slideshow_img blur_original" src="{{url('')}}/images/{{$media['image']}}">
                                                 </div>
                                             @endforeach
                                         @else

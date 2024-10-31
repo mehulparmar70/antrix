@@ -48,11 +48,11 @@ function goBack() {
                 data-delete-link="{{route('admin.index')}}/partners/delete/{{ $partenr->id}}"
               @endif></div></h2>
             <a class="update_inner match" href="{{url('partners')}}/{{$partenr->slug}}">
-              <img src="{{url('web')}}/media/md/{{$partenr->image}}" />
+              <img src="{{url('')}}/images/{{$partenr->image}}" />
               <p>
                 {{$partenr->short_description}}
                 <span
-                  ><img src="{{ url('') }}/sardar/images/osearch.png" /> &nbsp; click to
+                  ><img src="{{ url('') }}/images/osearch.png" /> &nbsp; click to
                   view</span
                 >
               </p>

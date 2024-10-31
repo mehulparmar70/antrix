@@ -8,7 +8,8 @@
 </script>
 
 
-<form id="editblogpage" method="post" enctype="multipart/form-data" class="form-horizontal" action="{{route('admin.page-editor.store')}}">
+<form id="editblogpage" method="post" enctype="multipart/form-data" class="form-horizontal"
+onsubmit="return false;">
   @csrf
   <div class="cmsModal-formGroup">
   <div class=" p-2">
@@ -60,7 +61,7 @@
   <div class="card-footer text-center">
 
     @if(request()->get('onscreenCms') == 'true')
-    <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+    <button type="button" onclick="updateblogpage()" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o" aria-hidden="true"></i>
       Save & Close</button>
     @else
     <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save

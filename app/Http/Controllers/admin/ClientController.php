@@ -55,7 +55,13 @@ class ClientController extends Controller
     public function create()
     {
 
-        return view('adm.pages.client.create');
+        $type = 'AddClient';
+        $data = [
+            'pageData' =>  Pages::where('type', 'client_page')->first(),
+                    'type' => $type
+                ];
+       
+        return view('admin.home-editor.popup-page',$data);
     }
 
     /**
@@ -68,7 +74,7 @@ class ClientController extends Controller
     {
        
         // dd($request->file('image'));
-       
+        // dd($request);
         if($request->status){
             $status = 1;
         }else{
@@ -100,7 +106,9 @@ class ClientController extends Controller
         $client = new Client;
         $client->name = $request->name;
         $client->image = $image_name;
-        $client->url = $request->url;
+        $client->url = $request->page_link;
+        $client->alt_text = $request->image_alt;
+        $client->image_title = $request->image_title;
         $client->short_description = $request->short_description;
         // $client->client_images = $image_name;
         $client->note = $request->note;
@@ -111,21 +119,21 @@ class ClientController extends Controller
         $lastId = $client->id;
         if($save){
 
-            $multipleImage = $request->file('images');
+            // $multipleImage = $request->file('images');
             /*print_r($request->all());
             exit();*/
-            if (isset($multipleImage)) {
-                foreach($request->file('images') as $index => $imageData){
-                    $media = new Media;
-                    $media->media_id = $lastId;
-                    $media->image_type = 'clients';
-                    $media->image_alt = $request->alt[$index];
-                    $media->image_title = $request->title[$index];
-                    $image_name2 = $imageData;
-                    $media->image = $image_name2;
-                    $save = $media->save();
-                }
-            }
+            // if (isset($multipleImage)) {
+            //     foreach($request->file('images') as $index => $imageData){
+            //         $media = new Media;
+            //         $media->media_id = $lastId;
+            //         $media->image_type = 'clients';
+            //         $media->image_alt = $request->alt[$index];
+            //         $media->image_title = $request->title[$index];
+            //         $image_name2 = $imageData;
+            //         $media->image = $image_name2;
+            //         $save = $media->save();
+            //     }
+            // }
             return response()->json([
                 'success' => true,
                 'message' => 'Client Created...'
@@ -213,27 +221,29 @@ class ClientController extends Controller
     $client->name = $request->name;
     $client->note  = $request->note;  
     $client->image = $image_name;
-    $client->url = $request->page_link;
+    $client->url = $request->url;
+    $client->alt_text = $request->image_alt;
+    $client->image_title = $request->image_title;
     $client->short_description = $request->short_description;
     $client->status = $status;     
 
     $save = $client->save();
 
     if ($save) {
-        $multipleImage = $request->file('images');
+        // $multipleImage = $request->file('images');
 
-        if (isset($multipleImage)) {
-            foreach ($request->file('images') as $index => $imageData) {
-                $media = new Media;
-                $media->media_id = $id;  // Assuming $id is the client ID
-                $media->image_type = 'clients';
-                $media->image_alt = $request->alt[$index];
-                $media->image_title = $request->title[$index];
-                $image_name2 = uploadMultipleImageThumb($imageData);
-                $media->image = $image_name2;
-                $media->save();
-            }
-        }
+        // if (isset($multipleImage)) {
+        //     foreach ($request->file('images') as $index => $imageData) {
+        //         $media = new Media;
+        //         $media->media_id = $id;  // Assuming $id is the client ID
+        //         $media->image_type = 'clients';
+        //         $media->image_alt = $request->alt[$index];
+        //         $media->image_title = $request->title[$index];
+        //         $image_name2 = uploadMultipleImageThumb($imageData);
+        //         $media->image = $image_name2;
+        //         $media->save();
+        //     }
+        // }
 
         return response()->json([
             'success' => true,

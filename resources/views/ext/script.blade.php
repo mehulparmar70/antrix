@@ -26,15 +26,19 @@
 
 <script src="{{asset('/')}}/plugins/toastr/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="{{url('/')}}/drag-drop/dist/imageuploadify.min.css">
+<script src="{{asset('/')}}drag-drop/dist/imageuploadify.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if(session('LoggedUser'))
 
 <script src="{{asset('/')}}js/ckeditor.js" rel="stylesheet"></script>
   <script src="{{asset('/')}}js/onscreen-cms.js" rel="stylesheet"></script>
-  
+
 @endif
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
+
+<link rel="stylesheet" href="{{url('/')}}/plugins/summernote/summernote-bs4.min.css">
   <script type="text/javascript">
   	$('.inflatables_slider').slick({
       arrows: true,

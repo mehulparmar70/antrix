@@ -9,6 +9,7 @@ use App\Models\admin\Media;
 use App\Models\admin\Contactus;
 use DB;
 use Session;
+use Intervention\Image\Facades\Image;
 
 class ApiCallController extends Controller
 {
@@ -145,40 +146,61 @@ class ApiCallController extends Controller
 
         return back()->with('success', 'Contact Inquiry Sent...');
     }
-    public function UploadMultipleImage(Request $request){
-        /*print_r($request->file('image'));
-        exit();*/
-        foreach($request->file('image') as $index => $imageData){
-            // print_r($request->alt);
-            $media = new Media;
-            $media->media_id = $request->media_id;
-            $media->image_type = $request->image_type;
-            $media->image_alt = $request->alt[$index];
-            $media->image_title = $request->title[$index];
-            $image_name2 = uploadMultipleImageThumb($imageData);
-            $media->image = $image_name2;
-            $save = $media->save();
-        }
-        if($save){       
-            if(isset($request->isAjax)){
-                Session::put('success', 'Image Filed Uploaded...');
-                return (['status' => 'success', 'message' => 'Image Filed Uploaded...']);
+    public function UploadMultipleImage(Request $request) {
+        // dd($request);
+        // Validate that the image field exists and is an array
+        // $this->validate($request, [
+        //     'image' => 'required|array',
+        //     'image.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048' // Add any additional validation rules as needed
+        // ]);
+    
+        // Loop through each uploaded image
+        foreach ($request->file('image') as $index => $imageData) {
+            if ($imageData->isValid()) {
+                $media = new Media;
+                $media->media_id = $request->media_id;
+                $media->image_type = $request->image_type;
+    
+                // Use the original name of the uploaded file for title and alt text
+                $originalName = $imageData->getClientOriginalName();
+                $media->image_alt = pathinfo($originalName, PATHINFO_FILENAME); // Original file name without extension
+                $media->image_title = pathinfo($originalName, PATHINFO_FILENAME); // Original file name without extension
+                
+                // Create a unique name for the uploaded file
+                $image_name2 = time() . '_' . $originalName;
+    
+                // Set the path where the image will be stored
+                $image_path = public_path('images/' . $image_name2);
+    
+                // Compress and save the image
+                Image::make($imageData) // Use $imageData instead of $image
+                    ->resize(1200, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })
+                    ->save($image_path, 75); // 75% quality
+    
+                // Delete the old image if it exists
+                if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                    unlink(public_path('images/' . $request->old_image));
+                }
+    
+                // Store the name of the uploaded file in the media record
+                $media->image = $image_name2;
+                $media->save(); // Save the media record
             } else {
-                Session::put('success', 'Image Filed Uploaded...');
-                return back()->with('success', 'Image Filed Uploaded...');
+                // Handle invalid upload if necessary
+                return response()->json(['error' => 'Invalid image upload for image at index ' . $index], 400);
             }
-            // return back()->with('success', 'Images Uploaded...');
-        }else{
-            
-            if(isset($request->isAjax)){
-                Session::put('fail', 'something went wrong, try again later.');
-                return (['status' => 'fail', 'message' => 'something went wrong, try again later.']);
-            } else {
-                return back()->with('fail', 'something went wrong, try again later.');
-            }
-
         }
+    
+        // Return a success response
+        return response()->json([
+            'success' => true,
+            'message' => 'Image files uploaded successfully.'
+        ]);
     }
+    
 
     public function updateMultipleImageField($id, Request $request){
 

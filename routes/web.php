@@ -43,9 +43,10 @@ Route::get('news-letters', [HomeController::class, 'newsletters']);
 Route::get('news-letters/{slug}', [HomeController::class, 'newsletters_details']);
 Route::get('partenrs', [HomeController::class, 'partenrs']);
 Route::get('case-studies', [HomeController::class, 'casestudies']);
+Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
 Route::get('testimonials', [HomeController::class, 'testimonials']);
 
-Route::get('updates', [HomeController::class, 'updates']);
+Route::get('updates', [HomeController::class, 'updates'])->name('update.index');
 Route::get('updates/{slug}', [HomeController::class, 'updates_details']);
 Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
 
@@ -145,8 +146,13 @@ Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->na
 Route::get('industries-create', [IndustriesController::class,'create'])->name('industries-create');
 Route::post('industries-store', [IndustriesController::class,'store'])->name('industries-store');
 Route::post('industries-update/{id}', [IndustriesController::class,'update'])->name('industries.update');;
-Route::get('products', [ProductController::class, 'index'])->name('product.index');
+Route::get('dashboard/products', [ProductController::class, 'index'])->name('product.index');
+Route::get('dashboard/products-list', [ProductController::class, 'list'])->name('product.list');
 Route::get('products/create', [ProductController::class, 'create'])->name('product.create');
+Route::get('products/addform', [ProductController::class, 'addform'])->name('product.addform');
+Route::post('products/store', [ProductController::class, 'store'])->name('product.store');
+Route::post('products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::post('products/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
 
 
 Route::get('/settings/seo-manage', [SettingController::class, 'seoManageIndex'])->name('admin.setting.seo-manage');
@@ -187,6 +193,7 @@ Route::post('/partners/delete/{id}', [PartnersController::class, 'destroy'])->na
 
 Route::post('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class, 'destroy'])->name('admin.casestudies.item.delete');
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
+Route::get('/award/createaward', [AwardController::class, 'createaward'])->name('award.createaward');
 Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.update');
 
 
@@ -221,7 +228,7 @@ Route::get('product/{slug}', [HomeController::class, 'product_internal']);
 Route::get('/product/{category}', [HomeController::class, 'category_product']);
 Route::get('/{category}/{slug}', [HomeController::class, 'category_product']);
 Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category_subcategory_product']);
-Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
+// Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
 
 Route::get('/search', [HomeController::class, 'search_criteria']);
 

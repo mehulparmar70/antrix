@@ -45,13 +45,13 @@ $(".updates_menu_active").addClass( "menu_active");
         <div class="inner_tab_blk_right">
           <div class="image_gallery">
             <div class="product_cat_name">
-              <img src="{{ url('') }}/sardar/images/person.png" alt="person" />
+              <img src="{{ url('') }}/images/person.png" alt="person" />
               <p >updates</p>
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.blog-page.editor')}}"
                                         @endif></div>
             </div>
-            <img src="{{ url('') }}/sardar/images/banner2.jpg" alt="banner" / class="case-img">
+            <img src="{{ url('') }}/images/banner2.jpg" alt="banner" / class="case-img">
           </div>
         </div>
         <div class="inner_tab_blk_left">
@@ -80,11 +80,11 @@ $(".updates_menu_active").addClass( "menu_active");
                 data-delete-link="{{route('admin.index')}}/blog/delete/{{ $update->id}}"
               @endif>{{ $update->title }}</h2>
             <a class="update_inner match" href="{{ url('updates') }}/{{$update->slug}}">
-              <img src="{{url('web')}}/media/md/{{$update->image}}" />
+              <img src="{{url('')}}/images/{{$update->image}}" />
               <p>
                 {!! html_entity_decode($update->short_description) !!}
                 <span
-                  ><img src="{{ url('') }}/sardar/images/osearch.png" /> &nbsp; click to
+                  ><img src="{{ url('') }}/images/osearch.png" /> &nbsp; click to
                   view</span
                 >
               </p>

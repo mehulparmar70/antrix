@@ -37,10 +37,18 @@ class AwardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createaward()
     {
 
-        return view('adm.pages.award.create');
+        $type = 'AddAward';
+        // dd($type);
+        $data = [
+            'pageData' =>  Pages::where('type', 'award_page')->first(),
+                    'type' => $type
+                ];
+       
+        return view('admin.home-editor.popup-page',$data);
+        // return view('adm.pages.award.create');
     }
 
     /**

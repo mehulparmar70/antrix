@@ -178,7 +178,7 @@
                 </thead>
                 <tbody class="row_position">
 
-                  @foreach($parent_categories as $i => $parent_category)
+                  @foreach($categories as $i => $parent_category)
 
 
            
@@ -198,7 +198,7 @@
                     <td>
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                          onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                          onClick="updateStatus({{$parent_category->id}},'category')" @if($parent_category->status == 1)checked
                         @endif
                         @if(old('status'))checked
                         @endif
@@ -207,33 +207,17 @@
                         @if($parent_category->status == 0)
                         <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
                             class="badge badge-success">Active</span></h5>@endif
-                    </td>
-            </div>
-            </td>
+                            </div> 
+                          </td>
+            
+         
             <td width="150">
 
               <div class="row">
 
-                @if(isset(getParentCategory($parent_category->id)['category']))
-                <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
-                        // echo $mainCategorySlug = $finalSlug;
-                      ?>
-                @endif
+           
 
-                @if(isset(getParentCategory($parent_category->id)['subcategory']))
-                <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
-                            $subCategorySlug = $finalSlug;
-                            // echo($subCategorySlug);
 
-                          ?>
-                @endif
-
-                @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-                <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
-                            $subCategory2Slug = $finalSlug;
-                            // echo($subCategory2Slug);
-                          ?>
-                @endif
 
 
                 <!-- <a class="btn btn-xs btn-dark" 
@@ -293,7 +277,7 @@
               </thead>
               <tbody class="row_position">
 
-                @foreach($parent_categories as $i => $parent_category)
+                @foreach($categories as $i => $parent_category)
 
 
                 <tr id="{{$parent_category->id}}">
@@ -312,7 +296,7 @@
                   <td>
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                        onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                        onClick="updateStatus({{$parent_category->id}},'category')" @if($parent_category->status == 1)checked
                       @endif
                       @if(old('status'))checked
                       @endif
@@ -327,27 +311,6 @@
           <td width="150">
 
             <div class="row">
-
-              @if(isset(getParentCategory($parent_category->id)['category']))
-              <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
-                      // echo $mainCategorySlug = $finalSlug;
-                    ?>
-              @endif
-
-              @if(isset(getParentCategory($parent_category->id)['subcategory']))
-              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
-                          $subCategorySlug = $finalSlug;
-                          // echo($subCategorySlug);
-
-                        ?>
-              @endif
-
-              @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
-                          $subCategory2Slug = $finalSlug;
-                          // echo($subCategory2Slug);
-                        ?>
-              @endif
 
 
               <!-- <a class="btn btn-xs btn-dark" 
@@ -444,7 +407,7 @@
                     <td>
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
-                          onClick="updateStatus({{$parent_category->id}})" @if($parent_category->status == 1)checked
+                          onClick="updateStatus({{$parent_category->id}},'category')" @if($parent_category->status == 1)checked
                         @endif
                         @if(old('status'))checked
                         @endif
@@ -462,26 +425,6 @@
           <th class="">
             <div class="row">
 
-              @if(isset(getParentCategory($parent_category->id)['category']))
-              <?php $finalSlug = getParentCategory($parent_category->id)['category']->slug.'/';
-                        // echo $mainCategorySlug = $finalSlug;
-                      ?>
-              @endif
-
-              @if(isset(getParentCategory($parent_category->id)['subcategory']))
-              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory']->slug.'/' ;
-                            $subCategorySlug = $finalSlug;
-                            // echo($subCategorySlug);
-
-                          ?>
-              @endif
-
-              @if(isset(getParentCategory($parent_category->id)['subcategory2']))
-              <?php $finalSlug = $finalSlug.getParentCategory($parent_category->id)['subcategory2']->slug.'/';
-                            $subCategory2Slug = $finalSlug;
-                            // echo($subCategory2Slug);
-                          ?>
-              @endif
 
 
               <a target="_blank" href="{{url('')}}/{{$finalSlug}}{{$product->slug}}"

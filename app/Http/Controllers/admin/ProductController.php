@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\admin\Category;
 use App\Models\admin\Product;
 use App\Models\admin\Media;
+use App\Models\admin\Pages;
+use Intervention\Image\Facades\Image;
 
 use File;
 use DB;
@@ -37,34 +39,59 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
+        // dd($request);
+        $type = 'Product_List';
         // dd($request->image);
-        $product = Product::where('id', $request->image)->first();
-        $productSearch = Product::where('category_id', $request->search)->first();
-        $productPhotos =  Media::where('media_id', $productSearch->id)->get();
+        $product = Product::orderBy('id')->get();
+       
+            $data = [
+                'products' => $product,
+                'parent_categories' =>  $this->parent_categories,
+                'subCategory' => $request->sub_category,
+                'pageData' =>  Pages::where('type', 'product_page')->first(),
+                'type' => $type
+            ];
+            
+            return view('admin.home-editor.popup-page', $data);
+        // }
 
-        // dd($productSearch);
-        
-        if(isset($product) && $request->image){
-            return view('adm.pages.product.image', ['product' => $product]);
+    }
+    public function list(Request $request)
+    {
+        $query = Product::query();
+
+        // Filter by main category if provided
+     
+        // Filter by sub-category if provided
+        if ($request->filled('sub_category')) {
+            $query->where('category_id', $request->sub_category); // Assuming you have a `sub_category_id` column
         }
-        elseif(isset($productSearch) && $request->search){
+    
+        // Filter to only active products (assuming `status = 1` is active)
+        $query->where('status', 1);
+    
+        // Fetch the filtered products
+        $products = $query->get();
+    
+        // Return the results to a partial view
+        return view('product.product-search-results', compact('products'));
+
+    }
+    public function addform(Request $request)
+    {
+        $type = 'Product_Add';
+        // dd($request->image);
+        $product = Product::orderBy('id')->get();
+       
             $data = [
+                'products' => $product,
                 'parent_categories' =>  $this->parent_categories,
-                'products' => $productSearch,
-                'productPhotos' => $productPhotos,
-                'seach_id' => $request->search
+                'subCategory' => $request->sub_category,
+                'pageData' =>  Pages::where('type', 'product_page')->first(),
+                'type' => $type
             ];
-            return view('adm.pages.product.index', $data);
-        }else{
-        // dd('test');
-            $data = [
-                'parent_categories' =>  $this->parent_categories,
-                'products' => $productSearch,
-                'productPhotos' => $productPhotos,
-                'seach_id' => null
-            ];
-            return view('adm.pages.product.index', $data);
-        }
+            
+            return view('admin.home-editor.popup-page', $data);
 
     }
 
@@ -120,51 +147,73 @@ class ProductController extends Controller
     {
         // dd($request);
 
-        dd($request->input());
+        // dd($request->input());
         if($request->status){
             $status = 1;
         }else{
             $status = 0;
         }
 
-        $request->validate([
-        ]);
+       
 
-        $image_name = uploadTinyImageThumb($request);
-        $isProduct = Product::where('category_id', $request->sub_category)->first();
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+
+            // Compress and save the image
+            $image_path =    public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            // If no new image is uploaded, use the old image
+            $image_name = $request->old_image;
+        }
+        // $isProduct = Product::where('category_id', $request->sub_category)->first();
         // dd($isProduct);
         
-        if(isset($isProduct)){
-            $data = [
-                'name' => $request->name,
-                'full_description' => $request->full_description,
-                'slug' => $request->slug,
-                'meta_title' => $request->meta_title,
-                'meta_keyword' => $request->meta_keyword,
-                'meta_description' => $request->meta_description,
-                'search_index' => $request->search_index,
-                'search_follow' => $request->search_follow,
-                'canonical_url' => $request->canonical_url,
-                'status' => 1,
-                'category_id' => $request->sub_category,
-            ];
+        // if(isset($isProduct)){
+        //     $data = [
+        //         'name' => $request->name,
+        //         'full_description' => $request->full_description,
+        //         'slug' => $request->slug,
+        //         'meta_title' => $request->meta_title,
+        //         'meta_keyword' => $request->meta_keyword,
+        //         'meta_description' => $request->meta_description,
+        //         'search_index' => $request->search_index,
+        //         'search_follow' => $request->search_follow,
+        //         'canonical_url' => $request->canonical_url,
+        //         'status' => 1,
+        //         'category_id' => $request->sub_category,
+        //     ];
 
-            $save = DB::table('products')->where('id', $isProduct->id)->update($data);
+        //     $save = DB::table('products')->where('id', $isProduct->id)->update($data);
 
             
-                    return redirect(route('admin.index').'/photo?page=manage&main_category='.$request->main_category.'&sub_category='.$request->sub_category)->with('success', 'Product Details Updated...');
+        //             return redirect(route('admin.index').'/photo?page=manage&main_category='.$request->main_category.'&sub_category='.$request->sub_category)->with('success', 'Product Details Updated...');
                 
 
-        }else{
+        // }else{
             // $product = Product::where('category_id', $request->category_id)->first();
           
             $product = new Product;
             $product->name = $request->name;   
-            $product->full_description = $request->full_description;
+            $product->full_description = $request->main_desc;
             $product->slug  = $request->slug;
             $product->meta_title  = $request->meta_title;
             $product->meta_keyword  = $request->meta_keyword;
             $product->meta_description  = $request->meta_description;
+            $product->image_alt  = $request->image_alt;
+            $product->image_title  = $request->image_title;
+            $product->image  = $image_name;
     
             $product->search_index = $request->search_index;      
             $product->search_follow = $request->search_follow;      
@@ -175,8 +224,12 @@ class ProductController extends Controller
             $save = $product->save();
 
             if($save){
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Product Created...'
+                ]);
                 // return back()->with('success', 'Product Details Created...');
-                return redirect(route('admin.index').'/photo?page=manage&main_category='.$request->main_category.'&sub_category='.$request->sub_category)->with('success', 'Product Details Updated...');
+                // return redirect(route('admin.index').'/photo?page=manage&main_category='.$request->main_category.'&sub_category='.$request->sub_category)->with('success', 'Product Details Updated...');
 
             }else{
                 return response()->json([
@@ -184,7 +237,7 @@ class ProductController extends Controller
                     'message' => 'Something went wrong, try again later...'
                 ]);
             }
-        }
+        // }
         // dd($task->id);
     }
     
@@ -225,17 +278,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $type = 'product_edit';
         $product = Product::find($id);
         $data = [
             'product' =>  $product, 
-            'parent_categories' => $this->parent_categories
+            'pageData' =>  Pages::where('type', 'product_page')->first(),
+            'parent_categories' => $this->parent_categories,
+            'type' => $type
         ];
 
-        if($product){
-            return view('adm.pages.product.edit', $data);
-        }else{
-            return redirect(route('product.index'))->with('fail', 'Product Not Available...');
-        }
+        return view('admin.home-editor.popup-page', $data);
     }
 
     /**
