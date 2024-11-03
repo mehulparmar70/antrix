@@ -14,25 +14,25 @@ $(window).on('load', function() {
 });
 
 $(document).ready(function() {
-    $('.remove-image').click(function(e) {
-        e.preventDefault();
-        var url = $(this).attr('data-url');
-        var field = $(this).data('field');
-        var table = $(this).data('table');
-        var id = $(this).data('id');
-        var el = $(this);
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: { 'table': table, 'field': field, 'id': id },
-            success: function(result) {
-                toastr[result.status](result.message);
-            },
-            error: function(result) {
-                alert('error');
-            }
-        });
-    });
+    // $('.remove-image').click(function(e) {
+    //     e.preventDefault();
+    //     var url = $(this).attr('data-url');
+    //     var field = $(this).data('field');
+    //     var table = $(this).data('table');
+    //     var id = $(this).data('id');
+    //     var el = $(this);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: url,
+    //         data: { 'table': table, 'field': field, 'id': id },
+    //         success: function(result) {
+    //             toastr[result.status](result.message);
+    //         },
+    //         error: function(result) {
+    //             alert('error');
+    //         }
+    //     });
+    // });
 
     $(".category-color span:nth-child(1)").addClass("bg-primary");
     $(".category-color span:nth-child(2)").addClass("bg-danger");

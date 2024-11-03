@@ -20,7 +20,7 @@ function goBack() {
           @if(getReffrel())
             <p class="breadcrumb-item"><a href="{{getReffrel()['url']}}">{{getReffrel()['name']}}</a></p>&nbsp&nbsp&nbsp:
           @endif
-          <p class="breadcrumb-item"><a href="{{ url('partenrs') }}">partners</a></p>
+          <p class="breadcrumb-item"><a href="{{ url('partners') }}">partners</a></p>
         </span>
 	      <a href="{{ url()->previous() }}" class="read_all"><p>back</p></a>
 	    </div>
@@ -36,6 +36,9 @@ function goBack() {
               <div class="product_title"  @if(session('LoggedUser'))
                                           data-link="{{route('admin.partners-page.editor')}}"
                                       @endif></div>
+                                      <div class="description_blk_item">
+                    <p>{!! $pageData->description !!}</p>
+                  </div>  
             </span>
       </div>
       <div class="video_product update_blk_item">

@@ -309,7 +309,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->name = $request->name;
-        $category->description  = $request->description;
+        $category->description  = $request->editorContent;
         $category->short_description  = $request->short_description;
         
         $category->image  = $image_name ; 

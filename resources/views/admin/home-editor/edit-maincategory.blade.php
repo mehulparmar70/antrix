@@ -289,7 +289,7 @@ else{
                         @if($category->image)
                           <label  class="text-dark" class="text-dark" for="search_index">Image Uploaded</label><br>
                           <img class="mt-2 elevation-2 perview-img" src="{{asset('/')}}/images/{{$category->image}}">
-                          <a class="remove-image" href="#" data-id="{{ $category->id }}" data-table="categories" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$category->id}}" style="display: inline; position: absolute; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          <a class="remove-image" onclick="removeimage('{{ $category->id }}','categories','image','{{url('api')}}/media/image-delete/{{$category->id}}')" href="#" data-id="{{ $category->id }}" data-table="categories" data-field="image" data-url="{{url('api')}}/media/image-delete/{{$category->id}}" style="display: inline; position: absolute; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         @else
                         <label  class="text-dark" class="text-dark" for="search_index"></label>
                           <img class="elevation-2 perview-img" src="{{asset('adm')}}/img/no-item.jpeg" style="height: 120px;">

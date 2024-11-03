@@ -296,7 +296,7 @@
 			</div>
 			<div class="kiss_wrap">
 				<div class="big_text mid_text">
-				<a href="{{ url('partenrs') }}">OUR PARTNERS</a>
+				<a href="{{ url('partners') }}">OUR PARTNERS</a>
 				</div>
 				<div class="kiis_blk footer-partners-div">
 				@foreach($footerOurPartners as $partenr)
@@ -312,7 +312,7 @@
 				</a>
 				@endforeach
 				</div>
-				<a href="{{ url('partenrs') }}" class="read_all explore_all"><p>VIEW ALL</p></a>
+				<a href="{{ url('partners') }}" class="read_all explore_all"><p>VIEW ALL</p></a>
 			</div>
 			<div class="kiss_wrap">
 				<div class="big_text mid_text">

@@ -209,10 +209,17 @@ class ApiCallController extends Controller
 
 
         if($update){       
-            return back()->with('success', 'Image Filed Uploaded...');
+            return response()->json([
+                'success' => true,
+                'message' => 'Image Filed Uploaded...'
+            ]);
+            // return back()->with('success', 'Image Filed Uploaded...');
             // return (['status' => 'success', 'message' => 'Image fields are Updated...']);
         }else{
-            return (['status' => 'failed', 'message' => 'Something went wrong, Try again...']);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
 
         }
     }

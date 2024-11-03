@@ -32,13 +32,13 @@
                             data-url="{{ route('product.edit', $product->id) }}" 
                             title="Edit product" 
                             data-type="editmodal" 
-                            onclick="popupmenu('{{ route('product.edit', $product->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('product.edit', $product->id) }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                          <a href="{{route('product.delete', $product->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete product" 
-                            onclick="popupmenu('{{route('product.delete', $product->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('product.delete', $product->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>                  
            

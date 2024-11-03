@@ -25,14 +25,15 @@
   <div class="update_blk">
 
     @foreach($testimonials as $testimonial)
+   
 
-    <a href="{{url('testimonials')}}?testimonial={{$footerTestimonial->id}}" class="client_item slick-slide" >
+    <a href="{{url('testimonials')}}?testimonial={{$testimonial->id}}" class="client_item slick-slide" >
 
       <div class="update_img onscreen_media_testimonial_item" @if(session('LoggedUser'))
 
-                        data-link="{{route('testimonials.edit', $footerTestimonial->id)}}"
+                        data-link="{{route('testimonials.edit', $testimonial->id)}}"
 
-                        data-delete-link="{{route('admin.index')}}/testimonial/delete/{{ $footerTestimonial->id}}"
+                        data-delete-link="{{route('admin.index')}}/testimonial/delete/{{ $testimonial->id}}"
 
                       @endif><img src="{{url('/')}}/images/{{$testimonial->image}}" /></div>
 

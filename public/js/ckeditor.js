@@ -1,5 +1,6 @@
-export function initializeCKEditor() {
-    const editorElement = document.querySelector('#editor');
+window.globalEditorInstance; 
+export function initializeCKEditor(editorElement) {
+  
 
     if (editorElement) {
         // Destroy any previous instance of CKEditor on the same element
@@ -116,6 +117,7 @@ function createCKEditor(editorElement) {
         ]
     }).then(editor => {
         // Store the editor instance for potential destruction later
+        window.globalEditorInstance = editor;
         editorElement.ckeditorInstance = editor;
     }).catch(error => {
         console.error('Error initializing CKEditor:', error);

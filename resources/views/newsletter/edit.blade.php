@@ -77,10 +77,10 @@
             <!-- <img class="mt-2"  height="120"src="{{asset('web')}}/media/xs/{{$testimonial->image}}"> -->
             <div class="image-area">
               <img class="elevation-2 perview-img" height="120" src="{{asset('/')}}images/{{$testimonial->image}}">
-              <!-- <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="newsletters"
+               <a class="remove-image" href="#"  onclick="removeimage('{{ $testimonial->id }}','newsletters','image','{{url('api')}}/media/image-delete/{{$testimonial->id}}')" data-id="{{ $testimonial->id }}" data-table="newsletters"
                 data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}"
                 style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i
-                  class="fa fa-trash" aria-hidden="true"></i></a> -->
+                  class="fa fa-trash" aria-hidden="true"></i></a>
             </div>
             @else
             <img class="elevation-2 perview-img" height="120" src="{{asset('/')}}img/no-item.jpeg">

@@ -69,6 +69,14 @@ function goBack() {
         	<div class="product_title"  @if(session('LoggedUser'))
                                       data-link="{{route('admin.video-page.editor')}}"
                                   @endif></div>
+								  <div class="description_wrap">
+                <div ></div>
+                <div class="description_blk">
+                  <div class="description_blk_item">
+                    <p>{!! $pageData->description !!}</p>
+                  </div>  
+                </div>
+            </div>
        </span>
 	    </div>
 	    <div class="video_product">

@@ -59,11 +59,22 @@ $(".case_studies_menu_active").addClass( "menu_active");
                   data-link="{{route('casestudies.edit', $blogDetail->id)}}"
                 @endif>
                 <div class="description_blk_item">
-                  <iframe src="https://docs.google.com/viewer?url={{ url('web') }}/casestudies/{{ $blogDetail->file_name }}&embedded=true" width="100%" height="1080" style="border: none;"></iframe>
+                  <iframe src="https://docs.google.com/viewer?url={{ url('/') }}/casestudies/{{ $blogDetail->file_name }}&embedded=true" width="100%" height="1080" style="border: none;"></iframe>
                   <!-- <iframe src="{{ url('web') }}/casestudies/{{ $blogDetail->file_name }}#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="1080" style="border: none;"></iframe> -->
                   <!-- <embed src="{{ url('web') }}/casestudies/{{ $blogDetail->file_name }}#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="1080" /> -->
                 </div>
+       
               </div>
+              <div class="description_wrap">
+                <div class="onscreen_product_internal_title onscreen_casestudiesedit" @if(session('LoggedUser'))
+                      data-link="{{route('casestudies.edit', $blogDetail->id)}}?onscreenCms=true&id={{$blogDetail->id}}"
+                      @endif></div>
+                <div class="description_blk">
+                  <div class="description_blk_item">
+                    <p>{!! $blogDetail->full_description !!}</p>
+                  </div>  
+                </div>
+            </div>
             </div>
           </div>
         </div>
@@ -114,11 +125,11 @@ $(".case_studies_menu_active").addClass( "menu_active");
 
         <h2>{{$updatesList->title}}</h2>
         <a class="update_inner" href="{{ url('case-studies') }}/{{$updatesList->slug}}">
-          <img src="{{ url('web') }}/media/md/{{ $updatesList->image }}" />
+          <img src="{{ url('') }}/images/{{ $updatesList->image }}" />
           <p>
            {!! strip_tags($updatesList->short_description) !!}
             <span
-              ><img src="{{ url('sardar') }}/images/osearch.png" /> &nbsp; click to view</span
+              ><img src="{{ url('') }}/images/osearch.png" /> &nbsp; click to view</span
             >
           </p>
         </a>

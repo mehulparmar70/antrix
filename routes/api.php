@@ -23,9 +23,9 @@ Route::post('media/media-store',[MediaApiController::class, 'mediaStore']);
 
 Route::post('media/update-product-image',[MediaApiController::class, 'updateProductImage']);
 
-Route::post('media/media-delete/{id}',[MediaApiController::class, 'mediaDelete']);
-Route::get('media/media-delete/{id}',[MediaApiController::class, 'mediaDelete']);
-Route::post('media/image-delete/{id}',[MediaApiController::class, 'imageDelete']);
+Route::delete('media/media-delete/{id}',[MediaApiController::class, 'mediaDelete']);
+// Route::get('media/media-delete/{id}',[MediaApiController::class, 'mediaDelete']);
+// Route::post('media/image-delete/{id}',[MediaApiController::class, 'imageDelete']);
 Route::post('media/update-image-data',[MediaApiController::class, 'updateImageData']);
 
 Route::post('media/upload-multiple-image',[ApiCallController::class, 'UploadMultipleImage'])->name('upload.multiple-image');

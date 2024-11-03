@@ -164,7 +164,7 @@ class CaseStudiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // dd($request);
         /*print_r($_REQUEST);
         exit();*/
      
@@ -234,7 +234,7 @@ class CaseStudiesController extends Controller
         if($save){
             return response()->json([
                 'success' => true,
-                'message' => 'Client Updated...'
+                'message' => 'Case Studies Updated...'
             ]);
         }else{
             return response()->json([

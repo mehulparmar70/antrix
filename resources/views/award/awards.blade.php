@@ -59,12 +59,22 @@
                     data-delete-link="{{route('admin.index')}}/award/delete/{{ $clientList['id']}}"
                     @endif></div>
                     @endif
-                    <img src="{{url('web')}}/images/{{$clientList['image']}}" alt="{{$clientList['name']}}" data-fancybox="gallery" href="{{url('web')}}/images/{{$clientList['image']}}"/>
+                    <img src="{{url('/')}}/images/{{$clientList['image']}}" alt="{{$clientList['name']}}" data-fancybox="gallery" href="{{url('web')}}/images/{{$clientList['image']}}"/>
                   </a>
                 @endforeach
               @endforeach
             </div>
           </div>
+          <div class="description_wrap">
+            <div class="menu_crud" @if(session('LoggedUser'))
+                  data-link="{{route('admin.awards-page.editor')}}"
+                  @endif></div>
+            <div class="description_blk">
+              <div class="description_blk_item">
+                <p>{!! $pageData->description !!}</p>
+              </div>  
+            </div>
+        </div>
         </div>
 	      <div class="inner_tab_blk_left">
 	        @include('widget.contact-form1')

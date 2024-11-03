@@ -97,6 +97,9 @@ function goBack() {
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.testimonial-page.editor')}}"
                                         @endif></div>
+                                        <div class="description_blk_item">
+                    <p>{!! $pageData->description !!}</p>
+                  </div>  
              </span>
       </div>
       <div class="video_product update_blk_item">

@@ -50,10 +50,10 @@ $(".setting a").addClass( "active-menu");
                         
                           @if($website_logo)
                             <img class="mt-2 perview-img logo"  height="120"
-                              src="{{asset('sardar')}}/img/{{$website_logo->option_value}}">
+                              src="{{asset('')}}img/{{$website_logo->option_value}}">
                               @else
                               <img class="perview-img logo"  height="120"
-                            src="{{asset('adm')}}/img/no-item.jpeg">
+                            src="{{asset('')}}img/no-item.jpeg">
                           @endif
                          
                           </div>
@@ -83,10 +83,10 @@ $(".setting a").addClass( "active-menu");
                         
                          @if($website_favicon)
                             <img class="mt-2 perview-img favicon"  height="120"
-                              src="{{asset('sardar')}}/img/{{$website_favicon->option_value}}">
+                              src="{{asset('')}}img/{{$website_favicon->option_value}}">
                               @else
                               <img class="perview-img favicon"  height="120"
-                            src="{{asset('adm')}}/img/no-item.jpeg">
+                            src="{{asset('')}}img/no-item.jpeg">
                           @endif
                          
                          
@@ -97,7 +97,7 @@ $(".setting a").addClass( "active-menu");
 
                         <tr>
                           <td></td>
-                          <td><input type="submit" class="btn btn-success pull-right" id="btn-social-media"  name="btn-social-media" 
+                          <td><input type="button" onclick="addlogoajax()" class="btn btn-success pull-right" id="btn-social-media"  name="btn-social-media" 
                           value="Update Website Images"></td>
                         </tr>
                       </table>
@@ -145,7 +145,7 @@ $(".setting a").addClass( "active-menu");
                               </td>
                         </tr>
 
-                        <tr>
+                        <!-- <tr>
                           <td><label for="title">Sitemap File</label></td>
                           <td>
                           
@@ -175,7 +175,7 @@ $(".setting a").addClass( "active-menu");
                                 <a class="btn btn-sm btn-dark" target="_blank" href="{{url('')}}/sitemap.xml">View sitemap.xml</a>
                             </td>
 
-                          </tr>
+                          </tr> -->
                         
                         <tr>
                           <td></td>

@@ -1,4 +1,4 @@
-@extends('sardar.layout.front-index')
+@extends('layout.front-index')
 @section('title','Product Details')
 
 @section('custom-js')
@@ -28,10 +28,10 @@ function goBack() {
       <div class="back_sec">
         <span>home &nbsp; :
           <!-- <p>Partner</p> -->
-          <p class="breadcrumb-item"><a href="{{ url('partenrs') }}">partners</a></p>
+          <p class="breadcrumb-item"><a href="{{ url('partners') }}">partners</a></p>
           &nbsp&nbsp&nbsp: <p class="breadcrumb-item"><a href="{{ url($blogDetail->slug) }}">{{$blogDetail->title}}</a></p>
         </span>
-        <a href="{{ url('partenrs') }}" class="read_all"><p>back</p></a>
+        <a href="{{ url('partners') }}" class="read_all"><p>back</p></a>
       </div>
     </div>
   </section>
@@ -57,7 +57,7 @@ function goBack() {
           </div>
         </div>
         <div class="inner_tab_blk_left">
-          @include('sardar.widget.contact-form1')
+          @include('widget.contact-form1')
         </div>
       </div>
     </div>
@@ -91,29 +91,29 @@ function goBack() {
   <section class="client_slider">
     <div class="container">
       <div class="client_line">
-          @include('sardar.widget.client-slider2')
-          @include('sardar.widget.awards-slider')
+          @include('widget.client-slider2')
+          @include('widget.awards-slider')
       </div>
     </div>
   </section>
 
   <section class="gray">
     <div class="container">
-      @include('sardar.widget.experts')
+      @include('widget.experts')
     </div>
   </section>
 
   <section class="banner_slider banner_margin">
     <div class="container">
-      @include('sardar.widget.industries-serve-with-title')
+      @include('widget.industries-serve-with-title')
     </div>
   </section>
 
   <section class="update_slider update_left">
     <div class="container">
       <div class="client_line">
-        @include('sardar.widget.newsleters-slider')
-        @include('sardar.widget.casestudy-slider')
+        @include('widget.newsleters-slider')
+        @include('widget.casestudy-slider')
       </div>
     </div>
   </section>

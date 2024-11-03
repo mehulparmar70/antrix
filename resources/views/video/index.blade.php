@@ -24,67 +24,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
 
 
-<script>
-  $(document).ready(function () {
-    $(".del-modal").click(function () {
-      var delete_id = $(this).attr('data-id');
-      var data_title = $(this).attr('data-title');
-
-      $('.delete-form').attr('action', delete_id);
-      $('.delete-title').html(data_title);
-    });
-  });
-
-
-  $(".video").addClass("menu-is-opening menu-open");
-  $(".video a").addClass("active-menu");
-
-
-  $(".row_position").sortable({
-    stop: function () {
-      var selectedData = new Array();
-      $('.row_position>tr').each(function () {
-        selectedData.push($(this).attr("id"));
-      });
-      updateOrder(selectedData);
-
-    }
-  });
-
-  function updateOrder(data) {
-    $.ajax({
-      url: "{{url('api')}}/admin/item/update-item-priority",
-      type: 'post',
-      data: { position: data, table: 'video' },
-      success: function (result) {
-        toastr.success('Video Order Updated...')
-      }
-    })
-  }
-
-  function updateStatus($id) {
-    $.ajax({
-      url: "{{route('status.update')}}",
-      type: 'post',
-      data: { id: $id, table: 'video' },
-      success: function (result) {
-        // console.log(result);
-        location.reload();
-
-      }
-    })
-  }
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-  });
-
-
-</script>
-
-
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -121,10 +60,10 @@
           <div class="">
 
             <div class=" table-responsive p-0">
-              <table id="clienttable" class="table table-bordered table-striped">
+              <table data-table="video" id="clienttable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Youtube Video</th>
                     <th width="250">Title</th>
                     <th>Date</th>
@@ -135,7 +74,7 @@
                 <tbody class="row_position">
                   @foreach($videos as $i => $video)
                   <tr id="{{$video->id}}">
-                    <td>{{$video->item_no}}</td>
+           
 
 
                     <td class="youtube_embed1">{!! html_entity_decode($video->youtube_embed) !!}</td>
@@ -157,15 +96,16 @@
                         @if($video->status == 0)
                         <h5 for="status"> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
                             class="badge badge-success">Active</span></h5>@endif
+                      </div>
                     </td>
-            </div>
-            </td>
+          
+           
 
             <td>
               <a href="javascript:void(0);" class="btn btn-xs btn-info float-left mr-2 btn-edit-award"
                 data-id="{{ $video->id }}" data-url="{{ route('video.edit', $video->id) }}" title="Edit Video"
                 data-type="editmodal"
-                onclick="popupmenu('{{ route('video.edit', $video->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                onclick="popupmenu('{{ route('video.edit', $video->id) }}', 'editmodal', event); return false;">
                 <i class="fa fa-edit"></i>
               </a>
 
@@ -181,6 +121,16 @@
             @endforeach
 
             </tbody>
+            <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Youtube Video</th>
+                    <th width="250">Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th width="140">Action</th>
+                  </tr>
+                </tfoot>
             </table>
 
           </div>

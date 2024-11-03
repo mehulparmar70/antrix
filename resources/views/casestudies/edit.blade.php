@@ -73,8 +73,8 @@
       </div>
       <div class="col-sm-12 mt-3">
         <label class="cmsModal-formLabel" for="full_description">Edit CaseStudies Description</label>
-        <textarea id="editor" name="short_description"
-          placeholder="Testimonial Descriptions">@if(old('short_description')){{old('short_description')}}@else{{$testimonial->short_description}}@endif</textarea>
+        <textarea id="editor" name="full_description"
+          placeholder="Testimonial Descriptions">@if(old('full_description')){{old('full_description')}}@else{{$testimonial->full_description}}@endif</textarea>
 
         <span class="text-danger">@error('full_description') {{$message}} @enderror</span>
       </div>
@@ -96,10 +96,10 @@
             @if($testimonial->image)
             <div class="image-area">
               <img class="elevation-2 perview-img" height="120" src="{{asset('/')}}images/{{$testimonial->image}}">
-              <!-- <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="case_studies"
+              <a class="remove-image" onclick="removeimage('{{ $testimonial->id }}','case_studies','image','{{url('api')}}/media/image-delete/{{$testimonial->id}}')" href="#" data-id="{{ $testimonial->id }}" data-table="case_studies"
                 data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}"
                 style="display: inline; position: absolute; top: -10px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif;left: 105px;"><i
-                  class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                  class="fa fa-trash-o" aria-hidden="true"></i></a> 
             </div>
             @else
             <img class="elevation-2 perview-img" height="120" src="{{asset('/')}}img/no-item.jpeg">

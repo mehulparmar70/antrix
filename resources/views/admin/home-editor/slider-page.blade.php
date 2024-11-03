@@ -2,7 +2,7 @@
 
 <a href="{{route('slider.index')}}?onscreenCms=true" 
    class="cmsBtn blue mt-2"
-   onclick="popupmenu('{{route('slider.index')}}?onscreenCms=true', 'editmodal', 'left=100,width=800,height=600'); return false;">
+   onclick="popupmenu('{{route('slider.index')}}?onscreenCms=true', 'editmodal', event); return false;">
    <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Add New Sliders
 </a>
     
@@ -59,7 +59,7 @@
                   <a href="{{route('slider.edit', $slider->id)}}" 
                     class="btn btn-xs btn-info float-left mr-2"  
                     title="Edit slider" 
-                    onclick="popupmenu('{{route('slider.edit', $slider->id)}}', 'editmodal', 'left=100,width=800,height=600'); return false;">
+                    onclick="popupmenu('{{route('slider.edit', $slider->id)}}', 'editmodal', event); return false;">
                     <i class="fa fa-edit"></i>
                   </a>
 

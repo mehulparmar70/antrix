@@ -50,6 +50,7 @@ $(".updates_menu_active").addClass( "menu_active");
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.blog-page.editor')}}"
                                         @endif></div>
+                                        
             </div>
             <img src="{{ url('') }}/images/banner2.jpg" alt="banner" / class="case-img">
           </div>
@@ -69,6 +70,9 @@ $(".updates_menu_active").addClass( "menu_active");
               <div class="product_title"  @if(session('LoggedUser'))
                                             data-link="{{route('admin.blog-page.editor')}}"
                                         @endif></div>
+                                        <div class="description_blk_item">
+                    <p>{!! $pageData->description !!}</p>
+                  </div>  
              </span>
       </div>
       <div class="video_product update_blk_item">

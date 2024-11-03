@@ -41,10 +41,7 @@ class SettingController extends Controller
 
     public function seoManageStore(Request $request)
     {
-        $request->validate([
-            'robots_txt' => 'mimes:txt'
-        ]);
-
+      
         $sitemap = uploadAnyFile($request, $name = 'sitemap', $saveName = 'sitemap', $path = public_path('/'));
         $robots_txt = uploadAnyFile($request, $name = 'robots_txt', $saveName = 'robots', $path = public_path('/'));
         
@@ -56,18 +53,20 @@ class SettingController extends Controller
             $website_robots_txt = WebsiteOption::where('option_name', 'robots_txt')->update(['option_value' => $robots_txt]);
         }
 
-        return back()->with('success', 'Website Sitemap & Robots.txt Updated...');
+        return response()->json([
+            'success' => true,
+            'message' => 'Website Sitemap & Robots.txt Updated...'
+        ]);
+        // return back()->with('success', 'Website Sitemap & Robots.txt Updated...');
 
     }
 
     public function seoManageImageStore(Request $request)
     {
-        $request->validate([
-            'logo' => 'image|mimes:jpg,png,jpeg,webp',
-        ]);
+      
 
-        $logo_name = uploadAnyFile($request, $name = 'logo', $saveName = 'logo', $path = public_path('sardar/img').'');
-        $favicon_name = uploadAnyFile($request, $name = 'favicon', $saveName = 'logo-icon', $path = public_path('sardar/img').'');
+        $logo_name = uploadAnyFile($request, $name = 'logo', $saveName = 'logo', $path = public_path('img').'');
+        $favicon_name = uploadAnyFile($request, $name = 'favicon', $saveName = 'logo-icon', $path = public_path('img').'');
 
         // dd($logo_name.'---'.$favicon_name);
 
@@ -85,8 +84,11 @@ class SettingController extends Controller
         }
 
 
-        
-        return back()->with('success', 'Website Image & Favicon Updated...');
+        return response()->json([
+            'success' => true,
+            'message' => 'Website Image & Favicon Updated...'
+        ]);
+        // return back()->with('success', 'Website Image & Favicon Updated...');
 
     }
     

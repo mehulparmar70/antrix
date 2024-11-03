@@ -1,58 +1,5 @@
 
 
-<script>
-$( document ).ready(function() {
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    $('.delete-form').attr('action', delete_id);
-    $('.delete-title').html(data_title);
-  });  
-});
-
-$(".block-control").addClass( "menu-is-opening menu-open");
-$(".block-control a").addClass( "active-menu");
-
-
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'client'},
-      success:function(result){
-        console.log(result);
-        location.reload();
-
-      }
-  })
-}
-
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            updateOrder(selectedData);
-
-            toastr.success('Client Order Updated...')
-        }
-  });
-
-function updateOrder(data) {
-  $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'client'},
-      success:function(result){
-        console.log(result);
-      }
-  })
-}
-
-</script>
-
 
 
 <div class="card-body p-2">
@@ -68,7 +15,7 @@ function updateOrder(data) {
         </ol>
       </div>
                 <div class="card-body table-responsive p-0">
-                  <table data-table="clients" class="table table-hover text-nowrap" id="clienttable">
+                  <table data-table="clients" id="clienttable" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                  
@@ -121,14 +68,14 @@ function updateOrder(data) {
                             data-url="{{ route('client.edit', $client->id) }}" 
                             title="Edit client" 
                             data-type="editmodal" 
-                            onclick="popupmenu('{{ route('client.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('client.edit', $client->id) }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                          
                          <a href="{{route('client.delete', $client->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete client" 
-                            onclick="popupmenu('{{route('client.delete', $client->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('client.delete', $client->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>                  
                         </td>
@@ -136,6 +83,16 @@ function updateOrder(data) {
                       @endforeach
 
                     </tbody>
+                    <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Name</th>
+                        <th>Logo</th>
+                        <th>Note</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                  </tr>
+                </tfoot>
                   </table>
                   
                 </div>

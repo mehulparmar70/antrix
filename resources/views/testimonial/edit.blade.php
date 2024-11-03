@@ -49,10 +49,10 @@
           <div class="image-area">
             <img class="mt-5 elevation-2 perview-img" height="120"
               src="{{asset('/')}}images/{{$testimonial->image}}">
-            <!-- <a class="remove-image" href="#" data-id="{{ $testimonial->id }}" data-table="testimonials"
+             <a class="remove-image" href="#"  onclick="removeimage('{{ $testimonial->id }}','testimonials','image','{{url('api')}}/media/image-delete/{{$testimonial->id}}')" data-id="{{ $testimonial->id }}" data-table="testimonials"
               data-field="image" data-url="{{url('api')}}/media/image-delete/{{$testimonial->id}}"
               style="    display: inline; position: absolute; left: 92px; border-radius: 10em; padding: 2px 6px 3px; text-decoration: none; font: 700 21px/20px sans-serif; top: 48px;"><i
-                class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+                class="fa fa-trash-o" aria-hidden="true"></i></a> 
           </div>
         </div>
         @else

@@ -218,6 +218,12 @@
   box-shadow: none;
   width: 100%;
 }
+#addimageproducts
+{
+  background-color: #272B2E; /* Slightly lighter background for input fields */
+  box-shadow: none;
+  width: 100%;
+}
 #addaward
 {
   background-color: #272B2E; /* Slightly lighter background for input fields */
@@ -425,7 +431,7 @@ $(document).ready(function () {
 	// $('.navbar-brand, .logo-g').each(function(){
     // $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+
     // `"class='onscreen-logo' onclick="currentWindow = window.open('`+$(this).attr('data-link')+'?onscreenCms=true'+
-    // `', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;"> 
+    // `', 'toolbar=no, location=no',event); return false;"> 
     // <i class='fa fa-edit'></i></a>`);
 	// });
 	
@@ -455,28 +461,28 @@ $(document).ready(function () {
                         <dt data-isproducttab="1" class="product_title_main" @if(session('LoggedUser'))
                         data-link="{{route('admin.category.list')}}?type=main_category"
                         @endif> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Main Category</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sub Category</a></li>
-                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Products</a></li> -->
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Manage Photos</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Video</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Main Category</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sub Category</a></li>
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Manage Products</a></li> -->
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Manage Photos</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li>
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true','','','','',''); return false;">Sub Category</a></li>  --}}
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;">Manage Products</a></li>  --}}
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/video/create?onscreenCms=true','','','','',''); return false;">Video</a></li>  --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Testimonial</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li>
                         {{-- <li><a href=""onclick="popupmenu('{{route('testimonials.create')}}/testimonials/create?onscreenCms=true','','','','',''); return false;">Testimonial</a></li>  --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Blog</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Blog</a></li>
                         {{-- <li><a href="{{route('admin.index')}}/blog/create?onscreenCms=true"onclick="popupmenu('{{route('admin.index')}}/blog/create?onscreenCms=true','','','','',''); return false;">Blog</a></li> --}}
                     </ul>
                 </li>
                 <li>
                     <a href="#">Manage Contents</a>
                     <ul class="ulclass">
-                      <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Main Category</a></li>
+                      <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Main Category</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/category?type=main_category&onscreenCms=true','','','','',''); return false;"
                         >Main Category</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sub Category</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sub Category</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/category?type=sub_category&onscreenCms=true','','','','',''); return false;"
                         >Sub Category</a></li> --}}
@@ -486,15 +492,15 @@ $(document).ready(function () {
                         <li><a class="adminEditItem" href=""
                             onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
                         >Manage Photos</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.index')}}?type=videoIndex&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Video</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.index')}}?type=videoIndex&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/video?onscreenCms=true','','','','',''); return false;"
                         >Video</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Testimonial</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/testimonials?onscreenCms=true','','','','',''); return false;"
                         >Testimonial</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Blog</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Blog</a></li>
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/blog?onscreenCms=true','','','','',''); return false;"
                         >Blog</a></li> --}}
@@ -506,23 +512,23 @@ $(document).ready(function () {
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/slider?onscreenCms=true','','','','',''); return false;"
                         >Slider / Banner</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('slider.index')}}?type=Slider&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Slider / Banner</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('slider.index')}}?type=Slider&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Slider / Banner</a></li>
 {{-- 
                         <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/settings/seo-manage?onscreenCms=true','','','','',''); return false;"
                         >Logo Manage</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.setting.seo-manage')}}?type=SocialMediaManagers&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Logo Manage</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.setting.seo-manage')}}?type=SocialMediaManagers&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Logo Manage</a></li>
 
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/settings/social-media?onscreenCms=true','','','','',''); return false;"
                         >Social Media</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('setting.social-media')}}?type=SocialMedia&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Social Media</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('setting.social-media')}}?type=SocialMedia&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Social Media</a></li>
 
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/custom-code/js?onscreenCms=true','','','','',''); return false;"
                         >Header Footer</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.customJs.create')}}?type=customJs&onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Header Footer</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('sitemapEdit')}}?onscreenCms=true', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;">Sitemap</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.customJs.create')}}?type=customJs&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Header Footer</a></li>
+                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('sitemapEdit')}}?onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sitemap</a></li>
                     </ul>
                 </li>
                 <li>
@@ -575,7 +581,7 @@ $(document).ready(function () {
       <div class="header_bottom_blk">
         <div class="container">
           <div class="logo">
-            <a href="{{url('')}}"><img src="{{url('/')}}/images/logo.png" alt="logo" /></a>
+            <a href="{{url('')}}"><img src="{{url('/')}}/img/logo.png" alt="logo" /></a>
           </div>
 
           <div class="search">
@@ -617,7 +623,7 @@ $(document).ready(function () {
                 <li class="menu_crud"
                 @if(session('LoggedUser'))
                     data-link="{{route('admin.partners-page.editor')}}"
-                @endif><a href="{{ url('partenrs') }}" class="nav-item partenrs">{{ $partnersLink->name }}</a></li>
+                @endif><a href="{{ url('partners') }}" class="nav-item partenrs">{{ $partnersLink->name }}</a></li>
               </ul>
             </div>
           </div>

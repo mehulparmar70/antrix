@@ -1,55 +1,3 @@
-<script>
-  $(document).ready(function () {
-    $(".del-modal").click(function () {
-      var delete_id = $(this).attr('data-id');
-      var data_title = $(this).attr('data-title');
-
-      $('.delete-form').attr('action', delete_id);
-      $('.delete-title').html(data_title);
-    });
-  });
-
-  $(".block-control").addClass("menu-is-opening menu-open");
-  $(".block-control a").addClass("active-menu");
-
-
-  function updateStatus($id) {
-    $.ajax({
-      url: "{{route('status.update')}}",
-      type: 'post',
-      data: { id: $id, table: 'awards' },
-      success: function (result) {
-        console.log(result);
-        location.reload();
-
-      }
-    })
-  }
-
-  $(".row_position").sortable({
-    stop: function () {
-      var selectedData = new Array();
-      $('.row_position>tr').each(function () {
-        selectedData.push($(this).attr("id"));
-      });
-      updateOrder(selectedData);
-
-      toastr.success('Award Order Updated...');
-    }
-  });
-
-  function updateOrder(data) {
-    $.ajax({
-      url: "{{url('api')}}/admin/item/update-item-priority",
-      type: 'post',
-      data: { position: data, table: 'awards' },
-      success: function (result) {
-        console.log(result);
-      }
-    })
-  }
-
-</script>
 
 
 <div class="card-body p-2">
@@ -72,10 +20,10 @@
     <div class="col-md-12">
  
       <div class="card-body table-responsive p-0">
-        <table class="table table-hover text-nowrap" id="clienttable">
+        <table class="table table-bordered table-striped" id="clienttable" data-table="awards">
           <thead>
             <tr>
-              <th>ID</th>
+              <!-- <th>ID</th> -->
               <th>Name</th>
               <th>Logo</th>
               <th>Note</th>
@@ -87,7 +35,7 @@
           <tbody class="row_position">
             @foreach($awards as $i => $client)
             <tr id="{{$client->id}}">
-              <td>{{$client->item_no}}</td>
+              <!-- <td>{{$client->item_no}}</td> -->
 
               <td>{{$client->name}}</td>
               @if($client->image)
@@ -122,7 +70,7 @@
         <a href="javascript:void(0);" class="btn btn-xs btn-info float-left mr-2 btn-edit-award"
           data-id="{{ $client->id }}" data-url="{{ route('award.edit', $client->id) }}" title="Edit Award"
           data-type="editmodal"
-          onclick="popupmenu('{{ route('award.edit', $client->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+          onclick="popupmenu('{{ route('award.edit', $client->id) }}', 'editmodal', event); return false;">
           <i class="fa fa-edit"></i>
         </a>
 
@@ -134,7 +82,7 @@
         <a href="{{route('award.delete', $client->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete slider" 
-                            onclick="popupmenu('{{route('award.delete', $client->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('award.delete', $client->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
     
@@ -143,6 +91,16 @@
       @endforeach
 
       </tbody>
+      <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Name</th>
+              <th>Logo</th>
+              <th>Note</th>
+              <th>Status</th>
+              <th>Action</th>
+                  </tr>
+                </tfoot>
       </table>
 
     </div>

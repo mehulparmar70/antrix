@@ -23,9 +23,14 @@
             ?>
               <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
                 <div class="tab_top subCategoryImage subCategoryImage-{{ $topInflatableLp->id }}">
-                  @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                  <img src="{{url('/')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
+                  <?php if(!empty($topInflatableLp->image))
+                  {
+                    ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
+                    <?php }else{?>
+                @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                  <img src="{{url('')}}/images/{{$productImage->image}}" style="height: 540px !important;" />
                   @endforeach
+                  <?php }?>
                 </div>
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
@@ -40,7 +45,15 @@
             <?php } else { ?>
             <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
               <div class="tab_top">
-                <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
+              <?php if(!empty($topInflatableLp->image))
+                  {
+                    ?>
+                    <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
+                    <?php }else{?>
+
+              <img src="{{url('')}}/img/no-item.jpeg" />
+              <?php }?>
+                <!-- <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  /> -->
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
@@ -58,7 +71,7 @@
           @else
             <div class="item_img showProductDetails" data-link="{{url('')}}/{{$topInflatable->slug}}">
               <div class="tab_top">
-                <img src="{{url('/')}}/img/no-item.jpeg" />
+                <img src="{{url('')}}/img/no-item.jpeg" />
                 <div class="product_internal_title" @if(session('LoggedUser'))
                       data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatable->id}}"
                       data-edit-link="{{route('admin.category.edit', $topInflatable->id)}}?type=main_category&onscreenCms=true"

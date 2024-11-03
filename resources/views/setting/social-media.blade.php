@@ -28,9 +28,10 @@ $(".setting a").addClass( "active-menu");
                 	<div class="row">
                     <div class="col-md-10">
                     <form id="socialmediaajax" role="form"  method="post" enctype="multipart/form-data" onsubmit="return false;">
+                    <div class="cmsModal-formGroup">
                         {{csrf_field()}}
                     <h5 class="text-danger text-center">Social Button</h5>
-                      <table class="table">
+                      <table data-table="clients" class="table table-hover text-nowrap" id="clienttable" >
                         <tr>
                           <td width="30%"><label for="title" class="cmsModal-formLabel">Facebook</label></td>
                           <td><input type="url" class="cmsModal-formControl" id="facebook"  name="facebook" value="@if(old('facebook')){{old('facebook')}}@else{{$socialMedia->facebook}}@endif" placeholder="Facebook Profile"></td>
@@ -135,6 +136,7 @@ $(".setting a").addClass( "active-menu");
                         </tr>
 
                       </table>
+</div>
                       </form>
                   </div>
                 </div>

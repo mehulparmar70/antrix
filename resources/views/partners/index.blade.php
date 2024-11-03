@@ -33,60 +33,7 @@
 
 
 
-<script>
-$( document ).ready(function() {
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    $('.delete-form').attr('action',delete_id);
-    $('.delete-title').html(data_title);
-  });  
-});
 
-
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            updateOrder(selectedData);
-        }
-  });
-
-function updateOrder(data) {
-  $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'partners'},
-      success:function(result){
-        toastr.success('Blog Order Updated...')
-      }
-  })
-}
-
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'partners'},
-      success:function(result){
-        location.reload();
-      }
-  })
-}
-
-$(".partners").addClass( "menu-is-opening menu-open");
-$(".partners a").addClass( "active-menu");
-
-$(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
-  
-</script>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -125,7 +72,7 @@ $(function () {
                 <table data-table="partners" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <!-- <th>ID</th> -->
                       <th>Image</th>
                       <th>Title</th>
                       <th width="200">slug</th>
@@ -137,7 +84,7 @@ $(function () {
                   <tbody class="row_position">
                     @foreach($blogs as $i => $blog)
                       <tr id="{{$blog->id}}"> 
-                        <td>{{$blog->item_no}}</td>
+                        <!-- <td>{{$blog->item_no}}</td> -->
 
                         @if(isset($blog->image))
                         <td><img class="rounded object-fit"  width="150"
@@ -178,14 +125,14 @@ $(function () {
                             data-url="{{ route('partners.edit', $blog->id) }}" 
                             title="Edit Partners" 
                             data-type="editmodal" 
-                            onclick="popupmenu('{{ route('partners.edit', $blog->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('partners.edit', $blog->id) }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                           
              <a href="{{route('partners.delete', $blog->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete partners" 
-                            onclick="popupmenu('{{route('partners.delete', $blog->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('partners.delete', $blog->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
                       
@@ -195,6 +142,16 @@ $(function () {
                     @endforeach
 
                   </tbody>
+                  <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Image</th>
+                      <th>Title</th>
+                      <th width="200">slug</th>
+                      <th>Status</th>
+                      <th width="140">Action</th>
+                  </tr>
+                </tfoot>
                 </table>
                 
               </div>

@@ -32,6 +32,9 @@ class ItemPriority extends Model
                 case 'criteria':
                     $table = 'criterias';
                     break;
+                case 'main_category':
+                    $table = 'categories';
+                    break;
                             
                     
             case 'criteriaMeta':

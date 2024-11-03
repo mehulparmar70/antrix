@@ -168,7 +168,7 @@ function updateStatus($id) {
                             data-url="{{ route('admin.pageLink.create', ['id' => $pageLink->id]) }}" 
                             title="Edit Page Link"
                             data-type="editmodal"
-                            onclick="popupmenu('{{ route('admin.pageLink.create') }}?type=edit&id={{ $pageLink->id }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('admin.pageLink.create') }}?type=edit&id={{ $pageLink->id }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                          

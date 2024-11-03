@@ -28,70 +28,7 @@
 
 
 
-<script>
 
-
-$( document ).ready(function() {
-
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            console.log(selectedData);
-            updateOrder(selectedData);
-
-           toastr.success('Testimonial Order Updated...')
-        }
-  });
-  
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    $('.delete-form').attr('action', delete_id);
-    $('.delete-title').html(data_title);
-  });  
-});
-
-
-$(".newsletter").addClass( "menu-is-opening menu-open");
-$(".newsletter a").addClass( "active-menu");
-
-  function updateOrder(data) {
-  $.ajax({
-      url:"{{url('/')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'newsletter'},
-      success:function(result){
-        // console.log(result);
-      }
-  })
-}
-
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'newsletter'},
-      success:function(result){
-        // console.log(result);
-        location.reload();
-
-      }
-  })
-}
-
-
-$(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-  });
-
-</script>
 
 <div class="content-wrapper">
     
@@ -104,10 +41,10 @@ $(function () {
             <div class="">
               
               <div class=" p-0">                
-                <table  id="clienttable" class="table table-bordered table-striped" >
+                <table data-table="newsletter" id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <!-- <th>ID</th> -->
                       <th>Image</th>
                       <th>Title</th>
                       <th style="min-width: 50% !important;">Description</th>
@@ -119,7 +56,7 @@ $(function () {
                   <tbody class="row_position">
                     @foreach($testimonials as $i => $testimonial)
                       <tr id="{{$testimonial->id}}"> 
-                        <td>{{$testimonial->item_no}}</td>
+                        <!-- <td>{{$testimonial->item_no}}</td> -->
                         
 
                         @if(isset($testimonial->image))
@@ -159,7 +96,7 @@ $(function () {
                             data-url="{{ route('newsletter.edit', $testimonial->id) }}" 
                             title="Edit Newsletter" 
                             data-type="editmodal" 
-                            onclick="popupmenu('{{ route('newsletter.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('newsletter.edit', $testimonial->id) }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                           
@@ -168,7 +105,7 @@ $(function () {
              <a href="{{route('newsletter.delete', $testimonial->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete newsletter" 
-                            onclick="popupmenu('{{route('newsletter.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('newsletter.delete', $testimonial->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
                       
@@ -178,6 +115,16 @@ $(function () {
                     @endforeach
 
                   </tbody>
+                  <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Image</th>
+                      <th>Title</th>
+                      <th style="min-width: 50% !important;">Description</th>
+                      <th>Status</th>
+                      <th width="100">Action</th>
+                  </tr>
+                </tfoot>
                 </table>
                 
               </div>

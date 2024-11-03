@@ -10,70 +10,7 @@
 
 
 
-<script>
 
-
-$( document ).ready(function() {
-
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            console.log(selectedData);
-            updateOrder(selectedData);
-
-           toastr.success('Order Updated...')
-        }
-  });
-  
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    $('.delete-form').attr('action', delete_id);
-    $('.delete-title').html(data_title);
-  });  
-});
-
-
-$(".industries").addClass( "menu-is-opening menu-open");
-$(".industries a").addClass( "active-menu");
-
-  function updateOrder(data) {
-  $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'testimonial'},
-      success:function(result){
-        console.log(result);
-      }
-  })
-}
-
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'testimonial'},
-      success:function(result){
-        // console.log(result);
-        location.reload();
-
-      }
-  })
-}
-
-
-$(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-  });
-
-</script>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -111,7 +48,7 @@ $(function () {
                 <table data-table="industries"  id="clienttable" class="table table-bordered table-striped" >
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <!-- <th>ID</th> -->
                       <th>Image</th>
                       <th>Title</th>
                       <th style="min-width: 50% !important;">Short Description</th>
@@ -123,7 +60,7 @@ $(function () {
                   <tbody class="row_position">
                     @foreach($testimonials as $i => $testimonial)
                       <tr id="{{$testimonial->id}}"> 
-                        <td>{{$testimonial->item_no}}</td>
+                        <!-- <td>{{$testimonial->item_no}}</td> -->
                         
 
                         @if(isset($testimonial->image))
@@ -166,7 +103,7 @@ $(function () {
                           <a href="{{route('industries.delete', $testimonial->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete slider" 
-                            onclick="popupmenu('{{route('industries.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('industries.delete', $testimonial->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
                       
@@ -176,6 +113,16 @@ $(function () {
                     @endforeach
 
                   </tbody>
+                  <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Image</th>
+                      <th>Title</th>
+                      <th style="min-width: 50% !important;">Short Description</th>
+                      <th>Status</th>
+                      <th width="100">Action</th>
+                  </tr>
+                </tfoot>
                 </table>
                 
               </div>

@@ -35,7 +35,7 @@
                   <table  data-table="slider" id="clienttable" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Id</th>
+                       
                         <th>Image</th>
                         <th>Title</th>
                         <th>Description</th>
@@ -47,7 +47,7 @@
                     <tbody class="row_position">
                       @foreach($sliders as $key => $slider)
                       <tr id="{{$slider->id}}">
-                        <td>{{$slider->slider_no}}</td>
+                        <!-- <td>{{$slider->slider_no}}</td> -->
                         <td><img width="100" src="{{url('/')}}/images/{{$slider->image}}"></td>
                         <td>{{$slider->title}}</td>
                         <td>{{$slider->description}}</td>
@@ -69,13 +69,13 @@
                         <a href="{{route('slider.edit', $slider->id)}}" 
                             class="btn btn-xs btn-info float-left mr-2"  
                             title="Edit slider" 
-                            onclick="popupmenu('{{route('slider.edit', $slider->id)}}', 'editmodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('slider.edit', $slider->id)}}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                           </a>
                         <a href="{{route('slider.delete', $slider->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete slider" 
-                            onclick="popupmenu('{{route('slider.delete', $slider->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('slider.delete', $slider->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
 
@@ -94,7 +94,7 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Id</th>
+                    <!-- <th>Id</th> -->
                     <th>Image</th>
                     <th>Title</th>
                     <th>Description</th>

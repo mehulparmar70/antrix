@@ -130,78 +130,79 @@ class MediaApiController extends Controller
 
     
     
-    public function mediaDelete(Request $request){
+    public function mediaDelete(Request $request) {
         header("Access-Control-Allow-Origin: *");
         $media = Media::find($request->id);
-        
-        if($media){
-            if(File::exists(public_path('web').'/media/lg/'.$media->image)){
-                unlink(public_path('web').'/media/lg/'.$media->image);
-                unlink(public_path('web').'/media/md/'.$media->image);
-                unlink(public_path('web').'/media/sm/'.$media->image);
-                unlink(public_path('web').'/media/xs/'.$media->image);
-                unlink(public_path('web').'/media/icon/'.$media->image);
-                $media->delete();
-                return ['status' => 'success', 'message' => 'Image Deleted...', 'deleted_id' => $request->id];
+    
+        if ($media) {
+            $imagePath = public_path('images/' . $media->image);
+            
+            // Check if file exists before trying to delete
+            if (File::exists($imagePath)) {
+                try {
+                    unlink($imagePath); // Delete the file
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Error deleting the file: ' . $e->getMessage(),
+                    ], 500);
+                }
             }
-            else{
-                $media->delete();
-                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
-            }
-        }else{
-                $media->delete();
-                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
+    
+            // Delete the media record from the database
+            $media->delete();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Image Deleted...',
+                'deleted_id' => $request->id
+            ]);
         }
+    
+        // Return a response if media is not found
+        return response()->json([
+            'success' => false,
+            'message' => 'Media not found or already deleted.',
+        ], 404);
     }
 
     public function imageDelete(Request $request){
         header("Access-Control-Allow-Origin: *");
-        $getData = DB::table($request->table)->where('id',$request->id)->get()->toArray();
-
-        if (count($getData) > 0) {
-            $fileName = $getData[0]->{$request->field};
-            
-            if(File::exists(public_path('web').'/media/lg/'.$fileName)){
-                unlink(public_path('web').'/media/lg/'.$fileName);
-                unlink(public_path('web').'/media/md/'.$fileName);
-                unlink(public_path('web').'/media/sm/'.$fileName);
-                unlink(public_path('web').'/media/xs/'.$fileName);
-                unlink(public_path('web').'/media/icon/'.$fileName);
-
-                 $data = [
-                    $request->field => NULL
-                ];
-                DB::table($request->table)->where('id',$request->id)->update($data);
-                session()->put('success','Image Deleted...');
-                return ['status' => 'success', 'message' => 'Image Deleted...', 'deleted_id' => $request->id];
-            } else{
-                session()->put('danger','Something went wrong, please try again...');
-               return ['status' => 'error', 'message' => 'Something went wrong, please try again...']; 
-            }
-
-        } else {
-            session()->put('danger','Something went wrong, please try again...');
-            return ['status' => 'error', 'message' => 'Something went wrong, please try again...'];
+    
+        // Check for data presence
+        if (!$request->has(['table', 'field', 'id'])) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Missing required parameters.',
+            ], 400);
         }
-        /*$media = Media::find($request->id);
-        
-        if($media){
-            if(File::exists(public_path('web').'/media/lg/'.$media->image)){
-                unlink(public_path('web').'/media/lg/'.$media->image);
-                unlink(public_path('web').'/media/md/'.$media->image);
-                unlink(public_path('web').'/media/sm/'.$media->image);
-                unlink(public_path('web').'/media/xs/'.$media->image);
-                unlink(public_path('web').'/media/icon/'.$media->image);
-                $media->delete();
-                return ['status' => 'success', 'message' => 'Image Deleted...', 'deleted_id' => $request->id];
+    
+        $getData = DB::table($request->table)->where('id', $request->id)->first();
+    
+        if ($getData) {
+            $fileName = $getData->{$request->field};
+    
+            if (File::exists(public_path('images/' . $fileName))) {
+                unlink(public_path('images/' . $fileName));
+    
+                DB::table($request->table)->where('id', $request->id)->update([$request->field => null]);
+    
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Image Deleted...'
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'File not found.'
+                ]);
             }
-            else{
-                $media->delete();
-                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
-            }
-        }else{
-                $media->delete();
-                return ['failed' => 'success', 'message' => 'Something went wrong, please try again...'];
-        }*/
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No matching record found.'
+            ]);
+        }
     }
+    
 }

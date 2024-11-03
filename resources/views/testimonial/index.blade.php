@@ -28,70 +28,6 @@
 
 
 
-<script>
-
-
-$( document ).ready(function() {
-
-$( ".row_position" ).sortable({
-      stop: function() {
-			var selectedData = new Array();
-            $('.row_position>tr').each(function() {
-                selectedData.push($(this).attr("id"));
-            });
-            console.log(selectedData);
-            updateOrder(selectedData);
-
-           toastr.success('Testimonial Order Updated...')
-        }
-  });
-  
-  $(".del-modal").click(function(){
-    var delete_id = $(this).attr('data-id');
-    var data_title = $(this).attr('data-title');
-    
-    $('.delete-form').attr('action', delete_id);
-    $('.delete-title').html(data_title);
-  });  
-});
-
-
-$(".testimonial").addClass( "menu-is-opening menu-open");
-$(".testimonial a").addClass( "active-menu");
-
-  function updateOrder(data) {
-  $.ajax({
-      url:"{{url('api')}}/admin/item/update-item-priority",
-      type:'post',
-      data:{position:data, table: 'testimonial'},
-      success:function(result){
-        console.log(result);
-      }
-  })
-}
-
-function updateStatus($id) {
-  $.ajax({
-      url:"{{route('status.update')}}",
-      type:'post',
-      data:{id:$id, table: 'testimonial'},
-      success:function(result){
-        // console.log(result);
-        location.reload();
-
-      }
-  })
-}
-
-
-$(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-  });
-
-</script>
 
 
 <div class="content-wrapper">
@@ -189,7 +125,7 @@ $(function () {
                             data-url="{{ route('testimonials.edit', $testimonial->id) }}" 
                             title="Edit Testimonial" 
                             data-type="editmodal" 
-                            onclick="popupmenu('{{ route('testimonials.edit', $testimonial->id) }}', 'editmodal', 'left=200, width=990, height=860'); return false;">
+                            onclick="popupmenu('{{ route('testimonials.edit', $testimonial->id) }}', 'editmodal', event); return false;">
                             <i class="fa fa-edit"></i>
                          </a>
                           
@@ -197,7 +133,7 @@ $(function () {
              <a href="{{route('testimonials.delete', $testimonial->id)}}" 
                             class="btn btn-xs btn-danger float-left mr-2"  
                             title="Delete testimonials" 
-                            onclick="popupmenu('{{route('testimonials.delete', $testimonial->id)}}', 'deletemodal', 'left=100,width=800,height=600'); return false;">
+                            onclick="popupmenu('{{route('testimonials.delete', $testimonial->id)}}', 'deletemodal', event); return false;">
                             <i class="fa fa-trash"></i>
                           </a>
                       
@@ -207,6 +143,17 @@ $(function () {
                     @endforeach
 
                   </tbody>
+                  <tfoot>
+                  <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Image</th>
+                      <th>Client Name</th>
+                      <th style="min-width: 50% !important;">Short Description</th>
+                      <th>Youtube Embed</th>
+                      <th>Status</th>
+                      <th width="100">Action</th>
+                  </tr>
+                </tfoot>
                 </table>
                 
               </div>

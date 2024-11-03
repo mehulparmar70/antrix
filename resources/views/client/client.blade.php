@@ -63,6 +63,16 @@
                 @endforeach
             </div>
           </div>
+          <div class="description_wrap">
+            <div class="our_clients" @if(session('LoggedUser'))
+                  data-link="{{route('admin.client-page.editor')}}"
+                  @endif></div>
+            <div class="description_blk">
+              <div class="description_blk_item">
+                <p>{!! $pageData->description !!}</p>
+              </div>  
+            </div>
+        </div>
         </div>
 	      <div class="inner_tab_blk_left">
 	        @include('widget.contact-form1')

@@ -381,7 +381,7 @@
                 @endif
 
               <button type="button" onclick="uploadiamges()" class="add-more btn btn-success btn-sm pull-right" 
-          style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
+>
           <i class="fa fa-plus" aria-hidden="true"></i> Upload
         </button> 
               </div>
@@ -401,7 +401,7 @@
               <h6>Edit Existing Images</h6>
             </div>
             <div class="form-horizontal row text-center mb-3 text-center" style="
-                  background: #dedede;
+                 
                   position: relative;display: flex;align-items: center;">
 
 
@@ -429,48 +429,42 @@
 
             <div class="row row_position_photo res">
               @foreach(getSubCategoryImages($_REQUEST['sub_category'], 0 , 'DESC') as $key => $image)
-              <input type="hidden" id="{{$image->id}}">
-              <form class="col-sm-12 update-form" action="{{route('update.multiple-image-field', $image->id)}}"
-                method="post" id="{{$image->id}}" style="position: relative; left: 0px; top: 0px; cursor: move;">
-
+              <input type="hidden" id="{{ $image->id }}">
+              <form id="addimageproducts_{{ $image->id }}" method="post" enctype="multipart/form-data" class="form-horizontal col-sm-12 update-form" 
+                    onsubmit="return false;" style="position: relative; left: 0px; top: 0px; cursor: move;">
+            
                 @csrf
-                <div class="row  col-sm-12 mb-3 text-center selected-images" style="">
+                <div class="row col-sm-12 mb-3 text-center selected-images">
                   <div class="col-sm-1">
-                    <label for="">{{++$key}}</label>
+                    <label for="">{{ ++$key }}</label>
                   </div>
                   <div class="col-sm-2">
-                    <img src="{{url('')}}/images/{{$image->image}}" width="140" />
+                    <img src="{{ url('') }}/images/{{ $image->image }}" width="140" />
                   </div>
-
                   <div class="col-sm-3">
-                    <input type="text" class="form-control form-control-sm title" name="title"
-                      value="{{$image->image_title}}" placeholder="Title">
+                    <input type="text" class="form-control form-control-sm title" name="title" 
+                           value="{{ $image->image_title }}" placeholder="Title">
                   </div>
-
                   <div class="col-sm-3">
-                    <input type="text" class="form-control form-control-sm alt" name="alt" placeholder="Alt Text"
-                      value="{{$image->image_alt}}">
+                    <input type="text" class="form-control form-control-sm alt" name="alt" 
+                           placeholder="Alt Text" value="{{ $image->image_alt }}">
                   </div>
-
                   <div class="col-sm-3">
-
-                    <button type="save" class="btnUpload btn btn-success btn-sm mr-2"
-                      style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
+                    <button type="button" class="btnUpload btn btn-success btn-sm mr-2" onclick="updatephoto({{ $image->id }})" 
+                            style="font-size: 15px; padding: 1px 10px; vertical-align: middle;">
                       <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;&nbsp;Update
                     </button>
-
-                    <a class="btnDelete btn btn-danger btn-sm mr-2"
-                      data-url="{{url('api')}}/media/media-delete/{{$image->id}}"
-                      style="font-size: 15px;padding: 1px 10px;vertical-align: middle;">
-                      <i class="fa fa-trash"></i> &nbsp;&nbsp;Delete
-                    </a>
+                    <button type="button" class="btnDelete btn btn-danger btn-sm mr-2" 
+                    onclick="deletephoto({{ $image->id }})"
+                    style="font-size: 15px; padding: 1px 10px; vertical-align: middle;">
+              <i class="fa fa-trash"></i> &nbsp;&nbsp;Delete
+            </button>
+            
                   </div>
-
                 </div>
-
               </form>
-
-              @endforeach
+            @endforeach
+            
 
 
             </div>
